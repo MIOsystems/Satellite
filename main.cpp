@@ -5,29 +5,12 @@
  *  Author: Arthur
  */
 #include <DAVE.h>                 //Declarations from DAVE Code Generation (includes SFR declaration)
-#include <stdint.h>
-#include <BMI085.h>
 
-BMI085 bmi085;
-
-
-int32_t initialize() {
-	int32_t status;
-	status = BMI_init(&bmi085);
-	if(status != SPI_MASTER_STATUS_SUCCESS) {
-		return -1;
-	}
-
-
-	return 1;
-
-}
 int main(void)
 {
 	DAVE_STATUS_t status;
 
 	status = DAVE_Init();           /* Initialization of DAVE APPs  */
-	initialize();
 
 	if(status != DAVE_STATUS_SUCCESS)
 	{
