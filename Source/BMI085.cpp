@@ -8,13 +8,11 @@
 #include <Header/BMI085.h>
 #include <Header/Satellite.h>
 #include <DAVE.h>
-namespace Satellite {
 
 BMI085::BMI085() {
 	this->acc_data = new Vector3(0.0f, 0.0f, 0.0f);
 	this->axis_data_stat = new StatisticVector(0.0f, 0.0f, 0.0f);
 	this->axis_data = new Vector3(0.0f, 0.0f, 0.0f);
-
 }
 
 u8 BMI085::init() {
@@ -27,8 +25,8 @@ u8 BMI085::init() {
 	}
 
 	// Select gyroscope first
-	status = select()
-	// Softreseting the BMI sensor
+	status = select(BMI_CS_G_GPIO, BMI_CS_G_PIN);
+	// Soft reseting the BMI sensor
 	//status = write();
 	return 0;
 
@@ -36,14 +34,14 @@ u8 BMI085::init() {
 u8 BMI085::poll() {
 	return 0;
 }
+
 u8 BMI085::select(XMC_GPIO_PORT_t* _port, u8 _pin) {
 	XMC_GPIO_SetOutputHigh(_port, _pin);
+	Utility::delay_ms(1);
+	XMC_GPIO_SetOutputLow(_port, _pin);
 	return 0;
 }
-
 
 u8 BMI085::write(u8 addr, u16 *data) {
 	return 0;
 }
-
-} /* namespace Satellite */

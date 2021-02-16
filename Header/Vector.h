@@ -9,8 +9,6 @@
 #define VECTOR_H_
 
 #include <Header/Types.h>
-namespace Satellite {
-
 class Vector3 {
 	private:
 		f32 x;
@@ -39,6 +37,5 @@ class StatisticVector {
 		StatisticVector(f32 _max, f32 _min, f32 _avg);
 
 };
-} /* namespace Satellite */
 
 #endif /* VECTOR3_H_ */

@@ -7,8 +7,6 @@
 
 #include <Header/Vector.h>
 
-namespace Satellite {
-
 Vector3::Vector3(f32 _x, f32 _y, f32 _z) {
 	this->x = x;
 	this->y = y;
@@ -25,5 +23,3 @@ StatisticVector::StatisticVector(f32 _max, f32 _min, f32 _avg) {
 	this->min = _min;
 	this->avg = _avg;
 }
-
-} /* namespace Satellite */

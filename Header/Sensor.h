@@ -9,8 +9,8 @@
 #define SENSOR_H_
 #include <DAVE.h>
 #include <Header/Types.h>
-
-class Sensor {
+class Sensor
+{
 	public:
 		/**
 		 * Initialize the hardware, this is not the constructor
@@ -37,5 +37,4 @@ class Sensor {
 		 */
 		virtual u8 write(u8 addr, u16 *data) = 0;
 };
-
 #endif /* SENSOR_H_ */

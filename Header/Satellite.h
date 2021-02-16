@@ -10,8 +10,7 @@
 
 #include <DAVE.h>
 
-// BMI085
-#ifdef BMI085
+#define CLOCK_SPEED		144000000
 
 #define BMI_MISO_GPIO	XMC_GPIO_PORT2
 #define BMI_MISO_PIN	15
@@ -22,9 +21,6 @@
 #define BMI_CS_A_PIN	14
 #define BMI_CS_G_PIN	121
 #define BMI_XMC_MODE 	XMC_GPIO_MODE_OUTPUT_PUSH_PULL
-
-
-#endif
 
 
 

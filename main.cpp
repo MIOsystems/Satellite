@@ -4,7 +4,9 @@
  *  Created on: 2020 Aug 27 09:10:51
  *  Author: Patrick
  */
+
 #include <DAVE.h>                 //Declarations from DAVE Code Generation (includes SFR declaration)
+
 
 #include <Header/BMI085.h>
 
@@ -13,7 +15,7 @@ int main(void)
 	DAVE_STATUS_t status;
 
 	status = DAVE_Init();           /* Initialization of DAVE APPs  */
-	Satellite::BMI085 bmi;
+	BMI085 bmi;
 
 
 	if(status != DAVE_STATUS_SUCCESS)
