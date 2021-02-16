@@ -134,46 +134,46 @@
   <hwResources name="CD" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_cd" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.30"/>
   </hwResources>
-  <hwResources name="RDV" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rdv" resourceGroupUri="resources/lqfp144.0.0/devicepackage/0/82" mResGrpUri="devicepackage/0/*">
+  <hwResources name="RDV" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rdv" resourceGroupUri="devicepackage/0/82" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.2"/>
   </hwResources>
-  <hwResources name="RXER" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxer" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="RXER" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxer" resourceGroupUri="devicepackage/0/81" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.3"/>
   </hwResources>
-  <hwResources name="RXD0" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxd0" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="RXD0" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxd0" resourceGroupUri="devicepackage/0/52" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.21"/>
   </hwResources>
-  <hwResources name="RXD1" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxd1" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="RXD1" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxd1" resourceGroupUri="devicepackage/0/51" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.20"/>
   </hwResources>
-  <hwResources name="RXD2" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxd2" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="RXD2" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxd2" resourceGroupUri="devicepackage/0/58" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.13"/>
   </hwResources>
-  <hwResources name="RXD3" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxd3" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="RXD3" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rxd3" resourceGroupUri="devicepackage/0/57" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.1"/>
   </hwResources>
-  <hwResources name="TXEN" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txen" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="TXEN" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txen" resourceGroupUri="devicepackage/0/104" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.38"/>
   </hwResources>
   <hwResources name="TXER" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txer" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.36"/>
   </hwResources>
-  <hwResources name="TXD0" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txd0" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="TXD0" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txd0" resourceGroupUri="devicepackage/0/103" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.7"/>
   </hwResources>
-  <hwResources name="TXD1" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txd1" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="TXD1" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txd1" resourceGroupUri="devicepackage/0/102" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.6"/>
   </hwResources>
-  <hwResources name="TXD2" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txd2" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="TXD2" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txd2" resourceGroupUri="devicepackage/0/101" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.40"/>
   </hwResources>
-  <hwResources name="TXD3" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txd3" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="TXD3" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_txd3" resourceGroupUri="devicepackage/0/100" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.39"/>
   </hwResources>
-  <hwResources name="TX_CLK" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_tx_clk" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="TX_CLK" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_tx_clk" resourceGroupUri="devicepackage/0/56" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.42"/>
   </hwResources>
-  <hwResources name="RX_CLK" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rx_clk" resourceGroupUri="resources/lqfp144.0.0/devicepackage/0/54" mResGrpUri="devicepackage/0/*">
+  <hwResources name="RX_CLK" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_rx_clk" resourceGroupUri="devicepackage/0/54" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.0"/>
   </hwResources>
   <hwResources name="MDC" URI="http://resources/4.1.6/app/ETH_LWIP/0/__pin_hwres_eth_port_mdc" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">

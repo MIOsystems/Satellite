@@ -2,7 +2,7 @@
  * main.c
  *
  *  Created on: 2020 Aug 27 09:10:51
- *  Author: Arthur
+ *  Author: Patrick
  */
 #include <DAVE.h>                 //Declarations from DAVE Code Generation (includes SFR declaration)
 
@@ -22,8 +22,6 @@ int main(void)
 
 		}
 	}
-
-
 
 	/* Placeholder for user application code. The while loop below can be replaced with user application code. */
 	while(1U)
