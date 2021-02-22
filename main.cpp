@@ -9,14 +9,19 @@
 
 
 #include <Header/BMI085.h>
+#include <Header/ComUDP.h>
+#include <Header/Utility.h>
 
 int main(void)
 {
 	DAVE_STATUS_t status;
 
 	status = DAVE_Init();           /* Initialization of DAVE APPs  */
-	BMI085 bmi;
-
+	BMI085 bmi = BMI085();
+	bmi.init();
+	ComUDP udp;
+	udp.init();
+	const char* data = bmi.to_string();
 
 	if(status != DAVE_STATUS_SUCCESS)
 	{
@@ -25,12 +30,16 @@ int main(void)
 
 		while(1U)
 		{
-
+			Utility::delay_ms(1000);
 		}
 	}
 
 	/* Placeholder for user application code. The while loop below can be replaced with user application code. */
 	while(1U)
 	{
+		//bmi.poll();
+		udp.send(data);
+		Utility::delay_ms(1);
+		sys_check_timeouts();
 	}
 }

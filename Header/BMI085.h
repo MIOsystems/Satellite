@@ -7,25 +7,35 @@
 
 #ifndef BMI085_H_
 #define BMI085_H_
+
 #include <Header/Sensor.h>
 #include <Header/Types.h>
 #include <Header/Vector.h>
+#include <Header/Satellite.h>
+enum {
+	BMI_GYRO = 0,
+	BMI_ACCEL,
+};
 
 class BMI085: public Sensor
 {
 	private:
-		const u8 BMI_A_DATA_OPCODE[6] =
-		{ 0x12, 0x13, 0x14, 0x15, 0x16, 0x17 };
-		const u8 BMI_G_DATA_OPCODE[6] =
-		{ 0x02, 0x03, 0x04, 0x05, 0x06, 0x07 };
+		Vector3* gyro_data;
 		Vector3* acc_data;
 		StatisticVector* axis_data_stat;
 		Vector3* axis_data;
+
+		u8 init_gyro();
+		u8 poll_gyro();
+		u8 init_accelo();
+		u8 poll_accelo();
+		void reg_to_val(i32 *data, u8 *rx_buff);
 	public:
 		BMI085();
-		u8 init();
-		u8 poll();
-		u8 select(XMC_GPIO_PORT_t* port, u8 pin);
-		u8 write(u8 addr, u16 *data);
+		u8 init() override;
+		u8 poll() override;
+		u8 select(u8 chip) override;
+		u8 write(u8 addr, u8 data) override;
+		const char* to_string() override;
 };
 #endif /* BMI085_H_ */

@@ -9,6 +9,7 @@
 #define SENSOR_H_
 #include <DAVE.h>
 #include <Header/Types.h>
+
 class Sensor
 {
 	public:
@@ -29,12 +30,14 @@ class Sensor
 		 * Select chip
 		 * @return status code
 		 */
-		virtual u8 select(XMC_GPIO_PORT_t* port, u8 pin) = 0;
+		virtual u8 select(u8 chip) = 0;
 
 		/**
 		 * Write opcode to data
 		 * @return status code
 		 */
-		virtual u8 write(u8 addr, u16 *data) = 0;
+		virtual u8 write(u8 addr, u8 data) = 0;
+
+		virtual const char* to_string() = 0;
 };
 #endif /* SENSOR_H_ */
