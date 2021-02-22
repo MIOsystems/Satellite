@@ -31,6 +31,11 @@
 #define BMI_CS_G_PIN	(u8)	3
 #define BMI_XMC_MODE 			XMC_GPIO_MODE_OUTPUT_PUSH_PULL
 
+//GNSS
+#define GNSS_GPS_BUFF_S	(u8)	92
+#define GNSS_GPS_SYNC_1	(u8)	0xB5
+#define GNSS_GPS_SYNC_2	(u8)	0x62
+
 //OPCODES
 #define BMI_G_RST_ADDR	(u8) 	0x14
 #define BMI_G_RST_DATA	(u8)	0xB6
