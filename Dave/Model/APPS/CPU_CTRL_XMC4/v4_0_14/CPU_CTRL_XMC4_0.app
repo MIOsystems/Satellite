@@ -5,8 +5,6 @@
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@requiredApps.1"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../SPI_MASTER/v4_3_22/SPI_MASTER_1.app#//@requiredApps.1"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_0.app#//@requiredApps.1"/>
-  <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_1.app#//@requiredApps.1"/>
-  <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_2.app#//@requiredApps.1"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_3.app#//@requiredApps.1"/>
   <properties singleton="true" sharable="true"/>
   <virtualSignals name="nmi_irq" URI="http://resources/4.0.14/app/CPU_CTRL_XMC4/0/vs_nmi_irq" hwSignal="nmi_in" hwResource="//@hwResources.0" visible="true"/>

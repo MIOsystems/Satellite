@@ -4,7 +4,7 @@
  *  Created on: 22 Feb 2021
  *      Author: Patrick
  */
-
+#include <DAVE.h>
 #include <string.h>
 
 #include <Header/GNSS.h>
@@ -28,11 +28,11 @@ u8 GNSS::poll()
 	u16 frame_length = 0;
 	u16 checksum_rx = 0;
 
-	status = UART_Receive(&UART_1, &this->raw_data, 1);
+	status = UART_Receive(&RS232_UART1, &this->raw_data, 1);
 	// Wait if uart channels are still busy
-	if(&UART_1.runtime->rx_busy || &UART_1.runtime->tx_busy)
+	if(&RS232_UART1.runtime->rx_busy || &RS232_UART1.runtime->tx_busy)
 	{
-		while (&UART_1.runtime->rx_busy || &UART_1.runtime->tx_busy)
+		while (&RS232_UART1.runtime->rx_busy || &RS232_UART1.runtime->tx_busy)
 		{
 
 		}

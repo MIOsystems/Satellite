@@ -43,10 +43,10 @@
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port3/port3_3.dd#//@provided.11"/>
   </hwResources>
   <hwResources name="NVIC Node Tx" URI="http://resources/4.1.10/app/UART/0/hwres_nvic_node_tx" resourceGroupUri="peripheral/cpu/0/nvic/interrupt/*" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.23"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.19"/>
   </hwResources>
   <hwResources name="NVIC Node Rx" URI="http://resources/4.1.10/app/UART/0/hwres_nvic_node_rx" resourceGroupUri="peripheral/cpu/0/nvic/interrupt/*" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.19"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.21"/>
   </hwResources>
   <hwResources name="NVIC Node Error" URI="http://resources/4.1.10/app/UART/0/hwres_nvic_node_error" resourceGroupUri="" required="false" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*"/>
   <hwResources name="DMA channel Tx" URI="http://resources/4.1.10/app/UART/0/hwres_dma_ch_tx" resourceGroupUri="" required="false" solverVariable="true" mResGrpUri="peripheral/sv0/0/ch/*">
@@ -67,10 +67,10 @@
   </hwResources>
   <hwResources name="DLR channel Tx" URI="http://resources/4.1.10/app/UART/0/hwres_dlr_ch_tx" resourceGroupUri="" required="false" mResGrpUri="peripheral/dlr/0/ch/*"/>
   <hwResources name="DLR channel Rx" URI="http://resources/4.1.10/app/UART/0/hwres_dlr_ch_rx" resourceGroupUri="" required="false" mResGrpUri="peripheral/dlr/0/ch/*"/>
-  <hwResources name="Receive Pin" URI="http://resources/4.1.10/app/UART/0/__pin_hwres_port_pad_uart_rx" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="Receive Pin" URI="http://resources/4.1.10/app/UART/0/__pin_hwres_port_pad_uart_rx" resourceGroupUri="devicepackage/0/98" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.37"/>
   </hwResources>
-  <hwResources name="Transmit Pin" URI="http://resources/4.1.10/app/UART/0/__pin_hwres_port_pad_uart_tx" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="Transmit Pin" URI="http://resources/4.1.10/app/UART/0/__pin_hwres_port_pad_uart_tx" resourceGroupUri="devicepackage/0/8" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.22"/>
   </hwResources>
   <connections URI="http://resources/4.1.10/app/UART/0/http://resources/4.1.10/app/UART/0/vs_uart_rxpad/http://resources/4.1.10/app/UART/0/vs_uart_dx0ins" systemDefined="true" sourceSignal="rxd_pin" targetSignal="dx0_input_stage" srcVirtualSignal="//@virtualSignals.3" targetVirtualSignal="//@virtualSignals.0"/>
