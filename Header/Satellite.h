@@ -20,15 +20,12 @@
 #define COM_UDP_IP_2		(u8)	168
 #define COM_UDP_IP_3		(u8)	0
 #define COM_UDP_IP_4		(u8)	11
+
 //BMI085
-#define BMI_MISO_GPIO			XMC_GPIO_PORT2
-#define BMI_MISO_PIN	(u8)	15
-#define BMI_MOSI_GPIO			XMC_GPIO_PORT1
-#define BMI_MOSI_PIN	(u8)	15
-#define BMI_CS_A_GPIO			XMC_GPIO_PORT3
-#define BMI_CS_G_GPIO			XMC_GPIO_PORT4
-#define BMI_CS_A_PIN	(u8)	14
-#define BMI_CS_G_PIN	(u8)	3
+#define BMI_CS_A_GPIO			XMC_GPIO_PORT3 // 3.14	- 134
+#define BMI_CS_G_GPIO			XMC_GPIO_PORT4 // 4.3	- 121
+#define BMI_CS_A_PIN	(u8)	134
+#define BMI_CS_G_PIN	(u8)	121
 #define BMI_XMC_MODE 			XMC_GPIO_MODE_OUTPUT_PUSH_PULL
 
 //GNSS

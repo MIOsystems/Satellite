@@ -12,20 +12,43 @@
 #include <Header/Utility.h>
 #include <Header/GNSS.h>
 
-//GNSS gnss;
+GNSS gnss;
+ComUDP udp;
 
-void tick_timer_ISR(void);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+	void gnss_interrupt(void) {
+		gnss.poll();
+	}
+	
+	void tick_timer_ISR(void)
+	{
+		DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_0);
+		if(gnss.rx_handler() == DAVE_STATUS_SUCCESS) {
+			udp.send_gnss(gnss.gnss_data);
+		}
+		DIGITAL_IO_SetOutputLow(&DIGITAL_IO_LED_0);
+	}
+#ifdef __cplusplus
+}
+#endif
+
 
 
 int main(void)
 {
-	DAVE_STATUS_t status;
-	status = DAVE_Init(); /* Initialization of DAVE APPs  */
-//	ComUDP udp;
-//	udp.init();
+	DAVE_STATUS_t _status;
+	_status = DAVE_Init(); /* Initialization of DAVE APPs  */
+	TIMER_Stop(&TIMER_0);
+	udp.init();
+	Utility::delay_ms(10);
+	TIMER_Start(&TIMER_0);
+	TIMER_SetTimeInterval(&TIMER_0, 1000000); // 1 second
 
 
-	if(status != DAVE_STATUS_SUCCESS)
+	if(_status != DAVE_STATUS_SUCCESS)
 	{
 		/* Placeholder for error handler code. The while loop below can be replaced with an user error handler. */
 		XMC_DEBUG("DAVE APPs initialization failed\n");
@@ -35,18 +58,16 @@ int main(void)
 		}
 	}
 
-	DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_0);
-	DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_1);
-	DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_2);
-	DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_3);
 	/* Placeholder for user application code. The while loop below can be replaced with user application code. */
 	while (1U)
 	{
-		Utility::delay_ms(1);
+//		_status = (DAVE_STATUS_t) udp.send_ok();
+//		if(_status == DAVE_STATUS_SUCCESS) {
+//			Utility::delay_ms(1);
+//		} else {
+//			Utility::delay_ms(1);
+//		}
+		//Utility::delay_ms(1);
 		sys_check_timeouts();
 	}
-}
-
-void tick_timer_ISR(void) {
-
 }

@@ -3,6 +3,7 @@
     <ResourceReserve/>
     <Solver>
         <SolverBndMap>
+            <BindMap MUri="peripheral/cpu/0/nvic/interrupt/57" Proxy="app/INTERRUPT/1/hwres_nvicnode"/>
             <BindMap MUri="devicepackage/0/114" Proxy="app/SPI_MASTER/0/__pin_hwres_port_pad_spi_sclkout"/>
             <BindMap MUri="devicepackage/0/124" Proxy="app/SPI_MASTER/1/__pin_hwres_port_pad_spi_sclkout"/>
             <BindMap MUri="peripheral/cpu/0/systick" Proxy="app/SYSTIMER/0/hwres_syst"/>
@@ -116,6 +117,7 @@
             <BindMap MUri="devicepackage/0/101" Proxy="app/ETH_LWIP/0/__pin_hwres_eth_port_txd2"/>
             <BindMap MUri="devicepackage/0/40" Proxy="app/ADC_MEASUREMENT_ADV/0/rarray_hwres_adc_adv_measurement_pin_pad#8"/>
             <BindMap MUri="devicepackage/0/100" Proxy="app/ETH_LWIP/0/__pin_hwres_eth_port_txd3"/>
+            <BindMap MUri="peripheral/ccu4/3/cc4/3" Proxy="app/TIMER/0/hwres_ccu4_cc4"/>
             <BindMap MUri="port/p/4/pad/7" Proxy="app/UART/3/hwres_port_pad_uart_tx"/>
             <BindMap MUri="port/p/3/pad/7" Proxy="app/UART/1/hwres_port_pad_uart_rx"/>
             <BindMap MUri="devicepackage/0/39" Proxy="app/ADC_MEASUREMENT_ADV/0/rarray_hwres_adc_adv_measurement_pin_pad#4"/>
@@ -131,6 +133,7 @@
             <BindMap MUri="port/p/14/pad/2" Proxy="app/ADC_MEASUREMENT_ADV/0/rarray_hwres_adc_adv_measurement_channel_pin#8"/>
             <BindMap MUri="peripheral/vadc/0/group/1/ch/2" Proxy="app/ADC_MEASUREMENT_ADV/0/rarray_hwres_adc_adv_measurement_channels#8"/>
             <BindMap MUri="devicepackage/0/14" Proxy="app/UART/1/__pin_hwres_port_pad_uart_rx"/>
+            <BindMap MUri="peripheral/cpu/0/nvic/interrupt/96" Proxy="app/INTERRUPT/0/hwres_nvicnode"/>
             <BindMap MUri="peripheral/vadc/0/group/1/ch/3" Proxy="app/ADC_MEASUREMENT_ADV/0/rarray_hwres_adc_adv_measurement_channels#4"/>
             <BindMap MUri="peripheral/cpu/0/nvic/interrupt/89" Proxy="app/UART/0/hwres_nvic_node_rx"/>
             <BindMap MUri="port/p/5/pad/1" Proxy="app/UART/2/hwres_port_pad_uart_tx"/>

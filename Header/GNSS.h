@@ -29,9 +29,13 @@ class GNSS : public Sensor
 			UBX_FRAME_CK_B
 		} UBX_Frame;
 
+		typedef enum {
+			GNSS_SUCCESS = 0,
+			GNSS_NO_PAYLOAD
+		};
 
-		GNSSFrame* gnss_frame;
-		GNSSData* gnss_data;
+
+		GNSSFrame gnss_frame;
 		u8 raw_data;
 		u8 frame_counter;
 		u8 gps_payload_index = 0;
@@ -40,6 +44,7 @@ class GNSS : public Sensor
 		void validate(u8 _data, u8 _expected_data, u8 _fallback);
 		void convert_payload();
 	public:
+		GNSSData gnss_data;
 		GNSS();
 		/**
 		 * Not implemented
@@ -48,10 +53,8 @@ class GNSS : public Sensor
 		u8 poll() override;
 		u8 select(u8 chip) override;
 		u8 write(u8 addr, u8 data) override;
-		void rx_handler();
-
 		const char* to_string() override;
 
+		u8 rx_handler();
 };
-
 #endif /* HEADER_GNSS_H_ */

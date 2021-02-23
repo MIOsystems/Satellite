@@ -6,6 +6,7 @@
  */
 
 #include <array>
+#include <sstream>
 
 #include <Header/Sensor/GNSSUtility.h>
 #include <Header/Satellite.h>
@@ -16,7 +17,6 @@ GNSSFrame::GNSSFrame()
 	this->id = 0;
 	this->length = 0;
 	this->checksum_rx = 0;
-	this->checksum_tx = 0;
 	this->checksum_calc = 0;
 	this->ck_a = 0;
 	this->ck_b = 0;
@@ -30,17 +30,6 @@ void GNSSFrame::setChecksumRx(u16 checksumRx)
 {
 	checksum_rx = checksumRx;
 }
-
-u16 GNSSFrame::getChecksumTx() const
-{
-	return checksum_tx;
-}
-
-void GNSSFrame::setChecksumTx(u16 checksumTx)
-{
-	checksum_tx = checksumTx;
-}
-
 u8 GNSSFrame::getCkA() const
 {
 	return ck_a;
@@ -93,8 +82,8 @@ void GNSSFrame::setLength(u16 _length)
 
 
 void GNSSFrame::updateCheckSum(u8 data) {
-	this->ck_a = this->ck_a + data;
-	this->ck_b = this->ck_b + this->ck_a;
+	this->ck_a = (u8) (this->ck_a + data);
+	this->ck_b = (u8) (this->ck_b + this->ck_a);
 }
 
 u16 GNSSFrame::getChecksumCalc() const
@@ -127,4 +116,16 @@ GNSSData::GNSSData() {
 	this->heading = 0;
 	this->speed_acc = 0;
 	this->head_acc = 0;
+}
+
+const char* GNSSData::to_string() {
+	std::stringstream ss;
+	ss << "GNSS: " << " lon: " << this->lon << " lat: " << this->lat << " height_ellipsoid: " <<
+			this->height_ellipsoid << " height_msl: " << this->height_msl << " hor_acc: "
+			<< this->hor_acc << " ver_acc: " << this->ver_acc << " speed: " << this->speed
+			<< " heading: " << this->heading << " speed_acc: " << this->speed_acc << " head_acc: "
+			<< this->head_acc << " epoch: " << this->epoch << " fix: " << (u16) this->fix << " num_sa: "
+			<< (u16) this->num_sat;
+	std::string data = ss.str();
+	return data.c_str();
 }

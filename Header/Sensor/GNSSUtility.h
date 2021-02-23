@@ -20,7 +20,6 @@ class GNSSFrame
 		u8 id;
 		u16 length;
 		u16 checksum_rx;
-		u16 checksum_tx;
 		u16 checksum_calc;
 		u8 ck_a;
 		u8 ck_b;
@@ -31,8 +30,6 @@ class GNSSFrame
 		void updateCheckSum(u8 data);
 		u16 getChecksumRx() const;
 		void setChecksumRx(u16 checksumRx);
-		u16 getChecksumTx() const;
-		void setChecksumTx(u16 checksumTx);
 		u8 getCkA() const;
 		void setCkA(u8 ckA);
 		u8 getCkB() const;
@@ -52,7 +49,6 @@ class GNSSData
 {
 	public:
 		GNSSData();
-		u32 epoch;
 		i32 lon;
 		i32 lat;
 		i32 height_ellipsoid;
@@ -63,8 +59,11 @@ class GNSSData
 		i32 heading;
 		i32 speed_acc;
 		i32 head_acc;
+		u32 epoch;
 		u8 fix;
 		u8 num_sat;
+
+		const char* to_string();
 };
 
 #endif /* HEADER_SENSOR_GNSSUTILITY_H_ */

@@ -12,13 +12,13 @@
 
 #include <Header/Types.h>
 #include <Header/Sensor.h>
+#include <Header/GNSS.h>
 
 class ComUDP
 {
 	private:
 		ip_addr_t addr;
 		struct udp_pcb *com_ctrl;
-
 		typedef enum {
 			COM_SUCCESS = 0,
 			COM_NULL_PTR
@@ -27,6 +27,8 @@ class ComUDP
 		ComUDP();
 		i8 init();
 		i8 send(const char* data);
+		i8 send_ok();
+		i8 send_gnss(GNSSData &gnss);
 		i8 close();
 };
 
