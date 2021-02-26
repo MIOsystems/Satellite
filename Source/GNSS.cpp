@@ -123,6 +123,7 @@ u8 GNSS::poll()
 			this->frame_counter = UBX_FRAME_HEADER_1;
 			break;
 	}
+	return 0;
 }
 
 u8 GNSS::select(u8 chip)
@@ -135,8 +136,9 @@ u8 GNSS::write(u8 addr, u8 data)
 	return -1;
 }
 
-const char* GNSS::to_string()
+char* GNSS::to_string()
 {
+	return '\0';
 }
 
 void GNSS::convert_payload()

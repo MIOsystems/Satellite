@@ -20,14 +20,12 @@ enum {
 class BMI085: public Sensor
 {
 	private:
-		Vector3* gyro_data;
-		Vector3* acc_data;
-		StatisticVector* axis_data_stat;
-		Vector3* axis_data;
+		Vector3 gyro_data;
+		Vector3 acc_data;
+		StatisticVector axis_data_stat;
+		Vector3 axis_data;
 
-		u8 init_gyro();
 		u8 poll_gyro();
-		u8 init_accelo();
 		u8 poll_accelo();
 		void reg_to_val(i32 *data, u8 *rx_buff);
 	public:
@@ -36,6 +34,6 @@ class BMI085: public Sensor
 		u8 poll() override;
 		u8 select(u8 chip) override;
 		u8 write(u8 addr, u8 data) override;
-		const char* to_string() override;
+		char* to_string() override;
 };
 #endif /* BMI085_H_ */

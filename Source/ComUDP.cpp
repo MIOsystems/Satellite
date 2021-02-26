@@ -32,7 +32,7 @@ i8 ComUDP::init()
 	return COM_SUCCESS;
 }
 
-i8 ComUDP::send_gnss(GNSSData &gnss) {
+i8 ComUDP::send_gnss(GNSSData gnss) {
 	i8 status = 0;
 	const char* gnss_str = gnss.to_string();
 	u16 size = (u16) strlen(gnss_str);

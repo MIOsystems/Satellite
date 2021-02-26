@@ -6,7 +6,8 @@
  */
 
 #include <array>
-#include <sstream>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include <Header/Sensor/GNSSUtility.h>
 #include <Header/Satellite.h>
@@ -118,14 +119,22 @@ GNSSData::GNSSData() {
 	this->head_acc = 0;
 }
 
-const char* GNSSData::to_string() {
-	std::stringstream ss;
-	ss << "GNSS: " << " lon: " << this->lon << " lat: " << this->lat << " height_ellipsoid: " <<
-			this->height_ellipsoid << " height_msl: " << this->height_msl << " hor_acc: "
-			<< this->hor_acc << " ver_acc: " << this->ver_acc << " speed: " << this->speed
-			<< " heading: " << this->heading << " speed_acc: " << this->speed_acc << " head_acc: "
-			<< this->head_acc << " epoch: " << this->epoch << " fix: " << (u16) this->fix << " num_sa: "
-			<< (u16) this->num_sat;
-	std::string data = ss.str();
-	return data.c_str();
+char* GNSSData::to_string() {
+	size_t len = 0;
+	size_t len_check = 0;
+	// get packet len
+	len = snprintf(NULL, len, "GNSS lon => %i lat => %i height_ellipsoid => %i height_msl => %i hor_acc => %i ver_acc => %i speed => %i heading => %i speed_acc => %i head_acc => %i epoch => %i fix => %i num_sat => %i",
+			this->lon, this->lat, this->height_ellipsoid, this->height_msl, this->hor_acc, this->ver_acc, this->speed, this->heading, this->speed_acc, this->head_acc, this->epoch, this->fix, this->num_sat);
+	// allocate empty char array
+	char *data = (char *) calloc(1, (sizeof(char *) * (len + 1)));
+	if(!data) {
+		return NULL;
+	}
+	
+	len_check = snprintf(data, len + 1, "GNSS lon => %i lat => %i height_ellipsoid => %i height_msl => %i hor_acc => %i ver_acc => %i speed => %i heading => %i speed_acc => %i head_acc => %i epoch => %i fix => %i num_sat => %i",
+			this->lon, this->lat, this->height_ellipsoid, this->height_msl, this->hor_acc, this->ver_acc, this->speed, this->heading, this->speed_acc, this->head_acc, this->epoch, this->fix, this->num_sat);
+	if(len_check > (len + 1)) {
+		return NULL;
+	}
+	return data;
 }

@@ -15,6 +15,14 @@ Vector3::Vector3(i32 _x, i32 _y, i32 _z)
 	this->z = _z;
 }
 
+Vector3::Vector3()
+{
+	this->x = 0;
+	this->y = 0;
+	this->z = 0;
+}
+
+
 i32 Vector3::getX() const
 {
 	return x;
@@ -45,19 +53,6 @@ void Vector3::setZ(i32 z)
 	this->z = z;
 }
 
-std::string Vector3::to_string()
-{
-	std::stringstream ss;
-	ss << this->x;
-	std::string x_s = ss.str();
-	ss << this->y;
-	std::string y_s = ss.str();
-	ss << this->z;
-	std::string z_s = ss.str();
-
-	std::string data = "X: " + x_s + " Y: " + y_s+ " Z:" + z_s;
-	return data;
-}
 
 Vector2::Vector2(i32 _x, i32 _y)
 {
@@ -65,16 +60,17 @@ Vector2::Vector2(i32 _x, i32 _y)
 	this->y = _y;
 }
 
-std::string Vector2::to_string()
+Vector2::Vector2()
 {
-	std::stringstream ss;
-	ss << this->x;
-	std::string x_s = ss.str();
-	ss << this->y;
-	std::string y_s = ss.str();
+	this->x = 0;
+	this->y = 0;
+}
 
-	std::string data = "X: " + x_s + " Y: " + y_s;
-	return data;
+StatisticVector::StatisticVector()
+{
+	this->max = 0;
+	this->min = 0;
+	this->avg = 0;
 }
 
 StatisticVector::StatisticVector(i32 _max, i32 _min, i32 _avg)
@@ -82,18 +78,5 @@ StatisticVector::StatisticVector(i32 _max, i32 _min, i32 _avg)
 	this->max = _max;
 	this->min = _min;
 	this->avg = _avg;
-}
-
-std::string StatisticVector::to_string()
-{
-	std::stringstream ss;
-	ss << this->max;
-	std::string max_s = ss.str();
-	ss << this->min;
-	std::string min_s = ss.str();
-	ss << this->avg;
-	std::string avg_s = ss.str();
-	std::string data = "MAX: " + max_s + " MIN: " + min_s + " AVG:" + avg_s;
-	return data;
 }
 

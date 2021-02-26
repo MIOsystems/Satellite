@@ -29,6 +29,7 @@ extern "C" {
 		if(gnss.rx_handler() == DAVE_STATUS_SUCCESS) {
 			udp.send_gnss(gnss.gnss_data);
 		}
+		Utility::delay(2500);
 		DIGITAL_IO_SetOutputLow(&DIGITAL_IO_LED_0);
 	}
 #ifdef __cplusplus
@@ -47,6 +48,8 @@ int main(void)
 	TIMER_Start(&TIMER_0);
 	TIMER_SetTimeInterval(&TIMER_0, 1000000); // 1 second
 
+	BMI085 bmi;
+	//bmi.init();
 
 	if(_status != DAVE_STATUS_SUCCESS)
 	{
@@ -61,13 +64,7 @@ int main(void)
 	/* Placeholder for user application code. The while loop below can be replaced with user application code. */
 	while (1U)
 	{
-//		_status = (DAVE_STATUS_t) udp.send_ok();
-//		if(_status == DAVE_STATUS_SUCCESS) {
-//			Utility::delay_ms(1);
-//		} else {
-//			Utility::delay_ms(1);
-//		}
-		//Utility::delay_ms(1);
+		//bmi.poll();
 		sys_check_timeouts();
 	}
 }

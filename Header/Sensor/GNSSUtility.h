@@ -49,21 +49,21 @@ class GNSSData
 {
 	public:
 		GNSSData();
-		i32 lon;
-		i32 lat;
-		i32 height_ellipsoid;
-		i32 height_msl;
-		i32 hor_acc;
-		i32 ver_acc;
-		i32 speed;
-		i32 heading;
-		i32 speed_acc;
-		i32 head_acc;
-		u32 epoch;
-		u8 fix;
-		u8 num_sat;
+		i32 lon{0};
+		i32 lat{0};
+		i32 height_ellipsoid{0};
+		i32 height_msl{0};
+		i32 hor_acc{0};
+		i32 ver_acc{0};
+		i32 speed{0};
+		i32 heading{0};
+		i32 speed_acc{0};
+		i32 head_acc{0};
+		u32 epoch{0};
+		u8 fix{0};
+		u8 num_sat{0};
 
-		const char* to_string();
+		char* to_string();
 };
 
 #endif /* HEADER_SENSOR_GNSSUTILITY_H_ */

@@ -38,6 +38,6 @@ class Sensor
 		 */
 		virtual u8 write(u8 addr, u8 data) = 0;
 
-		virtual const char* to_string() = 0;
+		virtual char* to_string() = 0;
 };
 #endif /* SENSOR_H_ */

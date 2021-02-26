@@ -53,7 +53,7 @@ class GNSS : public Sensor
 		u8 poll() override;
 		u8 select(u8 chip) override;
 		u8 write(u8 addr, u8 data) override;
-		const char* to_string() override;
+		char* to_string() override;
 
 		u8 rx_handler();
 };
