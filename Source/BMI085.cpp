@@ -2,7 +2,7 @@
  * BMI085.cpp
  *
  *  Created on: 16 Feb 2021
- *      Author: Patrick
+ *  Author: Patrick
  */
 
 #include <DAVE.h>
@@ -14,143 +14,162 @@
 #include <Header/Satellite.h>
 #include <Header/Utility.h>
 
-
 BMI085::BMI085()
 {
+	this->imu = {	0,  // ACCELEROMETER ID
+					0,	  // GYROSCOPE ID
+					{ 0, 0, 0, 0 }, // ACCELEROMETER CONFIG
+					{ 0, 0, 0, 0 }, // GYROSCOPE CONFIG
+					{ 0, 0, 0 }, // ACCELEROMETER RAW VALUES
+					{ 0, 0, 0 }, // GYROSCOPE RAW VALUES
+	};
+	this->status = SPI_MASTER_STATUS_SUCCESS;
 }
 
 u8 BMI085::init()
 {
-	u8 status = SPI_MASTER_SetBaudRate(&SPI_MASTER_1, SPI_MASTER_1.config->channel_config->baudrate);
+	this->status = SPI_MASTER_SetBaudRate(&BMI_SPI_MASTER_1, BMI_SPI_MASTER_1.config->channel_config->baudrate);
 
 	// Check if setting baud rate went correctly
-	if (status != SPI_MASTER_STATUS_SUCCESS)
+	if (this->status != SPI_MASTER_STATUS_SUCCESS)
 	{
-		return status;
+		return this->status;
 	}
-
-	XMC_GPIO_SetMode(BMI_CS_A_GPIO, BMI_CS_A_PIN, XMC_GPIO_MODE_OUTPUT_PUSH_PULL);
-	XMC_GPIO_SetMode(BMI_CS_G_GPIO, BMI_CS_G_PIN, XMC_GPIO_MODE_OUTPUT_PUSH_PULL);
-
 	Utility::delay_ms(100);
-	//XMC_GPIO_SetOutputHigh(BMI_CS_A_GPIO, BMI_CS_A_PIN);
-	//XMC_GPIO_SetOutputHigh(BMI_CS_G_GPIO, BMI_CS_G_PIN);
-	//XMC_SPI_CH_EnableSlaveSelect(&SPI_MASTER_1, XMC_SPI_CH_SLAVE_SELECT_0);
 
-	return status;
+	// Sending a high bit to the Accelerometer to put it in SPI mode
+	XMC_GPIO_SetOutputHigh(BMI_CS_A_GPIO, BMI_CS_A_PIN);
+	Utility::delay(1);
+	XMC_GPIO_SetOutputLow(BMI_CS_A_GPIO, BMI_CS_A_PIN);
+	
+	// Setting the accelo chip low and gyro high => this means that the gyro is unselected and accelo selected
+	this->select(BMI_CS_ACCEL);
+	this->init_accel();
 
+
+	// Select the gyro
+
+	return this->status;
 }
+
 u8 BMI085::poll()
 {
-	const bool tx_busy = SPI_MASTER_1.runtime->rx_busy;
-	const bool rx_busy = SPI_MASTER_1.runtime->tx_busy;
-	u8 status = SPI_MASTER_STATUS_SUCCESS;
+}
+
+u8 BMI085::read_reg(u8 addr, u8 *rx_buff, u8 size)
+{
+	this->wait();
+	this->status = SPI_MASTER_STATUS_SUCCESS;
+	this->status = SPI_MASTER_Transfer(&BMI_SPI_MASTER_1, &addr, rx_buff, size);
+	this->wait();
+	return this->status;
+}
+
+void BMI085::select(u8 chip)
+{
+	switch(chip)
+	{
+		case BMI_CS_ACCEL:
+			XMC_GPIO_SetOutputHigh(BMI_CS_G_GPIO, BMI_CS_G_PIN);
+			XMC_GPIO_SetOutputLow(BMI_CS_A_GPIO, BMI_CS_A_PIN);
+			break;
+		case BMI_CS_GYRO:
+			XMC_GPIO_SetOutputHigh(BMI_CS_A_GPIO, BMI_CS_A_PIN);
+			XMC_GPIO_SetOutputLow(BMI_CS_G_GPIO, BMI_CS_G_PIN);
+			break;
+		default:
+			break;
+	}
+}
+
+void BMI085::wait()
+{
+	const bool tx_busy = BMI_SPI_MASTER_1.runtime->rx_busy;
+	const bool rx_busy = BMI_SPI_MASTER_1.runtime->tx_busy;
 	if (tx_busy || rx_busy)
 	{
-		while (SPI_MASTER_1.runtime->rx_busy || SPI_MASTER_1.runtime->tx_busy);
+		while (&BMI_SPI_MASTER_1.runtime->rx_busy || &BMI_SPI_MASTER_1.runtime->tx_busy);
 	}
-	// GYROSCOPE
-	//status = poll_gyro();
-	if (status != SPI_MASTER_STATUS_SUCCESS)
+}
+
+u8 BMI085::write_to_reg(u8 addr, const u8* data)
+{
+	this->wait();
+	u8 count_data = sizeof(data) / sizeof( (data)[0] );
+	u8 *tx = (u8 *) malloc( (count_data + 1) * sizeof(u8));
+	u8 tx_len = sizeof(tx) / sizeof( (tx)[0] );
+	this->status = SPI_MASTER_Transmit(&BMI_SPI_MASTER_1, tx, tx_len);
+	this->wait();
+	free(tx);
+	return this->status;
+}
+
+u8 BMI085::init_accel()
+{
+	this->status = SPI_MASTER_STATUS_SUCCESS;
+	u8 rx_buff = 0;
+
+	// Reads the accelo id
+	this->status = this->read_reg(BMI_A_CHIP_ID_ADDR, &rx_buff, 1);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
 	{
-		return status;
-	}
-
-	// ACCELEROMETER
-	status = poll_accelo();
-	return status;
-}
-
-u8 BMI085::select(u8 chip)
-{
-	return 0;
-}
-
-u8 BMI085::write(u8 addr, u8 data)
-{
-	u8 status = SPI_MASTER_STATUS_SUCCESS;
-	u8 tx_buff[2] = { addr, data };
-	u32 buff_len = (sizeof(tx_buff) / sizeof((tx_buff)[0]));
-	status = SPI_MASTER_Transmit(&SPI_MASTER_1, tx_buff, buff_len);
-	if (status == SPI_MASTER_STATUS_SUCCESS)
-	{
-		// if success wait for it to fully transmit
-		while (SPI_MASTER_1.runtime->tx_busy);
-	}
-	return status;
-}
-
-u8 BMI085::poll_gyro()
-{
-	u8 status = SPI_MASTER_STATUS_SUCCESS;
-	u8 rx_buff[BMI_G_BUFF_S] = { };
-	u8 tx_buff = 0x02;
-	// Selecting GYRO CHIP
-	XMC_GPIO_SetOutputHigh(BMI_CS_A_GPIO, BMI_CS_A_PIN);
-	XMC_GPIO_SetOutputLow(BMI_CS_G_GPIO, BMI_CS_G_PIN);
-	// Transmitting the opcode and returns the raw data of the gyro
-	status = SPI_MASTER_Transfer(&SPI_MASTER_1, &tx_buff, rx_buff, BMI_G_BUFF_S);
-	// Waiting for transmission and receiving is done
-	while (SPI_MASTER_1.runtime->rx_busy || SPI_MASTER_1.runtime->tx_busy);
-	// Unselecting the chip
-	XMC_GPIO_SetOutputHigh(BMI_CS_G_GPIO, BMI_CS_G_PIN);
-
-	if (status != SPI_MASTER_STATUS_SUCCESS)
-		return status;
-
-	// Calculating the values again;
-	i32 data[3] = { 0, 0, 0 };
-	reg_to_val(data, rx_buff);
-	this->gyro_data.setX(data[0]);
-	this->gyro_data.setY(data[1]);
-	this->gyro_data.setZ(data[2]);
-	return status;
-}
-
-u8 BMI085::poll_accelo()
-{
-	u8 status = SPI_MASTER_STATUS_SUCCESS;
-	u8 rx_buff[BMI_A_BUFF_S] = { };
-	u8 tx_buff = 0x12 | 0x80;
-	XMC_GPIO_SetOutputHigh(BMI_CS_G_GPIO, BMI_CS_G_PIN);
-	XMC_GPIO_SetOutputLow(BMI_CS_A_GPIO, BMI_CS_A_PIN);
-
-	status = SPI_MASTER_Transfer(&SPI_MASTER_1, &tx_buff, rx_buff, BMI_A_BUFF_S);
-	while (SPI_MASTER_1.runtime->rx_busy || SPI_MASTER_1.runtime->tx_busy);
-	// Unselecting the chip
-	XMC_GPIO_SetOutputHigh(BMI_CS_A_GPIO, BMI_CS_A_PIN);
-
-	if (status != SPI_MASTER_STATUS_SUCCESS)
-		return status;
-
-	return status;
-
-
-}
-
-void BMI085::reg_to_val(i32 *data, u8 *rx_buff)
-{
-	for (i32 i = 0; i < BMI_G_BUFF_S; i = (i + 2))
-	{
-		data[i] = (rx_buff[i + 1] << 8) | rx_buff[i];
-	}
-}
-
-char* BMI085::to_string()
-{
-	size_t len = 0;
-	size_t len_check = 0;
-
-	len = snprintf(NULL, len, "BMI085");
-	char *data = (char *) calloc(1, (sizeof(char *) * (len + 1)));
-	if(!data) {
-		return NULL;
+		return this->status;
 	}
 	
-	len_check = snprintf(data, len + 1, "GNSS");
-	if(len_check > (len + 1)) {
-		return NULL;
+	this->imu.accel_id = rx_buff;
+
+	// Setting the accelerometer with the config
+	this->imu.accel_cfg.odr = BMI_A_ODR_1600_HZ;
+	this->imu.accel_cfg.range = BMI_A_RANGE_16G;
+	this->imu.accel_cfg.pwr_mode = BMI_A_PWR_ON;
+	this->imu.accel_cfg.bandwidth = BMI_A_BWP_NORMAL;
+
+	// set power mode
+	this->status = this->write_to_reg(BMI_A_PWR_CTRL_ADDR, (u8 *) BMI_A_PWR_ON);
+	Utility::delay_ms(10);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
 	}
-	return data;
+
+	// Writing the rest of the config
+	this->status = this->write_accel_config();
+	Utility::delay_ms(10);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+
+
+	return this->status;
 }
 
+u8 BMI085::write_accel_config()
+{
+	this->status = SPI_MASTER_STATUS_SUCCESS;
+	u8 data[2] = {0};
+	u8 bw = this->imu.accel_cfg.bandwidth;
+	u8 range = this->imu.accel_cfg.range; 
+	u8 odr = this->imu.accel_cfg.odr;
+
+	// getting the registers
+	this->status = this->read_reg(0x40, data, 2);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+
+	// update it with new odr and bw values, that was set in the config struct
+	data[0] = ((data[0] & ~(BMI_A_ODR_MASK)) | (odr & BMI_A_ODR_MASK));
+	data[0] = ((data[0] & ~(BMI_A_BW_MASK)) | ((bw << 4) & BMI_A_BW_MASK));
+	data[1] = ((data[1] & ~(BMI_A_RANGE_MASK)) | (range & BMI_A_RANGE_MASK));
+
+	this->status = this->write_to_reg(BMI_A_CONFIG_ADDR, data);
+
+	return this->status;
+}
+
+u8 BMI085::write_gyro_config()
+{
+
+}

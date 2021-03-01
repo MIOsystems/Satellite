@@ -46,12 +46,12 @@ int main(void)
 	_status = DAVE_Init(); /* Initialization of DAVE APPs  */
 	TIMER_Stop(&TIMER_0);
 	Utility::delay_ms(10);
-	TIMER_Start(&TIMER_0);
-	TIMER_SetTimeInterval(&TIMER_0, 1000000); // 1 second
+	//TIMER_Start(&TIMER_0);
+	//TIMER_SetTimeInterval(&TIMER_0, 1000000); // 1 second
 
 	udp.init();
-	//BMI085 bmi;
-	//bmi.init();
+	BMI085 bmi;
+	bmi.init();
 
 	if(_status != DAVE_STATUS_SUCCESS)
 	{

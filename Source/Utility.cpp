@@ -26,8 +26,8 @@ void Utility::delay(u32 cycles)
 
 void Utility::delay_ms(u32 ms)
 {
-	u32 cycles = (CLOCK_SPEED / 1000) * ms;
-	delay(cycles);
+	u32 cycles_ms = (144 * 1000) * ms;
+	delay(cycles_ms);
 }
 
 void Utility::delay_sec(u32 sec)
