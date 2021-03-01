@@ -62,8 +62,6 @@ class GNSSData
 		u32 epoch{0};
 		u8 fix{0};
 		u8 num_sat{0};
-
-		char* to_string();
 };
 
 #endif /* HEADER_SENSOR_GNSSUTILITY_H_ */

@@ -13,6 +13,8 @@
 #include <Header/Sensor/GNSSUtility.h>
 #include <Header/Sensor.h>
 
+static GNSSFrame gnss_frame;
+static GNSSData gnss_data;
 class GNSS : public Sensor
 {
 	private:
@@ -32,10 +34,10 @@ class GNSS : public Sensor
 		typedef enum {
 			GNSS_SUCCESS = 0,
 			GNSS_NO_PAYLOAD
-		};
+		} GNSS_STATUS;
 
 
-		GNSSFrame gnss_frame;
+
 		u8 raw_data;
 		u8 frame_counter;
 		u8 gps_payload_index = 0;
@@ -44,7 +46,6 @@ class GNSS : public Sensor
 		void validate(u8 _data, u8 _expected_data, u8 _fallback);
 		void convert_payload();
 	public:
-		GNSSData gnss_data;
 		GNSS();
 		/**
 		 * Not implemented

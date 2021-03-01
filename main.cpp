@@ -25,12 +25,9 @@ extern "C" {
 	
 	void tick_timer_ISR(void)
 	{
-		DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_0);
 		if(gnss.rx_handler() == DAVE_STATUS_SUCCESS) {
-			udp.send_gnss(gnss.gnss_data);
+			udp.send_gnss(gnss_data);
 		}
-		Utility::delay(2500);
-		DIGITAL_IO_SetOutputLow(&DIGITAL_IO_LED_0);
 	}
 #ifdef __cplusplus
 }
@@ -48,7 +45,7 @@ int main(void)
 	TIMER_Start(&TIMER_0);
 	TIMER_SetTimeInterval(&TIMER_0, 1000000); // 1 second
 
-	BMI085 bmi;
+	//BMI085 bmi;
 	//bmi.init();
 
 	if(_status != DAVE_STATUS_SUCCESS)

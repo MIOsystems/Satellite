@@ -34,30 +34,12 @@ i8 ComUDP::init()
 
 i8 ComUDP::send_gnss(GNSSData gnss) {
 	i8 status = 0;
-	const char* gnss_str = gnss.to_string();
-	u16 size = (u16) strlen(gnss_str);
+	u16 size = sizeof(gnss);
 	// Create packet to send
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
-	memcpy(buffer->payload, gnss_str, size);
+	memcpy(buffer->payload, &gnss, size);
 	// Sending the packet
 	status = udp_sendto(this->com_ctrl, buffer, &this->addr, COM_UDP_PORT_OUT);
-
-	// Freeing the packet
-	status = pbuf_free(buffer);
-	free( (char*) gnss_str);
-	return status;
-}
-
-i8 ComUDP::send(const char *data)
-{
-	i8 status = 0;
-	// Create packet to send
-	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, sizeof(data), PBUF_RAM);
-	memcpy(buffer->payload, &data, sizeof(data));
-	// Sending the packet
-
-	status = udp_sendto(this->com_ctrl, buffer, &this->addr, COM_UDP_PORT_OUT);
-
 	// Freeing the packet
 	status = pbuf_free(buffer);
 	return status;

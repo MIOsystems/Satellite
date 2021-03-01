@@ -26,7 +26,6 @@ class ComUDP
 	public:
 		ComUDP();
 		i8 init();
-		i8 send(const char* data);
 		i8 send_ok();
 		i8 send_gnss(GNSSData gnss);
 		i8 close();
