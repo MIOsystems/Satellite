@@ -13,8 +13,6 @@
 #include <Header/Sensor/GNSSUtility.h>
 #include <Header/Sensor.h>
 
-static GNSSFrame gnss_frame;
-static GNSSData gnss_data;
 class GNSS : public Sensor
 {
 	private:
@@ -36,7 +34,8 @@ class GNSS : public Sensor
 			GNSS_NO_PAYLOAD
 		} GNSS_STATUS;
 
-
+		GNSSFrame gnss_frame;
+		GNSSData gnss_data;
 
 		u8 raw_data;
 		u8 frame_counter;
@@ -56,6 +55,6 @@ class GNSS : public Sensor
 		u8 write(u8 addr, u8 data) override;
 		char* to_string() override;
 
-		u8 rx_handler();
+		u8 rx_handler(GNSSData &data);
 };
 #endif /* HEADER_GNSS_H_ */

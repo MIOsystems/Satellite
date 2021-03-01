@@ -8,9 +8,13 @@
 #include <string.h>
 
 #include <Header/GNSS.h>
+#include <Header/ComUDP.h>
+
 
 GNSS::GNSS()
 {
+	this->gnss_data = GNSSData();
+	this->gnss_frame = GNSSFrame();
 	this->raw_data = 0;
 	this->frame_counter = 0;
 }
@@ -40,6 +44,7 @@ u8 GNSS::poll()
 		default:
 			this->frame_counter = UBX_FRAME_HEADER_1;
 			break;
+
 		case UBX_FRAME_HEADER_1:
 			if(this->raw_data == GNSS_GPS_SYNC_1)
 			{
@@ -48,15 +53,16 @@ u8 GNSS::poll()
 			} 
 			this->frame_counter = UBX_FRAME_HEADER_1;
 			break;
+
 		case UBX_FRAME_HEADER_2:
 			if(this->raw_data == GNSS_GPS_SYNC_2)
 			{
 				this->frame_counter = UBX_FRAME_CLASS;
-				break;
-			} 
-			this->frame_counter = UBX_FRAME_HEADER_1;
+			} else {
+				this->frame_counter = UBX_FRAME_HEADER_1;
+			}
 			break;
-			break;
+
 		case UBX_FRAME_CLASS:
 			gnss_frame = GNSSFrame();
 			gnss_frame.setClassDef(this->raw_data);
@@ -69,6 +75,7 @@ u8 GNSS::poll()
 			gnss_frame.updateCheckSum(this->raw_data);
 			this->frame_counter = UBX_FRAME_DLC1;
 			break;
+
 		case UBX_FRAME_DLC1:
 			gnss_frame.setLength(this->raw_data);
 			gnss_frame.updateCheckSum(this->raw_data);
@@ -77,6 +84,7 @@ u8 GNSS::poll()
 		case UBX_FRAME_DLC0:
 			frame_length = 	gnss_frame.getLength();
 			frame_length |= this->raw_data << 8;
+
 			gnss_frame.setLength(frame_length);
 			gnss_frame.updateCheckSum(this->raw_data);
 			this->frame_counter = UBX_FRAME_PAYLOAD;
@@ -97,7 +105,6 @@ u8 GNSS::poll()
 				this->frame_counter = UBX_FRAME_HEADER_1;
 				break;
 			}
-
 			break;
 
 		case UBX_FRAME_CK_A:
@@ -116,7 +123,6 @@ u8 GNSS::poll()
 				this->frame_counter = UBX_FRAME_HEADER_1;
 				break;
 			}
-			convert_payload();
 			this->rx_ready = true;
 			this->frame_counter = UBX_FRAME_HEADER_1;
 			break;
@@ -167,18 +173,22 @@ void GNSS::validate(u8 _data, u8 _expected_data, u8 _fallback)
 	}
 }
 
-u8 GNSS::rx_handler()
+u8 GNSS::rx_handler(GNSSData &data)
 {
 	if(this->rx_ready)
 	{
 		const u16 msg_type = (u16) (gnss_frame.getClassDef() << 8) | gnss_frame.getId();
-		if(msg_type == 0x0107)
+		switch(msg_type)
 		{
-
-			this->rx_ready = true;
-			return GNSS_SUCCESS;
+			default:
+				break;
+			case 0x0107:
+				convert_payload();
+				data = this->gnss_data;
+				this->rx_ready = true;
+				return GNSS_SUCCESS;
 		}
 		this->rx_ready = false;
-		return GNSS_NO_PAYLOAD;
 	}
+	return GNSS_NO_PAYLOAD;
 }

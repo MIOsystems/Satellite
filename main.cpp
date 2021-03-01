@@ -12,8 +12,10 @@
 #include <Header/Utility.h>
 #include <Header/GNSS.h>
 
+GNSSData data;
 GNSS gnss;
 ComUDP udp;
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -25,9 +27,12 @@ extern "C" {
 	
 	void tick_timer_ISR(void)
 	{
-		if(gnss.rx_handler() == DAVE_STATUS_SUCCESS) {
-			udp.send_gnss(gnss_data);
+		DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_0);
+		if(gnss.rx_handler(data) == DAVE_STATUS_SUCCESS) {
+			udp.send_gnss(data);
 		}
+		Utility::delay(2000);
+		DIGITAL_IO_SetOutputLow(&DIGITAL_IO_LED_0);
 	}
 #ifdef __cplusplus
 }
@@ -40,11 +45,11 @@ int main(void)
 	DAVE_STATUS_t _status;
 	_status = DAVE_Init(); /* Initialization of DAVE APPs  */
 	TIMER_Stop(&TIMER_0);
-	udp.init();
 	Utility::delay_ms(10);
 	TIMER_Start(&TIMER_0);
 	TIMER_SetTimeInterval(&TIMER_0, 1000000); // 1 second
 
+	udp.init();
 	//BMI085 bmi;
 	//bmi.init();
 

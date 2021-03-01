@@ -10,6 +10,7 @@
 
 #include <Header/ComUDP.h>
 #include <Header/Satellite.h>
+#include <Header/GNSS.h>
 
 ComUDP::ComUDP()
 {
@@ -32,12 +33,12 @@ i8 ComUDP::init()
 	return COM_SUCCESS;
 }
 
-i8 ComUDP::send_gnss(GNSSData gnss) {
+i8 ComUDP::send_gnss(GNSSData data) {
 	i8 status = 0;
-	u16 size = sizeof(gnss);
+	u16 size = sizeof(data);
 	// Create packet to send
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
-	memcpy(buffer->payload, &gnss, size);
+	memcpy(buffer->payload, &data, size);
 	// Sending the packet
 	status = udp_sendto(this->com_ctrl, buffer, &this->addr, COM_UDP_PORT_OUT);
 	// Freeing the packet
