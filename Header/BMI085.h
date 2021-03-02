@@ -47,7 +47,8 @@ class BMI085
 		u8 init_gyro();
 		u8 write_accel_config();
 		u8 write_gyro_config();
-
+		u8 poll_accel();
+		u8 poll_gyro();
 	public:
 		BMI085();
 		u8 init();

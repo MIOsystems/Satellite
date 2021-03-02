@@ -45,15 +45,31 @@ u8 BMI085::init()
 	// Setting the accelo chip low and gyro high => this means that the gyro is unselected and accelo selected
 	this->select(BMI_CS_ACCEL);
 	this->init_accel();
+	if (this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
 
 
 	// Select the gyro
-
+	this->select(BMI_CS_GYRO);
+	this->init_gyro();
 	return this->status;
 }
 
 u8 BMI085::poll()
 {
+	this->select(BMI_CS_ACCEL);
+	this->poll_accel();
+	if (this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+
+	Utility::delay(10);
+	this->select(BMI_CS_GYRO);
+	this->poll_gyro();
+	return this->status;
 }
 
 u8 BMI085::read_reg(u8 addr, u8 *rx_buff, u8 size)
@@ -135,12 +151,6 @@ u8 BMI085::init_accel()
 	// Writing the rest of the config
 	this->status = this->write_accel_config();
 	Utility::delay_ms(10);
-	if(this->status != SPI_MASTER_STATUS_SUCCESS)
-	{
-		return this->status;
-	}
-
-
 	return this->status;
 }
 
@@ -160,16 +170,135 @@ u8 BMI085::write_accel_config()
 	}
 
 	// update it with new odr and bw values, that was set in the config struct
-	data[0] = ((data[0] & ~(BMI_A_ODR_MASK)) | (odr & BMI_A_ODR_MASK));
-	data[0] = ((data[0] & ~(BMI_A_BW_MASK)) | ((bw << 4) & BMI_A_BW_MASK));
-	data[1] = ((data[1] & ~(BMI_A_RANGE_MASK)) | (range & BMI_A_RANGE_MASK));
+	data[0] = (u8) ((data[0] & ~(BMI_A_ODR_MASK)) | (odr & BMI_A_ODR_MASK));
+	data[0] = (u8) ((data[0] & ~(BMI_A_BW_MASK)) | ((bw << 4) & BMI_A_BW_MASK));
+	data[1] = (u8) ((data[1] & ~(BMI_A_RANGE_MASK)) | (range & BMI_A_RANGE_MASK));
 
 	this->status = this->write_to_reg(BMI_A_CONFIG_ADDR, data);
 
 	return this->status;
 }
 
+u8 BMI085::poll_accel()
+{
+	this->status = SPI_MASTER_STATUS_SUCCESS;
+	u8 data[BMI_A_BUFF_S] = { 0 };
+	u8 lsb = 0;
+	u8 msb = 0;
+	u16 msb_lsb = 0;
+	int counter = 0;
+
+	this->status = this->read_reg(BMI_A_DATA_ADDR, data,  BMI_A_BUFF_S);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+
+	for(int i = 0; i < 6; i = i + 2) {
+		lsb = data[i];
+		msb = data[i + 1];
+		msb_lsb = (msb << 8 ) | lsb;
+		this->imu.accel_values[counter] = (i16) (msb_lsb);
+		counter++;
+	}
+
+	return this->status;
+}
+
+u8 BMI085::init_gyro()
+{
+	this->status = SPI_MASTER_STATUS_SUCCESS;
+	u8 rx_buff = 0;
+
+	// Reads the accelo id
+	this->status = this->read_reg(BMI_G_CHIP_ID_ADDR, &rx_buff, 1);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+	
+	this->imu.gyro_id = rx_buff;
+
+	this->imu.gyro_cfg.odr = BMI_G_ODR_2000_HZ_BW_230;
+	this->imu.gyro_cfg.range = BMI_G_RANGE_250_DPS;
+	this->imu.gyro_cfg.bandwidth = BMI_G_ODR_2000_HZ_BW_230;
+	this->imu.gyro_cfg.pwr_mode = BMI_G_PWR_NORMAL;
+
+	// set power mode first
+	this->status = this->write_to_reg(BMI_G_PWR_ADDR, &this->imu.gyro_cfg.pwr_mode);
+	Utility::delay_ms(10);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+
+	// Writing the rest of the config
+	this->status = this->write_gyro_config();
+	Utility::delay_ms(10);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+	return this->status;
+}
+
 u8 BMI085::write_gyro_config()
 {
 
+	this->status = SPI_MASTER_STATUS_SUCCESS;
+	u8 data = 0;
+	u8 range = this->imu.gyro_cfg.range; 
+	u8 odr = this->imu.gyro_cfg.odr;
+
+	// Read range values 
+	this->status = this->read_reg(BMI_G_ODR_BW_ADDR, &data, 1);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+	data = (u8) ((data & ~(BMI_G_ODR_BW_MASK)) | (odr & BMI_G_ODR_BW_MASK));
+	
+	// write the new data
+	this->status = this->write_to_reg(BMI_G_ODR_BW_ADDR, &data);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+
+	// Read range
+	this->status = this->read_reg(BMI_G_RANGE_ADDR, &data, 1);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+	data = (u8) ((data & ~(BMI_G_RANGE_MASK)) | (range & BMI_G_RANGE_MASK));
+	this->status = this->write_to_reg(BMI_G_RANGE_ADDR, &data);
+	return this->status;
+
+}
+
+u8 BMI085::poll_gyro()
+{
+	this->status = SPI_MASTER_STATUS_SUCCESS;
+	u8 data[BMI_G_BUFF_S] = { 0 };
+	u8 lsb = 0;
+	u8 msb = 0;
+	u16 msb_lsb = 0;
+	int counter = 0;
+
+	this->status = this->read_reg(BMI_G_DATA_ADDR, data,  BMI_G_BUFF_S);
+	if(this->status != SPI_MASTER_STATUS_SUCCESS)
+	{
+		return this->status;
+	}
+
+	for(int i = 0; i < 6; i = i + 2) {
+		lsb = data[i];
+		msb = data[i + 1];
+		msb_lsb = (msb << 8 ) | lsb;
+		this->imu.gyro_values[counter] = (i16) (msb_lsb);
+		counter++;
+	}
+
+	return this->status;
 }

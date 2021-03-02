@@ -70,6 +70,36 @@
 #define BMI_A_BW_POS		(u8) 	4
 #define BMI_A_RANGE_MASK	(u8) 	0x03
 
+
+// BMI GYROSCOPE CONFIG 
+//BANDWIDTH
+#define BMI_G_ODR_BW_ADDR			(u8) 0x10
+#define BMI_G_ODR_BW_MASK			(u8) 0x0F
+#define BMI_G_ODR_2000_HZ_BW_523 	(u8) 0x00
+#define BMI_G_ODR_2000_HZ_BW_230 	(u8) 0x01
+#define BMI_G_ODR_1000_HZ_BW_116 	(u8) 0x02
+#define BMI_G_ODR_400_HZ_BW_47 		(u8) 0x03
+#define BMI_G_ODR_200_HZ_BW_23 		(u8) 0x04
+#define BMI_G_ODR_100_HZ_BW_12	 	(u8) 0x05
+#define BMI_G_ODR_200_HZ_BW_64 		(u8) 0x06
+#define BMI_G_ODR_100_HZ_BW_32		(u8) 0x07
+
+// RANGE
+#define BMI_G_RANGE_ADDR			(u8) 0x0F
+#define BMI_G_RANGE_MASK			(u8) 0x07
+#define BMI_G_RANGE_2000_DPS 		(u8) 0x00
+#define BMI_G_RANGE_1000_DPS 		(u8) 0x01
+#define BMI_G_RANGE_500_DPS	 		(u8) 0x02
+#define BMI_G_RANGE_250_DPS	 		(u8) 0x03
+#define BMI_G_RANGE_125_DPS	 		(u8) 0x04
+
+// POWER MODE
+#define BMI_G_PWR_ADDR		(u8)	0x11
+#define BMI_G_PWR_NORMAL	(u8)	0x00
+#define BMI_G_PWR_SUSPEND	(u8)	0x80
+#define BMI_G_PWR_D_SUSPEND	(u8)	0x20
+
+
 #define BMI_G_DATA_ADDR	(u8)		0x02
 #define BMI_G_BUFF_S				6
 
