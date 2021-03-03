@@ -21,7 +21,7 @@ GNSS::GNSS()
 
 u8 GNSS::init()
 {
-	return -1;
+	return 0;
 }
 
 u8 GNSS::poll()
@@ -29,7 +29,6 @@ u8 GNSS::poll()
 	u8 status = 0;
 	u16 frame_length = 0;
 	u16 checksum_rx = 0;
-	u16 checksum_calc = 0;
 
 	status = UART_Receive(&RS232_UART1, &this->raw_data, 1);
 	// Wait if uart channels are still busy

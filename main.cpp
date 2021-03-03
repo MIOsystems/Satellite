@@ -32,7 +32,7 @@ extern "C" {
 			udp.send_gnss(data);
 		}
 		Utility::delay(2000);
-		DIGITAL_IO_SetOutputLow(&DIGITAL_IO_LED_0);
+
 	}
 #ifdef __cplusplus
 }
@@ -42,8 +42,8 @@ extern "C" {
 
 int main(void)
 {
-	DAVE_STATUS_t _status;
-	_status = DAVE_Init(); /* Initialization of DAVE APPs  */
+	DAVE_STATUS_t status;
+	status = DAVE_Init(); /* Initialization of DAVE APPs  */
 	TIMER_Stop(&TIMER_0);
 	Utility::delay_ms(10);
 	//TIMER_Start(&TIMER_0);
@@ -53,7 +53,7 @@ int main(void)
 	BMI085 bmi;
 	bmi.init();
 
-	if(_status != DAVE_STATUS_SUCCESS)
+	if(status != DAVE_STATUS_SUCCESS)
 	{
 		/* Placeholder for error handler code. The while loop below can be replaced with an user error handler. */
 		XMC_DEBUG("DAVE APPs initialization failed\n");
