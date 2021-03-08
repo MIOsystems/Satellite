@@ -17,21 +17,16 @@ Utility::Utility()
 
 }
 
-void Utility::delay(u32 cycles)
+void Utility::delay(u32 u_sec)
 {
-	for(u32 i = 0; i < cycles; i++) {
-		__NOP();
-	}
+	u32 delay_cnt = u_sec * 100;
+	TIMER_ClearEvent(&DELAY_TIMER_1);
+	TIMER_SetTimeInterval(&DELAY_TIMER_1, delay_cnt);
+	TIMER_Start(&DELAY_TIMER_1);
+
+	while (!TIMER_GetInterruptStatus(&DELAY_TIMER_1)){}
+
+	TIMER_Stop(&DELAY_TIMER_1);
+	TIMER_Clear(&DELAY_TIMER_1);
 }
 
-void Utility::delay_ms(u32 ms)
-{
-	u32 cycles_ms = (144 * 1000) * ms;
-	delay(cycles_ms);
-}
-
-void Utility::delay_sec(u32 sec)
-{
-	uint32_t ms = sec / 1000;
-	delay_ms(ms);
-}

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <ResourceModel:Peripheral xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" URI="http://resources/48.0.0/peripheral/dlr/0" description="DMA Line Router" baseAddress="0x50004900">
   <provided xsi:type="ResourceModel:ResourceGroup" name="2" URI="http://resources/48.0.0/peripheral/dlr/0/ch/2">
-    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/SPI_MASTER/v4_3_22/SPI_MASTER_1.app#//@hwResources.18"/>
     <resourcesList name="lnen_ln" requiredResourceUri="http://resources/48.0.0/peripheral/dlr/0/lnen/ln2"/>
     <resourcesList name="ovrclr_ln" requiredResourceUri="http://resources/48.0.0/peripheral/dlr/0/ovrclr/ln2"/>
     <resourcesList name="ovrstat_ln" requiredResourceUri="http://resources/48.0.0/peripheral/dlr/0/ovrstat/ln2"/>
@@ -22,7 +21,6 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="RS2" URI="http://resources/48.0.0/peripheral/dlr/0/srsel0/rs2" value="0x00000000" toolTipHelpDescription="Request Source for Line 2" defaultValue="0x00000000" startPos="8" stopPos="11" accessPermission="rw" maxValue="15" minValue="0"/>
   <provided xsi:type="ResourceModel:ResourceGroup" name="5" URI="http://resources/48.0.0/peripheral/dlr/0/ch/5">
-    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/SPI_MASTER/v4_3_22/SPI_MASTER_1.app#//@hwResources.20"/>
     <resourcesList name="lnen_ln" requiredResourceUri="http://resources/48.0.0/peripheral/dlr/0/lnen/ln5"/>
     <resourcesList name="ovrclr_ln" requiredResourceUri="http://resources/48.0.0/peripheral/dlr/0/ovrclr/ln5"/>
     <resourcesList name="ovrstat_ln" requiredResourceUri="http://resources/48.0.0/peripheral/dlr/0/ovrstat/ln5"/>

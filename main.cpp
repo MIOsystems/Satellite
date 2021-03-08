@@ -12,10 +12,10 @@
 #include <Header/Utility.h>
 #include <Header/GNSS.h>
 
+BMI085 bmi;
 GNSSData data;
 GNSS gnss;
 ComUDP udp;
-
 
 #ifdef __cplusplus
 extern "C" {
@@ -24,34 +24,46 @@ extern "C" {
 	void gnss_interrupt(void) {
 		gnss.poll();
 	}
-	
+
 	void tick_timer_ISR(void)
 	{
+
 		DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_0);
 		if(gnss.rx_handler(data) == DAVE_STATUS_SUCCESS) {
-			udp.send_gnss(data);
+			const GNSSData packet = data;
+			udp.send_gnss(packet);
 		}
+		bmi.poll();
+		udp.send_bmi(bmi);
 		Utility::delay(2000);
-
 	}
+
+
 #ifdef __cplusplus
 }
 #endif
-
 
 
 int main(void)
 {
 	DAVE_STATUS_t status;
 	status = DAVE_Init(); /* Initialization of DAVE APPs  */
-	TIMER_Stop(&TIMER_0);
-	Utility::delay_ms(10);
-	//TIMER_Start(&TIMER_0);
-	//TIMER_SetTimeInterval(&TIMER_0, 1000000); // 1 second
 
+	Utility::delay(50000);
 	udp.init();
-	BMI085 bmi;
-	bmi.init();
+	u8 status_bmi = 0;
+	status_bmi = bmi.init();
+	TIMER_Start(&POLL_TIMER);
+
+
+
+	if(status_bmi != 0)
+	{
+		while(1U)
+		{
+
+		}
+	}
 
 	if(status != DAVE_STATUS_SUCCESS)
 	{
@@ -66,7 +78,7 @@ int main(void)
 	/* Placeholder for user application code. The while loop below can be replaced with user application code. */
 	while (1U)
 	{
-		bmi.poll();
+
 		sys_check_timeouts();
 	}
 }

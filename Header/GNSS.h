@@ -11,9 +11,8 @@
 #include <Header/Types.h>
 #include <Header/Satellite.h>
 #include <Header/Sensor/GNSSUtility.h>
-#include <Header/Sensor.h>
 
-class GNSS : public Sensor
+class GNSS
 {
 	private:
 		typedef enum
@@ -46,14 +45,11 @@ class GNSS : public Sensor
 		void convert_payload();
 	public:
 		GNSS();
-		/**
-		 * Not implemented
-		 */
-		u8 init() override;
-		u8 poll() override;
-		u8 select(u8 chip) override;
-		u8 write(u8 addr, u8 data) override;
-		char* to_string() override;
+		u8 init();
+		u8 poll();
+		u8 select(u8 chip);
+		u8 write(u8 addr, u8 data);
+		char* to_string();
 
 		u8 rx_handler(GNSSData &data);
 };

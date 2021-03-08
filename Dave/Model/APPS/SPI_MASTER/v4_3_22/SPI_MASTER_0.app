@@ -105,10 +105,10 @@
   <hwResources name="Slave Select 6 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_port_pad_spi_ss_6" resourceGroupUri="" required="false" mResGrpUri="port/p/*/pad/*"/>
   <hwResources name="Slave Select 7 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_port_pad_spi_ss_7" resourceGroupUri="" required="false" mResGrpUri="port/p/*/pad/*"/>
   <hwResources name="NVIC Node Tx" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_cpu_nvic_interrupt_tx" resourceGroupUri="peripheral/cpu/0/nvic/interrupt/*" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.44"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.13"/>
   </hwResources>
   <hwResources name="NVIC Node Rx" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_cpu_nvic_interrupt_rx" resourceGroupUri="peripheral/cpu/0/nvic/interrupt/*" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.42"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.10"/>
   </hwResources>
   <hwResources name="NVIC Node Error" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_cpu_nvic_interrupt_error" resourceGroupUri="" required="false" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*"/>
   <hwResources name="Receive DMA Channel" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_dma_channel_rx" resourceGroupUri="" required="false" solverVariable="true" mResGrpUri="peripheral/sv1/0/*/*">

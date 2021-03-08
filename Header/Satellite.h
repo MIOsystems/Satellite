@@ -11,11 +11,16 @@
 #include <DAVE.h>
 #include <Header/Types.h>
 
-#define CLOCK_SPEED		144000000
+#define M_PI 				(f32)	3.14159265359
+#define GYRO_SENSITIVITY	(f32)	262.144
+#define ACCEL_SENSITIVITY	(f32)	32768
 
-// COMMUNICATIOn
+
+#define CLOCK_SPEED					144000000
+
+// COMMUNICATION
 #define COM_UDP_PORT_IN		(u16)	52256
-#define COM_UDP_PORT_OUT	(u16)	64087
+#define COM_UDP_PORT_OUT	(u16)	62510
 #define COM_UDP_IP_1		(u8)	192
 #define COM_UDP_IP_2		(u8)	168
 #define COM_UDP_IP_3		(u8)	0
@@ -28,29 +33,23 @@
 #define GNSS_GPS_SYNC_2		(u8)	0x62
 
 
-//BMI085
-#define BMI_CS_A_GPIO				XMC_GPIO_PORT3 // 3.14	- 134
-#define BMI_CS_G_GPIO				XMC_GPIO_PORT4 // 4.3	- 121
-#define BMI_CS_A_PIN		(u8)	134
-#define BMI_CS_G_PIN		(u8)	121
-#define BMI_A_DATA_ADDR		(u8)	0x12
-#define BMI_G_DATA_ADDR		(u8)	0x02
+#define BMI085_G_RST_ADDR 	(u8)	0x14
+#define BMI085_G_RST_DATA	(u8) 	0xB6
+#define BMI085_G_BW_ADDR	(u8)	0x10
+#define BMI085_G_BW_DATA	(u8)	0x02
+#define BMI085_G_RANGE_ADDR	(u8)	0x0F
+#define BMI085_G_RANGE_DATA	(u8)	0x04
 
-//OPCODES
-#define BMI_A_RESET_ADDR	(u8)	0x7E
-#define BMI_A_RESET_DATA	(u8)	0xB6
-#define BMI_A_PWR_CTRL_ADDR (u8)	0x7D
-#define BMI_A_PWR_OFF		(u8)	0x00
-#define BMI_A_PWR_ON		(u8)	0x04
-#define BMI_A_RANGE_ADDR	(u8)	0x41
-#define BMI_A_RANGE_2G		(u8)	0x00
+#define BMI085_A_RST_ADDR 		(u8)	0x7E
+#define BMI085_A_RST_DATA		(u8)	0xB6
+#define BMI085_A_DUMMY_ADDR		(u8)	0xFF
+#define BMI085_A_DUMMY_DATA		(u8)	0xFF
+#define BMI085_A_PWR_CTRL_ADDR	(u8)	0x7D
+#define BMI085_A_PWR_CTRL_DATA	(u8)	0x04
+#define BMI085_A_PWR_CONF_ADDR	(u8)	0x7C
+#define BMI085_A_PWR_CONF_DATA	(u8)	0x00
+#define BMI085_A_RANGE_ADDR		(u8)	0x41
+#define BMI085_A_RANGE_DATA		(u8)	0x03
 
-#define BMI_G_RESET_ADDR		(u8)	0x14
-#define BMI_G_RESET_DATA		(u8)	0xB6
-#define BMI_G_BANDWIDTH_ADDR	(u8)	0x10
-#define BMI_G_BANDWIDTH_DATA	(u8)	0x02
-#define BMI_G_RANGE_ADDR		(u8)	0x0F
-#define BMI_G_RANGE_DATA		(u8)	0x04
-#define BMI_BUFFER_SIZE 		(u8)	6
 
 #endif /* HEADER_SATELLITE_H_ */

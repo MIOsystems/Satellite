@@ -13,9 +13,6 @@ class Utility
 {
 	public:
 		Utility();
-		static void delay(u32 cycles);
-		static void delay_ms(u32 ms);
-		static void delay_sec(u32 sec);
-		static u32 array_size(i32 *data);
+		static void delay(u32 u_sec);
 };
 #endif /* HEADER_UTILITY_ */
