@@ -59,6 +59,8 @@ int main(void)
 
 	if(status_bmi != 0)
 	{
+		DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_2_SPI_GYRO);
+		DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_3_SPI_ACCEL);
 		while(1U)
 		{
 

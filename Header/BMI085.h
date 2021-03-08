@@ -14,6 +14,13 @@
 class BMI085 
 {
 	private:
+
+		enum ACCEL_RANGE {
+			ACCEL_RANGE_2g = 0x00,
+			ACCEL_RANGE_4g = 0x01,
+			ACCEL_RANGE_8g = 0x02,
+			ACCEL_RANGE_16g = 0x03,
+		};
 		struct bmi08x_cfg {
 			u8 pwr_mode;
 			u8 range;
@@ -32,11 +39,11 @@ class BMI085
 
 		struct acc_stat_imu {
 			u32 amount_values;
-			u32 total;
-			f64 avg;
-			u16 max;
-			u16 min;
-			u16 id;
+			f32 total;
+			f32 avg;
+			f32 max;
+			f32 min;
+			f32 id;
 		};
 
 
@@ -64,5 +71,6 @@ class BMI085
 		void write_g(u8 addr, const u8 data);
 		void write_a(u8 addr, const u8 data);
 		void read_a(u8 addr, u8 *data);
+		void read_g(u8 addr, u8 *data);
 };
 #endif

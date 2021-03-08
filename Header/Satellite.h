@@ -29,8 +29,8 @@
 
 //GNSS
 #define GNSS_GPS_BUFF_S		(u8)	92
-#define GNSS_GPS_SYNC_1		(u8)	0xB5
-#define GNSS_GPS_SYNC_2		(u8)	0x62
+#define GPS_SYNC1			(u8)	0xB5
+#define GPS_SYNC2			(u8)	0x62
 
 
 #define BMI085_G_RST_ADDR 	(u8)	0x14
@@ -48,8 +48,9 @@
 #define BMI085_A_PWR_CTRL_DATA	(u8)	0x04
 #define BMI085_A_PWR_CONF_ADDR	(u8)	0x7C
 #define BMI085_A_PWR_CONF_DATA	(u8)	0x00
+
 #define BMI085_A_RANGE_ADDR		(u8)	0x41
-#define BMI085_A_RANGE_DATA		(u8)	0x03
+#define BMI085_A_RANGE_DATA		(u8)	0x00
 
 
 #endif /* HEADER_SATELLITE_H_ */

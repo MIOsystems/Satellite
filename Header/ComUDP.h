@@ -28,14 +28,14 @@ class ComUDP
 		{
 		    char prefix[5];
 		    f32 avg_x; // 4
-		    u16 max_x; // 2
-		    u16 min_x; // 2
+		    f32 max_x;
+		    f32 min_x;
 		    f32 avg_y;
-		    u16 max_y;
-		    u16 min_y;
+		    f32 max_y;
+		    f32 min_y;
 		    f32 avg_z;
-		    u16 max_z;
-		    u16 min_z;
+		    f32 max_z;
+		    f32 min_z;
 		    f32 angle_x;
 		    f32 angle_y;
 		    f32 angle_z;

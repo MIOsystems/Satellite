@@ -16,6 +16,9 @@
 class GNSSFrame
 {
 	private:
+
+
+	public:
 		u8 class_def;
 		u8 id;
 		u16 length;
@@ -23,26 +26,8 @@ class GNSSFrame
 		u16 checksum_calc;
 		u8 ck_a;
 		u8 ck_b;
-
-	public:
+		u8 payload[92];
 		GNSSFrame();
-		u8 payload[GNSS_GPS_BUFF_S];
-		void updateCheckSum(u8 data);
-		u16 getChecksumRx() const;
-		void setChecksumRx(u16 checksumRx);
-		u8 getCkA() const;
-		void setCkA(u8 ckA);
-		u8 getCkB() const;
-		void setCkB(u8 ckB);
-		u8 getClassDef() const;
-		void setClassDef(u8 classDef);
-		u8 getId() const;
-		void setId(u8 id);
-		u16 getLength() const;
-		void setLength(u16 length);
-		void getChecksum();
-		u16 getChecksumCalc() const;
-		void setChecksumCalc(u16 checksumCalc);
 };
 
 class GNSSData

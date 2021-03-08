@@ -52,6 +52,7 @@ i8 ComUDP::send_gnss(GNSSData data) {
 		.fix = data.fix,
 		.num_sat = data.num_sat,
 	};
+
 	u16 size = sizeof(packet);
 	// Create packet to send
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
@@ -87,7 +88,7 @@ i8 ComUDP::send_bmi(BMI085 data)
 
 	bmi_packet packet = {
         .prefix = "imu,",
-        .avg_x = data.packet.acc_x_stat.avg + 10,
+        .avg_x = data.packet.acc_x_stat.avg,
         .max_x = data.packet.acc_x_stat.max,
         .min_x = data.packet.acc_x_stat.min,
         .avg_y = data.packet.acc_y_stat.avg,
@@ -113,7 +114,6 @@ i8 ComUDP::send_bmi(BMI085 data)
 	}
 	// Freeing the packet
 	status = pbuf_free(buffer);
-	free(packet.prefix);
 	return status;
 }
 

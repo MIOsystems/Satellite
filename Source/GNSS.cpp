@@ -14,9 +14,9 @@
 GNSS::GNSS()
 {
 	this->gnss_data = GNSSData();
-	this->gnss_frame = GNSSFrame();
-	this->raw_data = 0;
-	this->frame_counter = 0;
+	this->gps_frame = GNSSFrame();
+	this->gps_data = 0;
+	this->gps_frame_counter = 0;
 }
 
 u8 GNSS::init()
@@ -24,109 +24,121 @@ u8 GNSS::init()
 	return 0;
 }
 
-u8 GNSS::poll()
+void GNSS::poll()
 {
 	u8 status = 0;
-	u16 frame_length = 0;
-	u16 checksum_rx = 0;
 
-	status = UART_Receive(&RS232_UART1, &this->raw_data, 1);
+	status = UART_Receive(&RS232_UART1, &this->gps_data, 1);
 	// Wait if uart channels are still busy
 	if(status != UART_STATUS_SUCCESS)
 	{
-		return status;
+		return;
 	}
 
-	switch (this->frame_counter)
+
+	if(gps_receive_ready) //Received data has not been readout. So pass receveiving more stuff
 	{
-		// If its not in one of these switches reset it
+		return;
+	}
+
+
+
+	switch (gps_frame_counter)
+	{
 		default:
-			this->frame_counter = UBX_FRAME_HEADER_1;
+			gps_frame_counter = UBX_FRAME_SYNC1;
 			break;
 
-		case UBX_FRAME_HEADER_1:
-			if(this->raw_data == GNSS_GPS_SYNC_1)
-			{
-				this->frame_counter = UBX_FRAME_HEADER_2;
-				break;
-			} 
-			this->frame_counter = UBX_FRAME_HEADER_1;
+		case UBX_FRAME_SYNC1:
+
+			if (gps_data == GPS_SYNC1)
+				gps_frame_counter = UBX_FRAME_SYNC2;
+			else
+				gps_frame_counter = UBX_FRAME_SYNC1;
+
 			break;
 
-		case UBX_FRAME_HEADER_2:
-			if(this->raw_data == GNSS_GPS_SYNC_2)
-			{
-				this->frame_counter = UBX_FRAME_CLASS;
-			} else {
-				this->frame_counter = UBX_FRAME_HEADER_1;
-			}
+		case UBX_FRAME_SYNC2:
+
+			if (gps_data == GPS_SYNC2)
+				gps_frame_counter = UBX_FRAME_CLASS;
+			else
+				gps_frame_counter = UBX_FRAME_SYNC1;
+
 			break;
 
 		case UBX_FRAME_CLASS:
-			gnss_frame = GNSSFrame();
-			gnss_frame.setClassDef(this->raw_data);
-			gnss_frame.updateCheckSum(this->raw_data);
-			this->frame_counter = UBX_FRAME_ID;
+
+			gps_frame_reset();
+			gps_frame.class_def = gps_data;
+			update_checksum(gps_data);
+			gps_frame_counter = UBX_FRAME_ID;
+
 			break;
 
 		case UBX_FRAME_ID:
-			gnss_frame.setId(this->raw_data);
-			gnss_frame.updateCheckSum(this->raw_data);
-			this->frame_counter = UBX_FRAME_DLC1;
+
+			gps_frame.id = gps_data;
+			update_checksum(gps_data);
+			gps_frame_counter = UBX_FRAME_DLC1;
 			break;
 
 		case UBX_FRAME_DLC1:
-			gnss_frame.setLength(this->raw_data);
-			gnss_frame.updateCheckSum(this->raw_data);
-			this->frame_counter = UBX_FRAME_DLC0;
-			break;
-		case UBX_FRAME_DLC0:
-			frame_length = 	gnss_frame.getLength();
-			frame_length |= this->raw_data << 8;
 
-			gnss_frame.setLength(frame_length);
-			gnss_frame.updateCheckSum(this->raw_data);
-			this->frame_counter = UBX_FRAME_PAYLOAD;
+			gps_frame.length = gps_data;
+			update_checksum(gps_data);
+			gps_frame_counter = UBX_FRAME_DLC0;
+			break;
+
+		case UBX_FRAME_DLC0:
+
+			gps_frame.length |= gps_data << 8;
+			update_checksum(gps_data);
+			gps_frame_counter = UBX_FRAME_PAYLOAD;
 			break;
 
 		case UBX_FRAME_PAYLOAD:
-			gnss_frame.payload[this->gps_payload_index++] = raw_data;
-			gnss_frame.updateCheckSum(this->raw_data);
-			if(gps_payload_index == gnss_frame.getLength()) //DLC reached
+
+			gps_frame.payload[gps_payload_index++] = gps_data;
+			update_checksum(gps_data);
+
+			if (gps_payload_index == gps_frame.length) //DLC reached
 			{
-				this->frame_counter = UBX_FRAME_CK_A;
+
+				gps_frame_counter = UBX_FRAME_CK_A;
 				break;
 			}
 
-			if(gps_payload_index == GNSS_GPS_BUFF_S) //buffer overflow
+			if (gps_payload_index == 92) //buffer overflow
 			{
 
-				this->frame_counter = UBX_FRAME_HEADER_1;
+				gps_frame_counter = UBX_FRAME_SYNC1;
 				break;
 			}
+
 			break;
 
 		case UBX_FRAME_CK_A:
-			gnss_frame.getChecksum();
-			gnss_frame.setChecksumRx(this->raw_data);
-			this->frame_counter = UBX_FRAME_CK_B;
+
+			gps_get_checksum();
+			gps_frame.checksum_rx = gps_data;
+			gps_frame_counter = UBX_FRAME_CK_B;
 			break;
 
 		case UBX_FRAME_CK_B:
-			checksum_rx = gnss_frame.getChecksumRx();
-			checksum_rx |= this->raw_data << 8;
-			gnss_frame.setChecksumRx(checksum_rx);
 
-			if(checksum_rx != gnss_frame.getChecksumCalc())
+			gps_frame.checksum_rx |= gps_data << 8;
+
+			if (gps_frame.checksum_rx != gps_frame.checksum_calc)
 			{
-				this->frame_counter = UBX_FRAME_HEADER_1;
+				gps_frame_counter = UBX_FRAME_SYNC1;
 				break;
 			}
-			this->rx_ready = true;
-			this->frame_counter = UBX_FRAME_HEADER_1;
+
+			gps_receive_ready = true;
+			gps_frame_counter = UBX_FRAME_SYNC1;
 			break;
 	}
-	return 0;
 }
 
 u8 GNSS::select(u8 chip)
@@ -146,37 +158,39 @@ char* GNSS::to_string()
 
 void GNSS::convert_payload()
 {
-	memcpy(&gnss_data.epoch,			&gnss_frame.payload[0],		4);
-	memcpy(&gnss_data.fix,				&gnss_frame.payload[20],	1);
-	memcpy(&gnss_data.num_sat,			&gnss_frame.payload[23],	1);
-	memcpy(&gnss_data.lon,				&gnss_frame.payload[24],	4);
-	memcpy(&gnss_data.lat,				&gnss_frame.payload[28],	4);
-	memcpy(&gnss_data.height_ellipsoid,	&gnss_frame.payload[32],	4);
-	memcpy(&gnss_data.height_msl,		&gnss_frame.payload[36],	4);
-	memcpy(&gnss_data.hor_acc,			&gnss_frame.payload[40],	4);
-	memcpy(&gnss_data.ver_acc,			&gnss_frame.payload[44],	4);
-	memcpy(&gnss_data.speed,			&gnss_frame.payload[60],	4);
-	memcpy(&gnss_data.heading,			&gnss_frame.payload[64],	4);
-	memcpy(&gnss_data.speed_acc,		&gnss_frame.payload[68],	4);
-	memcpy(&gnss_data.head_acc,			&gnss_frame.payload[72],	4);
+	memcpy(&gnss_data.epoch,			&gps_frame.payload[0],		4);
+	memcpy(&gnss_data.fix,				&gps_frame.payload[20],	1);
+	memcpy(&gnss_data.num_sat,			&gps_frame.payload[23],	1);
+	memcpy(&gnss_data.lon,				&gps_frame.payload[24],	4);
+	memcpy(&gnss_data.lat,				&gps_frame.payload[28],	4);
+	memcpy(&gnss_data.height_ellipsoid,	&gps_frame.payload[32],	4);
+	memcpy(&gnss_data.height_msl,		&gps_frame.payload[36],	4);
+	memcpy(&gnss_data.hor_acc,			&gps_frame.payload[40],	4);
+	memcpy(&gnss_data.ver_acc,			&gps_frame.payload[44],	4);
+	memcpy(&gnss_data.speed,			&gps_frame.payload[60],	4);
+	memcpy(&gnss_data.heading,			&gps_frame.payload[64],	4);
+	memcpy(&gnss_data.speed_acc,		&gps_frame.payload[68],	4);
+	memcpy(&gnss_data.head_acc,			&gps_frame.payload[72],	4);
+
+
 }
 
 void GNSS::validate(u8 _data, u8 _expected_data, u8 _fallback)
 {
 	if(_data == _expected_data)
 	{
-		this->frame_counter = _expected_data;
+		this->gps_frame_counter = _expected_data;
 	}else
 	{
-		this->frame_counter = _fallback;
+		this->gps_frame_counter = _fallback;
 	}
 }
 
 u8 GNSS::rx_handler(GNSSData &data)
 {
-	if(this->rx_ready)
+	if(gps_receive_ready)
 	{
-		const u16 msg_type = (u16) (gnss_frame.getClassDef() << 8) | gnss_frame.getId();
+		const u16 msg_type = (u16) (gps_frame.class_def << 8) | gps_frame.id;
 		switch(msg_type)
 		{
 			default:
@@ -184,10 +198,27 @@ u8 GNSS::rx_handler(GNSSData &data)
 			case 0x0107:
 				convert_payload();
 				data = this->gnss_data;
-				this->rx_ready = true;
+				gps_receive_ready = true;
 				return GNSS_SUCCESS;
 		}
-		this->rx_ready = false;
+		gps_receive_ready = false;
 	}
 	return GNSS_NO_PAYLOAD;
+}
+
+void GNSS::update_checksum(uint8_t data) {
+	gps_frame.ck_a = gps_frame.ck_a + data;
+	gps_frame.ck_b = gps_frame.ck_b + gps_frame.ck_a;
+}
+
+void GNSS::gps_get_checksum()
+{
+	gps_frame.checksum_calc = gps_frame.ck_a;
+	gps_frame.checksum_calc |= gps_frame.ck_b << 8;
+}
+
+void GNSS::gps_frame_reset()
+{
+	gps_frame = GNSSFrame();
+	gps_payload_index = 0;
 }
