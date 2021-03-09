@@ -85,7 +85,6 @@ i8 ComUDP::send_ok()
 i8 ComUDP::send_bmi(BMI085 data)
 {
 	err_t status = ERR_OK;
-
 	bmi_packet packet = {
         .prefix = "imu,",
         .avg_x = data.packet.acc_x_stat.avg,

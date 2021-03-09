@@ -65,34 +65,29 @@ u8 BMI085::init_gyro()
 
 u8 BMI085::init_accel()
 {
+	XMC_USIC_CH_RXFIFO_Flush(BMI_SPI_MASTER_1.channel);
+	while(!SPI_MASTER_IsRxFIFOEmpty(&BMI_SPI_MASTER_1)) SPI_MASTER_GetReceivedWord(&BMI_SPI_MASTER_1);
+
 	// Setting the accelerometer in SPI Mode
 	DIGITAL_IO_SetOutputHigh(&CS_A);
 	Utility::delay(1);
-	DIGITAL_IO_SetOutputLow(&CS_A);
-
-	// Resetting the accelerometer
-	this->write_a(BMI085_A_RST_ADDR, BMI085_A_RST_DATA);
+	// Turn the accelerometer on
+	this->write_a(BMI085_A_PWR_CTRL_ADDR, BMI085_A_PWR_CTRL_DATA);
 	Utility::delay(50000); // 50 ms
 
-	// Getting the chip id should be 0x1F which is the reset value
-	u8 chip_id = 0;
-	this->read_a(0x00, &chip_id);
-	if(chip_id != 0x1F)
-		return 1;
-
-	this->imu.accel_id = chip_id;
-
-
-	// Configuring the range to 16g
 	this->write_a(BMI085_A_RANGE_ADDR, BMI085_A_RANGE_DATA);
 	Utility::delay(50000); // 50 ms
 
 	// Put the accelerometer in active mode
 	this->write_a(BMI085_A_PWR_CONF_ADDR, BMI085_A_PWR_CONF_DATA);
 	Utility::delay(50000); // 50 ms
-	// Turn the accelerometer on
-	this->write_a(BMI085_A_PWR_CTRL_ADDR, BMI085_A_PWR_CTRL_DATA);
-	Utility::delay(50000); // 50 ms
+
+	// Getting the chip id should be 0x1F which is the reset value
+	u8 chip_id = 0;
+	this->read_a(0x00, &chip_id);
+	if(chip_id != 0x1F)		return 1;
+
+	this->imu.accel_id = chip_id;
 
 	return 0;
 }
@@ -104,12 +99,14 @@ void BMI085::poll()
 	this->calculate_stats(&this->packet.acc_x_stat);
 	this->calculate_stats(&this->packet.acc_y_stat);
 	this->calculate_stats(&this->packet.acc_z_stat);
+	//this->apply_gyro_angles();
 	this->calculate_complimentary_filter();
 }
 
 
 void BMI085::write_g(u8 addr, const u8 data)
 {
+	u8 rx_buff[3];
 	uint8_t tx[]=
 	{
 		addr,
@@ -118,15 +115,14 @@ void BMI085::write_g(u8 addr, const u8 data)
 
 	u8 tx_len = sizeof(tx) / sizeof( (tx)[0]);
 	DIGITAL_IO_SetOutputLow(&CS_G);
-	SPI_MASTER_Transmit(&BMI_SPI_MASTER_1, tx, tx_len);
-	while (BMI_SPI_MASTER_1.runtime->tx_busy);
+	SPI_MASTER_Transfer(&BMI_SPI_MASTER_1, tx, rx_buff, tx_len);
 	DIGITAL_IO_SetOutputHigh(&CS_G);
-	Utility::delay(2);
 }
 
 
 void BMI085::write_a(u8 addr, const u8 data)
 {
+	u8 rx_buff[3];
 	uint8_t tx[]=
 	{
 		addr,
@@ -134,8 +130,7 @@ void BMI085::write_a(u8 addr, const u8 data)
 	};
 	u8 tx_len = sizeof(tx) / sizeof( (tx)[0]);
 	DIGITAL_IO_SetOutputLow(&CS_A);
-	SPI_MASTER_Transmit(&BMI_SPI_MASTER_1, tx, tx_len);
-	while (BMI_SPI_MASTER_1.runtime->tx_busy);
+	SPI_MASTER_Transfer(&BMI_SPI_MASTER_1, tx, rx_buff, tx_len);
 	DIGITAL_IO_SetOutputHigh(&CS_A);
 }
 
@@ -145,43 +140,34 @@ void BMI085::poll_gyro()
 	u8 msb = 0;
 	i16 msb_lsb = 0;
 	int counter = 0;
-    f32 half_scale = ((f32)(1 << 16) / 2.0f);
-    f32 range_dps = 125;
-    f32 opcode_range_data = 0x04;
+	f32 half_scale = ((float)(1 << 16) / 2.0f);
+	f32 range_dps = 125;
 	u8 rx_buff[7] = { 0 };
 	u8 tx_buff[7] = {
-		0x02 | 0x80,
-		0x03 | 0x80,
-		0x04 | 0x80,
-		0x05 | 0x80,
-		0x06 | 0x80,
-		0x07 | 0x80,
+		0x82,
 		0xFF,
+		0xFF,
+		0xFF,
+		0xFF,
+		0xFF,
+		0xFF
 	};
 
 	DIGITAL_IO_SetOutputLow(&CS_G);
 
 
 	SPI_MASTER_Transfer(&BMI_SPI_MASTER_1, tx_buff, rx_buff, 7);
-
-	while(BMI_SPI_MASTER_1.runtime->rx_busy || BMI_SPI_MASTER_1.runtime->tx_busy);
-
 	DIGITAL_IO_SetOutputHigh(&CS_G);
 
-	Utility::delay(2);
-
-	 // lsb_to_dps(raw_val, range_dps, 16);
-
-	for(int i = 0; i < 6; i = i + 2) {
+	for(int i = 1; i < 7; i = i + 2) {
 		lsb = rx_buff[i];
 		msb = rx_buff[i + 1];
 		msb_lsb = (i16) ((msb << 8 ) | lsb); // raw data
-		 /* Converting lsb to degree per second for 16 bit gyro at 125 dps range. */
-		this->imu.gyro_values[counter] = (range_dps / ((half_scale) + opcode_range_data)) * (msb_lsb);
 
+		// degrees per second
+		this->imu.gyro_values[counter] = (range_dps / ((half_scale) + BMI085_G_RANGE_DATA)) * (msb_lsb);;
 		counter++;
 	}
-
 }
 
 /**
@@ -191,34 +177,36 @@ void BMI085::poll_gyro()
  */
 void BMI085::poll_accel()
 {
+
 	u8 rx_buff[8] = { 0 };
-	u8 tx_buff[8] = {	(0x12 | 0x80),
-						(0x13 | 0x80),
-						(0x14 | 0x80),
-						(0x15 | 0x80),
-						(0x16 | 0x80),
-						(0x17 | 0x80),
+	u8 tx_buff[8] = {0x92,
 						0xFF,
-				 		0xFF};
+						0xFF,
+						0xFF,
+						0xFF,
+						0xFF,
+						0xFF,
+						0xFF};
+	u8 lsb = 0;
+	u8 msb = 0;
+	i16 msb_lsb = 0;
 	int counter = 0;
-	u8 range_opcode_data = 0x00;
-	f32 power_of_range = 4.0f; // 2^(0x00 + 1)
 
 	DIGITAL_IO_SetOutputLow(&CS_A);
 	SPI_MASTER_Transfer(&BMI_SPI_MASTER_1, tx_buff, rx_buff, 8);
-	while(BMI_SPI_MASTER_1.runtime->rx_busy || BMI_SPI_MASTER_1.runtime->tx_busy);
+//	while(BMI_SPI_MASTER_1.runtime->rx_busy || BMI_SPI_MASTER_1.runtime->tx_busy);
+	//Utility::delay(10);
 	DIGITAL_IO_SetOutputHigh(&CS_A);
+	Utility::delay(2);
 
-	// raw_values
-	i16 raw_x = (i16) ((rx_buff[3] << 8 ) | rx_buff[2]); // z
-	i16 raw_y = (i16) ((rx_buff[5] << 8 ) | rx_buff[4]); // y
-	i16 raw_z = (i16) ((rx_buff[7] << 8 ) | rx_buff[6]); // z
-
-	// converting it to mg
-	this->imu.accel_values[0] = ((-8000.0f) / 32768.0f) * 1000.0f * power_of_range;
-	this->imu.accel_values[1] = ((8000.0f) / 32768.0f) * 1000.0f * power_of_range;
-	this->imu.accel_values[2] = ((15000.0f) / 32768.0f) * 1000.0f * power_of_range; // z must be 1000
-
+	for(int i = 2; i < 8; i = i + 2) {
+		lsb = rx_buff[i];
+		msb = rx_buff[i + 1];
+		msb_lsb = (i16) ((msb << 8 ) | lsb); // raw value
+		// TODO CHANGE RANGE
+		this->imu.accel_values[counter] = ((msb_lsb / 32768.0f) * 1000.0f * 2) / 1000;
+		counter++;
+	}
 }
 
 void BMI085::calculate_stats(acc_stat_imu* _imu)
@@ -250,13 +238,49 @@ void BMI085::calculate_stats(acc_stat_imu* _imu)
 
 /*
  * SOURCE: https://gunjanpatel.wordpress.com/2016/07/07/complementary-filter-design/
+ * https://www.instructables.com/Angle-measurement-using-gyro-accelerometer-and-Ar/
  *
  */
 void BMI085::calculate_complimentary_filter()
 {
-	this->packet.angle[0] = 0.98 * (this->packet.angle[0] + this->imu.gyro_values[0]) + (0.02 *  this->imu.gyro_values[0]); // x
-	this->packet.angle[1] = 0.98 * (this->packet.angle[1] + this->imu.gyro_values[1]) + (0.02 *  this->imu.gyro_values[1]); // y
-	this->packet.angle[2] = 0.98 * (this->packet.angle[2] + this->imu.gyro_values[2]) + (0.02 *  this->imu.gyro_values[1]); // z
+	f32 angle_x = 0;
+	f32 angle_y = 0;
+	f32 angle_z = 0;
+
+	// Storing it in variables for readability
+	f32 accel_x = this->imu.accel_values[0];
+	f32 accel_y = this->imu.accel_values[1];
+	f32 accel_z = this->imu.accel_values[2];
+
+	// Calculate length of x/y/z
+	f32 accel_x_vec_length = sqrt( (accel_y * accel_y) + (accel_z * accel_z) );
+	f32 accel_y_vec_length = sqrt( (accel_z * accel_z) + (accel_x * accel_x) );
+	f32 accel_z_vec_length = sqrt( (accel_x * accel_x) + (accel_y * accel_y) );
+	// check if x is larger then 0, so you dont get division by zero errors
+	if(accel_x_vec_length > 0) {
+		angle_x = atanf( (accel_x / accel_x_vec_length));
+		this->packet.angle[0] = (0.98 * this->packet.angle[0]) + (angle_x * 0.02);
+	}
+	else {
+		this->packet.angle[0] = (0.98 * this->packet.angle[0]);
+	}
+
+	if(accel_y_vec_length > 0) {
+			angle_y = atanf( (accel_y / accel_y_vec_length));
+			this->packet.angle[1] = (0.98 * this->packet.angle[1]) + (angle_y * 0.02);
+	}
+	else {
+		this->packet.angle[1] = (0.98 * this->packet.angle[1]);
+	}
+
+	if(accel_z_vec_length > 0) {
+				angle_z = atanf( (accel_z / accel_z_vec_length));
+				this->packet.angle[2] = (0.8 * this->packet.angle[2]) + (angle_z * 0.2); // x
+	}
+	else {
+		this->packet.angle[2] = (0.8 * this->packet.angle[2]);
+	}
+
 }
 
 // ACCELEORMETER READS ARE DIFFERENT, ONE DUMMY BYTE THEN TRUE DATA
@@ -286,4 +310,13 @@ void BMI085::read_g(u8 addr, u8 *data)
 	Utility::delay(2);
 
 	*data = rx_buff[1];
+}
+
+void BMI085::reset()
+{
+	this->packet = {
+			{ 0, 0, 0, 0, 0, 0},
+			{ 0, 0, 0, 0, 0, 1},
+			{ 0, 0, 0, 0, 0, 2}
+	};
 }

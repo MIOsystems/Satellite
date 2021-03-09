@@ -63,6 +63,7 @@ class BMI085
 		void calculate_stats(acc_stat_imu *_imu);
 		void calculate_angle();
 		void calculate_complimentary_filter();
+		void apply_gyro_angles();
 	public:
 		BMI085();
 		bmi_packet packet;
@@ -72,5 +73,6 @@ class BMI085
 		void write_a(u8 addr, const u8 data);
 		void read_a(u8 addr, u8 *data);
 		void read_g(u8 addr, u8 *data);
+		void reset();
 };
 #endif

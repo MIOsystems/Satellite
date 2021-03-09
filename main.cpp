@@ -17,25 +17,33 @@ GNSSData data;
 GNSS gnss;
 ComUDP udp;
 
+#define ONEMSDELAY 11500
+u32 counter = 0;
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 	void gnss_interrupt(void) {
 		gnss.poll();
+
 	}
 
 	void tick_timer_ISR(void)
 	{
-
-		DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_0);
-		if(gnss.rx_handler(data) == DAVE_STATUS_SUCCESS) {
-			const GNSSData packet = data;
-			udp.send_gnss(packet);
+		// loop in the second thousandtimes
+		if(counter == 1000 || counter > 1000) {
+			if(gnss.rx_handler(data) == DAVE_STATUS_SUCCESS) {
+				const GNSSData packet = data;
+				udp.send_gnss(packet);
+			}
+			udp.send_bmi(bmi);
+			bmi.reset();
+			counter = 0;
 		}
 		bmi.poll();
-		udp.send_bmi(bmi);
-		Utility::delay(2000);
+		counter++;
+
+
 	}
 
 
@@ -43,11 +51,34 @@ extern "C" {
 }
 #endif
 
+void delay_ms(u32 time_ms)
+{
+	u32 cycle = ONEMSDELAY *time_ms;
+
+	while(cycle--)
+	{
+		__NOP();
+	}
+
+}
 
 int main(void)
 {
+	delay_ms(100);
+
+	XMC_GPIO_SetMode(XMC_GPIO_PORT5, 6, XMC_GPIO_MODE_OUTPUT_PUSH_PULL);
+	XMC_GPIO_SetMode(XMC_GPIO_PORT5, 7, XMC_GPIO_MODE_OUTPUT_PUSH_PULL);
+	XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT5, 7, XMC_GPIO_OUTPUT_LEVEL_HIGH);
+	// output 4.4 reset pin phy ethernet
+	XMC_GPIO_SetMode(XMC_GPIO_PORT4, 4, XMC_GPIO_MODE_OUTPUT_PUSH_PULL);
+	delay_ms(20);
+	XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT4, 4, XMC_GPIO_OUTPUT_LEVEL_HIGH);
+	delay_ms(2000);
+
 	DAVE_STATUS_t status;
 	status = DAVE_Init(); /* Initialization of DAVE APPs  */
+
+	XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT5, 6, XMC_GPIO_OUTPUT_LEVEL_HIGH);
 
 	Utility::delay(50000);
 	udp.init();
