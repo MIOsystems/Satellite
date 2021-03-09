@@ -64,6 +64,8 @@ class BMI085
 		void calculate_angle();
 		void calculate_complimentary_filter();
 		void apply_gyro_angles();
+
+		f32 angle_x;
 	public:
 		BMI085();
 		bmi_packet packet;

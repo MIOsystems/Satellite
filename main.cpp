@@ -31,18 +31,20 @@ extern "C" {
 	void tick_timer_ISR(void)
 	{
 		// loop in the second thousandtimes
-		if(counter == 1000 || counter > 1000) {
-			if(gnss.rx_handler(data) == DAVE_STATUS_SUCCESS) {
+		if(counter == 1000 || counter > 1000)
+		{
+			if(gnss.rx_handler(data) == DAVE_STATUS_SUCCESS)
+			{
 				const GNSSData packet = data;
 				udp.send_gnss(packet);
 			}
+			DIGITAL_IO_ToggleOutput(&DIGITAL_IO_LED_3_SPI_ACCEL);
 			udp.send_bmi(bmi);
 			bmi.reset();
 			counter = 0;
 		}
 		bmi.poll();
 		counter++;
-
 
 	}
 

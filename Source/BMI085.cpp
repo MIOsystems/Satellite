@@ -165,7 +165,7 @@ void BMI085::poll_gyro()
 		msb_lsb = (i16) ((msb << 8 ) | lsb); // raw data
 
 		// degrees per second
-		this->imu.gyro_values[counter] = (range_dps / ((half_scale) + BMI085_G_RANGE_DATA)) * (msb_lsb);;
+		this->imu.gyro_values[counter] = msb_lsb / range_dps;
 		counter++;
 	}
 }
@@ -241,46 +241,35 @@ void BMI085::calculate_stats(acc_stat_imu* _imu)
  * https://www.instructables.com/Angle-measurement-using-gyro-accelerometer-and-Ar/
  *
  */
+
 void BMI085::calculate_complimentary_filter()
 {
-	f32 angle_x = 0;
-	f32 angle_y = 0;
-	f32 angle_z = 0;
-
+	f32 dt = 0.001;
 	// Storing it in variables for readability
+	f32 gyro_x = this->imu.gyro_values[0];
+	f32 gyro_y = this->imu.gyro_values[1];
+	f32 gyro_z = this->imu.gyro_values[2];
 	f32 accel_x = this->imu.accel_values[0];
 	f32 accel_y = this->imu.accel_values[1];
 	f32 accel_z = this->imu.accel_values[2];
 
-	// Calculate length of x/y/z
-	f32 accel_x_vec_length = sqrt( (accel_y * accel_y) + (accel_z * accel_z) );
-	f32 accel_y_vec_length = sqrt( (accel_z * accel_z) + (accel_x * accel_x) );
-	f32 accel_z_vec_length = sqrt( (accel_x * accel_x) + (accel_y * accel_y) );
-	// check if x is larger then 0, so you dont get division by zero errors
-	if(accel_x_vec_length > 0) {
-		angle_x = atanf( (accel_x / accel_x_vec_length));
-		this->packet.angle[0] = (0.98 * this->packet.angle[0]) + (angle_x * 0.02);
-	}
-	else {
-		this->packet.angle[0] = (0.98 * this->packet.angle[0]);
-	}
+	//f32 gyro_x_with_old_angle = this->packet.angle[0] + gyro_x;
+	//f32 gyro_y_with_old_angle = this->packet.angle[1] + gyro_y;
+	f32 gyro_z_with_old_angle = this->packet.angle[2] + gyro_z;
+	//f32 gyro_x_dt = gyro_x_with_old_angle * dt;
+	//f32 gyro_y_dt = gyro_y_with_old_angle * dt;
+	f32 angle_acc_z = (atan2f(accel_y, accel_z)) * 180 / M_PI;
+//	angle_x += gyro_y * dt;
+	this->packet.angle[0] = accel_x*90;
+	this->packet.angle[1] = accel_y*90;
+	this->packet.angle[2] = accel_z*90;
+	//f32 angle_acc_x = (atan2f(accel_y, accel_z));
+	//f32 angle_acc_y = (atan2f(accel_x, accel_z));
 
-	if(accel_y_vec_length > 0) {
-			angle_y = atanf( (accel_y / accel_y_vec_length));
-			this->packet.angle[1] = (0.98 * this->packet.angle[1]) + (angle_y * 0.02);
-	}
-	else {
-		this->packet.angle[1] = (0.98 * this->packet.angle[1]);
-	}
 
-	if(accel_z_vec_length > 0) {
-				angle_z = atanf( (accel_z / accel_z_vec_length));
-				this->packet.angle[2] = (0.8 * this->packet.angle[2]) + (angle_z * 0.2); // x
-	}
-	else {
-		this->packet.angle[2] = (0.8 * this->packet.angle[2]);
-	}
-
+	//this->packet.angle[0] = (0.98 * gyro_x_dt) + (0.02 * angle_acc_x);
+	//this->packet.angle[1] = (0.98 * gyro_y_dt) + (0.02 * angle_acc_y);
+//	this->packet.angle[2] = (0.98 * this->packet.angle[2]) + (0.02 * angle_acc_z);
 }
 
 // ACCELEORMETER READS ARE DIFFERENT, ONE DUMMY BYTE THEN TRUE DATA
