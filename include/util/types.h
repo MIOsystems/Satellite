@@ -1,15 +1,9 @@
-/*
- * types.h
- *
- *  Created on: 16 Feb 2021
- *      Author: Patrick
- */
-
 #ifndef TYPES_H_
 #define TYPES_H_
 
 #include <stdint.h>
 
+/* Use these typedef types, this makes it clear for byte sizes and requires less typing */
 typedef uint8_t u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
@@ -25,4 +19,4 @@ typedef double f64;
 
 
 
-#endif /* TYPES_H_ */
+#endif

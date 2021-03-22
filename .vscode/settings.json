@@ -1,7 +1,28 @@
 {
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Debug": true,
+		//"**/Libraries": true,
+		//"**/Startup": true,
+		"**/.settings": true,
+		"**/.cproject": true,
+		"**/.project": true,
+		"**/solver.*": true,
+		"**/linker_script.ld": true,
+	},
 	"files.associations": {
-		"array": "cpp",
-		"xstring": "cpp",
-		"xutility": "cpp"
+		"dave.h": "c",
+		"bmi085x.h": "c",
+		"types.h": "c",
+		"*.tcc": "cpp",
+		"fstream": "cpp",
+		"istream": "cpp",
+		"ostream": "cpp",
+		"sstream": "cpp",
+		"bmi085a.h": "c"
 	}
 }
