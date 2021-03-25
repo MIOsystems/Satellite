@@ -2,7 +2,6 @@
 #define BMI085G_H_
 
 #include <include/sensor/imu/bmi085x.h>
-#include <include/sensor/imu/bmi085x_config.h>
 #include <include/sensor/imu/bmi085x_opcode.h>
 
 u8 bmi085g_init(bmi085x *bmi085);

@@ -6,6 +6,13 @@ u8 composer_init()
 {
 	u8 status = DAVE_STATUS_SUCCESS;
 
+
+	// Communication
+	status = udp_initialize();
+	if(status != 0)
+	{
+		return status;
+	}
 	// Sensors
 	// IMU
 
@@ -16,6 +23,10 @@ u8 composer_init()
 		return DAVE_STATUS_FAILURE;
 	}
 	return DAVE_STATUS_SUCCESS;
+
+	// GPS Sensor, only creates the structure
+	gnss_init();
+
 }
 
 u8 imu_init()

@@ -23,6 +23,7 @@
 		"istream": "cpp",
 		"ostream": "cpp",
 		"sstream": "cpp",
-		"bmi085a.h": "c"
+		"bmi085a.h": "c",
+		"imu.h": "c"
 	}
 }

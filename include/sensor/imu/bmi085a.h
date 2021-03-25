@@ -6,7 +6,7 @@
 #include <include/util/types.h>
 
 
-
+static u32 bmi085a_poll_counter = 0;
 
 
 bmi085x_status_e bmi085a_init(bmi085x *bmi085);

@@ -7,6 +7,7 @@
 #include <include/data/vector.h>
 #include <include/data/statistic.h>
 #include <include/util/error.h>
+#include <include/util/model.h>
 
 #define CONCAT_RAW_VAL(msb, lsb) (i16) ((msb << 8) | lsb)
 
@@ -14,17 +15,10 @@
 
 typedef struct 
 {
-	u8 pwr_mode_addr;
-	u8 pwr_mode;
-
-	u8 meas_range_addr;
-	u8 meas_range;
-
-	u8 bandwidth_addr;
-	u8 bandwidth;
-
-	u8 output_data_rate_addr;
-	u8 ouput_data_rate;
+	reg_operation pwr_mode;
+	reg_operation meas_range;
+	reg_operation bandwidth;
+	reg_operation odr;
 } bmi085x_cfg;
 
 typedef struct 

@@ -11,17 +11,34 @@
 #include <include/util/types.h>
 #include <include/util/delay.h>
 #include <include/composer/composer.h>
+#include <include/communication/com_udp.h>
+#include <include/filters/complimentary_filter.h>
 
 u32 counter = 0;
 
 void gnss_interrupt(void) {
-
+	gnss_poll();
 }
 
 void tick_timer_ISR(void)
 {
+
+
+
+	if(counter == 1000 || counter > 1000)
+	{
+		if(gps_rx_handler() == 0)
+		{
+			udp_send_gps(gps_packet);
+		}
+		udp_send_bmi(imu);
+		bmi085x_reset_data(&imu);
+		counter = 0;
+	}
 	bmi085a_poll(&imu);
 	bmi085g_poll(&imu);
+	complimentary_f_process(&imu);
+	counter++;
 }
 
 int main(void)

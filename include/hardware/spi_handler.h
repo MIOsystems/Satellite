@@ -3,8 +3,9 @@
 
 #include <DAVE.h>
 
+#include <stdbool.h>
+#include <include/util/types.h>
 #include <include/util/error.h>
-
 
 typedef enum {
 	SPI_SLAVE_BMI085A_CS,
@@ -32,5 +33,7 @@ void spi_select_chip(const SPI_SLAVES chip_id);
 void spi_unselect_chip(const SPI_SLAVES chip_id);
 void spi_flush(SPI_MASTER_t* handle, const SPI_CHANNELS channel);
 void spi_wait(SPI_MASTER_t* handle, const SPI_CHANNELS channel);
+void spi_write(SPI_MASTER_t* handle, const u8 data, const bool dummy_byte, u8 dummy_byte_index);
+void spi_read(SPI_MASTER_t* handle, u8 *data, const bool dummy_byte, u8 dummy_byte_index);
 
 #endif

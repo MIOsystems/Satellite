@@ -6,15 +6,22 @@ void bmi085x_init_acc(bmi085x *bmi085)
 	bmi085x_dev accel = {
 		.chip_id = 0, // this will be replaced later in the init function of the accelerometer
 		.config = {
-			.pwr_mode_addr = BMI085A_PWR_MODE_ADDR,
-			.pwr_mode = BMI085A_PWR_MODE_ACTIVE,
-			.meas_range_addr = BMI085A_RANGE_ADDR,
-			.meas_range = BMI085A_RANGE_2G,
-			.bandwidth_addr = BMI085A_CFG_ADDR,
-			.bandwidth = 0, // TODO set this
-			.output_data_rate_addr = BMI085A_CFG_ADDR,
-			.ouput_data_rate = 0, //TODO set this
-
+			.pwr_mode = {
+				.reg_addr = BMI085A_PWR_MODE_ADDR,
+				.instr = BMI085A_PWR_MODE_ACTIVE,
+			},
+			.meas_range = {
+				.reg_addr = BMI085A_RANGE_ADDR,
+				.instr = BMI085A_RANGE_2G,
+			},
+			.bandwidth = {
+				.reg_addr = BMI085A_CFG_ADDR,
+				.instr = 0,
+			},
+			.odr = {
+				.reg_addr = BMI085A_CFG_ADDR,
+				.instr = 0,
+			}
 		}
 	};
 	bmi085->acc = accel;
@@ -25,10 +32,22 @@ void bmi085x_init_gyro(bmi085x *bmi085)
 	bmi085x_dev gyro = {
 		.chip_id = 0, // this will be replaced later in the init function of the gyroscope
 		.config = {
-			.pwr_mode = BMI085G_CFG_PWR_MODE_NRML,
-			.meas_range = BMI085G_CFG_RANGE_125,
-			.bandwidth = BMI085G_CFG_BANDWIDTH_1000_116,
-			.ouput_data_rate = 0,
+			.pwr_mode = {
+				.reg_addr = BMI085G_CFG_PWR_MODE_ADDR,
+				.instr = BMI085G_CFG_PWR_MODE_NRML,
+			},
+			.meas_range = {
+				.reg_addr = BMI085G_CFG_RANG_ADDR,
+				.instr = BMI085G_CFG_RANGE_125,
+			},
+			.bandwidth = {
+				.reg_addr = BMI085G_CFG_BANDWIDTH_ADDR,
+				.instr = BMI085G_CFG_BANDWIDTH_100_32,
+			},
+			.odr = {
+				.reg_addr = 0,
+				.instr = 0,
+			}
 		}
 	};
 

@@ -15,6 +15,7 @@
 #include <include/util/delay.h>
 #include <include/util/utility.h>
 
+#include <include/satellite.h>
 
 u8 bmi085g_init(bmi085x *bmi085)
 {
@@ -29,15 +30,20 @@ u8 bmi085g_init(bmi085x *bmi085)
 	}
 
 	// writing configuration
-	status = bmi085g_write_reg(bmi085->gyro.config.bandwidth_addr, bmi085->gyro.config.bandwidth);
+	status = bmi085g_write_reg(bmi085->gyro.config.bandwidth.reg_addr, bmi085->gyro.config.bandwidth.instr);
 	if(status != BMI085X_SUCCESS)
 	{
 		return status;
 	}
 
 
-	status = bmi085g_write_reg(bmi085->gyro.config.meas_range_addr, bmi085->gyro.config.meas_range);
-	delay_ms(50);
+	status = bmi085g_write_reg(bmi085->gyro.config.meas_range.reg_addr, bmi085->gyro.config.meas_range.instr);
+	if(status != BMI085X_SUCCESS)
+	{
+		return status;
+	}
+
+	status = bmi085g_write_reg(bmi085->gyro.config.bandwidth.reg_addr, bmi085->gyro.config.bandwidth.instr);
 	if(status != BMI085X_SUCCESS)
 	{
 		return status;
@@ -61,7 +67,6 @@ u8 bmi085g_poll(bmi085x *bmi085)
 	spi_select_chip(SPI_SLAVE_BMI085G_CS);
 	status = SPI_MASTER_Transfer(&BMI_SPI_MASTER_1, tx_buff, rx_buff, ARRAY_SIZEOF(tx_buff));
 	spi_unselect_chip(SPI_SLAVE_BMI085G_CS);
-	delay_ms(50);
 
 	if(status != SPI_MASTER_STATUS_SUCCESS)
 	{
@@ -72,11 +77,11 @@ u8 bmi085g_poll(bmi085x *bmi085)
 	i16 raw_y = CONCAT_RAW_VAL(rx_buff[4], rx_buff[3]);
 	i16 raw_z = CONCAT_RAW_VAL(rx_buff[6], rx_buff[5]);
 #endif
-
+	const conversion_g_ms2 = 9.85f;
 	// values in degree per seconds
-	bmi085->data.gyro_poll_val.x = (f32) ((CONCAT_RAW_VAL(rx_buff[2], rx_buff[1])) / 125.0f);
-	bmi085->data.gyro_poll_val.y = (f32) ((CONCAT_RAW_VAL(rx_buff[4], rx_buff[3])) / 125.0f);
-	bmi085->data.gyro_poll_val.z = (f32) ((CONCAT_RAW_VAL(rx_buff[6], rx_buff[5])) / 125.0f);
+	bmi085->data.gyro_poll_val.x = (f32) ((CONCAT_RAW_VAL(rx_buff[2], rx_buff[1])) / 125.0f) * conversion_g_ms2;
+	bmi085->data.gyro_poll_val.y = (f32) ((CONCAT_RAW_VAL(rx_buff[4], rx_buff[3])) / 125.0f) * conversion_g_ms2;
+	bmi085->data.gyro_poll_val.z = (f32) ((CONCAT_RAW_VAL(rx_buff[6], rx_buff[5])) / 125.0f) * conversion_g_ms2;
 
 	return BMI085X_SUCCESS;
 }
