@@ -8,6 +8,7 @@
 #include <include/data/statistic.h>
 #include <include/util/error.h>
 #include <include/util/model.h>
+#include <include/util/math_utility.h>
 
 #define CONCAT_RAW_VAL(msb, lsb) (i16) ((msb << 8) | lsb)
 
@@ -36,6 +37,7 @@ typedef struct
 	stat_aggregate_f y_stat;
 	stat_aggregate_f z_stat;
 	vec3f angle;
+	quaternion_t quat;
 } bmi085x_data;
 
 typedef struct 

@@ -91,7 +91,7 @@ bmi085x_status_e bmi085a_poll(bmi085x *bmi085)
 	bmi085->data.accel_poll_val.y = (( (f32) (CONCAT_RAW_VAL(rx_buff_poll[5], rx_buff_poll[4])) / bmi085a_sensivity) * powf(2.0f, (f32) (bmi085->acc.config.meas_range.reg_addr + 1)));
 	bmi085->data.accel_poll_val.z = (( (f32) (CONCAT_RAW_VAL(rx_buff_poll[7], rx_buff_poll[6])) / bmi085a_sensivity) * powf(2.0f, (f32) (bmi085->acc.config.meas_range.reg_addr + 1)));
 
-// Set this in the configuration
+	// Set this in the configuration
 #ifdef BMI_DATA_IN_MG
 	bmi085->data.accel_poll_val.x *= 100;
 	bmi085->data.accel_poll_val.y *= 100;

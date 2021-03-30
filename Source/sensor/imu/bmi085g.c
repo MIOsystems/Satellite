@@ -77,11 +77,12 @@ u8 bmi085g_poll(bmi085x *bmi085)
 	i16 raw_y = CONCAT_RAW_VAL(rx_buff[4], rx_buff[3]);
 	i16 raw_z = CONCAT_RAW_VAL(rx_buff[6], rx_buff[5]);
 #endif
-	const conversion_g_ms2 = 9.85f;
-	// values in degree per seconds
-	bmi085->data.gyro_poll_val.x = (f32) ((CONCAT_RAW_VAL(rx_buff[2], rx_buff[1])) / 125.0f) * conversion_g_ms2;
-	bmi085->data.gyro_poll_val.y = (f32) ((CONCAT_RAW_VAL(rx_buff[4], rx_buff[3])) / 125.0f) * conversion_g_ms2;
-	bmi085->data.gyro_poll_val.z = (f32) ((CONCAT_RAW_VAL(rx_buff[6], rx_buff[5])) / 125.0f) * conversion_g_ms2;
+	// conversion to rad per seconds
+	const f32 conversion_rad_s = 0.01745329251f * 1000.0f / 32768.0f;
+	// values in degrees per seconds
+	bmi085->data.gyro_poll_val.x = (f32) (((CONCAT_RAW_VAL(rx_buff[2], rx_buff[1])) * conversion_rad_s));
+	bmi085->data.gyro_poll_val.y = (f32) (((CONCAT_RAW_VAL(rx_buff[4], rx_buff[3])) * conversion_rad_s));
+	bmi085->data.gyro_poll_val.z = (f32) (((CONCAT_RAW_VAL(rx_buff[6], rx_buff[5])) * conversion_rad_s));
 
 	return BMI085X_SUCCESS;
 }

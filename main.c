@@ -23,7 +23,11 @@ void gnss_interrupt(void) {
 void tick_timer_ISR(void)
 {
 
-
+	bmi085a_poll(&imu);
+	bmi085g_poll(&imu);
+	//complimentary_f_process(&imu);
+	AHR_update(&imu);
+	eulerAngles(&imu);
 
 	if(counter == 1000 || counter > 1000)
 	{
@@ -35,9 +39,7 @@ void tick_timer_ISR(void)
 		bmi085x_reset_data(&imu);
 		counter = 0;
 	}
-	bmi085a_poll(&imu);
-	bmi085g_poll(&imu);
-	complimentary_f_process(&imu);
+
 	counter++;
 }
 

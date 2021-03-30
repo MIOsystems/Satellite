@@ -6,7 +6,7 @@
 #define ONEMSDELAY 11500
 
 // Dont use this for release builds
-#define DEBUG_MODE
+//#define DEBUG_MODE
 
 //#define BMI_DATA_IN_MG
 
