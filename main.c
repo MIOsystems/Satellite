@@ -13,6 +13,7 @@
 #include <include/composer/composer.h>
 #include <include/communication/com_udp.h>
 #include <include/filters/complimentary_filter.h>
+#include <include/filters/AHRS.h>
 
 u32 counter = 0;
 
@@ -25,9 +26,8 @@ void tick_timer_ISR(void)
 
 	bmi085a_poll(&imu);
 	bmi085g_poll(&imu);
-	//complimentary_f_process(&imu);
-	AHR_update(&imu);
-	eulerAngles(&imu);
+	//complimentary_process(&imu);
+	AHRS_update(&imu);
 
 	if(counter == 1000 || counter > 1000)
 	{
