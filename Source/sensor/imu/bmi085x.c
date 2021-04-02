@@ -20,7 +20,7 @@ void bmi085x_init_acc(bmi085x *bmi085)
 			},
 			.odr = {
 				.reg_addr = BMI085A_CFG_ADDR,
-				.instr = 0,
+				.instr = 0x8c,
 			}
 		}
 	};
@@ -30,7 +30,7 @@ void bmi085x_init_acc(bmi085x *bmi085)
 void bmi085x_init_gyro(bmi085x *bmi085)
 {
 	bmi085x_dev gyro = {
-		.chip_id = 0, // this will be replaced later in the init function of the gyroscope
+		.chip_id = 0,
 		.config = {
 			.pwr_mode = {
 				.reg_addr = BMI085G_CFG_PWR_MODE_ADDR,
@@ -38,7 +38,7 @@ void bmi085x_init_gyro(bmi085x *bmi085)
 			},
 			.meas_range = {
 				.reg_addr = BMI085G_CFG_RANG_ADDR,
-				.instr = BMI085G_CFG_RANGE_2000,
+				.instr = BMI085G_CFG_RANGE_1000,
 			},
 			.bandwidth = {
 				.reg_addr = BMI085G_CFG_BANDWIDTH_ADDR,
@@ -87,12 +87,6 @@ void bmi085x_init(bmi085x *bmi085)
 			.x = 0,
 			.y = 0,
 			.z = 0,
-		},
-		.quat = {
-			.q0 = 1.0f,
-			.q1 = 0.0f,
-			.q2 = 0.0f,
-			.q3 = 0.0f,
 		}
 	};
 
@@ -109,8 +103,7 @@ void bmi085x_reset_data(bmi085x *bmi085)
 				.x_stat = { .avg = 0, .max = 0, .min = 0 },
 				.y_stat = { .avg = 0, .max = 0, .min = 0 },
 				.z_stat = { .avg = 0, .max = 0, .min = 0 },
-				.angle = { .x = 0, .y = 0, .z = 0 },
-				.quat = { .q0 = 1.0f, .q1 = 0.0f, .q2 = 0.0f, .q3 = 0.0f }
+				.angle = { .x = 0, .y = 0, .z = 0 }
 			};
 	bmi085->data = data;
 }

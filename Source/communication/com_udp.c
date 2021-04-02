@@ -108,7 +108,6 @@ i8 udp_send_bmi(bmi085x data)
 	        .angle_z = data.data.angle.z,
 	};
 	u16 size = sizeof(packet);
-	u16 test = sizeof(bmi085a_poll_counter);
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
@@ -118,3 +117,27 @@ i8 udp_send_bmi(bmi085x data)
 	return status;
 }
 
+
+i8 udp_send_debug_bmi(bmi085x data)
+{
+	err_t status = ERR_OK;
+	imu_debug_packet packet = {
+			.Ax = data.data.accel_poll_val.x,
+			.Ay = data.data.accel_poll_val.y,
+			.Az = data.data.accel_poll_val.z,
+			.Gx = data.data.gyro_poll_val.x,
+			.Gy = data.data.gyro_poll_val.y,
+			.Gz = data.data.gyro_poll_val.z,
+			.angleX = data.data.angle.x,
+			.angleY = data.data.angle.y,
+			.angleZ = data.data.angle.z,
+	};
+	u16 size = sizeof(packet);
+	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
+	buffer->payload = &packet;
+	// Sending the packet
+	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	// Freeing the packet
+	status = pbuf_free(buffer);
+	return status;
+}

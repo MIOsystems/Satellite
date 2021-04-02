@@ -8,7 +8,6 @@
 // Dont use this for release builds
 //#define DEBUG_MODE
 
-//#define BMI_DATA_IN_MG
 
 // Communication
 #define COM_UDP_IP_1		(u8)	192

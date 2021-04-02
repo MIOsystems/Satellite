@@ -54,9 +54,24 @@ typedef struct
     f32 angle_z;
 } imu_packet;
 
+
+typedef struct
+{
+	f32 Ax;
+	f32 Ay;
+	f32 Az;
+	f32 Gx;
+	f32 Gy;
+	f32 Gz;
+    f32 angleX;
+    f32 angleY;
+    f32 angleZ;
+} imu_debug_packet;
+
 i8 udp_initialize();
 i8 udp_send_gps(gps_values_t data);
 i8 udp_send_bmi(bmi085x data);
+i8 udp_send_debug_bmi(bmi085x data);
 
 
 #endif /* UDP_H_ */

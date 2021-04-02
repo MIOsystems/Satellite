@@ -6,7 +6,7 @@
 #include <include/sensor/imu/bmi085g.h>
 #include <include/sensor/gps/gnss.h>
 
-static bmi085x imu;
+bmi085x imu;
 ubx_frame_t gps_raw;
 gps_values_t gps_packet;
 

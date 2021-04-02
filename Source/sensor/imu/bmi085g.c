@@ -14,6 +14,7 @@
 
 #include <include/util/delay.h>
 #include <include/util/utility.h>
+#include <include/util/math_utility.h>
 
 #include <include/satellite.h>
 
@@ -72,18 +73,41 @@ u8 bmi085g_poll(bmi085x *bmi085)
 	{
 		return BMI085X_POLL_FAILURE;
 	}
-#ifdef DEBUG_MODE
+
+
+	// conversion to rad per seconds depending on the configuration that is set
+	f32 conv_raw_rad_s = 0;
+	switch(bmi085->gyro.config.meas_range.instr)
+	{
+		case BMI085G_CFG_RANGE_125:
+			conv_raw_rad_s = DEG_TO_RAD_CONST * 125.0f / 32768.0f;
+			break;
+		case BMI085G_CFG_RANGE_250:
+			conv_raw_rad_s = DEG_TO_RAD_CONST * 250.0f / 32768.0f;
+			break;
+		case BMI085G_CFG_RANGE_500:
+			conv_raw_rad_s = DEG_TO_RAD_CONST * 500.0f / 32768.0f;
+			break;
+		case BMI085G_CFG_RANGE_1000:
+			conv_raw_rad_s = DEG_TO_RAD_CONST * 1000.0f / 32768.0f;
+			break;
+		case BMI085G_CFG_RANGE_2000:
+			conv_raw_rad_s = DEG_TO_RAD_CONST * 2000.0f / 32768.0f;
+			break;
+	}
 	i16 raw_x = CONCAT_RAW_VAL(rx_buff[2], rx_buff[1]);
 	i16 raw_y = CONCAT_RAW_VAL(rx_buff[4], rx_buff[3]);
 	i16 raw_z = CONCAT_RAW_VAL(rx_buff[6], rx_buff[5]);
-#endif
-	// conversion to rad per seconds
-	const f32 conversion_rad_s = 0.01745329251f * 1000.0f / 32768.0f;
-	// values in degrees per seconds
-	bmi085->data.gyro_poll_val.x = (f32) (((CONCAT_RAW_VAL(rx_buff[2], rx_buff[1])) * conversion_rad_s));
-	bmi085->data.gyro_poll_val.y = (f32) (((CONCAT_RAW_VAL(rx_buff[4], rx_buff[3])) * conversion_rad_s));
-	bmi085->data.gyro_poll_val.z = (f32) (((CONCAT_RAW_VAL(rx_buff[6], rx_buff[5])) * conversion_rad_s));
 
+	// values in degrees per seconds
+	bmi085->data.gyro_poll_val.x = (f32) (raw_x * conv_raw_rad_s);
+	bmi085->data.gyro_poll_val.y = (f32) (raw_y * conv_raw_rad_s);
+	bmi085->data.gyro_poll_val.z = (f32) (raw_z * conv_raw_rad_s);
+
+//	const f32 gain = (1.0f / 16.384f) * (M_PI / 180.0f);
+//	bmi085->data.gyro_poll_val.x = (raw_x * gain) + 0.0;
+//	bmi085->data.gyro_poll_val.y = (raw_y * gain) + 0.0;
+//	bmi085->data.gyro_poll_val.z = (raw_z * gain) + 0.0;
 	return BMI085X_SUCCESS;
 }
 
