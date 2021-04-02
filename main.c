@@ -38,11 +38,25 @@ void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw);
  Pitch is about the y axis, represented as theta
  Yaw is about the z axis, represented as psi
  */
-void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw){
+void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw)
+{
+	const f32 q1 = q.q1;
+	const f32 q2 = q.q2;
+	const f32 q3 = q.q3;
+	const f32 q4 = q.q4;
 
-    *yaw = 		atan2f((2 * q.q2 * q.q3 - 2 * q.q1 * q.q4), (2 * q.q1 * q.q1 + 2 * q.q2 * q.q2 -1));
-    *pitch = 	-asinf(2 * q.q2 * q.q4 + 2 * q.q1 * q.q3);
-    *roll  = 	atan2f((2 * q.q3 * q.q4 - 2 * q.q1 * q.q2), (2 * q.q1 * q.q1 + 2 * q.q4 * q.q4 -1));
+	const f32 q1_pow_2 = powf(q.q1, 2);
+	const f32 q2_pow_2 = powf(q.q2, 2);
+	const f32 q3_pow_2 = powf(q.q3, 2);
+	const f32 q4_pow_2 = powf(q.q4, 2);
+
+	*yaw =	atan2f( 2 * q2 * q3 - 2 * q1 * q4, 2 * q1_pow_2 + 2 * q2_pow_2 - 1 );
+	*roll =	atan2f( 2 * q3 * q4 - 2 * q1 * q2, 2 * q1_pow_2 + 2 * q4_pow_2 - 1 );
+	*pitch = -asinf( 2 * q2 * q4 + 2 * q1 * q3);
+
+//    *yaw = 		atan2f((2 * q.q2 * q.q3 - 2 * q.q1 * q.q4), (2 * q.q1 * q.q1 + 2 * q.q2 * q.q2 -1));
+//    *pitch = 	-asinf(2 * q.q2 * q.q4 + 2 * q.q1 * q.q3);
+//    *roll  = 	atan2f((2 * q.q3 * q.q4 - 2 * q.q1 * q.q2), (2 * q.q1 * q.q1 + 2 * q.q4 * q.q4 -1));
 }
 
 
@@ -57,10 +71,11 @@ void tick_timer_ISR(void)
 	bmi085g_poll(&imu);
 	//complimentary_process(&imu);
 
-	MadgwickAHRSupdate(	imu.data.gyro_poll_val.x, imu.data.gyro_poll_val.y, imu.data.gyro_poll_val.z,
+	MadgwickAHRSupdate(		imu.data.gyro_poll_val.x, imu.data.gyro_poll_val.y, imu.data.gyro_poll_val.z,
 							imu.data.accel_poll_val.x, imu.data.accel_poll_val.y,  imu.data.accel_poll_val.z,
 							0,0,0);
 
+	// Checking if euler angles are correct
     quat.q1 = q0;
     quat.q2 = q1;
     quat.q3 = q2;
@@ -70,6 +85,8 @@ void tick_timer_ISR(void)
 	imu.data.angle.x = r * RAD_TO_DEG_CONST;
 	imu.data.angle.y = p * RAD_TO_DEG_CONST;
 	imu.data.angle.z = y * RAD_TO_DEG_CONST;
+
+
 
 	if(counter >= 100)
 	{
