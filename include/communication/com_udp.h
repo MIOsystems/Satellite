@@ -66,6 +66,9 @@ typedef struct
     f32 angleX;
     f32 angleY;
     f32 angleZ;
+    f32 complimentAngleX;
+    f32 complimentAngleY;
+    f32 complimentAngleZ;
 } imu_debug_packet;
 
 i8 udp_initialize();

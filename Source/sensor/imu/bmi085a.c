@@ -45,14 +45,14 @@ bmi085x_status_e bmi085a_init(bmi085x *bmi085)
 	/* Write configuration */
 	// ODR 1600 4fold oversampling
 	status = bmi085a_write_reg(bmi085->acc.config.odr.reg_addr, bmi085->acc.config.odr.instr);
-	delay_ms(50);
+	delay_ms(2);
 	if(status != BMI085X_SUCCESS)
 	{
 		return status;
 	}
 	// Setting the range configuration
 	status = bmi085a_write_reg(bmi085->acc.config.meas_range.reg_addr, bmi085->acc.config.meas_range.instr);
-	delay_ms(50);
+	delay_ms(2);
 	if(status != BMI085X_SUCCESS)
 	{
 		return status;
@@ -92,17 +92,17 @@ bmi085x_status_e bmi085a_poll(bmi085x *bmi085)
 	const i16 raw_y = CONCAT_RAW_VAL(rx_buff_poll[5], rx_buff_poll[4]);
 	const i16 raw_z = CONCAT_RAW_VAL(rx_buff_poll[7], rx_buff_poll[6]);
 
-	const f32 power = (f32) (bmi085->acc.config.meas_range.instr + 1);
-	// Converts to ms2
-	bmi085->data.accel_poll_val.x = (f32) (raw_x * 9.81f / 32768.0f * powf(2.0f, power));
-	bmi085->data.accel_poll_val.y = (f32) (raw_y * 9.81f / 32768.0f * powf(2.0f, power));
-	bmi085->data.accel_poll_val.z = (f32) (raw_z * 9.81f / 32768.0f * powf(2.0f, power));
+//	const f32 power = (f32) (bmi085->acc.config.meas_range.instr + 1);
+//	// Converts to ms2
+//	bmi085->data.accel_poll_val.x = (f32) (raw_x * 9.81f / 32768.0f * powf(2.0f, power));
+//	bmi085->data.accel_poll_val.y = (f32) (raw_y * 9.81f / 32768.0f * powf(2.0f, power));
+//	bmi085->data.accel_poll_val.z = (f32) (raw_z * 9.81f / 32768.0f * powf(2.0f, power));
 
 
-	//const f32 gain = 9.81f / 2048.0f;
-	//bmi085->data.accel_poll_val.x = (raw_x * gain) + 0.0;
-	//bmi085->data.accel_poll_val.y = (raw_y * gain) + 0.0;
-	//bmi085->data.accel_poll_val.z = (raw_z * gain) + 0.0;
+	const f32 gain = 9.81f / 2048.0f;
+	bmi085->data.accel_poll_val.x = (raw_x * gain) + 0.0;
+	bmi085->data.accel_poll_val.y = (raw_y * gain) + 0.0;
+	bmi085->data.accel_poll_val.z = (raw_z * gain) + 0.0;
 
 	if(bmi085a_poll_counter == 1000)
 	{

@@ -12,7 +12,7 @@ void bmi085x_init_acc(bmi085x *bmi085)
 			},
 			.meas_range = {
 				.reg_addr = BMI085A_RANGE_ADDR,
-				.instr = BMI085A_RANGE_2G,
+				.instr = BMI085A_RANGE_16G,
 			},
 			.bandwidth = {
 				.reg_addr = BMI085A_CFG_ADDR,
@@ -38,11 +38,12 @@ void bmi085x_init_gyro(bmi085x *bmi085)
 			},
 			.meas_range = {
 				.reg_addr = BMI085G_CFG_RANG_ADDR,
-				.instr = BMI085G_CFG_RANGE_1000,
+				.instr = BMI085G_CFG_RANGE_2000,
 			},
 			.bandwidth = {
 				.reg_addr = BMI085G_CFG_BANDWIDTH_ADDR,
-				.instr = BMI085G_CFG_BANDWIDTH_100_32,
+				//.instr = BMI085G_CFG_BANDWIDTH_100_32,
+				.instr = BMI085G_CFG_BANDWIDTH_1000_116,
 			},
 			.odr = {
 				.reg_addr = 0,
