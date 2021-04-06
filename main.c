@@ -31,6 +31,7 @@ float p = 0.0f;
 float y = 0.0f;
 
 void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw);
+
 /*
  returns as pointers, roll pitch and yaw from the quaternion generated in imu_filter
  Assume right hand system
@@ -38,26 +39,13 @@ void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw);
  Pitch is about the y axis, represented as theta
  Yaw is about the z axis, represented as psi
  */
-void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw)
-{
-	const f32 q1 = q.q1;
-	const f32 q2 = q.q2;
-	const f32 q3 = q.q3;
-	const f32 q4 = q.q4;
+void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw){
 
-	const f32 q1_pow_2 = powf(q.q1, 2);
-	const f32 q2_pow_2 = powf(q.q2, 2);
-	const f32 q3_pow_2 = powf(q.q3, 2);
-	const f32 q4_pow_2 = powf(q.q4, 2);
-
-	*yaw =	atan2f( 2 * q2 * q3 - 2 * q1 * q4, 2 * q1_pow_2 + 2 * q2_pow_2 - 1 );
-	*roll =	atan2f( 2 * q3 * q4 - 2 * q1 * q2, 2 * q1_pow_2 + 2 * q4_pow_2 - 1 );
-	*pitch = -asinf( 2 * q2 * q4 + 2 * q1 * q3);
-
-//    *yaw = 		atan2f((2 * q.q2 * q.q3 - 2 * q.q1 * q.q4), (2 * q.q1 * q.q1 + 2 * q.q2 * q.q2 -1));
-//    *pitch = 	-asinf(2 * q.q2 * q.q4 + 2 * q.q1 * q.q3);
-//    *roll  = 	atan2f((2 * q.q3 * q.q4 - 2 * q.q1 * q.q2), (2 * q.q1 * q.q1 + 2 * q.q4 * q.q4 -1));
+    *yaw = 		atan2f( (2 * q.q2 * q.q3 - 2 * q.q1 * q.q4), (2 * q.q1 * q.q1 + 2 * q.q2 * q.q2 - 1));
+    *pitch = 	-asinf(2 * q.q2 * q.q4 + 2 * q.q1 * q.q3);
+    *roll  = 	atan2f( (2 * q.q3 * q.q4 - 2 * q.q1 * q.q2), (2 * q.q1 * q.q1 + 2 * q.q4 * q.q4 - 1));
 }
+
 
 
 void gnss_interrupt(void) {
@@ -69,13 +57,25 @@ void tick_timer_ISR(void)
 
 	bmi085a_poll(&imu);
 	bmi085g_poll(&imu);
-	//complimentary_process(&imu);
+	complimentary_process(&imu);
 
-	MadgwickAHRSupdate(		imu.data.gyro_poll_val.x, imu.data.gyro_poll_val.y, imu.data.gyro_poll_val.z,
-							imu.data.accel_poll_val.x, imu.data.accel_poll_val.y,  imu.data.accel_poll_val.z,
-							0,0,0);
 
-	// Checking if euler angles are correct
+	MadgwickAHRSupdateIMU(	imu.data.gyro_poll_val.x,
+							imu.data.gyro_poll_val.y,
+							imu.data.gyro_poll_val.z,
+							imu.data.accel_poll_val.x,
+							imu.data.accel_poll_val.y,
+							imu.data.accel_poll_val.z,
+							0.001f);
+
+	// Checking if euler angles function are correct
+	// should be x: 45 y: 45 z: 0
+	// actually: x: -45 y: -45 z: -0.1
+//    quat.q1 = 0.853f;
+//    quat.q2 = 0.354f;
+//    quat.q3 = 0.354f;
+//    quat.q4 = 0.146f;
+
     quat.q1 = q0;
     quat.q2 = q1;
     quat.q3 = q2;
