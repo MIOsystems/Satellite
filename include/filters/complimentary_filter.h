@@ -11,7 +11,8 @@
 #include <include/sensor/imu/bmi085x.h>
 #include <include/util/types.h>
 
-#define alpha			(f32) 0.1
+#define ALPHA 	(f32) 0.1
+#define DT		(f32) 0.001
 
 static volatile f32 prev_angle_x = 0;
 static volatile f32 prev_angle_y = 0;

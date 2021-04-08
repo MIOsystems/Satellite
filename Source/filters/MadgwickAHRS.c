@@ -17,6 +17,7 @@
 
 #include "include/filters/MadgwickAHRS.h"
 #include <math.h>
+#include <stdint.h>
 
 //---------------------------------------------------------------------------------------------------
 // Definitions
@@ -116,13 +117,9 @@ void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, flo
 // See: http://en.wikipedia.org/wiki/Fast_inverse_square_root
 
 float invSqrt(float x) {
-	float halfx = 0.5f * x;
-	float y = x;
-	long i = *(long*)&y;
-	i = 0x5f3759df - (i>>1);
-	y = *(float*)&i;
-	y = y * (1.5f - (halfx * y * y));
-	return y;
+	   uint32_t i = 0x5F1F1412 - (*(uint32_t*)&x >> 1);
+	   float tmp = *(float*)&i;
+	   return tmp * (1.69000231f - 0.714158168f * x * tmp * tmp);
 }
 
 //====================================================================================================

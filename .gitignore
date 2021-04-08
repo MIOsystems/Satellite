@@ -1,4 +1,4 @@
 /Dave/Generated/*
 /Debug/*
 /Release/*
-
+.vscode/**
