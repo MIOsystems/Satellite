@@ -5,9 +5,8 @@
 
 #define ONEMSDELAY 11500
 
-// Dont use this for release builds
-//#define DEBUG_MODE
-
+// turn this on if you want to validate hqw
+#define RUN_HW_VALIDATION
 
 // Communication
 #define COM_UDP_IP_1		(u8)	192

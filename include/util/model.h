@@ -9,11 +9,18 @@
 #define MODEL_H_
 
 #include <include/util/types.h>
+#include <DAVE.h>
 
 typedef struct
 {
 	u8 reg_addr;
 	u8 instr;
-} reg_operation;
+} reg_operation_t;
+
+typedef struct
+{
+	u8 pin;
+	XMC_GPIO_PORT_t* gpio;
+} port_t;
 
 #endif /* MODEL_H_ */

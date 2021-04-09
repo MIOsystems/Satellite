@@ -25,6 +25,7 @@
             <BindMap MUri="peripheral/cpu/0/exception/nmi" Proxy="app/CPU_CTRL_XMC4/0/hwres_exception_nmi"/>
             <BindMap MUri="devicepackage/0/108" Proxy="app/CAN_NODE/0/__pin_hwres_port_pad_can_tx"/>
             <BindMap MUri="port/p/5/pad/6" Proxy="app/DIGITAL_IO/6/hwres_port_pin"/>
+            <BindMap MUri="devicepackage/0/50" Proxy="app/ANALOG_IO/0/__pin_hwres_port_pin"/>
             <BindMap MUri="port/p/3/pad/5" Proxy="app/SPI_MASTER/0/hwres_port_pad_spi_ss_0"/>
             <BindMap MUri="port/p/6/pad/1" Proxy="app/ETH_LWIP/0/hwres_eth_port_txd3"/>
             <BindMap MUri="peripheral/scu/0/clkctrl/0/usb" Proxy="app/CLOCK_XMC4/0/hwres_usb"/>
@@ -94,6 +95,7 @@
             <BindMap MUri="devicepackage/0/79" Proxy="app/ETH_LWIP/0/__pin_hwres_eth_port_cd"/>
             <BindMap MUri="peripheral/ccu4/3/cc4/3" Proxy="app/TIMER/1/hwres_ccu4_cc4"/>
             <BindMap MUri="peripheral/eth/0/eth" Proxy="app/ETH_LWIP/0/hwres_eth_mac"/>
+            <BindMap MUri="port/p/15/pad/12" Proxy="app/ANALOG_IO/0/hwres_port_pin"/>
             <BindMap MUri="devicepackage/0/13" Proxy="app/UART/1/__pin_hwres_port_pad_uart_tx"/>
             <BindMap MUri="port/p/5/pad/10" Proxy="app/ETH_LWIP/0/hwres_eth_port_tx_clk"/>
             <BindMap MUri="port/p/5/pad/7" Proxy="app/DIGITAL_IO/7/hwres_port_pin"/>

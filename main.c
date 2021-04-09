@@ -5,17 +5,28 @@
  *  Author: Patrick
  */
 
+#include <math.h>
 //Declarations from DAVE Code Generation (includes SFR declaration)
 #include <DAVE.h> 
+
+#include <include/satellite.h>
 
 #include <include/util/types.h>
 #include <include/util/delay.h>
 #include <include/util/math_utility.h>
-#include <include/composer/composer.h>
-#include <include/communication/com_udp.h>
-#include <include/filters/complimentary_filter.h>
-#include <include/filters/MadgwickAHRS.h>
-#include <math.h>
+
+
+
+#ifdef RUN_HW_VALIDATION
+	#include <include/validation/valdiation_app.h>
+#else
+	#include <include/communication/com_udp.h>
+	#include <include/composer/composer.h>
+	#include <include/filters/complimentary_filter.h>
+	#include <include/filters/MadgwickAHRS.h>
+#endif
+
+
 
 #define DT_SEC			(f32) 0.001
 u32 counter = 0;
@@ -54,7 +65,7 @@ void gnss_interrupt(void) {
 
 void tick_timer_ISR(void)
 {
-
+#ifndef RUN_HW_VALIDATION
 	bmi085a_poll(&imu);
 	bmi085g_poll(&imu);
 	complimentary_process(&imu);
@@ -68,14 +79,6 @@ void tick_timer_ISR(void)
 							imu.data.accel_poll_val.z,
 							0.001f);
 
-	// Checking if euler angles function are correct
-	// should be x: 45 y: 45 z: 0
-	// actually: x: -45 y: -45 z: -0.1
-//    quat.q1 = 0.853f;
-//    quat.q2 = 0.354f;
-//    quat.q3 = 0.354f;
-//    quat.q4 = 0.146f;
-
     quat.q1 = q0;
     quat.q2 = q1;
     quat.q3 = q2;
@@ -85,8 +88,6 @@ void tick_timer_ISR(void)
 	imu.data.angle.x = r * RAD_TO_DEG_CONST;
 	imu.data.angle.y = p * RAD_TO_DEG_CONST;
 	imu.data.angle.z = y * RAD_TO_DEG_CONST;
-
-
 
 	if(counter >= 100)
 	{
@@ -103,9 +104,9 @@ void tick_timer_ISR(void)
 		//udp_send_bmi(imu);
 		//bmi085x_reset_data(&imu);
 		counter = 0;
-
 	}
 	counter++;
+#endif
 }
 
 int main(void)
@@ -118,9 +119,10 @@ int main(void)
 	delay_ms(2000);
 
 	DAVE_STATUS_t status;
-	u8 status_app = 0;
 	status = DAVE_Init(); /* Initialization of DAVE APPs  */
 
+#ifndef RUN_HW_VALIDATION
+	u8 status_app = 0;
 	status_app = composer_init();
 	if(status_app != DAVE_STATUS_SUCCESS)
 	{
@@ -133,9 +135,13 @@ int main(void)
 			delay_ms(500);
 		}
 	}
+
+	INTERRUPT_Enable(&GNSS_INTERRUPT_0);
 	TIMER_Start(&POLL_TIMER);
+#else
+	validation_app_init();
 
-
+#endif
 
 	if(status != DAVE_STATUS_SUCCESS)
 	{
@@ -150,7 +156,10 @@ int main(void)
 	/* Placeholder for user application code. The while loop below can be replaced with user application code. */
 	while (1U)
 	{
-
+#ifdef RUN_HW_VALIDATION
+		validation_app_run();
+#endif
+		delay_ms(1);
 		sys_check_timeouts();
 	}
 }

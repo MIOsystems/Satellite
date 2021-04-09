@@ -179,6 +179,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC13_4" URI="http://resources/48.0.0/port/p/15/iocr12/pc13_4" value="0x00000000" toolTipHelpDescription="Port Control for Port n Pin 12 to 15" defaultValue="0x00000000" startPos="15" stopPos="15" accessPermission="rw" maxValue="1" minValue="0"/>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P15.12 / #50" URI="http://resources/48.0.0/port/p/15/pad/12">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/ANALOG_IO/v4_0_10/ANALOG_IO_0.app#//@hwResources.0"/>
     <resourcesList name="hwsel_hw" requiredResourceUri="http://resources/48.0.0/port/p/15/hwsel/hw12"/>
     <resourcesList name="in_p" requiredResourceUri="http://resources/48.0.0/port/p/15/in/p12"/>
     <resourcesList name="iocr_oe" requiredResourceUri="http://resources/48.0.0/port/p/15/iocr12/pc12_4"/>
