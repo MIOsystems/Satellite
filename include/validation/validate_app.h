@@ -5,7 +5,10 @@
 #include <DAVE.h>
 #include <include/validation/validate_dip.h>
 #include <include/validation/validate_analog_io.h>
+#include <include/validation/validate_digital_out.h>
+#include <include/validation/validate_rs232.h>
+#include <include/validation/validate_rs422.h>
 
-u8 validation_app_init();
-u8 validation_app_run();
+void validation_app_init();
+void validation_app_run();
 #endif 

@@ -1,5 +1,5 @@
 /*
- * validation_dip.c
+ * validate_dip.c
  *
  *  Created on: 9 Apr 2021
  *      Author: Patrick

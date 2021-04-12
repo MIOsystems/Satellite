@@ -32,15 +32,15 @@ void validate_a_io_update()
 {
 	u32 input = 0;
 	input = ANALOG_IO_GetInput(&AI1);
-	validate_a_io_feedback(AI1.pin);
+	validate_a_io_feedback(AI1.pin, input);
 	input = ANALOG_IO_GetInput(&AI2);
-	validate_a_io_feedback(AI2.pin);
+	validate_a_io_feedback(AI2.pin, input);
 	input = ANALOG_IO_GetInput(&AI3);
-	validate_a_io_feedback(AI3.pin);
+	validate_a_io_feedback(AI3.pin, input);
 
 }
 
-void validate_a_io_feedback(u8 pin)
+void validate_a_io_feedback(u8 pin, u32 input)
 {
 
 }

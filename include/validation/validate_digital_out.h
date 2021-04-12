@@ -8,6 +8,8 @@
 #ifndef VALIDATE_DIGITAL_OUT_H_
 #define VALIDATE_DIGITAL_OUT_H_
 
+#include <DAVE.h>
+
 void validate_digital_out_update();
 
 #endif /* VALIDATE_DIGITAL_OUT_H_ */

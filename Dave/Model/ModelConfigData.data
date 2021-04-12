@@ -160,7 +160,6 @@
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.15" target="//@nodes.0"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.19" target="//@nodes.2"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.21" target="//@nodes.2"/>
-  <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.21" target="//@nodes.0"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.24" target="//@nodes.2"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.25" target="//@nodes.2"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.27" target="//@nodes.2"/>
@@ -308,9 +307,6 @@
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_1.app#//@connections.55"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.0"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.1"/>
-  <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.7"/>
-  <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.8"/>
-  <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.9"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.18"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.19"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.20"/>

@@ -18,7 +18,7 @@
 
 
 #ifdef RUN_HW_VALIDATION
-	#include <include/validation/valdiation_app.h>
+	#include <include/validation/validate_app.h>
 #else
 	#include <include/communication/com_udp.h>
 	#include <include/composer/composer.h>
@@ -59,8 +59,13 @@ void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw){
 
 
 
-void gnss_interrupt(void) {
+void rs232_interrupt(void) {
+#ifndef RUN_HW_VALIDATION
 	gnss_poll();
+#else
+	validate_rs232_update();
+	validate_rs422_update();
+#endif
 }
 
 void tick_timer_ISR(void)
@@ -136,9 +141,11 @@ int main(void)
 		}
 	}
 
-	INTERRUPT_Enable(&GNSS_INTERRUPT_0);
+
+
 	TIMER_Start(&POLL_TIMER);
 #else
+	INTERRUPT_Enable(&RS232_INTERRUPT);
 	validation_app_init();
 
 #endif
