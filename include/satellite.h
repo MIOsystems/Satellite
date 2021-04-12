@@ -5,9 +5,22 @@
 
 #define ONEMSDELAY 11500
 
-// Dont use this for release builds
-//#define DEBUG_MODE
+// turn this on if you want to validate hqw
+#define RUN_HW_VALIDATIO
 
+/**
+ * ==========================================
+ * Sensor Defines
+ * ==========================================
+ * Uncomment out which sensor you want to use,
+ * and comment which sensor you want to use
+ */
+
+/* IMU */
+#define BMI085
+
+/* GNSS */
+#define UBLX
 
 // Communication
 #define COM_UDP_IP_1		(u8)	192

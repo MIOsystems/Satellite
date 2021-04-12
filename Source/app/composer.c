@@ -1,6 +1,6 @@
 #include <DAVE.h>
 
-#include <include/composer/composer.h>
+#include <include/app/composer.h>
 
 u8 composer_init()
 {

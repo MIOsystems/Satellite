@@ -1,7 +1,7 @@
 #include <DAVE.h>
+#include <include/app/composer.h>
 #include <include/sensor/gps/gnss.h>
 #include <include/util/types.h>
-#include <include/composer/composer.h>
 
 
 void gnss_init()
@@ -58,7 +58,6 @@ void gnss_poll()
 		default:
 			gps_frame_counter = UBX_FRAME_SYNC1;
 			break;
-
 		case UBX_FRAME_SYNC1:
 			if(gps_data == GPS_SYNC1)
 			{

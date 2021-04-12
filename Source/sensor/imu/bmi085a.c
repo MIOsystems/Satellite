@@ -23,6 +23,8 @@ static u8 tx_buff_poll[BMI085A_BUFF_SIZE] = { BMI085A_DATA_ADDR | BMI085X_READMA
 												0xFF
 											};
 
+u32 bmi085a_poll_counter = 0;
+
 
 
 bmi085x_status_e bmi085a_init(bmi085x *bmi085)

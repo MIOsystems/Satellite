@@ -9,9 +9,9 @@
 #define GPS_SYNC1 		(u8)	0xB5
 #define GPS_SYNC2 		(u8)	0x62
 
-static bool gps_ready = false;
-static u8 gps_frame_counter = 0;
-static u8 gps_payload_index = 0;
+static volatile bool gps_ready = false;
+static volatile u8 gps_frame_counter = 0;
+static volatile u8 gps_payload_index = 0;
 
 
 typedef enum

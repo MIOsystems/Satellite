@@ -1,5 +1,5 @@
+#include <include/app/composer.h>
 #include <include/communication/com_udp.h>
-#include <include/composer/composer.h>
 #include <stdlib.h>
 
 i8 udp_initialize()

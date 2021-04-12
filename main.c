@@ -17,6 +17,19 @@
 #include <include/filters/MadgwickAHRS.h>
 #include <math.h>
 
+
+
+#ifdef RUN_HW_VALIDATION
+	#include <include/validation/validate_app.h>
+#else
+	#include <include/communication/com_udp.h>
+	#include <include/app/composer.h>
+	#include <include/filters/complimentary_filter.h>
+	#include <include/filters/MadgwickAHRS.h>
+#endif
+
+
+
 #define DT_SEC			(f32) 0.001
 u32 counter = 0;
 
