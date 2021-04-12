@@ -36,7 +36,6 @@ typedef struct
 	stat_aggregate_f y_stat;
 	stat_aggregate_f z_stat;
 	vec3f angle;
-	vec3f compliment;
 } bmi085x_data;
 
 typedef struct 

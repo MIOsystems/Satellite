@@ -8,17 +8,16 @@
 #ifndef COMPLIMENTARY_FILTER_H_
 #define COMPLIMENTARY_FILTER_H_
 
-#include <include/sensor/imu/bmi085x.h>
 #include <include/util/types.h>
 
 #define ALPHA 	(f32) 0.1
 #define DT		(f32) 0.001
 
-static volatile f32 prev_angle_x = 0;
-static volatile f32 prev_angle_y = 0;
-static volatile f32 prev_angle_z = 0;
 
-void complimentary_process(bmi085x* data);
+void complimentary_process(const f32 Ax, const f32 Ay, const f32 Az,
+							const f32 Gx, const f32 Gy, const f32 Gz,
+							f32 *roll, f32 *pitch, f32 *yaw);
+
 
 
 #endif /* COMPLIMENTARY_FILTER_H_ */

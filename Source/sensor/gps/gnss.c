@@ -1,5 +1,5 @@
 #include <DAVE.h>
-#include <include/app/composer.h>
+#include <include/app/application.h>
 #include <include/sensor/gps/gnss.h>
 #include <include/util/types.h>
 

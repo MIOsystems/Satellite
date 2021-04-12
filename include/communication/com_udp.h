@@ -13,7 +13,7 @@
 
 #include <include/util/types.h>
 #include <include/sensor/gps/gnss.h>
-#include <include/sensor/imu/bmi085x.h>
+#include <include/sensor/imu/bmi085/bmi085x.h>
 
 ip_addr_t addr;
 struct udp_pcb *com_ctrl;

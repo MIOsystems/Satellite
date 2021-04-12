@@ -1,5 +1,5 @@
-#include <include/sensor/imu/bmi085x.h>
-#include <include/sensor/imu/bmi085x_opcode.h>
+#include <include/sensor/imu/bmi085/bmi085x.h>
+#include <include/sensor/imu/bmi085/bmi085x_opcode.h>
 
 void bmi085x_init_acc(bmi085x *bmi085)
 {

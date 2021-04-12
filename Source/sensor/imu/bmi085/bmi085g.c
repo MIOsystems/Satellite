@@ -10,7 +10,7 @@
 #include <DAVE.h>
 
 #include <include/hardware/spi_handler.h>
-#include <include/sensor/imu/bmi085g.h>
+#include <include/sensor/imu/bmi085/bmi085g.h>
 
 #include <include/util/delay.h>
 #include <include/util/utility.h>

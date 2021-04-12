@@ -1,8 +1,8 @@
 #ifndef BMI085G_H_
 #define BMI085G_H_
 
-#include <include/sensor/imu/bmi085x.h>
-#include <include/sensor/imu/bmi085x_opcode.h>
+#include <include/sensor/imu/bmi085/bmi085x.h>
+#include <include/sensor/imu/bmi085/bmi085x_opcode.h>
 
 u8 bmi085g_init(bmi085x *bmi085);
 u8 bmi085g_poll(bmi085x *bmi085);

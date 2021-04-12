@@ -8,21 +8,9 @@
 
 #include <include/util/math_utility.h>
 
+void eulerAngles(quaternion_t q, f32* roll, f32* pitch, f32* yaw){
 
-f32 inverse_sqrt(f32 x)
-{
-	f32 halfx = 0.5f * x;
-	f32 y = x;
-	long i = *(long*)&y;
-	i = 0x5f3759df - (i>>1);
-	y = *(f32*)&i;
-	y = y * (1.5f - (halfx * y * y));
-	return y;
-}
-
-void validate_value(f32 *val, f32 max)
-{
-	if(*val > max) {
-		*val = max;
-	}
+    *yaw = 		atan2f( (2 * q.q2 * q.q3 - 2 * q.q1 * q.q4), (2 * q.q1 * q.q1 + 2 * q.q2 * q.q2 - 1));
+    *pitch = 	-asinf(2 * q.q2 * q.q4 + 2 * q.q1 * q.q3);
+    *roll  = 	atan2f( (2 * q.q3 * q.q4 - 2 * q.q1 * q.q2), (2 * q.q1 * q.q1 + 2 * q.q4 * q.q4 - 1));
 }

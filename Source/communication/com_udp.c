@@ -1,4 +1,3 @@
-#include <include/app/composer.h>
 #include <include/communication/com_udp.h>
 #include <stdlib.h>
 
@@ -131,9 +130,6 @@ i8 udp_send_debug_bmi(bmi085x data)
 			.angleX = data.data.angle.x,
 			.angleY = data.data.angle.y,
 			.angleZ = data.data.angle.z,
-			.complimentAngleX = data.data.compliment.x,
-			.complimentAngleY = data.data.compliment.y,
-			.complimentAngleZ = data.data.compliment.z,
 	};
 	u16 size = sizeof(packet);
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);

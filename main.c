@@ -11,55 +11,17 @@
 #include <include/util/types.h>
 #include <include/util/delay.h>
 #include <include/util/math_utility.h>
-#include <include/composer/composer.h>
-#include <include/communication/com_udp.h>
-#include <include/filters/complimentary_filter.h>
-#include <include/filters/MadgwickAHRS.h>
 #include <math.h>
-
-
 
 #ifdef RUN_HW_VALIDATION
 	#include <include/validation/validate_app.h>
 #else
+	#include <include/app/application.h>
 	#include <include/communication/com_udp.h>
-	#include <include/app/composer.h>
+	#include <include/app/application.h>
 	#include <include/filters/complimentary_filter.h>
 	#include <include/filters/MadgwickAHRS.h>
 #endif
-
-
-
-#define DT_SEC			(f32) 0.001
-u32 counter = 0;
-
-typedef struct {
-  float         q1,q2,q3,q4;
-} quaternion_t;
-
-quaternion_t quat;
-
-float r = 0.0f;
-float p = 0.0f;
-float y = 0.0f;
-
-void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw);
-
-/*
- returns as pointers, roll pitch and yaw from the quaternion generated in imu_filter
- Assume right hand system
- Roll is about the x axis, represented as phi
- Pitch is about the y axis, represented as theta
- Yaw is about the z axis, represented as psi
- */
-void eulerAngles(quaternion_t q, float* roll, float* pitch, float* yaw){
-
-    *yaw = 		atan2f( (2 * q.q2 * q.q3 - 2 * q.q1 * q.q4), (2 * q.q1 * q.q1 + 2 * q.q2 * q.q2 - 1));
-    *pitch = 	-asinf(2 * q.q2 * q.q4 + 2 * q.q1 * q.q3);
-    *roll  = 	atan2f( (2 * q.q3 * q.q4 - 2 * q.q1 * q.q2), (2 * q.q1 * q.q1 + 2 * q.q4 * q.q4 - 1));
-}
-
-
 
 void gnss_interrupt(void) {
 	gnss_poll();
@@ -67,58 +29,7 @@ void gnss_interrupt(void) {
 
 void tick_timer_ISR(void)
 {
-
-	bmi085a_poll(&imu);
-	bmi085g_poll(&imu);
-	complimentary_process(&imu);
-
-
-	MadgwickAHRSupdateIMU(	imu.data.gyro_poll_val.x,
-							imu.data.gyro_poll_val.y,
-							imu.data.gyro_poll_val.z,
-							imu.data.accel_poll_val.x,
-							imu.data.accel_poll_val.y,
-							imu.data.accel_poll_val.z,
-							0.001f);
-
-	// Checking if euler angles function are correct
-	// should be x: 45 y: 45 z: 0
-	// actually: x: -45 y: -45 z: -0.1
-//    quat.q1 = 0.853f;
-//    quat.q2 = 0.354f;
-//    quat.q3 = 0.354f;
-//    quat.q4 = 0.146f;
-
-    quat.q1 = q0;
-    quat.q2 = q1;
-    quat.q3 = q2;
-    quat.q4 = q3;
-
-	eulerAngles(quat, &r, &p,  &y);
-	imu.data.angle.x = r * RAD_TO_DEG_CONST;
-	imu.data.angle.y = p * RAD_TO_DEG_CONST;
-	imu.data.angle.z = y * RAD_TO_DEG_CONST;
-
-
-
-	if(counter >= 100)
-	{
-
-		udp_send_debug_bmi(imu);
-		bmi085x_reset_data(&imu);
-	}
-	if(counter >= 1000)
-	{
-		if(gps_rx_handler() == 0)
-		{
-			udp_send_gps(gps_packet);
-		}
-		//udp_send_bmi(imu);
-		//bmi085x_reset_data(&imu);
-		counter = 0;
-
-	}
-	counter++;
+	app_timer_update();
 }
 
 int main(void)
@@ -134,7 +45,7 @@ int main(void)
 	u8 status_app = 0;
 	status = DAVE_Init(); /* Initialization of DAVE APPs  */
 
-	status_app = composer_init();
+	status_app = app_init();
 	if(status_app != DAVE_STATUS_SUCCESS)
 	{
 		while(1)
