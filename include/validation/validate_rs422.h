@@ -11,12 +11,11 @@
 #include <DAVE.h>
 #include <include/util/types.h>
 
-typedef enum
-{
-	RS422_DATA_ACTION_1,
-	RS422_DATA_ACTION_2,
-} RS422_ACTIONS_e;
+#define MAX_BUFF_RECV		32
+#define MAX_BUFF_TX			512
 
+void validate_rs422_init();
 void validate_rs422_update();
+void validate_rs422_send();
 
 #endif /* VALIDATE_RS422_H_ */

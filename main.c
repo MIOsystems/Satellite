@@ -30,13 +30,34 @@ void rs232_interrupt(void) {
 	gnss_poll();
 #else
 	validate_rs232_update();
+#endif
+}
+
+void rs422_interrupt(void)
+{
+#ifndef RUN_HW_VALIDATION
+
+#else
 	validate_rs422_update();
+#endif
+}
+
+void uart_interrupt(void)
+{
+#ifndef RUN_HW_VALIDATION
+
+#else
+	validate_uart_update();
 #endif
 }
 
 void tick_timer_ISR(void)
 {
+#ifndef RUN_HW_VALIDATION
 	app_timer_update();
+#else
+
+#endif
 }
 
 int main(void)
@@ -68,12 +89,15 @@ int main(void)
 
 
 
-	TIMER_Start(&POLL_TIMER);
 #else
-	INTERRUPT_Enable(&RS232_INTERRUPT);
 	validation_app_init();
-
 #endif
+
+
+	TIMER_Start(&POLL_TIMER);
+	INTERRUPT_Enable(&RS232_INTERRUPT);
+	INTERRUPT_Enable(&RS422_INTERRUPT);
+	INTERRUPT_Enable(&UART_INTERRUPT);
 
 	if(status != DAVE_STATUS_SUCCESS)
 	{

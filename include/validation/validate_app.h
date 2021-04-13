@@ -8,6 +8,7 @@
 #include <include/validation/validate_digital_out.h>
 #include <include/validation/validate_rs232.h>
 #include <include/validation/validate_rs422.h>
+#include <include/validation/validate_uart.h>
 
 void validation_app_init();
 void validation_app_run();

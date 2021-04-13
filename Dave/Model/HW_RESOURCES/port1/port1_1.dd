@@ -604,6 +604,7 @@
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="HW1 control path can override the software configuration."/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P1.6 / #116" URI="http://resources/48.0.0/port/p/1/pad/6">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_8.app#//@hwResources.0"/>
     <resourcesList name="hwsel_hw" requiredResourceUri="http://resources/48.0.0/port/p/1/hwsel/hw6"/>
     <resourcesList name="in_p" requiredResourceUri="http://resources/48.0.0/port/p/1/in/p6"/>
     <resourcesList name="iocr_oe" requiredResourceUri="http://resources/48.0.0/port/p/1/iocr4/pc6_4"/>
@@ -637,6 +638,7 @@
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#10" description="HW1 control path can override the software configuration."/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P1.7 / #115" URI="http://resources/48.0.0/port/p/1/pad/7">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_9.app#//@hwResources.0"/>
     <resourcesList name="hwsel_hw" requiredResourceUri="http://resources/48.0.0/port/p/1/hwsel/hw7"/>
     <resourcesList name="in_p" requiredResourceUri="http://resources/48.0.0/port/p/1/in/p7"/>
     <resourcesList name="iocr_oe" requiredResourceUri="http://resources/48.0.0/port/p/1/iocr4/pc7_4"/>

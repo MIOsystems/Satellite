@@ -11,6 +11,11 @@
 #include <DAVE.h>
 #include <include/util/types.h>
 
+#define MAX_CHAR_RECV		32
+#define MAX_CHAR_SEND		512
+
+void validate_uart_init();
 void validate_uart_update();
+void validate_uart_send();
 
 #endif /* VALIDATE_UART_H_ */

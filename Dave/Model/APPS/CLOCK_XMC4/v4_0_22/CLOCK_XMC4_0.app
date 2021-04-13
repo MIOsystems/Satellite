@@ -7,7 +7,6 @@
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_0.app#//@requiredApps.0"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_1.app#//@requiredApps.0"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_2.app#//@requiredApps.0"/>
-  <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_3.app#//@requiredApps.0"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../GLOBAL_ADC/v4_0_18/GLOBAL_ADC_0.app#//@requiredApps.0"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../GLOBAL_CCU4/v4_1_12/GLOBAL_CCU4_0.app#//@requiredApps.0"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../GLOBAL_CCU4/v4_1_12/GLOBAL_CCU4_1.app#//@requiredApps.0"/>

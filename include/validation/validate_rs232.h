@@ -11,12 +11,11 @@
 #include <DAVE.h>
 #include <include/util/types.h>
 
-typedef enum
-{
-	RS232_DATA_ACTION_1,
-	RS232_DATA_ACTION_2
-} RS232_ACTIONS_e;
+#define MAX_CHAR_RECV		32
+#define MAX_CHAR_SEND		512
 
+void validate_rs232_init();
 void validate_rs232_update();
+void validate_rs232_send();
 
 #endif /* VALIDATE_RS232_H_ */

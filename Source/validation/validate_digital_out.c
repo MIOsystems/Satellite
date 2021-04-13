@@ -7,50 +7,42 @@
 
 #include <include/validation/validate_digital_out.h>
 
-const DIGITAL_IO_t DO1_O = {
-		.gpio_port = XMC_GPIO_PORT1,
-		.gpio_pin = 6,
-		.gpio_config = {
-				.mode = XMC_GPIO_MODE_INPUT_PULL_DOWN,
-				.output_level = XMC_GPIO_OUTPUT_LEVEL_LOW,
-		},
-		.hwctrl = XMC_GPIO_HWCTRL_DISABLED
-	};
+volatile i32 timer;
 
-const DIGITAL_IO_t DO2_O = {
-		.gpio_port = XMC_GPIO_PORT1,
-		.gpio_pin = 7,
-		.gpio_config = {
-				.mode = XMC_GPIO_MODE_INPUT_PULL_DOWN,
-				.output_level = XMC_GPIO_OUTPUT_LEVEL_LOW,
-		},
-		.hwctrl = XMC_GPIO_HWCTRL_DISABLED
-	};
-
-const DIGITAL_IO_t DO3_O = {
-		.gpio_port = XMC_GPIO_PORT3,
-		.gpio_pin = 3,
-		.gpio_config = {
-				.mode = XMC_GPIO_MODE_INPUT_PULL_DOWN,
-				.output_level = XMC_GPIO_OUTPUT_LEVEL_LOW,
-		},
-		.hwctrl = XMC_GPIO_HWCTRL_DISABLED
-	};
-
-const DIGITAL_IO_t DO4_O = {
-		.gpio_port = XMC_GPIO_PORT3,
-		.gpio_pin = 2,
-		.gpio_config = {
-				.mode = XMC_GPIO_MODE_INPUT_PULL_DOWN,
-				.output_level = XMC_GPIO_OUTPUT_LEVEL_LOW,
-		},
-		.hwctrl = XMC_GPIO_HWCTRL_DISABLED
-	};
+void validate_digital_out_init()
+{
+	timer = 0;
+}
 
 void validate_digital_out_update()
 {
-	DIGITAL_IO_SetOutputHigh(&DO1_O);
-	DIGITAL_IO_SetOutputHigh(&DO2_O);
-	DIGITAL_IO_SetOutputHigh(&DO3_O);
-	DIGITAL_IO_SetOutputHigh(&DO4_O);
+	if(timer >= 0 && timer < 500)
+	{
+		DIGITAL_IO_SetOutputLow(&DO2);
+		DIGITAL_IO_SetOutputLow(&DO3);
+		DIGITAL_IO_SetOutputLow(&DO4);
+		DIGITAL_IO_SetOutputHigh(&DO1);
+	}
+	else if(timer >= 500 && timer < 1000)
+	{
+		DIGITAL_IO_SetOutputLow(&DO1);
+		DIGITAL_IO_SetOutputHigh(&DO2);
+	}
+	else if(timer >= 1000 && timer < 1500)
+	{
+		DIGITAL_IO_SetOutputLow(&DO2);
+		DIGITAL_IO_SetOutputHigh(&DO3);
+	}
+	else if(timer >= 1500 && timer < 2000)
+	{
+		DIGITAL_IO_SetOutputLow(&DO3);
+		DIGITAL_IO_SetOutputHigh(&DO4);
+
+	}
+	else if(timer >= 2000)
+	{
+		timer = 0;
+		return;
+	}
+	timer++;
 }

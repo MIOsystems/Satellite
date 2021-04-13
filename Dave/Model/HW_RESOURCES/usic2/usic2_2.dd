@@ -774,7 +774,6 @@
     <enumValues xsi:type="ResourceModel:RegEnumValue" value="#111" description="The data input is always 1."/>
   </provided>
   <provided xsi:type="ResourceModel:ResourceGroup" name="1" URI="http://resources/48.0.0/peripheral/usic/2/channel/1">
-    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/UART/v4_1_10/UART_3.app#//@hwResources.0"/>
     <resourcesList name="brg" requiredResourceUri="http://resources/48.0.0/peripheral/usic/2/ch1_brg"/>
     <resourcesList name="byp" requiredResourceUri="http://resources/48.0.0/peripheral/usic/2/ch1_byp"/>
     <resourcesList name="bypcr" requiredResourceUri="http://resources/48.0.0/peripheral/usic/2/ch1_bypcr"/>

@@ -1,173 +1,13 @@
 <?xml version="1.0" encoding="ASCII"?>
 <pi:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms" visible="true" gridUnit="10" diagramTypeId="dependencydiagramType" name="ceProject" snapToGrid="true" pictogramLinks="//@link //@connections.0/@link //@connections.0/@connectionDecorators.0/@link //@connections.1/@link //@connections.1/@connectionDecorators.0/@link //@connections.2/@link //@connections.2/@connectionDecorators.0/@link //@connections.3/@link //@connections.3/@connectionDecorators.0/@link //@connections.4/@link //@connections.4/@connectionDecorators.0/@link //@connections.5/@link //@connections.5/@connectionDecorators.0/@link //@connections.6/@link //@connections.6/@connectionDecorators.0/@link //@connections.7/@link //@connections.7/@connectionDecorators.0/@link //@connections.8/@link //@connections.8/@connectionDecorators.0/@link //@connections.9/@link //@connections.9/@connectionDecorators.0/@link //@connections.10/@link //@connections.10/@connectionDecorators.0/@link //@connections.11/@link //@connections.11/@connectionDecorators.0/@link //@connections.12/@link //@connections.12/@connectionDecorators.0/@link //@connections.13/@link //@connections.13/@connectionDecorators.0/@link //@connections.14/@link //@connections.14/@connectionDecorators.0/@link //@connections.15/@link //@connections.15/@connectionDecorators.0/@link //@connections.16/@link //@connections.16/@connectionDecorators.0/@link //@connections.17/@link //@connections.17/@connectionDecorators.0/@link //@connections.18/@link //@connections.18/@connectionDecorators.0/@link //@connections.19/@link //@connections.19/@connectionDecorators.0/@link //@connections.20/@link //@connections.20/@connectionDecorators.0/@link //@connections.21/@link //@connections.21/@connectionDecorators.0/@link" version="0.10.0">
-  <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.1" foreground="//@colors.0" lineWidth="1" transparency="0.0" width="3053" height="380"/>
+  <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.1" foreground="//@colors.0" lineWidth="1" transparency="0.0" width="4058" height="350"/>
   <link>
     <businessObjects href="ModelConfigData.data#/"/>
   </link>
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
-    <properties key="uri" value="http://resources/4.1.10/app/UART/3"/>
-    <properties key="APP_NAME_ID" value="UART/3"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="100" height="40" x="1654">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="100" height="40" style="//@styles.0/@styles.11" cornerHeight="5" cornerWidth="5"/>
-    </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.12 //@connections.13"/>
-    <children>
-      <properties key="uri" value="http://resources/4.1.10/app/UART/3"/>
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.1.10/app/UART/3"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="118" height="20" x="25" font="//@fonts.0" value="UART"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.1.10/app/UART/3"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="100" height="20" x="25" y="17" font="//@fonts.1" value="UART_3"/>
-    </children>
-  </children>
-  <children xsi:type="pi:ContainerShape" visible="true" active="true">
-    <properties key="uri" value="http://resources/4.1.10/app/TIMER/0"/>
-    <properties key="APP_NAME_ID" value="TIMER/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="121" height="40" x="973">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="121" height="40" style="//@styles.0/@styles.17" cornerHeight="5" cornerWidth="5"/>
-    </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.17"/>
-    <children>
-      <properties key="uri" value="http://resources/4.1.10/app/TIMER/0"/>
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.1.10/app/TIMER/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="118" height="20" x="25" font="//@fonts.0" value="TIMER"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.1.10/app/TIMER/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="121" height="20" x="25" y="17" font="//@fonts.1" value="POLL_TIMER"/>
-    </children>
-  </children>
-  <children xsi:type="pi:ContainerShape" visible="true" active="true">
-    <properties key="uri" value="http://resources/4.1.16/app/SYSTIMER/0"/>
-    <properties key="APP_NAME_ID" value="SYSTIMER/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="123" height="40" x="808" y="170">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="123" height="40" style="//@styles.0/@styles.1" cornerHeight="5" cornerWidth="5"/>
-    </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.0 //@connections.1" incomingConnections="//@connections.3"/>
-    <children>
-      <properties key="uri" value="http://resources/4.1.16/app/SYSTIMER/0"/>
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.1.16/app/SYSTIMER/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="118" height="20" x="25" font="//@fonts.0" value="SYSTIMER"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.1.16/app/SYSTIMER/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="123" height="20" x="25" y="17" font="//@fonts.1" value="SYSTIMER_0"/>
-    </children>
-  </children>
-  <children xsi:type="pi:ContainerShape" visible="true" active="true">
-    <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/0"/>
-    <properties key="APP_NAME_ID" value="INTERRUPT/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="152" height="40" x="792">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="152" height="40" style="//@styles.0/@styles.18" cornerHeight="5" cornerWidth="5"/>
-    </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.18"/>
-    <children>
-      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/0"/>
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="135" height="20" x="25" font="//@fonts.0" value="INTERRUPT"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="152" height="20" x="25" y="17" font="//@fonts.1" value="RS232_INTERRUPT"/>
-    </children>
-  </children>
-  <children xsi:type="pi:ContainerShape" visible="true" active="true">
-    <properties key="uri" value="http://resources/4.0.18/app/GLOBAL_ADC/0"/>
-    <properties key="APP_NAME_ID" value="GLOBAL_ADC/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="143" height="40" x="645" y="170">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="143" height="40" style="//@styles.0/@styles.12" cornerHeight="5" cornerWidth="5"/>
-    </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.14" incomingConnections="//@connections.15"/>
-    <children>
-      <properties key="uri" value="http://resources/4.0.18/app/GLOBAL_ADC/0"/>
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.0.18/app/GLOBAL_ADC/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="GLOBAL_ADC"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.0.18/app/GLOBAL_ADC/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="143" height="20" x="25" y="17" font="//@fonts.1" value="GLOBAL_ADC_0"/>
-    </children>
-  </children>
-  <children xsi:type="pi:ContainerShape" visible="true" active="true">
-    <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/1"/>
-    <properties key="APP_NAME_ID" value="INTERRUPT/1"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="181" height="40" x="585">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="181" height="40" style="//@styles.0/@styles.19" cornerHeight="5" cornerWidth="5"/>
-    </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.19"/>
-    <children>
-      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/1"/>
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/1"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="135" height="20" x="25" font="//@fonts.0" value="INTERRUPT"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/1"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="181" height="20" x="25" y="17" font="//@fonts.1" value="POLL_TIMER_INTERRUPT"/>
-    </children>
-  </children>
-  <children xsi:type="pi:ContainerShape" visible="true" active="true">
-    <properties key="uri" value="http://resources/4.3.22/app/SPI_MASTER/0"/>
-    <properties key="APP_NAME_ID" value="SPI_MASTER/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="135" height="40" x="2783">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="135" height="40" style="//@styles.0/@styles.6" cornerHeight="5" cornerWidth="5"/>
-    </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.6 //@connections.7"/>
-    <children>
-      <properties key="uri" value="http://resources/4.3.22/app/SPI_MASTER/0"/>
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.3.22/app/SPI_MASTER/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="SPI_MASTER"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.3.22/app/SPI_MASTER/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="135" height="20" x="25" y="17" font="//@fonts.1" value="SPI_MASTER_0"/>
-    </children>
-  </children>
-  <children xsi:type="pi:ContainerShape" visible="true" active="true">
-    <properties key="uri" value="http://resources/4.0.14/app/ADC_MEASUREMENT_ADV/0"/>
-    <properties key="APP_NAME_ID" value="ADC_MEASUREMENT_ADV/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="205" height="40" x="1774">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="205" height="40" style="//@styles.0/@styles.13" cornerHeight="5" cornerWidth="5"/>
-    </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.15"/>
-    <children>
-      <properties key="uri" value="http://resources/4.0.14/app/ADC_MEASUREMENT_ADV/0"/>
-      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.0.14/app/ADC_MEASUREMENT_ADV/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="205" height="20" x="25" font="//@fonts.0" value="ADC_MEASUREMENT_ADV"/>
-    </children>
-    <children visible="true">
-      <properties key="uri" value="http://resources/4.0.14/app/ADC_MEASUREMENT_ADV/0"/>
-      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="205" height="20" x="25" y="17" font="//@fonts.1" value="ADC_MEASUREMENT_ADV_0"/>
-    </children>
-  </children>
-  <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.1.6/app/ETH_LWIP/0"/>
     <properties key="APP_NAME_ID" value="ETH_LWIP/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="121" height="40" x="2464">
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="121" height="40" x="3456">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="121" height="40" style="//@styles.0/@styles.3" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.2 //@connections.3"/>
@@ -187,7 +27,7 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.3.22/app/SPI_MASTER/1"/>
     <properties key="APP_NAME_ID" value="SPI_MASTER/1"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="158" height="40" x="2605">
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="158" height="40" x="3597">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="158" height="40" style="//@styles.0/@styles.7" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.8"/>
@@ -207,10 +47,10 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.0.14/app/CPU_CTRL_XMC4/0"/>
     <properties key="APP_NAME_ID" value="CPU_CTRL_XMC4/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="158" height="40" x="1584" y="340">
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="158" height="40" x="3300" y="310">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="158" height="40" style="//@styles.0/@styles.0" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.1 //@connections.2 //@connections.7 //@connections.13 //@connections.18 //@connections.19"/>
+    <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.1 //@connections.2 //@connections.7 //@connections.16 //@connections.17 //@connections.20 //@connections.21"/>
     <children>
       <properties key="uri" value="http://resources/4.0.14/app/CPU_CTRL_XMC4/0"/>
       <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
@@ -227,7 +67,7 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.1.10/app/UART/0"/>
     <properties key="APP_NAME_ID" value="UART/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="138" height="40" x="2300">
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="138" height="40" x="3298">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="138" height="40" style="//@styles.0/@styles.8" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.9"/>
@@ -247,10 +87,10 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.1.12/app/GLOBAL_CCU4/1"/>
     <properties key="APP_NAME_ID" value="GLOBAL_CCU4/1"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="148" height="40" x="344" y="170">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="148" height="40" style="//@styles.0/@styles.20" cornerHeight="5" cornerWidth="5"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="148" height="40" x="966" y="150">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="148" height="40" style="//@styles.0/@styles.19" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.20" incomingConnections="//@connections.21"/>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.18" incomingConnections="//@connections.19"/>
     <children>
       <properties key="uri" value="http://resources/4.1.12/app/GLOBAL_CCU4/1"/>
       <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
@@ -267,10 +107,10 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.1.12/app/GLOBAL_CCU4/0"/>
     <properties key="APP_NAME_ID" value="GLOBAL_CCU4/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="148" height="40" x="951" y="170">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="148" height="40" style="//@styles.0/@styles.14" cornerHeight="5" cornerWidth="5"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="148" height="40" x="3674" y="150">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="148" height="40" style="//@styles.0/@styles.13" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.16" incomingConnections="//@connections.17"/>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.14" incomingConnections="//@connections.15"/>
     <children>
       <properties key="uri" value="http://resources/4.1.12/app/GLOBAL_CCU4/0"/>
       <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
@@ -287,10 +127,10 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.1.10/app/TIMER/1"/>
     <properties key="APP_NAME_ID" value="TIMER/1"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="142" height="40" x="423">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="142" height="40" style="//@styles.0/@styles.21" cornerHeight="5" cornerWidth="5"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="142" height="40" x="1245">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="142" height="40" style="//@styles.0/@styles.20" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.21"/>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.19"/>
     <children>
       <properties key="uri" value="http://resources/4.1.10/app/TIMER/1"/>
       <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
@@ -307,7 +147,7 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.0.16/app/GLOBAL_CAN/0"/>
     <properties key="APP_NAME_ID" value="GLOBAL_CAN/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="143" height="40" x="1533" y="170">
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="143" height="40" x="3865" y="150">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="143" height="40" style="//@styles.0/@styles.4" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.4" incomingConnections="//@connections.5"/>
@@ -327,8 +167,8 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/4"/>
     <properties key="APP_NAME_ID" value="DIGITAL_IO/4"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="288">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.22" cornerHeight="5" cornerWidth="5"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="1110">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.21" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor"/>
     <children>
@@ -347,7 +187,7 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.1.10/app/UART/1"/>
     <properties key="APP_NAME_ID" value="UART/1"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="132" height="40" x="2154">
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="132" height="40" x="3146">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="132" height="40" style="//@styles.0/@styles.9" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.10"/>
@@ -368,7 +208,7 @@
     <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/5"/>
     <properties key="APP_NAME_ID" value="DIGITAL_IO/5"/>
     <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.23" cornerHeight="5" cornerWidth="5"/>
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.22" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor"/>
     <children>
@@ -387,10 +227,10 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.0.22/app/CLOCK_XMC4/0"/>
     <properties key="APP_NAME_ID" value="CLOCK_XMC4/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="141" height="40" x="1405" y="340">
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="141" height="40" x="3121" y="310">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="141" height="40" style="//@styles.0/@styles.2" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.0 //@connections.4 //@connections.6 //@connections.8 //@connections.9 //@connections.10 //@connections.11 //@connections.12 //@connections.14 //@connections.16 //@connections.20"/>
+    <anchors xsi:type="pi:ChopboxAnchor" incomingConnections="//@connections.0 //@connections.4 //@connections.6 //@connections.8 //@connections.9 //@connections.10 //@connections.11 //@connections.12 //@connections.14 //@connections.18"/>
     <children>
       <properties key="uri" value="http://resources/4.0.22/app/CLOCK_XMC4/0"/>
       <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
@@ -407,7 +247,7 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.1.10/app/UART/2"/>
     <properties key="APP_NAME_ID" value="UART/2"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="100" height="40" x="2034">
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="100" height="40" x="3026">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="100" height="40" style="//@styles.0/@styles.10" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.11"/>
@@ -427,8 +267,8 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/6"/>
     <properties key="APP_NAME_ID" value="DIGITAL_IO/6"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="1519">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.24" cornerHeight="5" cornerWidth="5"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="2666">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.23" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor"/>
     <children>
@@ -447,8 +287,8 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/2"/>
     <properties key="APP_NAME_ID" value="DIGITAL_IO/2"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="1249">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.15" cornerHeight="5" cornerWidth="5"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="2396">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.14" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor"/>
     <children>
@@ -467,8 +307,8 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/7"/>
     <properties key="APP_NAME_ID" value="DIGITAL_IO/7"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="1384">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.25" cornerHeight="5" cornerWidth="5"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="2531">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.24" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor"/>
     <children>
@@ -487,7 +327,7 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.1.14/app/CAN_NODE/0"/>
     <properties key="APP_NAME_ID" value="CAN_NODE/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="128" height="40" x="2925">
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="128" height="40" x="3930">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="128" height="40" style="//@styles.0/@styles.5" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.5"/>
@@ -507,8 +347,8 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.0.10/app/ANALOG_IO/0"/>
     <properties key="APP_NAME_ID" value="ANALOG_IO/0"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="133" height="40" x="135">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="133" height="40" style="//@styles.0/@styles.26" cornerHeight="5" cornerWidth="5"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="133" height="40" x="957">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="133" height="40" style="//@styles.0/@styles.25" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor"/>
     <children>
@@ -527,8 +367,8 @@
   <children xsi:type="pi:ContainerShape" visible="true" active="true">
     <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/3"/>
     <properties key="APP_NAME_ID" value="DIGITAL_IO/3"/>
-    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="1114">
-      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.16" cornerHeight="5" cornerWidth="5"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="2261">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.15" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
     <anchors xsi:type="pi:ChopboxAnchor"/>
     <children>
@@ -542,6 +382,306 @@
     <children visible="true">
       <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/3"/>
       <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="115" height="20" x="25" y="17" font="//@fonts.1" value="LED_3"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/8"/>
+    <properties key="APP_NAME_ID" value="DIGITAL_IO/8"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="822">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.26" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/8"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/8"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="DIGITAL_IO"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/8"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="115" height="20" x="25" y="17" font="//@fonts.1" value="DO1"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/9"/>
+    <properties key="APP_NAME_ID" value="DIGITAL_IO/9"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="687">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.27" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/9"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/9"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="DIGITAL_IO"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/9"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="115" height="20" x="25" y="17" font="//@fonts.1" value="DO2"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.1.10/app/TIMER/0"/>
+    <properties key="APP_NAME_ID" value="TIMER/0"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="121" height="40" x="2120">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="121" height="40" style="//@styles.0/@styles.16" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.15"/>
+    <children>
+      <properties key="uri" value="http://resources/4.1.10/app/TIMER/0"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.1.10/app/TIMER/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="118" height="20" x="25" font="//@fonts.0" value="TIMER"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.1.10/app/TIMER/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="121" height="20" x="25" y="17" font="//@fonts.1" value="POLL_TIMER"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/10"/>
+    <properties key="APP_NAME_ID" value="DIGITAL_IO/10"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="552">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.28" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/10"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/10"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="DIGITAL_IO"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/10"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="115" height="20" x="25" y="17" font="//@fonts.1" value="DO3"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.1.16/app/SYSTIMER/0"/>
+    <properties key="APP_NAME_ID" value="SYSTIMER/0"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="123" height="40" x="3352" y="150">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="123" height="40" style="//@styles.0/@styles.1" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.0 //@connections.1" incomingConnections="//@connections.3"/>
+    <children>
+      <properties key="uri" value="http://resources/4.1.16/app/SYSTIMER/0"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.1.16/app/SYSTIMER/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="118" height="20" x="25" font="//@fonts.0" value="SYSTIMER"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.1.16/app/SYSTIMER/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="123" height="20" x="25" y="17" font="//@fonts.1" value="SYSTIMER_0"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/11"/>
+    <properties key="APP_NAME_ID" value="DIGITAL_IO/11"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="417">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.29" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/11"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/11"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="DIGITAL_IO"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/11"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="115" height="20" x="25" y="17" font="//@fonts.1" value="DO4"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/0"/>
+    <properties key="APP_NAME_ID" value="INTERRUPT/0"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="152" height="40" x="1948">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="152" height="40" style="//@styles.0/@styles.17" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.16"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/0"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="135" height="20" x="25" font="//@fonts.0" value="INTERRUPT"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="152" height="20" x="25" y="17" font="//@fonts.1" value="RS232_INTERRUPT"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/2"/>
+    <properties key="APP_NAME_ID" value="INTERRUPT/2"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="152" height="40" x="1776">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="152" height="40" style="//@styles.0/@styles.30" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.20"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/2"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/2"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="135" height="20" x="25" font="//@fonts.0" value="INTERRUPT"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/2"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="152" height="20" x="25" y="17" font="//@fonts.1" value="RS422_INTERRUPT"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.18/app/GLOBAL_ADC/0"/>
+    <properties key="APP_NAME_ID" value="GLOBAL_ADC/0"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="143" height="40" x="2568" y="150">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="143" height="40" style="//@styles.0/@styles.11" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.12" incomingConnections="//@connections.13"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.18/app/GLOBAL_ADC/0"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.18/app/GLOBAL_ADC/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="GLOBAL_ADC"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.18/app/GLOBAL_ADC/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="143" height="20" x="25" y="17" font="//@fonts.1" value="GLOBAL_ADC_0"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/3"/>
+    <properties key="APP_NAME_ID" value="INTERRUPT/3"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="148" height="40" x="1407">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="148" height="40" style="//@styles.0/@styles.31" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.21"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/3"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/3"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="135" height="20" x="25" font="//@fonts.0" value="INTERRUPT"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/3"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="148" height="20" x="25" y="17" font="//@fonts.1" value="UART_INTERRUPT"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/1"/>
+    <properties key="APP_NAME_ID" value="INTERRUPT/1"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="181" height="40" x="1575">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="181" height="40" style="//@styles.0/@styles.18" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.17"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/1"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/1"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="135" height="20" x="25" font="//@fonts.0" value="INTERRUPT"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/1"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="181" height="20" x="25" y="17" font="//@fonts.1" value="POLL_TIMER_INTERRUPT"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/12"/>
+    <properties key="APP_NAME_ID" value="DIGITAL_IO/12"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="282">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.32" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/12"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/12"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="DIGITAL_IO"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/12"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="115" height="20" x="25" y="17" font="//@fonts.1" value="DE_422"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.3.22/app/SPI_MASTER/0"/>
+    <properties key="APP_NAME_ID" value="SPI_MASTER/0"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="135" height="40" x="3775">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="135" height="40" style="//@styles.0/@styles.6" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.6 //@connections.7"/>
+    <children>
+      <properties key="uri" value="http://resources/4.3.22/app/SPI_MASTER/0"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.3.22/app/SPI_MASTER/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="SPI_MASTER"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.3.22/app/SPI_MASTER/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="135" height="20" x="25" y="17" font="//@fonts.1" value="SPI_MASTER_0"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/13"/>
+    <properties key="APP_NAME_ID" value="DIGITAL_IO/13"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="115" height="40" x="135">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="115" height="40" style="//@styles.0/@styles.33" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/13"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/13"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="142" height="20" x="25" font="//@fonts.0" value="DIGITAL_IO"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.16/app/DIGITAL_IO/13"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="115" height="20" x="25" y="17" font="//@fonts.1" value="RE_422"/>
+    </children>
+  </children>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="uri" value="http://resources/4.0.14/app/ADC_MEASUREMENT_ADV/0"/>
+    <properties key="APP_NAME_ID" value="ADC_MEASUREMENT_ADV/0"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="205" height="40" x="2801">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="1" transparency="0.0" width="205" height="40" style="//@styles.0/@styles.12" cornerHeight="5" cornerWidth="5"/>
+    </graphicsAlgorithm>
+    <anchors xsi:type="pi:ChopboxAnchor" outgoingConnections="//@connections.13"/>
+    <children>
+      <properties key="uri" value="http://resources/4.0.14/app/ADC_MEASUREMENT_ADV/0"/>
+      <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="25" height="22" id="icons/App_Icon_16x16.jpg" stretchH="false" stretchV="false" proportional="false"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.14/app/ADC_MEASUREMENT_ADV/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="205" height="20" x="25" font="//@fonts.0" value="ADC_MEASUREMENT_ADV"/>
+    </children>
+    <children visible="true">
+      <properties key="uri" value="http://resources/4.0.14/app/ADC_MEASUREMENT_ADV/0"/>
+      <graphicsAlgorithm xsi:type="al:Text" lineWidth="1" filled="false" transparency="0.0" width="205" height="20" x="25" y="17" font="//@fonts.1" value="ADC_MEASUREMENT_ADV_0"/>
     </children>
   </children>
   <styles background="//@colors.1" lineWidth="2" lineVisible="true" transparency="0.0" id="COMMON-VALUES" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
@@ -2066,158 +2206,6 @@
       </renderingStyle>
     </styles>
     <styles lineStyle="UNSPECIFIED" filled="true" id="UART/2" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
-      <renderingStyle>
-        <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
-          <adaptedGradientColoredAreas styleAdaption="0">
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
-                <color red="248" green="251" blue="254"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
-                <color red="248" green="251" blue="254"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
-                <color red="237" green="245" blue="252"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
-                <color red="237" green="245" blue="252"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
-                <color red="222" green="237" blue="250"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
-                <color red="222" green="237" blue="250"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
-                <color red="212" green="231" blue="248"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
-                <color red="250" green="251" blue="252"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
-                <color red="226" green="229" blue="233"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
-                <color red="226" green="229" blue="233"/>
-              </end>
-            </gradientColor>
-          </adaptedGradientColoredAreas>
-          <adaptedGradientColoredAreas styleAdaption="1">
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
-                <color red="238" green="246" blue="253"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
-                <color red="238" green="246" blue="253"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
-                <color red="208" green="230" blue="249"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
-                <color red="208" green="230" blue="249"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
-                <color red="172" green="210" blue="244"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
-                <color red="172" green="210" blue="244"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
-                <color red="129" green="185" blue="234"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
-                <color red="170" green="208" blue="242"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
-                <color red="154" green="191" blue="224"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
-                <color red="154" green="191" blue="224"/>
-              </end>
-            </gradientColor>
-          </adaptedGradientColoredAreas>
-          <adaptedGradientColoredAreas styleAdaption="2">
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
-                <color red="245" green="249" blue="254"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
-                <color red="245" green="249" blue="254"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
-                <color red="226" green="239" blue="252"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
-                <color red="226" green="239" blue="252"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
-                <color red="203" green="227" blue="249"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
-                <color red="203" green="227" blue="249"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
-                <color red="187" green="218" blue="247"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
-                <color red="197" green="224" blue="247"/>
-              </end>
-            </gradientColor>
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
-                <color red="178" green="205" blue="229"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
-                <color red="178" green="205" blue="229"/>
-              </end>
-            </gradientColor>
-          </adaptedGradientColoredAreas>
-          <adaptedGradientColoredAreas styleAdaption="3">
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
-                <color red="153" green="204"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
-                <color red="51" green="153" blue="102"/>
-              </end>
-            </gradientColor>
-          </adaptedGradientColoredAreas>
-          <adaptedGradientColoredAreas styleAdaption="4">
-            <gradientColor>
-              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
-                <color red="255" green="204"/>
-              </start>
-              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
-                <color red="255" green="102"/>
-              </end>
-            </gradientColor>
-          </adaptedGradientColoredAreas>
-        </adaptedGradientColoredAreas>
-      </renderingStyle>
-    </styles>
-    <styles lineStyle="UNSPECIFIED" filled="true" id="UART/3" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
       <renderingStyle>
         <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
           <adaptedGradientColoredAreas styleAdaption="0">
@@ -4649,6 +4637,1222 @@
         </adaptedGradientColoredAreas>
       </renderingStyle>
     </styles>
+    <styles lineStyle="UNSPECIFIED" filled="true" id="DIGITAL_IO/8" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="248" green="251" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="248" green="251" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="237" green="245" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="237" green="245" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="222" green="237" blue="250"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="222" green="237" blue="250"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="212" green="231" blue="248"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="250" green="251" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="226" green="229" blue="233"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="226" green="229" blue="233"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="1">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="238" green="246" blue="253"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="238" green="246" blue="253"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="208" green="230" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="208" green="230" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="172" green="210" blue="244"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="172" green="210" blue="244"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="129" green="185" blue="234"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="170" green="208" blue="242"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="154" green="191" blue="224"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="154" green="191" blue="224"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="2">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="245" green="249" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="245" green="249" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="226" green="239" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="226" green="239" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="203" green="227" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="203" green="227" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="187" green="218" blue="247"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="197" green="224" blue="247"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="178" green="205" blue="229"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="178" green="205" blue="229"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="3">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="153" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="51" green="153" blue="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="4">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="255" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="255" green="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <styles lineStyle="UNSPECIFIED" filled="true" id="DIGITAL_IO/9" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="248" green="251" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="248" green="251" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="237" green="245" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="237" green="245" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="222" green="237" blue="250"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="222" green="237" blue="250"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="212" green="231" blue="248"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="250" green="251" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="226" green="229" blue="233"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="226" green="229" blue="233"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="1">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="238" green="246" blue="253"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="238" green="246" blue="253"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="208" green="230" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="208" green="230" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="172" green="210" blue="244"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="172" green="210" blue="244"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="129" green="185" blue="234"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="170" green="208" blue="242"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="154" green="191" blue="224"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="154" green="191" blue="224"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="2">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="245" green="249" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="245" green="249" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="226" green="239" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="226" green="239" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="203" green="227" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="203" green="227" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="187" green="218" blue="247"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="197" green="224" blue="247"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="178" green="205" blue="229"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="178" green="205" blue="229"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="3">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="153" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="51" green="153" blue="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="4">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="255" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="255" green="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <styles lineStyle="UNSPECIFIED" filled="true" id="DIGITAL_IO/10" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="248" green="251" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="248" green="251" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="237" green="245" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="237" green="245" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="222" green="237" blue="250"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="222" green="237" blue="250"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="212" green="231" blue="248"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="250" green="251" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="226" green="229" blue="233"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="226" green="229" blue="233"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="1">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="238" green="246" blue="253"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="238" green="246" blue="253"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="208" green="230" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="208" green="230" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="172" green="210" blue="244"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="172" green="210" blue="244"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="129" green="185" blue="234"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="170" green="208" blue="242"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="154" green="191" blue="224"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="154" green="191" blue="224"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="2">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="245" green="249" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="245" green="249" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="226" green="239" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="226" green="239" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="203" green="227" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="203" green="227" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="187" green="218" blue="247"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="197" green="224" blue="247"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="178" green="205" blue="229"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="178" green="205" blue="229"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="3">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="153" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="51" green="153" blue="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="4">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="255" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="255" green="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <styles lineStyle="UNSPECIFIED" filled="true" id="DIGITAL_IO/11" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="248" green="251" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="248" green="251" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="237" green="245" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="237" green="245" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="222" green="237" blue="250"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="222" green="237" blue="250"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="212" green="231" blue="248"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="250" green="251" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="226" green="229" blue="233"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="226" green="229" blue="233"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="1">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="238" green="246" blue="253"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="238" green="246" blue="253"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="208" green="230" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="208" green="230" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="172" green="210" blue="244"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="172" green="210" blue="244"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="129" green="185" blue="234"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="170" green="208" blue="242"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="154" green="191" blue="224"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="154" green="191" blue="224"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="2">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="245" green="249" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="245" green="249" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="226" green="239" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="226" green="239" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="203" green="227" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="203" green="227" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="187" green="218" blue="247"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="197" green="224" blue="247"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="178" green="205" blue="229"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="178" green="205" blue="229"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="3">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="153" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="51" green="153" blue="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="4">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="255" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="255" green="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <styles lineStyle="UNSPECIFIED" filled="true" id="INTERRUPT/2" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="248" green="251" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="248" green="251" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="237" green="245" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="237" green="245" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="222" green="237" blue="250"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="222" green="237" blue="250"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="212" green="231" blue="248"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="250" green="251" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="226" green="229" blue="233"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="226" green="229" blue="233"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="1">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="238" green="246" blue="253"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="238" green="246" blue="253"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="208" green="230" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="208" green="230" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="172" green="210" blue="244"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="172" green="210" blue="244"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="129" green="185" blue="234"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="170" green="208" blue="242"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="154" green="191" blue="224"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="154" green="191" blue="224"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="2">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="245" green="249" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="245" green="249" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="226" green="239" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="226" green="239" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="203" green="227" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="203" green="227" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="187" green="218" blue="247"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="197" green="224" blue="247"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="178" green="205" blue="229"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="178" green="205" blue="229"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="3">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="153" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="51" green="153" blue="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="4">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="255" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="255" green="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <styles lineStyle="UNSPECIFIED" filled="true" id="INTERRUPT/3" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="248" green="251" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="248" green="251" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="237" green="245" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="237" green="245" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="222" green="237" blue="250"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="222" green="237" blue="250"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="212" green="231" blue="248"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="250" green="251" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="226" green="229" blue="233"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="226" green="229" blue="233"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="1">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="238" green="246" blue="253"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="238" green="246" blue="253"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="208" green="230" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="208" green="230" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="172" green="210" blue="244"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="172" green="210" blue="244"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="129" green="185" blue="234"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="170" green="208" blue="242"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="154" green="191" blue="224"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="154" green="191" blue="224"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="2">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="245" green="249" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="245" green="249" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="226" green="239" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="226" green="239" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="203" green="227" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="203" green="227" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="187" green="218" blue="247"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="197" green="224" blue="247"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="178" green="205" blue="229"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="178" green="205" blue="229"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="3">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="153" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="51" green="153" blue="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="4">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="255" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="255" green="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <styles lineStyle="UNSPECIFIED" filled="true" id="DIGITAL_IO/12" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="248" green="251" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="248" green="251" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="237" green="245" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="237" green="245" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="222" green="237" blue="250"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="222" green="237" blue="250"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="212" green="231" blue="248"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="250" green="251" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="226" green="229" blue="233"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="226" green="229" blue="233"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="1">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="238" green="246" blue="253"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="238" green="246" blue="253"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="208" green="230" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="208" green="230" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="172" green="210" blue="244"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="172" green="210" blue="244"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="129" green="185" blue="234"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="170" green="208" blue="242"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="154" green="191" blue="224"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="154" green="191" blue="224"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="2">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="245" green="249" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="245" green="249" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="226" green="239" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="226" green="239" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="203" green="227" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="203" green="227" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="187" green="218" blue="247"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="197" green="224" blue="247"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="178" green="205" blue="229"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="178" green="205" blue="229"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="3">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="153" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="51" green="153" blue="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="4">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="255" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="255" green="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
+    <styles lineStyle="UNSPECIFIED" filled="true" id="DIGITAL_IO/13" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED">
+      <renderingStyle>
+        <adaptedGradientColoredAreas definedStyleId="blue-white-gloss" gradientType="0">
+          <adaptedGradientColoredAreas styleAdaption="0">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="248" green="251" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="248" green="251" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="237" green="245" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="237" green="245" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="222" green="237" blue="250"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="222" green="237" blue="250"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="212" green="231" blue="248"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="250" green="251" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="226" green="229" blue="233"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="226" green="229" blue="233"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="1">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="238" green="246" blue="253"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="238" green="246" blue="253"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="208" green="230" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="208" green="230" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="172" green="210" blue="244"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="172" green="210" blue="244"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="129" green="185" blue="234"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="170" green="208" blue="242"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="154" green="191" blue="224"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="154" green="191" blue="224"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="2">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="245" green="249" blue="254"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="245" green="249" blue="254"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="1">
+                <color red="226" green="239" blue="252"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="226" green="239" blue="252"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="2">
+                <color red="203" green="227" blue="249"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="203" green="227" blue="249"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="3">
+                <color red="187" green="218" blue="247"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="197" green="224" blue="247"/>
+              </end>
+            </gradientColor>
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="2">
+                <color red="178" green="205" blue="229"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="178" green="205" blue="229"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="3">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="153" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="51" green="153" blue="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+          <adaptedGradientColoredAreas styleAdaption="4">
+            <gradientColor>
+              <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+                <color red="255" green="204"/>
+              </start>
+              <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+                <color red="255" green="102"/>
+              </end>
+            </gradientColor>
+          </adaptedGradientColoredAreas>
+        </adaptedGradientColoredAreas>
+      </renderingStyle>
+    </styles>
   </styles>
   <styles lineStyle="UNSPECIFIED" id="SYSTIMER/0$CLOCK_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
   <styles lineStyle="UNSPECIFIED" id="SYSTIMER/0$CPU_CTRL_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
@@ -4662,8 +5866,6 @@
   <styles lineStyle="UNSPECIFIED" id="UART/0$CLOCK_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
   <styles lineStyle="UNSPECIFIED" id="UART/1$CLOCK_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
   <styles lineStyle="UNSPECIFIED" id="UART/2$CLOCK_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
-  <styles lineStyle="UNSPECIFIED" id="UART/3$CLOCK_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
-  <styles lineStyle="UNSPECIFIED" id="UART/3$CPU_CTRL_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
   <styles lineStyle="UNSPECIFIED" id="GLOBAL_ADC/0$CLOCK_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
   <styles lineStyle="UNSPECIFIED" id="ADC_MEASUREMENT_ADV/0$GLOBAL_ADC/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
   <styles lineStyle="UNSPECIFIED" id="GLOBAL_CCU4/0$CLOCK_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
@@ -4672,7 +5874,9 @@
   <styles lineStyle="UNSPECIFIED" id="INTERRUPT/1$CPU_CTRL_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
   <styles lineStyle="UNSPECIFIED" id="GLOBAL_CCU4/1$CLOCK_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
   <styles lineStyle="UNSPECIFIED" id="TIMER/1$GLOBAL_CCU4/1" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.2/@anchors.0" end="//@children.19/@anchors.0">
+  <styles lineStyle="UNSPECIFIED" id="INTERRUPT/2$CPU_CTRL_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
+  <styles lineStyle="UNSPECIFIED" id="INTERRUPT/3$CPU_CTRL_XMC4/0" horizontalAlignment="UNSPECIFIED" verticalAlignment="UNSPECIFIED"/>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.23/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.1"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.0"/>
@@ -4687,10 +5891,10 @@
         <businessObjects href="ModelConfigData.data#//@connections.0"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="849" y="290"/>
-    <bendpoints x="1440" y="290"/>
+    <bendpoints x="3393" y="210"/>
+    <bendpoints x="3198" y="210"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.2/@anchors.0" end="//@children.10/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.23/@anchors.0" end="//@children.2/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.2"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.1"/>
@@ -4705,10 +5909,10 @@
         <businessObjects href="ModelConfigData.data#//@connections.1"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="890" y="280"/>
-    <bendpoints x="1652" y="280"/>
+    <bendpoints x="3434" y="300"/>
+    <bendpoints x="3419" y="300"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.8/@anchors.0" end="//@children.10/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@anchors.0" end="//@children.2/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.3"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.2"/>
@@ -4723,12 +5927,12 @@
         <businessObjects href="ModelConfigData.data#//@connections.2"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="2545" y="120"/>
-    <bendpoints x="2289" y="120"/>
-    <bendpoints x="2289" y="320"/>
-    <bendpoints x="1697" y="320"/>
+    <bendpoints x="3496" y="90"/>
+    <bendpoints x="3292" y="90"/>
+    <bendpoints x="3292" y="200"/>
+    <bendpoints x="3399" y="200"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.8/@anchors.0" end="//@children.2/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@anchors.0" end="//@children.23/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.4"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.3"/>
@@ -4743,10 +5947,10 @@
         <businessObjects href="ModelConfigData.data#//@connections.3"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="2504" y="100"/>
-    <bendpoints x="870" y="100"/>
+    <bendpoints x="3537" y="100"/>
+    <bendpoints x="3414" y="100"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.15/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.7/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.5"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.4"/>
@@ -4761,10 +5965,10 @@
         <businessObjects href="ModelConfigData.data#//@connections.4"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="1605" y="240"/>
-    <bendpoints x="1476" y="240"/>
+    <bendpoints x="3937" y="290"/>
+    <bendpoints x="3249" y="290"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.24/@anchors.0" end="//@children.15/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.16/@anchors.0" end="//@children.7/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.6"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.5"/>
@@ -4779,10 +5983,10 @@
         <businessObjects href="ModelConfigData.data#//@connections.5"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="2989" y="150"/>
-    <bendpoints x="1605" y="150"/>
+    <bendpoints x="3994" y="50"/>
+    <bendpoints x="3937" y="50"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.6/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.31/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.7"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.6"/>
@@ -4797,12 +6001,12 @@
         <businessObjects href="ModelConfigData.data#//@connections.6"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="2828" y="140"/>
-    <bendpoints x="2605" y="140"/>
-    <bendpoints x="2605" y="310"/>
-    <bendpoints x="1534" y="310"/>
+    <bendpoints x="3865" y="130"/>
+    <bendpoints x="3615" y="130"/>
+    <bendpoints x="3615" y="250"/>
+    <bendpoints x="3224" y="250"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.6/@anchors.0" end="//@children.10/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.31/@anchors.0" end="//@children.2/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.8"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.7"/>
@@ -4817,12 +6021,12 @@
         <businessObjects href="ModelConfigData.data#//@connections.7"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="2873" y="160"/>
-    <bendpoints x="2610" y="160"/>
-    <bendpoints x="2610" y="330"/>
-    <bendpoints x="1719" y="330"/>
+    <bendpoints x="3820" y="120"/>
+    <bendpoints x="3612" y="120"/>
+    <bendpoints x="3612" y="300"/>
+    <bendpoints x="3438" y="300"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.9/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.1/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.9"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.8"/>
@@ -4837,12 +6041,12 @@
         <businessObjects href="ModelConfigData.data#//@connections.8"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="2684" y="130"/>
-    <bendpoints x="2430" y="130"/>
-    <bendpoints x="2430" y="290"/>
-    <bendpoints x="1523" y="290"/>
+    <bendpoints x="3676" y="110"/>
+    <bendpoints x="3495" y="110"/>
+    <bendpoints x="3495" y="230"/>
+    <bendpoints x="3211" y="230"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.11/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.3/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.10"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.9"/>
@@ -4857,12 +6061,12 @@
         <businessObjects href="ModelConfigData.data#//@connections.10"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="2369" y="110"/>
-    <bendpoints x="2124" y="110"/>
-    <bendpoints x="2124" y="270"/>
-    <bendpoints x="1511" y="270"/>
+    <bendpoints x="3367" y="80"/>
+    <bendpoints x="3136" y="80"/>
+    <bendpoints x="3136" y="200"/>
+    <bendpoints x="3185" y="200"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.17/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.9/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.11"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.10"/>
@@ -4877,12 +6081,12 @@
         <businessObjects href="ModelConfigData.data#//@connections.12"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="2220" y="90"/>
-    <bendpoints x="1977" y="90"/>
-    <bendpoints x="1977" y="260"/>
-    <bendpoints x="1499" y="260"/>
+    <bendpoints x="3212" y="70"/>
+    <bendpoints x="2983" y="70"/>
+    <bendpoints x="2983" y="230"/>
+    <bendpoints x="3172" y="230"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.20/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.12/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.12"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.11"/>
@@ -4897,12 +6101,12 @@
         <businessObjects href="ModelConfigData.data#//@connections.14"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="2084" y="80"/>
-    <bendpoints x="1856" y="80"/>
-    <bendpoints x="1856" y="250"/>
-    <bendpoints x="1487" y="250"/>
+    <bendpoints x="3076" y="60"/>
+    <bendpoints x="2862" y="60"/>
+    <bendpoints x="2862" y="250"/>
+    <bendpoints x="3159" y="250"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.27/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.13"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.12"/>
@@ -4914,15 +6118,13 @@
         <points x="-10" y="-5"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="ModelConfigData.data#//@connections.16"/>
+        <businessObjects href="ModelConfigData.data#//@connections.18"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="1721" y="110"/>
-    <bendpoints x="1484" y="110"/>
-    <bendpoints x="1484" y="230"/>
-    <bendpoints x="1464" y="230"/>
+    <bendpoints x="2640" y="270"/>
+    <bendpoints x="3147" y="270"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@anchors.0" end="//@children.10/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.33/@anchors.0" end="//@children.27/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.14"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.13"/>
@@ -4934,15 +6136,13 @@
         <points x="-10" y="-5"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="ModelConfigData.data#//@connections.17"/>
+        <businessObjects href="ModelConfigData.data#//@connections.19"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="1687" y="50"/>
-    <bendpoints x="1473" y="50"/>
-    <bendpoints x="1473" y="220"/>
-    <bendpoints x="1674" y="220"/>
+    <bendpoints x="2904" y="50"/>
+    <bendpoints x="2640" y="50"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.4/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.5/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.15"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.14"/>
@@ -4957,10 +6157,10 @@
         <businessObjects href="ModelConfigData.data#//@connections.18"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="717" y="310"/>
-    <bendpoints x="1429" y="310"/>
+    <bendpoints x="3748" y="270"/>
+    <bendpoints x="3236" y="270"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.7/@anchors.0" end="//@children.4/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.21/@anchors.0" end="//@children.5/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.16"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.15"/>
@@ -4975,10 +6175,10 @@
         <businessObjects href="ModelConfigData.data#//@connections.19"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="1877" y="70"/>
-    <bendpoints x="717" y="70"/>
+    <bendpoints x="2181" y="140"/>
+    <bendpoints x="3748" y="140"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.13/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.25/@anchors.0" end="//@children.2/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.17"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.16"/>
@@ -4990,13 +6190,15 @@
         <points x="-10" y="-5"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="ModelConfigData.data#//@connections.18"/>
+        <businessObjects href="ModelConfigData.data#//@connections.20"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="1025" y="220"/>
-    <bendpoints x="1452" y="220"/>
+    <bendpoints x="2024" y="90"/>
+    <bendpoints x="1792" y="90"/>
+    <bendpoints x="1792" y="220"/>
+    <bendpoints x="3379" y="220"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.1/@anchors.0" end="//@children.13/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.29/@anchors.0" end="//@children.2/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.18"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.17"/>
@@ -5008,13 +6210,15 @@
         <points x="-10" y="-5"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="ModelConfigData.data#//@connections.19"/>
+        <businessObjects href="ModelConfigData.data#//@connections.21"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="1034" y="110"/>
-    <bendpoints x="1025" y="110"/>
+    <bendpoints x="1666" y="70"/>
+    <bendpoints x="1421" y="70"/>
+    <bendpoints x="1421" y="260"/>
+    <bendpoints x="3340" y="260"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.3/@anchors.0" end="//@children.10/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.4/@anchors.0" end="//@children.11/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.19"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.18"/>
@@ -5026,15 +6230,13 @@
         <points x="-10" y="-5"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="ModelConfigData.data#//@connections.20"/>
+        <businessObjects href="ModelConfigData.data#//@connections.23"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="868" y="60"/>
-    <bendpoints x="632" y="60"/>
-    <bendpoints x="632" y="300"/>
-    <bendpoints x="1629" y="300"/>
+    <bendpoints x="1040" y="290"/>
+    <bendpoints x="3134" y="290"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.5/@anchors.0" end="//@children.10/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.6/@anchors.0" end="//@children.4/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.20"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.19"/>
@@ -5046,15 +6248,13 @@
         <points x="-10" y="-5"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="ModelConfigData.data#//@connections.21"/>
+        <businessObjects href="ModelConfigData.data#//@connections.24"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="676" y="50"/>
-    <bendpoints x="512" y="50"/>
-    <bendpoints x="512" y="320"/>
-    <bendpoints x="1607" y="320"/>
+    <bendpoints x="1316" y="50"/>
+    <bendpoints x="1040" y="50"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.12/@anchors.0" end="//@children.19/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.26/@anchors.0" end="//@children.2/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.21"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.20"/>
@@ -5066,13 +6266,15 @@
         <points x="-10" y="-5"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="ModelConfigData.data#//@connections.23"/>
+        <businessObjects href="ModelConfigData.data#//@connections.22"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="418" y="330"/>
-    <bendpoints x="1417" y="330"/>
+    <bendpoints x="1852" y="80"/>
+    <bendpoints x="1620" y="80"/>
+    <bendpoints x="1620" y="240"/>
+    <bendpoints x="3359" y="240"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.14/@anchors.0" end="//@children.12/@anchors.0">
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.28/@anchors.0" end="//@children.2/@anchors.0">
     <graphicsAlgorithm xsi:type="al:Polyline" lineWidth="1" filled="false" transparency="0.0" style="//@styles.22"/>
     <link>
       <businessObjects href="ModelConfigData.data#//@connections.21"/>
@@ -5084,11 +6286,13 @@
         <points x="-10" y="-5"/>
       </graphicsAlgorithm>
       <link>
-        <businessObjects href="ModelConfigData.data#//@connections.24"/>
+        <businessObjects href="ModelConfigData.data#//@connections.21"/>
       </link>
     </connectionDecorators>
-    <bendpoints x="494" y="50"/>
-    <bendpoints x="418" y="50"/>
+    <bendpoints x="1481" y="60"/>
+    <bendpoints x="1252" y="60"/>
+    <bendpoints x="1252" y="280"/>
+    <bendpoints x="3320" y="280"/>
   </connections>
   <colors red="227" green="238" blue="249"/>
   <colors red="255" green="255" blue="255"/>

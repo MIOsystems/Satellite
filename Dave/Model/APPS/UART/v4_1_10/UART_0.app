@@ -89,4 +89,8 @@
   <connections URI="http://resources/4.1.10/app/UART/0/http://resources/4.1.10/app/UART/0/__pin_vs_uart_rxpad/http://resources/4.1.10/app/UART/0/vs_uart_rxpad" systemDefined="true" sourceSignal="Receive Pin_signal" targetSignal="rxd_pin" srcVirtualSignal="//@virtualSignals.23" targetVirtualSignal="//@virtualSignals.3"/>
   <connections URI="http://resources/4.1.10/app/UART/0/http://resources/4.1.10/app/UART/0/vs_uart_txpad/http://resources/4.1.10/app/UART/0/__pin_vs_uart_txpad" systemDefined="true" sourceSignal="txd_pin" targetSignal="Transmit Pin_signal" srcVirtualSignal="//@virtualSignals.4" targetVirtualSignal="//@virtualSignals.24"/>
   <connections URI="http://resources/4.1.10/app/UART/0/http://resources/4.1.10/app/UART/0/__pin_vs_uart_txpad/http://resources/4.1.10/app/UART/0/vs_uart_txpad" systemDefined="true" sourceSignal="Transmit Pin_signal" targetSignal="txd_pin" srcVirtualSignal="//@virtualSignals.24" targetVirtualSignal="//@virtualSignals.4"/>
+  <connections URI="http://resources/4.1.10/app/UART/0/http://resources/4.1.10/app/UART/0/vs_uart_std_rx_int/http://resources/4.0.8/app/INTERRUPT/2/vs_nvic_signal_in" sourceSignal="event_std_receive" targetSignal="sr_irq" srcVirtualSignal="//@virtualSignals.6">
+    <downwardMapList xsi:type="ResourceModel:VirtualSignal" href="../../INTERRUPT/v4_0_8/INTERRUPT_2.app#//@virtualSignals.0"/>
+    <targetVirtualSignal href="../../INTERRUPT/v4_0_8/INTERRUPT_2.app#//@virtualSignals.0"/>
+  </connections>
 </ResourceModel:App>
