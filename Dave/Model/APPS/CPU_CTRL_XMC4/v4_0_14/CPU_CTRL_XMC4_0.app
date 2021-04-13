@@ -3,7 +3,6 @@
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../SYSTIMER/v4_1_16/SYSTIMER_0.app#//@requiredApps.1"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../ETH_LWIP/v4_1_6/ETH_LWIP_0.app#//@requiredApps.0"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@requiredApps.1"/>
-  <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_0.app#//@requiredApps.1"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../UART/v4_1_10/UART_3.app#//@requiredApps.1"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../INTERRUPT/v4_0_8/INTERRUPT_0.app#//@requiredApps.0"/>
   <upwardMapList xsi:type="ResourceModel:RequiredApp" href="../../INTERRUPT/v4_0_8/INTERRUPT_1.app#//@requiredApps.0"/>

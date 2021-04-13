@@ -15,10 +15,10 @@
 
 typedef struct 
 {
-	reg_operation pwr_mode;
-	reg_operation meas_range;
-	reg_operation bandwidth;
-	reg_operation odr;
+	reg_operation_t pwr_mode;
+	reg_operation_t meas_range;
+	reg_operation_t bandwidth;
+	reg_operation_t odr;
 } bmi085x_cfg;
 
 typedef struct 

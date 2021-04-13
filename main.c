@@ -5,13 +5,15 @@
  *  Author: Patrick
  */
 
+#include <math.h>
 //Declarations from DAVE Code Generation (includes SFR declaration)
 #include <DAVE.h> 
+
+#include <include/satellite.h>
 
 #include <include/util/types.h>
 #include <include/util/delay.h>
 #include <include/util/math_utility.h>
-#include <math.h>
 
 #ifdef RUN_HW_VALIDATION
 	#include <include/validation/validate_app.h>
@@ -23,8 +25,13 @@
 	#include <include/filters/MadgwickAHRS.h>
 #endif
 
-void gnss_interrupt(void) {
+void rs232_interrupt(void) {
+#ifndef RUN_HW_VALIDATION
 	gnss_poll();
+#else
+	validate_rs232_update();
+	validate_rs422_update();
+#endif
 }
 
 void tick_timer_ISR(void)
@@ -42,9 +49,10 @@ int main(void)
 	delay_ms(2000);
 
 	DAVE_STATUS_t status;
-	u8 status_app = 0;
 	status = DAVE_Init(); /* Initialization of DAVE APPs  */
 
+#ifndef RUN_HW_VALIDATION
+	u8 status_app = 0;
 	status_app = app_init();
 	if(status_app != DAVE_STATUS_SUCCESS)
 	{
@@ -57,9 +65,15 @@ int main(void)
 			delay_ms(500);
 		}
 	}
+
+
+
 	TIMER_Start(&POLL_TIMER);
+#else
+	INTERRUPT_Enable(&RS232_INTERRUPT);
+	validation_app_init();
 
-
+#endif
 
 	if(status != DAVE_STATUS_SUCCESS)
 	{
@@ -74,7 +88,10 @@ int main(void)
 	/* Placeholder for user application code. The while loop below can be replaced with user application code. */
 	while (1U)
 	{
-
+#ifdef RUN_HW_VALIDATION
+		validation_app_run();
+#endif
+		delay_ms(1);
 		sys_check_timeouts();
 	}
 }
