@@ -11,6 +11,7 @@
 #include <DAVE.h>
 #include <include/util/types.h>
 
+void validate_a_io_init();
 void validate_a_io_update();
 void validate_a_io_feedback(u8 pin, u32 input);
 

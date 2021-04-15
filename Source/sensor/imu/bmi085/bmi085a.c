@@ -98,15 +98,18 @@ bmi085x_status_e bmi085a_poll(bmi085x *bmi085)
 	bmi085->data.accel_poll_val.x = (f32) RAW_TO_MS2(raw_x, bmi085->acc.config.meas_range.instr + 1);
 	bmi085->data.accel_poll_val.y = (f32) RAW_TO_MS2(raw_y, bmi085->acc.config.meas_range.instr + 1);
 	bmi085->data.accel_poll_val.z = (f32) RAW_TO_MS2(raw_z, bmi085->acc.config.meas_range.instr + 1);
-
-	if(bmi085a_poll_counter == 1000)
+	if(bmi085a_poll_counter == 1001)
 	{
 		bmi085a_poll_counter = 0;
+		statistic_reset(&bmi085->data.x_stat);
+		statistic_reset(&bmi085->data.y_stat);
+		statistic_reset(&bmi085->data.z_stat);
 	}
 	// calculates the min/max/avg of each axis
 	statistic_calc_aggregate_val(&bmi085->data.x_stat, &bmi085->data.accel_poll_val.x, bmi085a_poll_counter);
 	statistic_calc_aggregate_val(&bmi085->data.y_stat, &bmi085->data.accel_poll_val.y, bmi085a_poll_counter);
 	statistic_calc_aggregate_val(&bmi085->data.z_stat, &bmi085->data.accel_poll_val.z, bmi085a_poll_counter);
+
 	bmi085a_poll_counter++;
 
 	return status;

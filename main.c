@@ -88,16 +88,12 @@ int main(void)
 	}
 
 
-
+	app_hw_init();
 #else
 	validation_app_init();
 #endif
 
 
-	TIMER_Start(&POLL_TIMER);
-	INTERRUPT_Enable(&RS232_INTERRUPT);
-	INTERRUPT_Enable(&RS422_INTERRUPT);
-	INTERRUPT_Enable(&UART_INTERRUPT);
 
 	if(status != DAVE_STATUS_SUCCESS)
 	{

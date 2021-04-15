@@ -8,6 +8,7 @@ void validation_app_init()
 	validate_rs232_init();
 	validate_uart_init();
 	validate_rs422_init();
+	validate_a_io_init();
 }
 
 void validation_app_run()

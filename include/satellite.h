@@ -6,7 +6,7 @@
 #define ONEMSDELAY 11500
 
 // turn this on if you want to validate hqw
-#define RUN_HW_VALIDATION
+//#define RUN_HW_VALIDATION
 
 /**
  * ==========================================
@@ -41,6 +41,7 @@
 #define COM_UDP_PORT_OUT	(u16)	62510
 
 // in ms
-#define UDP_INTERVAL_PACKET	(u32)	100 // 1 sec
-
+#define UDP_INTERVAL_PACKET			(u32)	1000 // 1 sec
+#define UDP_INTERVAL_DEBUG_PACKET	(u32)	100 // 1 sec
+//#define UDP_BMI_DEBUG_MSG
 #endif

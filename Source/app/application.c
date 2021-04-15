@@ -11,7 +11,7 @@
 u8 app_init()
 {
 	application_clock.udp_counter = 0;
-
+	application_clock.udp_debug_counter = 0;
 	u8 status = DAVE_STATUS_SUCCESS;
 
 
@@ -41,22 +41,37 @@ u8 app_init()
 
 }
 
+void app_hw_init()
+{
+	TIMER_Start(&POLL_TIMER);
+	INTERRUPT_Enable(&RS232_INTERRUPT);
+	INTERRUPT_Enable(&RS422_INTERRUPT);
+	INTERRUPT_Enable(&UART_INTERRUPT);
+
+}
+
 void app_timer_update()
 {
 	imu_poll(&imu);
-
 	// udp cycle for every second send data
+#ifdef UDP_BMI_DEBUG_MSG
+	if(application_clock.udp_debug_counter == UDP_INTERVAL_DEBUG_PACKET)
+	{
+		udp_send_debug_bmi(imu);
+		application_clock.udp_debug_counter = 0;
+	}
+#endif
 	if(application_clock.udp_counter == UDP_INTERVAL_PACKET)
 	{
+		if(gps_rx_handler() == 0)
+		{
+			udp_send_gps(gps_packet);
+		}
 
-//		if(gps_rx_handler() == 0)
-//		{
-//			udp_send_gps(gps_packet);
-//		}
-		udp_send_debug_bmi(imu);
+		udp_send_bmi(imu);
 		application_clock.udp_counter = 0;
 	}
-
+	application_clock.udp_debug_counter++;
 	application_clock.udp_counter++;
 }
 
