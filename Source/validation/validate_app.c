@@ -15,7 +15,6 @@ void validation_app_init()
 void validation_app_run()
 {
 	validate_dip_update();
-	validate_a_io_update();
 	validate_digital_out_update();
 	validate_rs232_send();
 	validate_rs422_send();

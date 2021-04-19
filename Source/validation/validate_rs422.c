@@ -59,10 +59,9 @@ void validate_rs422_send()
 	{
 		strcat(tx_buff, recv_buff);
 		u8 i = 0;
-		u8 status = 0;
 		while(tx_buff[i] != '\0')
 		{
-			status = UART_Transmit(&RS422_UART_0, (u8 *) &tx_buff[i], 1);
+			UART_Transmit(&RS422_UART_0, (u8 *) &tx_buff[i], 1);
 			i++;
 		}
 

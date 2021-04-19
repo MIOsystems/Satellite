@@ -12,28 +12,12 @@ void validate_a_io_init()
 {
 	ADC_MEASUREMENT_StartConversion(&AI1);
 }
-void validate_a_io_update()
-{
-//	u16 input = 0;
-//	input = ADC_MEASUREMENT_ADV_GetResult(&AI1);
-//	input = ANALOG_IO_GetInput(&AI1);
-//	input = ANALOG_IO_GetInput(&AI2);
-//	input = ANALOG_IO_GetInput(&AI3);
-}
 
-void validate_a_io_feedback(u8 pin, u32 input)
-{
-
-}
-
-void Adc_Measurement_Handler(void)
+void validate_analog_io_handler(void)
 {
 	u16 input = 0;
 
 	input = (u16) ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A_handle); // result from 0 to 4096
-	if(input == 1000)
-	{
-
-	}
-	//ADC_MEASUREMENT_StartConversion(&AI1);
+	input = (u16) ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_B_handle); // result from 0 to 4096
+	input = (u16) ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_C_handle); // result from 0 to 4096
 }
