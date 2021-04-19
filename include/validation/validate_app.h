@@ -9,6 +9,7 @@
 #include <include/validation/validate_rs232.h>
 #include <include/validation/validate_rs422.h>
 #include <include/validation/validate_uart.h>
+#include <include/validation/validate_relay.h>
 
 void validation_app_init();
 void validation_app_run();

@@ -9,7 +9,7 @@
 #define GPS_SYNC1 		(u8)	0xB5
 #define GPS_SYNC2 		(u8)	0x62
 
-static volatile bool gps_ready = false;
+static volatile bool gps_receive_ready = false;
 static volatile u8 gps_frame_counter = 0;
 static volatile u8 gps_payload_index = 0;
 
@@ -59,7 +59,7 @@ typedef struct
 void gnss_init();
 void gnss_poll(void);
 void gnss_frame_reset(void);
-void gnss_update_checksum(u8 *data);
+void gnss_update_checksum(u8 data);
 void gnss_get_checksum(void);
 u8 gps_rx_handler(void);
 void gnss_convert(void);

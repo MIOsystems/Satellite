@@ -34,7 +34,7 @@ u8 app_init()
 #endif
 
 	// GPS Sensor, only creates the structure
-	gnss_init();
+	//gps_init();
 
 
 	return DAVE_STATUS_SUCCESS;
@@ -67,7 +67,6 @@ void app_timer_update()
 		{
 			udp_send_gps(gps_packet);
 		}
-
 		udp_send_bmi(imu);
 		application_clock.udp_counter = 0;
 	}

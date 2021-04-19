@@ -470,6 +470,7 @@
   <provided xsi:type="ResourceModel:BitField" name="PC2_4" URI="http://resources/48.0.0/port/p/3/iocr0/pc2_4" value="0x00000000" toolTipHelpDescription="Port Control for Port n Pin 0 to 3" defaultValue="0x00000000" startPos="23" stopPos="23" accessPermission="rw" maxValue="1" minValue="0"/>
   <provided xsi:type="ResourceModel:BitField" name="PC2_2_0" URI="http://resources/48.0.0/port/p/3/iocr0/pc2_2_0" value="0x00000000" toolTipHelpDescription="Port Control for Port n Pin 0 to 3" defaultValue="0x00000000" startPos="19" stopPos="21" accessPermission="rw" maxValue="7" minValue="0"/>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P3.1 / #6" URI="http://resources/48.0.0/port/p/3/pad/1">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_14.app#//@hwResources.0"/>
     <resourcesList name="hwsel_hw" requiredResourceUri="http://resources/48.0.0/port/p/3/hwsel/hw1"/>
     <resourcesList name="in_p" requiredResourceUri="http://resources/48.0.0/port/p/3/in/p1"/>
     <resourcesList name="iocr_oe" requiredResourceUri="http://resources/48.0.0/port/p/3/iocr0/pc1_4"/>

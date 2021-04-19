@@ -30,7 +30,10 @@ void Adc_Measurement_Handler(void)
 {
 	u16 input = 0;
 
-	input = (u16) ADC_MEASUREMENT_GetResult(&AI1.array); // result from 0 to 4096
+	input = (u16) ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A_handle); // result from 0 to 4096
+	if(input == 1000)
+	{
 
-	ADC_MEASUREMENT_StartConversion(&AI1);
+	}
+	//ADC_MEASUREMENT_StartConversion(&AI1);
 }

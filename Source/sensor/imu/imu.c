@@ -31,7 +31,7 @@ u8 imu_poll(bmi085x* imu)
 	#ifdef COMP_FILTER
 		complimentary_process(	imu->data.accel_poll_val.x, imu->data.accel_poll_val.y, imu->data.accel_poll_val.z,
 								imu->data.gyro_poll_val.x, imu->data.gyro_poll_val.y,	imu->data.gyro_poll_val.z,
-								&imu->data.angle.x, &imu->data.angle.y, &imu->data.angle.z);
+								&imu->data.angle.y, &imu->data.angle.x, &imu->data.angle.z);
 	#endif
 	#ifdef MADGWICK_FILTER
 		MadgwickAHRSupdateIMU(	imu.data.gyro_poll_val.x,

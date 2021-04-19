@@ -19,7 +19,7 @@
 #endif
 
 #ifdef UBLX
-	ubx_frame_t gps_raw;
+	ubx_frame_t gps_frame;
 	gps_values_t gps_packet;
 #endif
 
