@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="ADC_MEASUREMENT" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0" description="Incorporates analog to digital conversion for the required measurements." mode="NOTSHARABLE" version="4.1.22" minDaveVersion="4.0.0" instanceLabel="AI1" appLabel="" containingProxySignal="true">
+<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="ADC_MEASUREMENT" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0" description="Incorporates analog to digital conversion for the required measurements." mode="NOTSHARABLE" version="4.1.22" minDaveVersion="4.0.0" instanceLabel="AI" appLabel="" containingProxySignal="true">
   <properties singleton="true" provideInit="true"/>
   <virtualSignals name="Channel_A" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/vs_adc_measurement_channel_a" hwSignal="gch" hwResource="//@hwResources.54"/>
   <virtualSignals name="Channel_B" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/vs_adc_measurement_channel_b" hwSignal="gch" hwResource="//@hwResources.55"/>
@@ -230,10 +230,10 @@
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port14/port14_14.dd#//@provided.12"/>
   </hwResources>
   <hwResources name="Channel_B_pin" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channel_pin#2" resourceGroupUri="port/p/*/pad/*" mResGrpUri="port/p/*/pad/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port15/port15_15.dd#//@provided.12"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port14/port14_14.dd#//@provided.8"/>
   </hwResources>
   <hwResources name="Channel_C_pin" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channel_pin#3" resourceGroupUri="port/p/*/pad/*" mResGrpUri="port/p/*/pad/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port14/port14_14.dd#//@provided.8"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port14/port14_14.dd#//@provided.19"/>
   </hwResources>
   <hwResources name="Channel_D_pin" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channel_pin#4" resourceGroupUri="" required="false" mResGrpUri="port/p/*/pad/*"/>
   <hwResources name="Channel_E_pin" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channel_pin#5" resourceGroupUri="" required="false" mResGrpUri="port/p/*/pad/*"/>
@@ -261,11 +261,11 @@
   <hwResources name="pin_Channel_A" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_pin_pad#1" resourceGroupUri="devicepackage/0/40" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.28"/>
   </hwResources>
-  <hwResources name="pin_Channel_B" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_pin_pad#2" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.56"/>
-  </hwResources>
-  <hwResources name="pin_Channel_C" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_pin_pad#3" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="pin_Channel_B" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_pin_pad#2" resourceGroupUri="devicepackage/0/39" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.24"/>
+  </hwResources>
+  <hwResources name="pin_Channel_C" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_pin_pad#3" resourceGroupUri="devicepackage/0/34" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.35"/>
   </hwResources>
   <hwResources name="pin_Channel_D" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_pin_pad#4" resourceGroupUri="" required="false" mResGrpUri="devicepackage/0/*"/>
   <hwResources name="pin_Channel_E" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_pin_pad#5" resourceGroupUri="" required="false" mResGrpUri="devicepackage/0/*"/>
@@ -294,10 +294,10 @@
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.1"/>
   </hwResources>
   <hwResources name="Channel_B" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channels#2" resourceGroupUri="peripheral/vadc/0/group/*/ch/*" mResGrpUri="peripheral/vadc/0/group/*/ch/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.136"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.22"/>
   </hwResources>
   <hwResources name="Channel_C" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channels#3" resourceGroupUri="peripheral/vadc/0/group/*/ch/*" mResGrpUri="peripheral/vadc/0/group/*/ch/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.22"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.27"/>
   </hwResources>
   <hwResources name="Channel_D" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channels#4" resourceGroupUri="" required="false" mResGrpUri="peripheral/vadc/0/group/*/ch/*"/>
   <hwResources name="Channel_E" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channels#5" resourceGroupUri="" required="false" mResGrpUri="peripheral/vadc/0/group/*/ch/*"/>
@@ -323,13 +323,13 @@
   <hwResources name="Channel_Y" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channels#25" resourceGroupUri="" required="false" mResGrpUri="peripheral/vadc/0/group/*/ch/*"/>
   <hwResources name="Channel_Z" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_channels#26" resourceGroupUri="" required="false" mResGrpUri="peripheral/vadc/0/group/*/ch/*"/>
   <hwResources name="Channel_A Result" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_result_reg#1" resourceGroupUri="peripheral/vadc/0/group/*/*/*" mResGrpUri="peripheral/vadc/0/group/*/*/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.18"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.40"/>
   </hwResources>
   <hwResources name="Channel_B Result" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_result_reg#2" resourceGroupUri="peripheral/vadc/0/group/*/*/*" mResGrpUri="peripheral/vadc/0/group/*/*/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.142"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.37"/>
   </hwResources>
   <hwResources name="Channel_C Result" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_result_reg#3" resourceGroupUri="peripheral/vadc/0/group/*/*/*" mResGrpUri="peripheral/vadc/0/group/*/*/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.37"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/vadc/vadc_0.dd#//@provided.18"/>
   </hwResources>
   <hwResources name="Channel_D Result" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_result_reg#4" resourceGroupUri="" required="false" mResGrpUri="peripheral/vadc/0/group/*/*/*"/>
   <hwResources name="Channel_E Result" URI="http://resources/4.1.22/app/ADC_MEASUREMENT/0/rarray_hwres_adc_measurement_result_reg#5" resourceGroupUri="" required="false" mResGrpUri="peripheral/vadc/0/group/*/*/*"/>

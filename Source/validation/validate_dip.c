@@ -7,56 +7,20 @@
 
 #include <include/validation/validate_dip.h>
 
-const DIGITAL_IO_t DIP_ADD0 = {
-		.gpio_port = XMC_GPIO_PORT3,
-		.gpio_pin = 10,
-		.gpio_config = {
-				.mode = XMC_GPIO_MODE_INPUT_PULL_DOWN,
-				.output_level = XMC_GPIO_OUTPUT_LEVEL_LOW,
-		},
-		.hwctrl = XMC_GPIO_HWCTRL_DISABLED
-	};
-
-const DIGITAL_IO_t DIP_ADD1 = {
-		.gpio_port = XMC_GPIO_PORT3,
-		.gpio_pin = 11,
-		.gpio_config = {
-				.mode = XMC_GPIO_MODE_INPUT_PULL_DOWN,
-				.output_level = XMC_GPIO_OUTPUT_LEVEL_LOW,
-		},
-		.hwctrl = XMC_GPIO_HWCTRL_DISABLED
-	};
-
-const DIGITAL_IO_t DIP_ADD2 = {
-		.gpio_port = XMC_GPIO_PORT3,
-		.gpio_pin = 12,
-		.gpio_config = {
-				.mode = XMC_GPIO_MODE_INPUT_PULL_DOWN,
-				.output_level = XMC_GPIO_OUTPUT_LEVEL_LOW,
-		},
-		.hwctrl = XMC_GPIO_HWCTRL_DISABLED
-	};
-
-const DIGITAL_IO_t DIP_ADD3 = {
-		.gpio_port = XMC_GPIO_PORT3,
-		.gpio_pin = 0,
-		.gpio_config = {
-				.mode = XMC_GPIO_MODE_INPUT_PULL_DOWN,
-				.output_level = XMC_GPIO_OUTPUT_LEVEL_LOW,
-		},
-		.hwctrl = XMC_GPIO_HWCTRL_DISABLED
-	};
-
-void validate_dip_update() {
+void validate_dip_update(validate_dip_t *dip) {
 	u32 input = 0;
 	input = DIGITAL_IO_GetInput(&DIP_ADD0);
+	dip->dip_1 = input;
 	validate_dip_led_cycle(0, input);
 	input = DIGITAL_IO_GetInput(&DIP_ADD1);
+	dip->dip_2 = input;
 	validate_dip_led_cycle(1, input);
 	input = DIGITAL_IO_GetInput(&DIP_ADD2);
+	dip->dip_3 = input;
 	validate_dip_led_cycle(2, input);
 	input = DIGITAL_IO_GetInput(&DIP_ADD3);
 	validate_dip_led_cycle(3, input);
+	dip->dip_4 = input;
 }
 
 void validate_dip_led_cycle(const u8 dip_nr, const u32 val)

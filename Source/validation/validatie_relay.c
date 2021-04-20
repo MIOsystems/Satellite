@@ -6,20 +6,28 @@
  */
 #include <include/validation/validate_relay.h>
 
-volatile u16 counter;
+volatile u16 counter_relay;
+
+const u16 start_index = 2500;
+const u16 end_index = 5000;
 void validate_relay_init()
 {
-	counter = 0;
+	counter_relay = 0;
 }
-void validate_relay_update()
+void validate_relay_update(bool *state)
 {
-	if(counter == 2000)
+	if(counter_relay >= start_index && counter_relay <= end_index)
 	{
 		DIGITAL_IO_SetOutputHigh(&RELAY);
-		counter = 0;
+		*state = true;
+		if(counter_relay == end_index)
+		{
+			counter_relay = 0;
+		}
+		counter_relay++;
 		return;
 	}
-	counter++;
+	*state = false;
 	DIGITAL_IO_SetOutputLow(&RELAY);
-
+	counter_relay++;
 }

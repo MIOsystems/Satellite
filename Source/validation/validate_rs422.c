@@ -11,7 +11,7 @@
 bool rs422_tx_allowed;
 char recv_buff[MAX_BUFF_RECV];
 char tx_buff[MAX_BUFF_TX];
-u8 counter;
+u8 rs422_counter;
 
 void validate_rs422_init()
 {
@@ -20,7 +20,7 @@ void validate_rs422_init()
 
 	DIGITAL_IO_SetOutputLow(&RE_422);
 	rs422_tx_allowed = false;
-	counter = 0;
+	rs422_counter = 0;
 	strcpy(tx_buff, "Satellite received on the RS422 the following: ");
 }
 
@@ -32,24 +32,28 @@ void validate_rs422_update()
 	if(status != UART_STATUS_SUCCESS)
 		return;
 
-	if(counter < (MAX_BUFF_RECV - 1))
+	if(rs422_counter < (MAX_BUFF_RECV - 1))
 	{
-		recv_buff[counter] = data;
+		recv_buff[rs422_counter] = data;
 		if(data == 0xd)
 		{
 			rs422_tx_allowed = true;
-			counter = 0;
+			recv_buff[rs422_counter] = '\n';
+			rs422_counter = 0;
 			return;
 		}
-		counter++;
+		rs422_counter++;
 	}
-	else
-	{
-		recv_buff[counter] = '\0';
-		rs422_tx_allowed = true;
-		counter = 0;
-		return;
+	else {
+		rs422_counter = 0;
 	}
+//	else
+//	{
+//		recv_buff[counter] = '\n';
+//		rs422_tx_allowed = true;
+//		counter = 0;
+//		return;
+//	}
 
 }
 

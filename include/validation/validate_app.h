@@ -10,6 +10,10 @@
 #include <include/validation/validate_rs422.h>
 #include <include/validation/validate_uart.h>
 #include <include/validation/validate_relay.h>
+#include <include/validation/validate_model.h>
+#include <include/validation/validate_ethernet.h>
+
+validate_packet_t packet;
 
 void validation_app_init();
 void validation_app_run();
