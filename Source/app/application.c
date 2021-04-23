@@ -33,9 +33,14 @@ u8 app_init()
 	}
 #endif
 
-	// GPS Sensor, only creates the structure
-	//gps_init();
+	//GPS Sensor, only creates the structure
+#ifdef UBLX
+	gnss_init();
+#endif
 
+#ifdef ENABLE_PROXIMITY_SWITCH
+	proximity_init(&prox_switch);
+#endif
 
 	return DAVE_STATUS_SUCCESS;
 
@@ -45,7 +50,7 @@ void app_hw_init()
 {
 	TIMER_Start(&POLL_TIMER);
 	INTERRUPT_Enable(&RS232_INTERRUPT);
-	INTERRUPT_Enable(&RS422_INTERRUPT);
+	//INTERRUPT_Enable(&RS422_INTERRUPT);
 	INTERRUPT_Enable(&UART_INTERRUPT);
 
 }
@@ -68,6 +73,8 @@ void app_timer_update()
 			udp_send_gps(gps_packet);
 		}
 		udp_send_bmi(imu);
+		//udp_send_packet(&imu, sizeof(imu), "imu,");
+		udp_send_packet(&prox_switch,sizeof(prox_switch), "prox,");
 		application_clock.udp_counter = 0;
 	}
 	application_clock.udp_debug_counter++;
@@ -76,5 +83,5 @@ void app_timer_update()
 
 void app_update()
 {
-
+	proximity_update(&prox_switch);
 }

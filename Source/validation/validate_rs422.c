@@ -74,3 +74,11 @@ void validate_rs422_send()
 		strcpy(tx_buff, "Satellite received on the RS422 the following: ");
 	}
 }
+
+#ifdef RUN_HW_VALIDATION
+void rs422_interrupt(void)
+{
+	validate_rs422_update();
+}
+
+#endif

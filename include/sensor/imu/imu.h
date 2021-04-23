@@ -33,6 +33,6 @@
 #endif
 
 u8 imu_bmi085_init(bmi085x* imu);
-u8 imu_poll();
+u8 imu_poll(bmi085x* imu);
 
 #endif /* INCLUDE_SENSOR_IMU_IMU_H_ */

@@ -10,6 +10,7 @@
 
 #include <DAVE.h>
 #include <include/util/types.h>
+#include <include/satellite.h>
 
 #define MAX_BUFF_RECV		32
 #define MAX_BUFF_TX			512

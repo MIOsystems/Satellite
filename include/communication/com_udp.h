@@ -14,6 +14,7 @@
 #include <include/util/types.h>
 #include <include/sensor/gps/gnss.h>
 #include <include/sensor/imu/bmi085/bmi085x.h>
+#include <include/sensor/proximity/proximity_switch.h>
 
 ip_addr_t addr;
 struct udp_pcb *com_ctrl;
@@ -71,10 +72,23 @@ typedef struct
     f32 complimentAngleZ;
 } imu_debug_packet;
 
+typedef struct
+{
+	char prefix[8];
+	proximity_switch_t data;
+} proximity_packet_t;
+
+typedef struct
+{
+	char prefix[8];
+	void *data;
+} udp_packet_t;
+
 i8 udp_initialize();
 i8 udp_send_gps(gps_values_t data);
 i8 udp_send_bmi(bmi085x data);
 i8 udp_send_debug_bmi(bmi085x data);
-
+i8 udp_send_proximity(proximity_switch_t data);
+i8 udp_send_packet(void* data, size_t size, char* prefix);
 
 #endif /* UDP_H_ */

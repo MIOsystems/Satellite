@@ -14,6 +14,15 @@
 #include <include/sensor/gps/gnss.h>
 #include <include/communication/com_udp.h>
 
+#ifdef ENABLE_PROXIMITY_SWITCH
+	#include <include/sensor/proximity/proximity_switch.h>
+	proximity_switch_t prox_switch;
+	#ifdef IO35
+		#include <include/sensor/proximity/IO35/proximity_IO35.h>
+
+	#endif
+#endif
+
 #ifdef BMI085
 	bmi085x imu;
 #endif
@@ -22,6 +31,8 @@
 	ubx_frame_t gps_frame;
 	gps_values_t gps_packet;
 #endif
+
+
 
 typedef struct
 {

@@ -6,7 +6,7 @@
  */
 
 #include <include/validation/validate_analog_io.h>
-
+#include <include/satellite.h>
 
 void validate_a_io_init()
 {
@@ -16,9 +16,11 @@ void validate_a_io_init()
 	ai3 = 0;
 }
 
-void validate_analog_io_handler(void)
+#ifdef RUN_HW_VALIDATION
+void analog_handler(void)
 {
 	ai1 = (u16) ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_A_handle); // result from 0 to 4096
 	ai2 = (u16) ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_B_handle); // result from 0 to 4096
 	ai3 = (u16) ADC_MEASUREMENT_GetResult(&ADC_MEASUREMENT_Channel_C_handle); // result from 0 to 4096
 }
+#endif

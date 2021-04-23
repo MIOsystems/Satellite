@@ -33,14 +33,6 @@ void rs232_interrupt(void) {
 #endif
 }
 
-void rs422_interrupt(void)
-{
-#ifndef RUN_HW_VALIDATION
-
-#else
-	validate_rs422_update();
-#endif
-}
 
 void uart_interrupt(void)
 {
@@ -110,7 +102,10 @@ int main(void)
 	{
 #ifdef RUN_HW_VALIDATION
 		validation_app_run();
+#else
+		app_update();
 #endif
+
 		delay_ms(1);
 		sys_check_timeouts();
 	}

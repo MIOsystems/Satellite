@@ -140,3 +140,38 @@ i8 udp_send_debug_bmi(bmi085x data)
 	status = pbuf_free(buffer);
 	return status;
 }
+
+
+i8 udp_send_proximity(proximity_switch_t data)
+{
+	err_t status = ERR_OK;
+	proximity_packet_t packet = {
+			.prefix = "prox,",
+			.data = data,
+	};
+	u16 size = sizeof(packet);
+	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
+	buffer->payload = &packet;
+	// Sending the packet
+	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	// Freeing the packet
+	status = pbuf_free(buffer);
+	return status;
+}
+
+i8 udp_send_packet(void* data, size_t size, char* prefix)
+{
+	err_t status = ERR_OK;
+	udp_packet_t packet;
+	strcpy(packet.prefix, prefix);
+	memcpy(&packet.data , data, size);
+
+	const u16 tx_buff = sizeof(packet);
+	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, tx_buff, PBUF_RAM);
+	buffer->payload = &packet;
+	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+
+	status = pbuf_free(buffer);
+	return status;
+}
+
