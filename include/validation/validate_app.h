@@ -12,7 +12,7 @@
 #include <include/validation/validate_relay.h>
 #include <include/validation/validate_model.h>
 #include <include/validation/validate_ethernet.h>
-
+#include <include/validation/validate_sensor_out.h>
 validate_packet_t packet;
 
 void validation_app_init();

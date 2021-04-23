@@ -35,10 +35,17 @@ typedef struct
 
 typedef struct
 {
+	bool s_high;
+	bool s_low;
+} validate_sout_t;
+
+typedef struct
+{
 	validate_dip_t dip;
 	validate_dig_out_t dout;
 	validate_a_in_t ain;
 	bool relay;
+	validate_sout_t sout;
 } validate_packet_t;
 
 
