@@ -8,6 +8,7 @@
 #ifndef APPLICATION_H_
 #define APPLICATION_H_
 
+#include <DAVE.h>
 #include <include/util/types.h>
 #include <include/satellite.h>
 #include <include/sensor/imu/imu.h>
@@ -32,6 +33,11 @@
 	gps_values_t gps_packet;
 #endif
 
+#ifdef ENABLE_ALTIMETER
+	#include <include/sensor/altimeter/altimeter.h>
+	altimeter_data_t altimeter_data;
+#endif
+
 
 
 typedef struct
@@ -44,7 +50,6 @@ app_clock application_clock;
 
 
 u8 app_init();
-void app_hw_init();
 
 void app_timer_update();
 

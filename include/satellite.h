@@ -24,7 +24,11 @@
 
 /* Proximity switch */
 #define ENABLE_PROXIMITY_SWITCH
-#define IO35
+#define PROXIMITY_IO35
+
+/* Altimeter */
+#define ENABLE_ALTIMETER
+#define ALTIMETER_SF30
 /**
  * ==========================================
  * Filter Defines

@@ -23,7 +23,6 @@ u8 app_init()
 	}
 	// Sensors
 	// IMU
-
 #ifdef BMI085
 	DIGITAL_IO_SetOutputHigh(&CS_A);
 	status = imu_bmi085_init(&imu);
@@ -32,32 +31,36 @@ u8 app_init()
 		return DAVE_STATUS_FAILURE;
 	}
 #endif
-
-	//GPS Sensor, only creates the structure
-#ifdef UBLX
-	gnss_init();
-#endif
-
+//
+//	//GPS Sensor, only creates the structure
+//#ifdef UBLX
+//	//gnss_init();
+//#endif
+//
 #ifdef ENABLE_PROXIMITY_SWITCH
 	proximity_init(&prox_switch);
 #endif
-
+//
+#ifdef ENABLE_ALTIMETER
+	altimeter_init(&altimeter_data);
+#endif
 	return DAVE_STATUS_SUCCESS;
-
-}
-
-void app_hw_init()
-{
-	TIMER_Start(&POLL_TIMER);
-	INTERRUPT_Enable(&RS232_INTERRUPT);
-	//INTERRUPT_Enable(&RS422_INTERRUPT);
-	INTERRUPT_Enable(&UART_INTERRUPT);
 
 }
 
 void app_timer_update()
 {
 	imu_poll(&imu);
+
+#ifdef ENABLE_PROXIMITY_SWITCH
+	proximity_update(&prox_switch);
+#endif
+
+
+#ifdef ENABLE_ALTIMETER
+	altimeter_update(&altimeter_data);
+#endif
+
 	// udp cycle for every second send data
 #ifdef UDP_BMI_DEBUG_MSG
 	if(application_clock.udp_debug_counter == UDP_INTERVAL_DEBUG_PACKET)
@@ -73,8 +76,8 @@ void app_timer_update()
 			udp_send_gps(gps_packet);
 		}
 		udp_send_bmi(imu);
-		//udp_send_packet(&imu, sizeof(imu), "imu,");
-		udp_send_packet(&prox_switch,sizeof(prox_switch), "prox,");
+		udp_send_proximity(prox_switch);
+		udp_send_altimeter(altimeter_data);
 		application_clock.udp_counter = 0;
 	}
 	application_clock.udp_debug_counter++;
@@ -83,5 +86,5 @@ void app_timer_update()
 
 void app_update()
 {
-	proximity_update(&prox_switch);
+
 }

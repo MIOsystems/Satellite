@@ -23,6 +23,7 @@
 	#include <include/app/application.h>
 	#include <include/filters/complimentary_filter.h>
 	#include <include/filters/MadgwickAHRS.h>
+#include <include/sensor/altimeter/SF30/sf30.h>
 #endif
 
 void rs232_interrupt(void) {
@@ -33,6 +34,14 @@ void rs232_interrupt(void) {
 #endif
 }
 
+void rs422_interrupt(void)
+{
+#ifndef RUN_HW_VALIDATION
+	sf30_rx_handle();
+#else
+	validate_rs422_update();
+#endif
+}
 
 void uart_interrupt(void)
 {
@@ -64,6 +73,15 @@ int main(void)
 	DAVE_STATUS_t status;
 	status = DAVE_Init(); /* Initialization of DAVE APPs  */
 
+	if(status != DAVE_STATUS_SUCCESS)
+	{
+		/* Placeholder for error handler code. The while loop below can be replaced with an user error handler. */
+		XMC_DEBUG("DAVE APPs initialization failed\n");
+
+		while (1U)
+		{
+		}
+	}
 #ifndef RUN_HW_VALIDATION
 	u8 status_app = 0;
 	status_app = app_init();
@@ -79,23 +97,16 @@ int main(void)
 		}
 	}
 
-
-	app_hw_init();
 #else
 	validation_app_init();
 #endif
 
+	TIMER_Start(&POLL_TIMER);
+	INTERRUPT_Enable(&RS232_INTERRUPT);
+	INTERRUPT_Enable(&RS422_INTERRUPT);
+	INTERRUPT_Enable(&UART_INTERRUPT);
+	INTERRUPT_Enable(&POLL_TIMER_INTERRUPT);
 
-
-	if(status != DAVE_STATUS_SUCCESS)
-	{
-		/* Placeholder for error handler code. The while loop below can be replaced with an user error handler. */
-		XMC_DEBUG("DAVE APPs initialization failed\n");
-
-		while (1U)
-		{
-		}
-	}
 
 	/* Placeholder for user application code. The while loop below can be replaced with user application code. */
 	while (1U)

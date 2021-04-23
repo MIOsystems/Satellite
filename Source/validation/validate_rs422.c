@@ -75,10 +75,10 @@ void validate_rs422_send()
 	}
 }
 
-#ifdef RUN_HW_VALIDATION
-void rs422_interrupt(void)
-{
-	validate_rs422_update();
-}
-
-#endif
+//#ifdef RUN_HW_VALIDATION
+//void rs422_interrupt(void)
+//{
+//	validate_rs422_update();
+//}
+//
+//#endif

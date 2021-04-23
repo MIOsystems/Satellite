@@ -15,7 +15,7 @@
 #include <include/sensor/gps/gnss.h>
 #include <include/sensor/imu/bmi085/bmi085x.h>
 #include <include/sensor/proximity/proximity_switch.h>
-
+#include <include/sensor/altimeter/altimeter.h>
 ip_addr_t addr;
 struct udp_pcb *com_ctrl;
 
@@ -75,6 +75,14 @@ typedef struct
 typedef struct
 {
 	char prefix[8];
+	i32 distance;
+	i32 sum;
+	i32 counter;
+} altimeter_packet_t;
+
+typedef struct
+{
+	char prefix[8];
 	proximity_switch_t data;
 } proximity_packet_t;
 
@@ -90,5 +98,5 @@ i8 udp_send_bmi(bmi085x data);
 i8 udp_send_debug_bmi(bmi085x data);
 i8 udp_send_proximity(proximity_switch_t data);
 i8 udp_send_packet(void* data, size_t size, char* prefix);
-
+i8 udp_send_altimeter(altimeter_data_t data);
 #endif /* UDP_H_ */

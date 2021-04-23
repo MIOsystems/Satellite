@@ -27,5 +27,4 @@ void proximity_io35_update(proximity_switch_t* data)
 void analog_handler(void)
 {
 	prox_poll_cur_val = ADC_MEASUREMENT_GetDetailedResult(&ADC_MEASUREMENT_Channel_B_handle);
-
 }

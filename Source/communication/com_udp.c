@@ -175,3 +175,22 @@ i8 udp_send_packet(void* data, size_t size, char* prefix)
 	return status;
 }
 
+i8 udp_send_altimeter(altimeter_data_t data)
+{
+	err_t status = ERR_OK;
+	altimeter_packet_t packet = {
+			.prefix = "alti,",
+			.distance = data.altimeter_avg,
+			.sum = data.altimeter_sum,
+			.counter = data.recv_counter,
+	};
+	u16 size = sizeof(packet);
+	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
+	buffer->payload = &packet;
+	// Sending the packet
+	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	// Freeing the packet
+	status = pbuf_free(buffer);
+	return status;
+}
+
