@@ -457,6 +457,7 @@
   </provided>
   <provided xsi:type="ResourceModel:BitField" name="PC12_2_0" URI="http://resources/48.0.0/port/p/1/iocr12/pc12_2_0" value="0x00000000" toolTipHelpDescription="Port Control for Port n Pin 12 to 15" defaultValue="0x00000000" startPos="3" stopPos="5" accessPermission="rw" maxValue="7" minValue="0"/>
   <provided xsi:type="ResourceModel:ResourceGroup" name="P1.0 / #112" URI="http://resources/48.0.0/port/p/1/pad/0">
+    <upwardMapList xsi:type="ResourceModel:HWResource" href="../../APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_21.app#//@hwResources.0"/>
     <resourcesList name="hwsel_hw" requiredResourceUri="http://resources/48.0.0/port/p/1/hwsel/hw0"/>
     <resourcesList name="in_p" requiredResourceUri="http://resources/48.0.0/port/p/1/in/p0"/>
     <resourcesList name="iocr_oe" requiredResourceUri="http://resources/48.0.0/port/p/1/iocr0/pc0_4"/>

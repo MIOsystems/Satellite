@@ -39,9 +39,9 @@ i8 udp_initialize()
  * |			| STRUCT PADDING	|	6 bytes	| 	54	| 	56	|
  * --------------------------------------------------------------
  */
-i8 udp_send_gps(gps_values_t data)
+i8 udp_send_gps(GPSValues_t data)
 {
-	err_t status = ERR_OK;
+	i8 status = ERR_OK;
 	gnss_packet packet = {
 		.prefix = "gnss,",
 		.lon = data.lon,
@@ -62,9 +62,9 @@ i8 udp_send_gps(gps_values_t data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
-	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
 	// Freeing the packet
-	status = pbuf_free(buffer);
+	status = (i8) pbuf_free(buffer);
 	return status;
 }
 
@@ -90,7 +90,7 @@ i8 udp_send_gps(gps_values_t data)
  */
 i8 udp_send_bmi(bmi085x data)
 {
-	err_t status = ERR_OK;
+	i8 status = ERR_OK;
 	imu_packet packet = {
 	        .prefix = "imu,",
 	        .avg_x = data.data.x_stat.avg,
@@ -110,16 +110,16 @@ i8 udp_send_bmi(bmi085x data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
-	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
 	// Freeing the packet
-	status = pbuf_free(buffer);
+	status = (i8) pbuf_free(buffer);
 	return status;
 }
 
 
 i8 udp_send_debug_bmi(bmi085x data)
 {
-	err_t status = ERR_OK;
+	i8 status = ERR_OK;
 	imu_debug_packet packet = {
 			.Ax = data.data.accel_poll_val.x,
 			.Ay = data.data.accel_poll_val.y,
@@ -135,16 +135,16 @@ i8 udp_send_debug_bmi(bmi085x data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
-	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
 	// Freeing the packet
-	status = pbuf_free(buffer);
+	status = (i8) pbuf_free(buffer);
 	return status;
 }
 
 
 i8 udp_send_proximity(proximity_switch_t data)
 {
-	err_t status = ERR_OK;
+	i8 status = ERR_OK;
 	proximity_packet_t packet = {
 			.prefix = "prox,",
 			.data = data,
@@ -153,15 +153,15 @@ i8 udp_send_proximity(proximity_switch_t data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
-	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
 	// Freeing the packet
-	status = pbuf_free(buffer);
+	status = (i8) pbuf_free(buffer);
 	return status;
 }
 
 i8 udp_send_packet(void* data, size_t size, char* prefix)
 {
-	err_t status = ERR_OK;
+	i8 status = ERR_OK;
 	udp_packet_t packet;
 	strcpy(packet.prefix, prefix);
 	memcpy(&packet.data , data, size);
@@ -169,15 +169,15 @@ i8 udp_send_packet(void* data, size_t size, char* prefix)
 	const u16 tx_buff = sizeof(packet);
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, tx_buff, PBUF_RAM);
 	buffer->payload = &packet;
-	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
 
-	status = pbuf_free(buffer);
+	status = (i8) pbuf_free(buffer);
 	return status;
 }
 
-i8 udp_send_altimeter(altimeter_data_t data)
+i8 udp_send_altimeter(AltimeterData_t data)
 {
-	err_t status = ERR_OK;
+	i8 status = ERR_OK;
 	altimeter_packet_t packet = {
 			.prefix = "alti,",
 			.distance = data.altimeter_avg,
@@ -188,9 +188,9 @@ i8 udp_send_altimeter(altimeter_data_t data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
-	status = udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
 	// Freeing the packet
-	status = pbuf_free(buffer);
+	status = (i8) pbuf_free(buffer);
 	return status;
 }
 

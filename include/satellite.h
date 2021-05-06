@@ -23,12 +23,12 @@
 #define UBLX
 
 /* Proximity switch */
-#define ENABLE_PROXIMITY_SWITCH
-#define PROXIMITY_IO35
+//#define ENABLE_PROXIMITY_SWITCH
+//#define PROXIMITY_IO35
 
 /* Altimeter */
-#define ENABLE_ALTIMETER
-#define ALTIMETER_SF30
+//#define ENABLE_ALTIMETER
+//#define ALTIMETER_SF30
 /**
  * ==========================================
  * Filter Defines
@@ -46,6 +46,11 @@
 #define COM_UDP_IP_4		(u8)	11
 #define COM_UDP_PORT_IN		(u16)	52256
 #define COM_UDP_PORT_OUT	(u16)	62510
+
+// HUB (CAN/SERIAL)
+#define CAN_ADDRESS_SATELLITE	0x20
+#define CAN_ADDRESS_MASTER		0x10
+#define CAN_ADDRESS_BROADCAST	0x00
 
 // in ms
 #define UDP_INTERVAL_PACKET			(u32)	1000 // 1 sec

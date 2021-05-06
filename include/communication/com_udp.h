@@ -76,8 +76,8 @@ typedef struct
 {
 	char prefix[8];
 	i32 distance;
-	i32 sum;
-	i32 counter;
+	u32 sum;
+	u32 counter;
 } altimeter_packet_t;
 
 typedef struct
@@ -93,10 +93,10 @@ typedef struct
 } udp_packet_t;
 
 i8 udp_initialize();
-i8 udp_send_gps(gps_values_t data);
+i8 udp_send_gps(GPSValues_t data);
 i8 udp_send_bmi(bmi085x data);
 i8 udp_send_debug_bmi(bmi085x data);
 i8 udp_send_proximity(proximity_switch_t data);
 i8 udp_send_packet(void* data, size_t size, char* prefix);
-i8 udp_send_altimeter(altimeter_data_t data);
+i8 udp_send_altimeter(AltimeterData_t data);
 #endif /* UDP_H_ */

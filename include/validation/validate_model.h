@@ -12,10 +12,10 @@
 
 typedef struct
 {
-	u8 dip_1;
-	u8 dip_2;
-	u8 dip_3;
-	u8 dip_4;
+	u32 dip_1;
+	u32 dip_2;
+	u32 dip_3;
+	u32 dip_4;
 } validate_dip_t;
 
 typedef struct
@@ -43,9 +43,9 @@ typedef struct
 {
 	validate_dip_t dip;
 	validate_dig_out_t dout;
+	validate_sout_t sout;
 	validate_a_in_t ain;
 	bool relay;
-	validate_sout_t sout;
 } validate_packet_t;
 
 

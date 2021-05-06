@@ -15,12 +15,17 @@ typedef struct
 {
 	u8 reg_addr;
 	u8 instr;
-} reg_operation_t;
+} RegOperation_t;
 
 typedef struct
 {
-	u8 pin;
 	XMC_GPIO_PORT_t* gpio;
-} port_t;
+	u8 pin;
+} Port_t;
 
+typedef struct
+{
+	u8 msb;
+	u8 lsb;
+} BitNumbering_t;
 #endif /* MODEL_H_ */

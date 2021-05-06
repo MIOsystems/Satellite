@@ -27,9 +27,9 @@ u32 bmi085a_poll_counter = 0;
 
 
 
-bmi085x_status_e bmi085a_init(bmi085x *bmi085)
+BMI085xStatus_e bmi085a_init(bmi085x *bmi085)
 {
-	bmi085x_status_e status = BMI085X_SUCCESS;
+	BMI085xStatus_e status = BMI085X_SUCCESS;
 	spi_flush(&BMI_SPI_MASTER_1, SPI_RX);
 
 	// Setting the accelerometer in SPI mode by setting
@@ -78,7 +78,7 @@ bmi085x_status_e bmi085a_init(bmi085x *bmi085)
 	return BMI085X_SUCCESS;
 }
 
-bmi085x_status_e bmi085a_poll(bmi085x *bmi085)
+BMI085xStatus_e bmi085a_poll(bmi085x *bmi085)
 {
 	u8 status = 0;
 	spi_select_chip(SPI_SLAVE_BMI085A_CS);
@@ -115,7 +115,7 @@ bmi085x_status_e bmi085a_poll(bmi085x *bmi085)
 	return status;
 }
 
-bmi085x_status_e bmi085a_read_reg(const u8 addr, u8 *data)
+BMI085xStatus_e bmi085a_read_reg(const u8 addr, u8 *data)
 {
 	u8 status = BMI085X_SUCCESS;
 	u8 tx_buff[3] = { addr | BMI085X_READMASK, 0x00, 0x00 };
@@ -136,7 +136,7 @@ bmi085x_status_e bmi085a_read_reg(const u8 addr, u8 *data)
 	return BMI085X_SUCCESS;
 }
 
-bmi085x_status_e bmi085a_write_reg(const u8 addr, const u8 data)
+BMI085xStatus_e bmi085a_write_reg(const u8 addr, const u8 data)
 {
 	// TODO check if this can this be void???
 	u8 status = BMI085X_SUCCESS;

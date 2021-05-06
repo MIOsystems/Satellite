@@ -25,7 +25,7 @@ typedef enum
 	UBX_FRAME_PAYLOAD,
 	UBX_FRAME_CK_A,
 	UBX_FRAME_CK_B
-} ubx_frame_e;
+} UbxFrame_e;
 
 typedef struct
 {
@@ -37,7 +37,7 @@ typedef struct
 	u8 ck_a;
 	u8 ck_b;
 	u8 payload[PAYLOAD_LENGTH];
-} ubx_frame_t;
+} UbxFrame_t;
 
 typedef struct
 {
@@ -54,7 +54,7 @@ typedef struct
 	u32 epoch;
 	u8 fix;
 	u8 num_sat;
-} gps_values_t;
+} GPSValues_t;
 
 void gnss_init();
 void gnss_poll(void);

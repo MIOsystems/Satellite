@@ -7,7 +7,7 @@
 typedef struct 
 {
 	f32 total;
-	f32 count;
+	u32 count;
 	f32 avg;
 	f32 min;
 	f32 max;

@@ -19,8 +19,8 @@ typedef struct
 	u16 altimeter_cur_val;
 	u32 altimeter_sum;
 	u16 altimeter_avg;
-} altimeter_data_t;
-void altimeter_init(altimeter_data_t* data);
-void altimeter_update(altimeter_data_t* data);
+} AltimeterData_t;
+void altimeter_init(AltimeterData_t* data);
+void altimeter_update(AltimeterData_t* data);
 
 #endif /* INCLUDE_SENSOR_ALTIMETER_ALTIMETER_H_ */

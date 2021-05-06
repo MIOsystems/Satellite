@@ -24,7 +24,7 @@ void statistic_calc_aggregate_val(stat_aggregate_f *data, f32 *new_val, u32 coun
 			data->min  =  *new_val;
 		}
 		// always add calculate the new average no matter if there is a new minimum or max
-		data->avg = ( data->total / data->count);
+		data->avg = (data->total / (f32) (data->count));
 	} 
 }
 

@@ -20,7 +20,7 @@
 
 u8 bmi085g_init(bmi085x *bmi085)
 {
-	bmi085x_status_e status = BMI085X_SUCCESS;
+	BMI085xStatus_e status = BMI085X_SUCCESS;
 
 	// Softresetting the gyroscope first
 	status = bmi085g_write_reg(BMI085G_SOFT_RST_ADDR, BMI085G_RESET_DATA);

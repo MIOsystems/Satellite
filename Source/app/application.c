@@ -8,11 +8,11 @@
 #include <include/app/application.h>
 
 
-u8 app_init()
+i8 app_init()
 {
 	application_clock.udp_counter = 0;
 	application_clock.udp_debug_counter = 0;
-	u8 status = DAVE_STATUS_SUCCESS;
+	i8 status = DAVE_STATUS_SUCCESS;
 
 
 	// Communication
@@ -21,11 +21,17 @@ u8 app_init()
 	{
 		return status;
 	}
+
+	status = com_hub_init();
+	if(status != 0)
+	{
+		return status;
+	}
 	// Sensors
 	// IMU
 #ifdef BMI085
 	DIGITAL_IO_SetOutputHigh(&CS_A);
-	status = imu_bmi085_init(&imu);
+	status = (i8) imu_bmi085_init(&imu);
 	if(status != BMI085X_SUCCESS)
 	{
 		return DAVE_STATUS_FAILURE;
@@ -76,8 +82,14 @@ void app_timer_update()
 			udp_send_gps(gps_packet);
 		}
 		udp_send_bmi(imu);
+#if ENABLE_ALTIMETER
 		udp_send_proximity(prox_switch);
+
+#endif
+
+#if ENABLE_PROXIMITY_SWITCH
 		udp_send_altimeter(altimeter_data);
+#endif
 		application_clock.udp_counter = 0;
 	}
 	application_clock.udp_debug_counter++;
@@ -86,5 +98,5 @@ void app_timer_update()
 
 void app_update()
 {
-
+	com_hub_recv_handle();
 }

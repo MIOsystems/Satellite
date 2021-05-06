@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="CAN_NODE" URI="http://resources/4.1.14/app/CAN_NODE/0" description="The CAN_NODE APP configures a node and MO registers &#xA;of MultiCAN module. &#xA;It provides run-time functions to change the node baud rate &#xA;and to enable/disable node and MO events." mode="NOTSHARABLE" version="4.1.14" minDaveVersion="4.0.0" instanceLabel="CAN_NODE_0" appLabel="">
+<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="CAN_NODE" URI="http://resources/4.1.14/app/CAN_NODE/0" description="The CAN_NODE APP configures a node and MO registers &#xA;of MultiCAN module. &#xA;It provides run-time functions to change the node baud rate &#xA;and to enable/disable node and MO events." mode="NOTSHARABLE" version="4.1.14" minDaveVersion="4.0.0" instanceLabel="CAN_NODE" appLabel="">
   <properties provideInit="true"/>
   <virtualSignals name="receive_pin" URI="http://resources/4.1.14/app/CAN_NODE/0/vs_can_rxd" hwSignal="rxd" hwResource="//@hwResources.2"/>
   <virtualSignals name="transmit_pin" URI="http://resources/4.1.14/app/CAN_NODE/0/vs_can_txd" hwSignal="txd" hwResource="//@hwResources.2"/>
   <virtualSignals name="receive_pad" URI="http://resources/4.1.14/app/CAN_NODE/0/vs_can_rxpin" hwSignal="pad" hwResource="//@hwResources.0"/>
   <virtualSignals name="transmit_pad" URI="http://resources/4.1.14/app/CAN_NODE/0/vs_can_txpin" hwSignal="pad" hwResource="//@hwResources.1"/>
-  <virtualSignals name="event_node_alert" URI="http://resources/4.1.14/app/CAN_NODE/0/vs_can_alinp" hwSignal="alinp" hwResource="//@hwResources.2" required="false" visible="true"/>
+  <virtualSignals name="event_node_alert" URI="http://resources/4.1.14/app/CAN_NODE/0/vs_can_alinp" hwSignal="alinp" hwResource="//@hwResources.2" visible="true"/>
   <virtualSignals name="event_node_lec_error" URI="http://resources/4.1.14/app/CAN_NODE/0/vs_can_lecinp" hwSignal="lecinp" hwResource="//@hwResources.2" required="false" visible="true"/>
   <virtualSignals name="event_node_transfer_ok" URI="http://resources/4.1.14/app/CAN_NODE/0/vs_can_trinp" hwSignal="trinp" hwResource="//@hwResources.2" required="false" visible="true"/>
   <virtualSignals name="event_node_frame_count" URI="http://resources/4.1.14/app/CAN_NODE/0/vs_can_cfcinp" hwSignal="cfcinp" hwResource="//@hwResources.2" required="false" visible="true"/>
@@ -121,10 +121,10 @@
   <hwResources name="MO_30" URI="http://resources/4.1.14/app/CAN_NODE/0/hwres_can_mobj30" resourceGroupUri="" required="false" mResGrpUri="peripheral/can/*/mo/*"/>
   <hwResources name="MO_31" URI="http://resources/4.1.14/app/CAN_NODE/0/hwres_can_mobj31" resourceGroupUri="" required="false" mResGrpUri="peripheral/can/*/mo/*"/>
   <hwResources name="MO_32" URI="http://resources/4.1.14/app/CAN_NODE/0/hwres_can_mobj32" resourceGroupUri="" required="false" mResGrpUri="peripheral/can/*/mo/*"/>
-  <hwResources name="CAN Receive Pin" URI="http://resources/4.1.14/app/CAN_NODE/0/__pin_hwres_port_pad_can_rx" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="CAN Receive Pin" URI="http://resources/4.1.14/app/CAN_NODE/0/__pin_hwres_port_pad_can_rx" resourceGroupUri="devicepackage/0/107" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.11"/>
   </hwResources>
-  <hwResources name="CAN Transmit Pin" URI="http://resources/4.1.14/app/CAN_NODE/0/__pin_hwres_port_pad_can_tx" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
+  <hwResources name="CAN Transmit Pin" URI="http://resources/4.1.14/app/CAN_NODE/0/__pin_hwres_port_pad_can_tx" resourceGroupUri="devicepackage/0/108" constraintType="GLOBAL_RESOURCE" mResGrpUri="devicepackage/0/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.10"/>
   </hwResources>
   <connections URI="http://resources/4.1.14/app/CAN_NODE/0/http://resources/4.1.14/app/CAN_NODE/0/vs_can_rxpin/http://resources/4.1.14/app/CAN_NODE/0/vs_can_rxd" systemDefined="true" sourceSignal="receive_pad" targetSignal="receive_pin" srcVirtualSignal="//@virtualSignals.2" targetVirtualSignal="//@virtualSignals.0"/>

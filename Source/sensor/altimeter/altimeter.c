@@ -12,14 +12,14 @@
 #include <include/sensor/altimeter/SF30/sf30.h>
 #endif
 
-void altimeter_init(altimeter_data_t* data)
+void altimeter_init(AltimeterData_t* data)
 {
 #ifdef ALTIMETER_SF30
 	sf30_init(data);
 #endif
 }
 
-void altimeter_update(altimeter_data_t* data)
+void altimeter_update(AltimeterData_t* data)
 {
 #ifdef ALTIMETER_SF30
 	sf30_update(data);

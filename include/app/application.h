@@ -9,11 +9,13 @@
 #define APPLICATION_H_
 
 #include <DAVE.h>
+#include <include/communication/com_hub.h>
 #include <include/util/types.h>
 #include <include/satellite.h>
 #include <include/sensor/imu/imu.h>
 #include <include/sensor/gps/gnss.h>
 #include <include/communication/com_udp.h>
+#include <include/communication/com_hub.h>
 
 #ifdef ENABLE_PROXIMITY_SWITCH
 	#include <include/sensor/proximity/proximity_switch.h>
@@ -29,13 +31,13 @@
 #endif
 
 #ifdef UBLX
-	ubx_frame_t gps_frame;
-	gps_values_t gps_packet;
+	UbxFrame_t gps_frame;
+	GPSValues_t gps_packet;
 #endif
 
 #ifdef ENABLE_ALTIMETER
 	#include <include/sensor/altimeter/altimeter.h>
-	altimeter_data_t altimeter_data;
+	AltimeterData_t altimeter_data;
 #endif
 
 
@@ -49,7 +51,7 @@ typedef struct
 app_clock application_clock;
 
 
-u8 app_init();
+i8 app_init();
 
 void app_timer_update();
 

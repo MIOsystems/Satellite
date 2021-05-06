@@ -13,8 +13,8 @@
 #include <include/util/types.h>
 #include <include/sensor/altimeter/altimeter.h>
 
-void sf30_init(altimeter_data_t* data);
-void sf30_update(altimeter_data_t* data);
+void sf30_init(AltimeterData_t* data);
+void sf30_update(AltimeterData_t* data);
 void sf30_rx_handle();
 
 #endif /* SF30_H_ */

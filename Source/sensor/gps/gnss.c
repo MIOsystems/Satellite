@@ -5,7 +5,7 @@
 
 void gnss_init()
 {
-	ubx_frame_t raw_data =
+	UbxFrame_t raw_data =
 	{
 		.class = 0,
 		.id = 0,
@@ -17,7 +17,7 @@ void gnss_init()
 		.payload = { 0 }
 	};
 
-	gps_values_t converted_values = {
+	GPSValues_t converted_values = {
 		.lon = 0,
 		.lat = 0,
 		.height_ellipsoid = 0,

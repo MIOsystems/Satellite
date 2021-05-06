@@ -11,7 +11,7 @@
 u8 rx_data[2];
 bool rx_ready;
 
-void sf30_init(altimeter_data_t* data)
+void sf30_init(AltimeterData_t* data)
 {
 	rx_data[0] = 0;
 	rx_data[1] = 0;
@@ -23,7 +23,7 @@ void sf30_init(altimeter_data_t* data)
 	data->altimeter_sum = 0;
 }
 
-void sf30_update(altimeter_data_t* data)
+void sf30_update(AltimeterData_t* data)
 {
 	if(rx_ready == true)
 	{

@@ -23,12 +23,13 @@
 	#include <include/app/application.h>
 	#include <include/filters/complimentary_filter.h>
 	#include <include/filters/MadgwickAHRS.h>
-#include <include/sensor/altimeter/SF30/sf30.h>
+	#include <include/sensor/altimeter/SF30/sf30.h>
 #endif
 
 void rs232_interrupt(void) {
 #ifndef RUN_HW_VALIDATION
 	gnss_poll();
+
 #else
 	validate_rs232_update();
 #endif
@@ -37,7 +38,12 @@ void rs232_interrupt(void) {
 void rs422_interrupt(void)
 {
 #ifndef RUN_HW_VALIDATION
-	sf30_rx_handle();
+	#ifdef ALTIMETER_SF30
+		//sf30_rx_handle();
+	#endif
+
+	com_hub_recv();
+
 #else
 	validate_rs422_update();
 #endif
@@ -46,6 +52,7 @@ void rs422_interrupt(void)
 void uart_interrupt(void)
 {
 #ifndef RUN_HW_VALIDATION
+
 
 #else
 	validate_uart_update();
@@ -60,6 +67,8 @@ void tick_timer_ISR(void)
 
 #endif
 }
+
+
 
 int main(void)
 {
@@ -83,7 +92,7 @@ int main(void)
 		}
 	}
 #ifndef RUN_HW_VALIDATION
-	u8 status_app = 0;
+	i8 status_app = 0;
 	status_app = app_init();
 	if(status_app != DAVE_STATUS_SUCCESS)
 	{
@@ -117,7 +126,6 @@ int main(void)
 		app_update();
 #endif
 
-		delay_ms(1);
 		sys_check_timeouts();
 	}
 }

@@ -25,8 +25,8 @@ u8 imu_bmi085_init(bmi085x* imu)
 u8 imu_poll(bmi085x* imu)
 {
 #ifdef BMI085
-	bmi085a_poll(imu);
-	bmi085g_poll(imu);
+	BMI085xStatus_e status = bmi085a_poll(imu);
+	status = bmi085g_poll(imu);
 
 	#ifdef COMP_FILTER
 		complimentary_process(	imu->data.accel_poll_val.x, imu->data.accel_poll_val.y, imu->data.accel_poll_val.z,
@@ -52,4 +52,5 @@ u8 imu_poll(bmi085x* imu)
 		imu.data.angle.z = y * RAD_TO_DEG_CONST;
 	#endif
 #endif
+	return status;
 }
