@@ -11,14 +11,17 @@
 #include <stdbool.h>
 
 #include <DAVE.h>
+#include <include/app/application.h>
 #include <include/util/types.h>
 #include <include/util/model.h>
 #include <include/util/error.h>
+#include <include/util/crc.h>
 #include <include/satellite.h>
 
-#define HUB_BUFFER_SIZE 	128
-#define CAM_FRAME_START1_OPCODE		0x40
+#define HUB_BUFFER_SIZE 			128
+#define CAN_FRAME_START1_OPCODE		0x40
 #define CAN_FRAME_START2_OPCODE		0x02
+#define CAN_REGUEST_FLAG			0x01
 
 typedef enum
 {
@@ -34,17 +37,23 @@ typedef enum
 	CAN_FRAME_CRC_LSB	= 9
 } CanFrameStates_e;
 
+typedef enum
+{
+	CAN_REQ_EXISTENCE = 0U,
+	CAN_REQ_MEASUREMENTS,
+	CAN_REQ_GNSS_DATA,
+	CAN_REQ_EVENTS,
+	CAN_REQ_STATUS
+} CANReqTypes_e;
+
 typedef struct
 {
-	u8 start1;
-	u8 start2;
-	u8 dest;
-	u8 src;
-	u8 flag;
-	u8 data[HUB_BUFFER_SIZE];
-	BitNumbering_t dlc;
-	BitNumbering_t crc;
-} ComHubPacket_t;
+	u16 altimeterVal;
+	u16 proximityDistance;
+} MeasurementsPayload_t;
+
+
+MeasurementsPayload_t measurementPayload;
 
 u8 com_hub_init();
 void com_hub_recv();
@@ -52,6 +61,8 @@ u8 com_hub_send(void* payload, u16 len);
 void com_hub_recv_handle();
 void com_hub_clear_buffer();
 void com_hub_reset();
+
+void com_hub_create_packet();
 
 
 #endif

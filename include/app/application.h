@@ -19,11 +19,12 @@
 
 #ifdef ENABLE_PROXIMITY_SWITCH
 	#include <include/sensor/proximity/proximity_switch.h>
-	proximity_switch_t prox_switch;
 	#ifdef IO35
 		#include <include/sensor/proximity/IO35/proximity_IO35.h>
 
 	#endif
+	proximity_switch_t prox_switch;
+
 #endif
 
 #ifdef BMI085

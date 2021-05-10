@@ -98,5 +98,5 @@ void app_timer_update()
 
 void app_update()
 {
-	com_hub_recv_handle();
+	com_hub_recv_handle(gps_packet);
 }
