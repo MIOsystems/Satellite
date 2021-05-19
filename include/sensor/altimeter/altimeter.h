@@ -13,11 +13,12 @@
 
 typedef struct
 {
+	u32 recv_counter;
+	u32 altimeter_sum;
 	u8 msb;
 	u8 lsb;
-	u32 recv_counter;
 	u16 altimeter_cur_val;
-	u32 altimeter_sum;
+
 	u16 altimeter_avg;
 } AltimeterData_t;
 void altimeter_init(AltimeterData_t* data);

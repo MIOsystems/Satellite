@@ -7,6 +7,8 @@
 
 #include <include/app/application.h>
 
+bool send_data = false;
+bool send_debug = false;
 
 i8 app_init()
 {
@@ -37,12 +39,12 @@ i8 app_init()
 		return DAVE_STATUS_FAILURE;
 	}
 #endif
-//
-//	//GPS Sensor, only creates the structure
-//#ifdef UBLX
-//	//gnss_init();
-//#endif
-//
+
+	//GPS Sensor, only creates the structure
+#ifdef UBLX
+	//gnss_init();
+#endif
+
 #ifdef ENABLE_PROXIMITY_SWITCH
 	proximity_init(&prox_switch);
 #endif
@@ -50,13 +52,42 @@ i8 app_init()
 #ifdef ENABLE_ALTIMETER
 	altimeter_init(&altimeter_data);
 #endif
+
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+	fftCreate(&fftHandler);
+#endif
 	return DAVE_STATUS_SUCCESS;
 
 }
 
 void app_timer_update()
 {
+	// udp cycle for every second send data
+#ifdef UDP_BMI_DEBUG_MSG
+	if(application_clock.udp_debug_counter == UDP_INTERVAL_DEBUG_PACKET)
+	{
+		send_debug = true;
+		application_clock.udp_debug_counter = 0;
+	}
+#endif
+	if(application_clock.udp_counter == UDP_INTERVAL_PACKET)
+	{
+		send_data = true;
+		application_clock.udp_counter = 0;
+	}
+	application_clock.udp_debug_counter++;
+	application_clock.udp_counter++;
+}
+
+void app_update()
+{
 	imu_poll(&imu);
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+//	//fftUpdate(&fftHandler, 	imu.data.accel_poll_val.x,
+//							imu.data.accel_poll_val.y,
+//							imu.data.accel_poll_val.z);
+
+#endif
 
 #ifdef ENABLE_PROXIMITY_SWITCH
 	proximity_update(&prox_switch);
@@ -66,16 +97,7 @@ void app_timer_update()
 #ifdef ENABLE_ALTIMETER
 	altimeter_update(&altimeter_data);
 #endif
-
-	// udp cycle for every second send data
-#ifdef UDP_BMI_DEBUG_MSG
-	if(application_clock.udp_debug_counter == UDP_INTERVAL_DEBUG_PACKET)
-	{
-		udp_send_debug_bmi(imu);
-		application_clock.udp_debug_counter = 0;
-	}
-#endif
-	if(application_clock.udp_counter == UDP_INTERVAL_PACKET)
+	if(send_data)
 	{
 		if(gps_rx_handler() == 0)
 		{
@@ -90,13 +112,17 @@ void app_timer_update()
 #if ENABLE_PROXIMITY_SWITCH
 		udp_send_altimeter(altimeter_data);
 #endif
-		application_clock.udp_counter = 0;
+		send_data = false;
 	}
-	application_clock.udp_debug_counter++;
-	application_clock.udp_counter++;
-}
 
-void app_update()
-{
-	com_hub_recv_handle(gps_packet);
+#ifdef UDP_BMI_DEBUG_MSG
+	if(send_debug)
+	{
+
+		udp_send_debug_bmi(imu);
+
+		udp_send_spectrum(fftHandler);
+		send_debug = false;
+	}
+#endif
 }

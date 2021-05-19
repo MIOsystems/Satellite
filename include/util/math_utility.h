@@ -11,8 +11,13 @@
 #include <include/util/types.h>
 #include <math.h>
 
+#include <complex.h>
+
 #define RAD_TO_DEG_CONST	(f32) (180 / M_PI)
 #define DEG_TO_RAD_CONST	(f32) 0.01745329251f
+
+typedef float complex cplxf;
+typedef double complex cplxd;
 
 typedef struct {
   float         q1,q2,q3,q4;

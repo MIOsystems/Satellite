@@ -9,7 +9,8 @@
 #define APPLICATION_H_
 
 #include <DAVE.h>
-#include <include/communication/com_hub.h>
+#include <stdbool.h>
+
 #include <include/util/types.h>
 #include <include/satellite.h>
 #include <include/sensor/imu/imu.h>
@@ -42,6 +43,10 @@
 #endif
 
 
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+#include <include/transformation/fft.h>
+	FFT_t fftHandler;
+#endif
 
 typedef struct
 {

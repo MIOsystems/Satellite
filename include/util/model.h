@@ -28,4 +28,6 @@ typedef struct
 	u8 msb;
 	u8 lsb;
 } BitNumbering_t;
+
+
 #endif /* MODEL_H_ */

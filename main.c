@@ -39,14 +39,21 @@ void rs422_interrupt(void)
 {
 #ifndef RUN_HW_VALIDATION
 	#ifdef ALTIMETER_SF30
-		//sf30_rx_handle();
+		sf30_rx_handle();
 	#endif
-
-	com_hub_recv();
-
 #else
 	validate_rs422_update();
 #endif
+}
+
+void can_uart_handler(void)
+{
+#ifndef RUN_HW_VALIDATION
+	com_hub_recv();
+#else
+
+#endif
+
 }
 
 void uart_interrupt(void)
@@ -81,7 +88,6 @@ int main(void)
 
 	DAVE_STATUS_t status;
 	status = DAVE_Init(); /* Initialization of DAVE APPs  */
-
 	if(status != DAVE_STATUS_SUCCESS)
 	{
 		/* Placeholder for error handler code. The while loop below can be replaced with an user error handler. */
@@ -110,14 +116,14 @@ int main(void)
 	validation_app_init();
 #endif
 
+	INTERRUPT_Enable(&POLL_TIMER_INTERRUPT);
 	TIMER_Start(&POLL_TIMER);
 	INTERRUPT_Enable(&RS232_INTERRUPT);
-	INTERRUPT_Enable(&RS422_INTERRUPT);
-	INTERRUPT_Enable(&UART_INTERRUPT);
-	INTERRUPT_Enable(&POLL_TIMER_INTERRUPT);
+//	INTERRUPT_Enable(&RS422_INTERRUPT);
+//	INTERRUPT_Enable(&UART_INTERRUPT);
 
+//	INTERRUPT_Enable(&HUB_UART_3_INTERRUPT);
 
-	/* Placeholder for user application code. The while loop below can be replaced with user application code. */
 	while (1U)
 	{
 #ifdef RUN_HW_VALIDATION

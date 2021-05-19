@@ -58,6 +58,7 @@ typedef struct
 
 void gnss_init();
 void gnss_poll(void);
+void gnss_poll_test(void);
 void gnss_frame_reset(void);
 void gnss_update_checksum(u8 data);
 void gnss_get_checksum(void);

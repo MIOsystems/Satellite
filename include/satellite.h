@@ -39,6 +39,13 @@
 #define COMP_FILTER
 //#define MADGWICK_FILTER
 
+/**
+ * ==========================================
+ * Transformations Defines
+ * ==========================================
+ */
+#define ENABLE_SPECTRUM_ANALYSIS
+
 // Communication
 #define COM_UDP_IP_1		(u8)	192
 #define COM_UDP_IP_2		(u8)	168
@@ -54,6 +61,6 @@
 
 // in ms
 #define UDP_INTERVAL_PACKET			(u32)	1000 // 1 sec
-#define UDP_INTERVAL_DEBUG_PACKET	(u32)	100 // 1 sec
+#define UDP_INTERVAL_DEBUG_PACKET	(u32)	100 // 0.1 sec
 //#define UDP_BMI_DEBUG_MSG
 #endif

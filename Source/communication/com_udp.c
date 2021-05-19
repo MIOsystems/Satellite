@@ -194,3 +194,22 @@ i8 udp_send_altimeter(AltimeterData_t data)
 	return status;
 }
 
+i8 udp_send_spectrum(FFT_t fft)
+{
+	i8 status = ERR_OK;
+
+	fft_packet_t packet;
+
+
+	strcpy(packet.prefix, "FFT,");
+	memcpy(packet.data, fft.out, sizeof(packet.data));
+	u16 size = sizeof(packet);
+	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
+	buffer->payload = &packet;
+	// Sending the packet
+	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	// Freeing the packet
+	status = (i8) pbuf_free(buffer);
+	return status;
+}
+

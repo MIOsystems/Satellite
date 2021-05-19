@@ -30,9 +30,7 @@ CRC_t crc;
 u8 com_hub_init()
 {
 
-	DIGITAL_IO_SetOutputHigh(&DE_422);
-
-	DIGITAL_IO_SetOutputLow(&RE_422);
+	DIGITAL_IO_SetOutputHigh(&CAN_MOD_SWITCH);
 
 	com_hub_clear_buffer();
 	recv_new_data = false;
@@ -48,7 +46,7 @@ u8 com_hub_init()
 void com_hub_recv()
 {
 	u8 rx_data = 0;
-	UART_STATUS_t status = UART_Receive(&RS422_UART_0, &rx_data , 1);
+	UART_STATUS_t status = UART_Receive(&HUB_UART_3, &rx_data , 1);
 
 	if(status != UART_STATUS_SUCCESS)
 	{
@@ -238,7 +236,7 @@ u8 com_hub_send(void* payload, u16 len)
 
 
 
-	status = UART_Transmit(&RS422_UART_0, tx_buff, sizeof(tx_buff));
+	status = UART_Transmit(&HUB_UART_3, tx_buff, sizeof(tx_buff));
 
 
 	return status;
