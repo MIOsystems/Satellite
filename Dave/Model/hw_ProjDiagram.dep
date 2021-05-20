@@ -3859,7 +3859,7 @@
     <children xsi:type="pi:ContainerShape" visible="true">
       <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="121" height="20" x="20" y="20"/>
       <children visible="true">
-        <graphicsAlgorithm xsi:type="al:Text" lineStyle="UNSPECIFIED" width="119" height="20" x="2" style="//@styles.0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="LED_2">
+        <graphicsAlgorithm xsi:type="al:Text" lineStyle="UNSPECIFIED" width="119" height="20" x="2" style="//@styles.0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="LED_RED">
           <properties key="AppInstanceLabel" value="DIGITAL_IO_1"/>
         </graphicsAlgorithm>
       </children>
@@ -3914,7 +3914,7 @@
     <children xsi:type="pi:ContainerShape" visible="true">
       <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="121" height="20" x="20" y="20"/>
       <children visible="true">
-        <graphicsAlgorithm xsi:type="al:Text" lineStyle="UNSPECIFIED" width="119" height="20" x="2" style="//@styles.0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="LED_3">
+        <graphicsAlgorithm xsi:type="al:Text" lineStyle="UNSPECIFIED" width="119" height="20" x="2" style="//@styles.0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="LED_GREEN">
           <properties key="AppInstanceLabel" value="DIGITAL_IO_2"/>
         </graphicsAlgorithm>
       </children>
@@ -4396,7 +4396,7 @@
     <children xsi:type="pi:ContainerShape" visible="true">
       <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="121" height="20" x="20" y="20"/>
       <children visible="true">
-        <graphicsAlgorithm xsi:type="al:Text" lineStyle="UNSPECIFIED" width="119" height="20" x="2" style="//@styles.0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="LED_0">
+        <graphicsAlgorithm xsi:type="al:Text" lineStyle="UNSPECIFIED" width="119" height="20" x="2" style="//@styles.0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="LED_YELLOW">
           <properties key="AppInstanceLabel" value="DIGITAL_IO_0"/>
         </graphicsAlgorithm>
       </children>
@@ -4451,7 +4451,7 @@
     <children xsi:type="pi:ContainerShape" visible="true">
       <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="121" height="20" x="20" y="20"/>
       <children visible="true">
-        <graphicsAlgorithm xsi:type="al:Text" lineStyle="UNSPECIFIED" width="119" height="20" x="2" style="//@styles.0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="LED_1">
+        <graphicsAlgorithm xsi:type="al:Text" lineStyle="UNSPECIFIED" width="119" height="20" x="2" style="//@styles.0/@styles.1" horizontalAlignment="ALIGNMENT_CENTER" value="LED_BLUE">
           <properties key="AppInstanceLabel" value="DIGITAL_IO_1"/>
         </graphicsAlgorithm>
       </children>

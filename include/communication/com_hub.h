@@ -18,10 +18,11 @@
 #include <include/util/crc.h>
 #include <include/satellite.h>
 
-#define HUB_BUFFER_SIZE 			128
+#define HUB_PAYLOAD_BUFFER_SIZE		128
 #define CAN_FRAME_START1_OPCODE		0x40
 #define CAN_FRAME_START2_OPCODE		0x02
 #define CAN_REGUEST_FLAG			0x01
+
 
 typedef enum
 {
@@ -46,23 +47,36 @@ typedef enum
 	CAN_REQ_STATUS
 } CANReqTypes_e;
 
+
+typedef enum
+{
+	RM_SENSOR_INDUCTOR = 0U,
+	RM_SENSOR_ALTIMETER,
+} RequestMeasurementSensorID_e;
+
+typedef enum
+{
+	FLAG_REQUEST = 0U,
+	FLAG_COMMAND,
+} FlagOptions_e;
+
 typedef struct
 {
-	u16 altimeterVal;
-	u16 proximityDistance;
-} MeasurementsPayload_t;
+	RequestMeasurementSensorID_e id;
+	u8 size;
+	u16 value;
+} MeasurementPayloadPacket_t;
 
 
-MeasurementsPayload_t measurementPayload;
 
 u8 com_hub_init();
 void com_hub_recv();
-u8 com_hub_send(void* payload, u16 len);
+u8 com_hub_send(void);
 void com_hub_recv_handle();
 void com_hub_clear_buffer();
 void com_hub_reset();
 
-void com_hub_create_packet();
+void com_hub_create_measure_packet();
 
 
 #endif

@@ -101,6 +101,7 @@ void app_update()
 	{
 		if(gps_rx_handler() == 0)
 		{
+			DIGITAL_IO_SetOutputLow(&LED_BLUE);
 			udp_send_gps(gps_packet);
 		}
 		udp_send_bmi(imu);
@@ -118,11 +119,13 @@ void app_update()
 #ifdef UDP_BMI_DEBUG_MSG
 	if(send_debug)
 	{
-
+		DIGITAL_IO_SetOutputLow(&LED_BLUE);
 		udp_send_debug_bmi(imu);
 
 		udp_send_spectrum(fftHandler);
 		send_debug = false;
 	}
 #endif
+
+	com_hub_recv_handle();
 }

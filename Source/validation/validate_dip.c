@@ -30,34 +30,34 @@ void validate_dip_led_cycle(const u8 dip_nr, const u32 val)
 		case 0:
 			if(val == 1)
 			{
-				DIGITAL_IO_SetOutputHigh(&LED_0);
+				DIGITAL_IO_SetOutputHigh(&LED_YELLOW);
 				break;
 			}
-			DIGITAL_IO_SetOutputLow(&LED_0);
+			DIGITAL_IO_SetOutputLow(&LED_YELLOW);
 			break;
 		case 1:
 			if(val == 1)
 			{
-				DIGITAL_IO_SetOutputHigh(&LED_1);
+				DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 				break;
 			}
-			DIGITAL_IO_SetOutputLow(&LED_1);
+			DIGITAL_IO_SetOutputLow(&LED_BLUE);
 			break;
 		case 2:
 			if(val == 1)
 			{
-				DIGITAL_IO_SetOutputHigh(&LED_2);
+				DIGITAL_IO_SetOutputHigh(&LED_RED);
 				break;
 			}
-			DIGITAL_IO_SetOutputLow(&LED_2);
+			DIGITAL_IO_SetOutputLow(&LED_RED);
 			break;
 		case 3:
 			if(val == 1)
 			{
-				DIGITAL_IO_SetOutputHigh(&LED_3);
+				DIGITAL_IO_SetOutputHigh(&LED_GREEN);
 				break;
 			}
-			DIGITAL_IO_SetOutputLow(&LED_3);
+			DIGITAL_IO_SetOutputLow(&LED_GREEN);
 			break;
 	}
 }

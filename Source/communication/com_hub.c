@@ -11,12 +11,13 @@
 #include <include/satellite.h>
 #include <include/hardware/digital_output.h>
 
+MeasurementPayloadPacket_t measurementsPayloadPackets[2];
 
 
 // Stores whole message for crc
-u8 rx_buff[HUB_BUFFER_SIZE];
-u8 tx_buff[HUB_BUFFER_SIZE];
-volatile u8 recv_payload_buff[HUB_BUFFER_SIZE];
+u8 rx_buff[HUB_PAYLOAD_BUFFER_SIZE];
+u8 tx_buff[HUB_PAYLOAD_BUFFER_SIZE];
+volatile u8 recv_payload_buff[HUB_PAYLOAD_BUFFER_SIZE];
 volatile bool recv_new_data;
 volatile u32 frame_counter;
 volatile u16 recv_dlc;
@@ -30,8 +31,8 @@ CRC_t crc;
 u8 com_hub_init()
 {
 
+	// Setting this high to use the UART
 	DIGITAL_IO_SetOutputHigh(&CAN_MOD_SWITCH);
-
 	com_hub_clear_buffer();
 	recv_new_data = false;
 	frame_counter = CAN_FRAME_START0;
@@ -50,11 +51,11 @@ void com_hub_recv()
 
 	if(status != UART_STATUS_SUCCESS)
 	{
-		DIGITAL_IO_SetOutputHigh(&LED_2);
+		DIGITAL_IO_SetOutputHigh(&LED_RED);
 		return;
 	}
 
-	DIGITAL_IO_SetOutputLow(&LED_2);
+	DIGITAL_IO_SetOutputLow(&LED_RED);
 
 	switch(frame_counter)
 	{
@@ -121,7 +122,7 @@ void com_hub_recv()
 		case CAN_FRAME_PAYLOAD:
 			if(recv_new_data)
 			{
-				DIGITAL_IO_SetOutputHigh(&LED_0);
+				DIGITAL_IO_SetOutputHigh(&LED_RED);
 				com_hub_reset();
 
 				break;
@@ -134,9 +135,9 @@ void com_hub_recv()
 				frame_counter = CAN_FRAME_CRC_MSB;
 				break;
 			}
-			if(recv_len == HUB_BUFFER_SIZE)
+			if(recv_len == HUB_PAYLOAD_BUFFER_SIZE)
 			{
-				DIGITAL_IO_SetOutputHigh(&LED_1);
+				DIGITAL_IO_SetOutputHigh(&LED_RED);
 				com_hub_reset();
 				break;
 			}
@@ -156,7 +157,7 @@ void com_hub_recv()
 			u16 calc_crc = crc.checksum;
 			if(calc_crc  != recv_crc)
 			{
-				DIGITAL_IO_SetOutputHigh(&LED_2);
+				DIGITAL_IO_SetOutputHigh(&LED_RED);
 				com_hub_reset();
 			}
 			recv_new_data = true;
@@ -183,16 +184,16 @@ void com_hub_recv_handle()
 				switch(req)
 				{
 					case CAN_REQ_EXISTENCE:
-						com_hub_send("!", 1);
+						//com_hub_send("!", 1);
 						com_hub_reset();
 						break;
 					case CAN_REQ_MEASUREMENTS:
-						com_hub_create_packet();
-						com_hub_send(&measurementPayload, sizeof(measurementPayload));
+						com_hub_create_measure_packet();
+						com_hub_send();
 						com_hub_reset();
 						break;
 					case CAN_REQ_GNSS_DATA:
-						com_hub_send(&gps_packet, sizeof(gps_packet));
+						//com_hub_send(&gps_packet, sizeof(gps_packet));
 						com_hub_reset();
 						break;
 					case CAN_REQ_EVENTS:
@@ -211,40 +212,16 @@ void com_hub_recv_handle()
 	}
 }
 
-u8 com_hub_send(void* payload, u16 len)
+u8 com_hub_send(void)
 {
-
-	if(len <= 0)
-	{
-		return COM_HUB_STATUS_INVALID_PAYLOAD;
-	}
 	UART_STATUS_t status = UART_STATUS_SUCCESS;
-	tx_buff[0] = CAN_FRAME_START1_OPCODE;
-	tx_buff[1] = CAN_FRAME_START2_OPCODE;
-	tx_buff[2] = CAN_ADDRESS_SATELLITE;
-	tx_buff[3] = CAN_ADDRESS_MASTER;
-	tx_buff[4] = CAN_REGUEST_FLAG;
-	tx_buff[5] = len >> 8;
-	tx_buff[6] = len;
-
-	memcpy(&tx_buff[7], payload, len);
-
-	crc16_get(&crc, tx_buff, len + 7);
-	u16 crc_result = crc.checksum;
-	tx_buff[7 + len] = crc_result >> 8;
-	tx_buff[7 + (len + 1)] = crc_result;
-
-
-
 	status = UART_Transmit(&HUB_UART_3, tx_buff, sizeof(tx_buff));
-
-
 	return status;
 }
 
 void com_hub_clear_buffer()
 {
-	for(size_t i = 0; i < HUB_BUFFER_SIZE; i++)
+	for(size_t i = 0; i < HUB_PAYLOAD_BUFFER_SIZE; i++)
 	{
 		rx_buff[i] = 0;
 		tx_buff[i] = 0;
@@ -262,17 +239,42 @@ void com_hub_reset()
 	crc16_init(&crc, 0x1d0f, 0x1021);
 }
 
-void com_hub_create_packet()
+void com_hub_create_measure_packet()
 {
-#ifdef ENABLE_ALTIMETER
-	measurementPayload.altimeterVal = altimeter_data.altimeter_cur_val;
-#else
-	measurementPayload.altimeterVal = 0;
-#endif
+	tx_buff[CAN_FRAME_START0] = CAN_FRAME_START1_OPCODE;
+	tx_buff[CAN_FRAME_START1] = CAN_FRAME_START2_OPCODE;
+	tx_buff[CAN_FRAME_DEST] = CAN_ADDRESS_MASTER;
+	tx_buff[CAN_FRAME_SRC] = CAN_ADDRESS_SATELLITE;
+	tx_buff[CAN_FRAME_FLAGS] = FLAG_COMMAND;
 
+
+#ifdef ENABLE_ALTIMETER
+	canMeasurementsMessage.altimeterVal = altimeter_data.altimeter_cur_val;
+#else
+	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].id = RM_SENSOR_INDUCTOR;
+	const u16 val = 4095;
+	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].size = sizeof(val);
+	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].value = val;
+#endif
 #ifdef ENABLE_PROXIMITY_SWITCH
 	measurementPayload.proximityDistance = prox_switch.distance;
 #else
-	measurementPayload.proximityDistance = 0;
+	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].id = RM_SENSOR_ALTIMETER;
+	const u16 altimeterVal = 975;
+	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].size = sizeof(altimeterVal);
+	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].value = altimeterVal;
 #endif
+
+	const u32 size = sizeof(measurementsPayloadPackets);
+	tx_buff[CAN_FRAME_DLC_MSB] = size >> 8;
+	tx_buff[CAN_FRAME_DLC_LSB] = size;
+
+	// Adding the packets
+	const u16 index = CAN_FRAME_PAYLOAD + sizeof(measurementsPayloadPackets[RM_SENSOR_ALTIMETER]);
+	memcpy(&tx_buff[CAN_FRAME_PAYLOAD], &measurementsPayloadPackets[RM_SENSOR_INDUCTOR], sizeof(measurementsPayloadPackets[RM_SENSOR_INDUCTOR]));
+	memcpy(&tx_buff[index], &measurementsPayloadPackets[RM_SENSOR_ALTIMETER], sizeof(measurementsPayloadPackets[RM_SENSOR_INDUCTOR]));
+	crc16_get(&crc, tx_buff, size);
+	u16 crc_result = crc.checksum;
+	tx_buff[index + CAN_FRAME_PAYLOAD] = crc_result >> 8;
+	tx_buff[index + CAN_FRAME_CRC_MSB] = crc_result;
 }

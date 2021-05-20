@@ -51,16 +51,12 @@ void can_uart_handler(void)
 #ifndef RUN_HW_VALIDATION
 	com_hub_recv();
 #else
-
 #endif
-
 }
 
 void uart_interrupt(void)
 {
 #ifndef RUN_HW_VALIDATION
-
-
 #else
 	validate_uart_update();
 #endif
@@ -74,7 +70,6 @@ void tick_timer_ISR(void)
 
 #endif
 }
-
 
 
 int main(void)
@@ -97,6 +92,7 @@ int main(void)
 		{
 		}
 	}
+
 #ifndef RUN_HW_VALIDATION
 	i8 status_app = 0;
 	status_app = app_init();
@@ -104,10 +100,7 @@ int main(void)
 	{
 		while(1)
 		{
-			DIGITAL_IO_ToggleOutput(&LED_0);
-			DIGITAL_IO_ToggleOutput(&LED_1);
-			DIGITAL_IO_ToggleOutput(&LED_2);
-			DIGITAL_IO_ToggleOutput(&LED_3);
+			DIGITAL_IO_ToggleOutput(&LED_RED);
 			delay_ms(500);
 		}
 	}
@@ -122,7 +115,7 @@ int main(void)
 //	INTERRUPT_Enable(&RS422_INTERRUPT);
 //	INTERRUPT_Enable(&UART_INTERRUPT);
 
-//	INTERRUPT_Enable(&HUB_UART_3_INTERRUPT);
+	INTERRUPT_Enable(&HUB_UART_3_INTERRUPT);
 
 	while (1U)
 	{
