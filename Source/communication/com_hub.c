@@ -28,12 +28,12 @@ volatile u8 recv_src;
 
 CRC_t crc;
 
-u8 com_hub_init()
+u8 comHubInit()
 {
 
 	// Setting this high to use the UART
 	DIGITAL_IO_SetOutputHigh(&CAN_MOD_SWITCH);
-	com_hub_clear_buffer();
+	comHubClearBuffer();
 	recv_new_data = false;
 	frame_counter = CAN_FRAME_START0;
 	recv_dlc = 0;
@@ -44,7 +44,7 @@ u8 com_hub_init()
 }
 
 
-void com_hub_recv()
+void comHubRecv()
 {
 	u8 rx_data = 0;
 	UART_STATUS_t status = UART_Receive(&HUB_UART_3, &rx_data , 1);
@@ -70,7 +70,7 @@ void com_hub_recv()
 				frame_counter = CAN_FRAME_START1;
 				break;
 			}
-			com_hub_reset();
+			comHubReset();
 			break;
 
 		case CAN_FRAME_START1:
@@ -80,7 +80,7 @@ void com_hub_recv()
 				frame_counter = CAN_FRAME_DEST;
 				break;
 			}
-			com_hub_reset();
+			comHubReset();
 			break;
 		case CAN_FRAME_DEST:
 			if(rx_data == CAN_ADDRESS_SATELLITE || rx_data == CAN_ADDRESS_BROADCAST)
@@ -90,7 +90,7 @@ void com_hub_recv()
 
 				break;
 			}
-			com_hub_reset();
+			comHubReset();
 			break;
 		case CAN_FRAME_SRC:
 			recv_src = rx_data;
@@ -103,7 +103,7 @@ void com_hub_recv()
 			rx_buff[frame_counter] = rx_data;
 			if(rx_data & 0xf0) // if true bad frame
 			{
-				com_hub_reset();
+				comHubReset();
 				break;
 			}
 			frame_counter = CAN_FRAME_DLC_MSB;
@@ -123,7 +123,7 @@ void com_hub_recv()
 			if(recv_new_data)
 			{
 				DIGITAL_IO_SetOutputHigh(&LED_RED);
-				com_hub_reset();
+				comHubReset();
 
 				break;
 			}
@@ -138,7 +138,7 @@ void com_hub_recv()
 			if(recv_len == HUB_PAYLOAD_BUFFER_SIZE)
 			{
 				DIGITAL_IO_SetOutputHigh(&LED_RED);
-				com_hub_reset();
+				comHubReset();
 				break;
 			}
 			break;
@@ -158,7 +158,7 @@ void com_hub_recv()
 			if(calc_crc  != recv_crc)
 			{
 				DIGITAL_IO_SetOutputHigh(&LED_RED);
-				com_hub_reset();
+				comHubReset();
 			}
 			recv_new_data = true;
 			frame_counter = 0;
@@ -166,60 +166,72 @@ void com_hub_recv()
 	}
 }
 
-void com_hub_recv_handle()
+void comHubRecvHandle()
 {
 	if(recv_new_data)
 	{
 		// Command
 		if(!recv_flags)
 		{
-
+			const u8 req = recv_payload_buff[0];
+			comHubCreateRespondCommandoPacket();
+			switch(req)
+			{
+				case 0:
+					comHubCreateRespondCommandoPacket();
+					comHubSend();
+					comHubReset();
+					break;
+				default:
+					break;
+			}
 		}
 		else
 		{
 			if(recv_len == 1)
 			{
 				const u8 req = recv_payload_buff[0];
-				ComHubStatus_e status = COM_HUB_STATUS_SUCCESS;
 				switch(req)
 				{
 					case CAN_REQ_EXISTENCE:
-						//com_hub_send("!", 1);
-						com_hub_reset();
+						comHubCreateExistencePacket();
+						comHubSend();
+						comHubReset();
 						break;
 					case CAN_REQ_MEASUREMENTS:
-						com_hub_create_measure_packet();
-						com_hub_send();
-						com_hub_reset();
+						comHubCreateMeasurePacket();
+						comHubSend();
+						comHubReset();
 						break;
 					case CAN_REQ_GNSS_DATA:
-						//com_hub_send(&gps_packet, sizeof(gps_packet));
-						com_hub_reset();
+						comHubCreateGPSPacket();
+						comHubSend();
+						comHubReset();
 						break;
 					case CAN_REQ_EVENTS:
 
-						com_hub_reset();
+						comHubReset();
 						break;
 					case CAN_REQ_STATUS:
-						com_hub_reset();
+						comHubReset();
 						break;
 				}
 
 			}
 		}
-		com_hub_reset();
-		com_hub_clear_buffer();
+		comHubReset();
+		comHubClearBuffer();
 	}
 }
 
-u8 com_hub_send(void)
+u8 comHubSend(void)
 {
 	UART_STATUS_t status = UART_STATUS_SUCCESS;
 	status = UART_Transmit(&HUB_UART_3, tx_buff, sizeof(tx_buff));
 	return status;
 }
 
-void com_hub_clear_buffer()
+void comHubClearBuffer()
 {
 	for(size_t i = 0; i < HUB_PAYLOAD_BUFFER_SIZE; i++)
 	{
@@ -229,7 +241,7 @@ void com_hub_clear_buffer()
 	}
 }
 
-void com_hub_reset()
+void comHubReset()
 {
 	frame_counter = CAN_FRAME_START0;
 	recv_dlc = 0;
@@ -239,13 +251,14 @@ void com_hub_reset()
 	crc16_init(&crc, 0x1d0f, 0x1021);
 }
 
-void com_hub_create_measure_packet()
+void comHubCreateMeasurePacket()
 {
+
 	tx_buff[CAN_FRAME_START0] = CAN_FRAME_START1_OPCODE;
 	tx_buff[CAN_FRAME_START1] = CAN_FRAME_START2_OPCODE;
 	tx_buff[CAN_FRAME_DEST] = CAN_ADDRESS_MASTER;
 	tx_buff[CAN_FRAME_SRC] = CAN_ADDRESS_SATELLITE;
-	tx_buff[CAN_FRAME_FLAGS] = FLAG_COMMAND;
+	tx_buff[CAN_FRAME_FLAGS] = FLAG_REQUEST;
 
 
 #ifdef ENABLE_ALTIMETER
@@ -273,8 +286,62 @@ void com_hub_create_measure_packet()
 	const u16 index = CAN_FRAME_PAYLOAD + sizeof(measurementsPayloadPackets[RM_SENSOR_ALTIMETER]);
 	memcpy(&tx_buff[CAN_FRAME_PAYLOAD], &measurementsPayloadPackets[RM_SENSOR_INDUCTOR], sizeof(measurementsPayloadPackets[RM_SENSOR_INDUCTOR]));
 	memcpy(&tx_buff[index], &measurementsPayloadPackets[RM_SENSOR_ALTIMETER], sizeof(measurementsPayloadPackets[RM_SENSOR_INDUCTOR]));
-	crc16_get(&crc, tx_buff, size);
+	crc16_get(&crc, tx_buff, 9 + size);
 	u16 crc_result = crc.checksum;
-	tx_buff[index + CAN_FRAME_PAYLOAD] = crc_result >> 8;
-	tx_buff[index + CAN_FRAME_CRC_MSB] = crc_result;
+	tx_buff[index] = crc_result >> 8;
+	tx_buff[index + 1] = crc_result;
+}
+
+void comHubCreateExistencePacket()
+{
+	tx_buff[CAN_FRAME_START0] = CAN_FRAME_START1_OPCODE;
+	tx_buff[CAN_FRAME_START1] = CAN_FRAME_START2_OPCODE;
+	tx_buff[CAN_FRAME_DEST] = CAN_ADDRESS_MASTER;
+	tx_buff[CAN_FRAME_SRC] = CAN_ADDRESS_SATELLITE;
+	tx_buff[CAN_FRAME_FLAGS] = FLAG_REQUEST;
+
+	tx_buff[CAN_FRAME_PAYLOAD] = '!';
+	const size_t size = sizeof(char);
+	tx_buff[CAN_FRAME_DLC_MSB] = size >> 8;
+	tx_buff[CAN_FRAME_DLC_LSB] = size;
+	crc16_get(&crc, tx_buff, 9 + size);
+	u16 crc_result = crc.checksum;
+	tx_buff[CAN_FRAME_PAYLOAD + 1] = crc_result >> 8;
+	tx_buff[CAN_FRAME_PAYLOAD + 2] = crc_result;
+}
+
+void comHubCreateGPSPacket()
+{
+	tx_buff[CAN_FRAME_START0] = CAN_FRAME_START1_OPCODE;
+	tx_buff[CAN_FRAME_START1] = CAN_FRAME_START2_OPCODE;
+	tx_buff[CAN_FRAME_DEST] = CAN_ADDRESS_MASTER;
+	tx_buff[CAN_FRAME_SRC] = CAN_ADDRESS_SATELLITE;
+	tx_buff[CAN_FRAME_FLAGS] = FLAG_COMMAND;
+
+	memcpy(&tx_buff[CAN_FRAME_PAYLOAD], &gpsPacket, sizeof(gpsPacket));
+	const size_t size = sizeof(gpsPacket);
+	tx_buff[CAN_FRAME_DLC_MSB] = size >> 8;
+	tx_buff[CAN_FRAME_DLC_LSB] = size;
+	crc16_get(&crc, tx_buff, 9 + size);
+	u16 crc_result = crc.checksum;
+	tx_buff[CAN_FRAME_PAYLOAD + size + 1] = crc_result >> 8;
+	tx_buff[CAN_FRAME_PAYLOAD + size + 2] = crc_result;
+}
+
+void comHubCreateRespondCommandoPacket()
+{
+	tx_buff[CAN_FRAME_START0] = CAN_FRAME_START1_OPCODE;
+	tx_buff[CAN_FRAME_START1] = CAN_FRAME_START2_OPCODE;
+	tx_buff[CAN_FRAME_DEST] = CAN_ADDRESS_MASTER;
+	tx_buff[CAN_FRAME_SRC] = CAN_ADDRESS_SATELLITE;
+	tx_buff[CAN_FRAME_FLAGS] = FLAG_COMMAND;
+
+	const size_t size = sizeof(u8);
+	tx_buff[CAN_FRAME_DLC_MSB] = size >> 8;
+	tx_buff[CAN_FRAME_DLC_LSB] = size;
+	tx_buff[CAN_FRAME_PAYLOAD] = 0; // TODO CHANGE THIS
+	crc16_get(&crc, tx_buff, 9 + size);
+	u16 crc_result = crc.checksum;
+	tx_buff[CAN_FRAME_PAYLOAD + size + 1] = crc_result >> 8;
+	tx_buff[CAN_FRAME_PAYLOAD + size + 2] = crc_result;
 }

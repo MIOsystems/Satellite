@@ -49,7 +49,7 @@ void rs422_interrupt(void)
 void can_uart_handler(void)
 {
 #ifndef RUN_HW_VALIDATION
-	com_hub_recv();
+	comHubRecv();
 #else
 #endif
 }
@@ -65,7 +65,7 @@ void uart_interrupt(void)
 void tick_timer_ISR(void)
 {
 #ifndef RUN_HW_VALIDATION
-	app_timer_update();
+	appTimerUpdate();
 #else
 
 #endif
@@ -95,7 +95,7 @@ int main(void)
 
 #ifndef RUN_HW_VALIDATION
 	i8 status_app = 0;
-	status_app = app_init();
+	status_app = appInit();
 	if(status_app != DAVE_STATUS_SUCCESS)
 	{
 		while(1)
@@ -122,7 +122,7 @@ int main(void)
 #ifdef RUN_HW_VALIDATION
 		validation_app_run();
 #else
-		app_update();
+		appUpdate();
 #endif
 
 		sys_check_timeouts();

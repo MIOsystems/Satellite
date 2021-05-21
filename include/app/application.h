@@ -33,8 +33,8 @@
 #endif
 
 #ifdef UBLX
-	UbxFrame_t gps_frame;
-	GPSValues_t gps_packet;
+	UbxFrame_t gpsFrame;
+	GPSValues_t gpsPacket;
 #endif
 
 #ifdef ENABLE_ALTIMETER
@@ -52,15 +52,15 @@ typedef struct
 {
 	volatile u32 udp_debug_counter;
 	volatile u32 udp_counter;
-} app_clock;
+} appClock_t;
 
-app_clock application_clock;
+appClock_t applicationClock;
 
 
-i8 app_init();
+i8 appInit();
 
-void app_timer_update();
+void appTimerUpdate();
 
-void app_update();
+void appUpdate();
 
 #endif /* APPLICATION_H_ */

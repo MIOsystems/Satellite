@@ -7,13 +7,14 @@
 
 #include <include/app/application.h>
 
-bool send_data = false;
-bool send_debug = false;
+bool sendData = false;
+bool pollImu = false;
+bool sendDebug = false;
 
-i8 app_init()
+i8 appInit()
 {
-	application_clock.udp_counter = 0;
-	application_clock.udp_debug_counter = 0;
+	applicationClock.udp_counter = 0;
+	applicationClock.udp_debug_counter = 0;
 	i8 status = DAVE_STATUS_SUCCESS;
 
 
@@ -24,7 +25,7 @@ i8 app_init()
 		return status;
 	}
 
-	status = com_hub_init();
+	status = comHubInit();
 	if(status != 0)
 	{
 		return status;
@@ -60,28 +61,34 @@ i8 app_init()
 
 }
 
-void app_timer_update()
+void appTimerUpdate()
 {
 	// udp cycle for every second send data
+	pollImu = true;
 #ifdef UDP_BMI_DEBUG_MSG
-	if(application_clock.udp_debug_counter == UDP_INTERVAL_DEBUG_PACKET)
+	if(applicationClock.udp_debug_counter == UDP_INTERVAL_DEBUG_PACKET)
 	{
-		send_debug = true;
-		application_clock.udp_debug_counter = 0;
+		sendDebug = true;
+		applicationClock.udp_debug_counter = 0;
 	}
 #endif
-	if(application_clock.udp_counter == UDP_INTERVAL_PACKET)
+	if(applicationClock.udp_counter == UDP_INTERVAL_PACKET)
 	{
-		send_data = true;
-		application_clock.udp_counter = 0;
+		sendData = true;
+		applicationClock.udp_counter = 0;
 	}
-	application_clock.udp_debug_counter++;
-	application_clock.udp_counter++;
+	applicationClock.udp_debug_counter++;
+	applicationClock.udp_counter++;
 }
 
-void app_update()
+void appUpdate()
 {
-	imu_poll(&imu);
+	if(pollImu)
+	{
+		imu_poll(&imu);
+		pollImu = false;
+	}
+
 #ifdef ENABLE_SPECTRUM_ANALYSIS
 //	//fftUpdate(&fftHandler, 	imu.data.accel_poll_val.x,
 //							imu.data.accel_poll_val.y,
@@ -97,12 +104,12 @@ void app_update()
 #ifdef ENABLE_ALTIMETER
 	altimeter_update(&altimeter_data);
 #endif
-	if(send_data)
+	if(sendData)
 	{
 		if(gps_rx_handler() == 0)
 		{
 			DIGITAL_IO_SetOutputLow(&LED_BLUE);
-			udp_send_gps(gps_packet);
+			udp_send_gps(gpsPacket);
 		}
 		udp_send_bmi(imu);
 #if ENABLE_ALTIMETER
@@ -113,19 +120,19 @@ void app_update()
 #if ENABLE_PROXIMITY_SWITCH
 		udp_send_altimeter(altimeter_data);
 #endif
-		send_data = false;
+		sendData = false;
 	}
 
 #ifdef UDP_BMI_DEBUG_MSG
-	if(send_debug)
+	if(sendDebug)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_BLUE);
 		udp_send_debug_bmi(imu);
 
 		udp_send_spectrum(fftHandler);
-		send_debug = false;
+		sendDebug = false;
 	}
 #endif
 
-	com_hub_recv_handle();
+	comHubRecvHandle();
 }

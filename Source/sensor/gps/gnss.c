@@ -37,8 +37,8 @@ void gnss_init()
 		.num_sat = 0,
 	};
 
-	gps_frame = raw_data;
-	gps_packet = converted_values;
+	gpsFrame = raw_data;
+	gpsPacket = converted_values;
 }
 
 void gnss_poll()
@@ -93,38 +93,38 @@ void gnss_poll()
 		case UBX_FRAME_CLASS:
 			gnss_frame_reset();
 			rxPayloadBuff[gps_frame_counter ] = gps_data;
-			gps_frame.class = gps_data;
+			gpsFrame.class = gps_data;
 			gnss_update_checksum(gps_data);
 			gps_frame_counter = UBX_FRAME_ID;
 			break;
 
 		case UBX_FRAME_ID:
-			gps_frame.id = gps_data;
+			gpsFrame.id = gps_data;
 			rxPayloadBuff[gps_frame_counter ] = gps_data;
 			gnss_update_checksum(gps_data);
 			gps_frame_counter = UBX_FRAME_DLC1;
 			break;
 
 		case UBX_FRAME_DLC1:
-			gps_frame.length = gps_data;
+			gpsFrame.length = gps_data;
 			rxPayloadBuff[gps_frame_counter ] = gps_data;
 			gnss_update_checksum(gps_data);
 			gps_frame_counter = UBX_FRAME_DLC0;
 			break;
 
 		case UBX_FRAME_DLC0:
-			gps_frame.length |= gps_data << 8;
+			gpsFrame.length |= gps_data << 8;
 			rxPayloadBuff[gps_frame_counter ] = gps_data;
 			gnss_update_checksum(gps_data);
 			gps_frame_counter = UBX_FRAME_PAYLOAD;
 			break;
 
 		case UBX_FRAME_PAYLOAD:
-			gps_frame.payload[gps_payload_index++] = gps_data;
+			gpsFrame.payload[gps_payload_index++] = gps_data;
 			rxPayloadBuff[gps_frame_counter + gps_payload_index] = gps_data;
 			gnss_update_checksum(gps_data);
 
-			if (gps_payload_index == gps_frame.length) //DLC reached
+			if (gps_payload_index == gpsFrame.length) //DLC reached
 			{
 
 				gps_frame_counter = UBX_FRAME_CK_A;
@@ -141,17 +141,17 @@ void gnss_poll()
 
 		case UBX_FRAME_CK_A:
 			gnss_get_checksum();
-			gps_frame.checksum_rx = gps_data;
+			gpsFrame.checksum_rx = gps_data;
 			rxPayloadBuff[gps_frame_counter + (gps_payload_index -1)] = gps_data;
 			gps_frame_counter = UBX_FRAME_CK_B;
 			break;
 
 		case UBX_FRAME_CK_B:
-			gps_frame.checksum_rx |= gps_data << 8;
+			gpsFrame.checksum_rx |= gps_data << 8;
 			rxPayloadBuff[gps_frame_counter + (gps_payload_index -1)] = gps_data;
-			u16 rx = gps_frame.checksum_rx;
-			u16 calc = gps_frame.checksum_calc;
-			if (gps_frame.checksum_rx != gps_frame.checksum_calc)
+			u16 rx = gpsFrame.checksum_rx;
+			u16 calc = gpsFrame.checksum_calc;
+			if (gpsFrame.checksum_rx != gpsFrame.checksum_calc)
 			{
 				gps_frame_counter = UBX_FRAME_SYNC1;
 				break;
@@ -165,26 +165,26 @@ void gnss_poll()
 
 void gnss_convert(void)
 {
-	memcpy(&gps_packet.epoch,				&gps_frame.payload[0],	4);
-	memcpy(&gps_packet.fix,					&gps_frame.payload[20],	1);
-	memcpy(&gps_packet.num_sat,				&gps_frame.payload[23],	1);
-	memcpy(&gps_packet.lon,					&gps_frame.payload[24],	4);
-	memcpy(&gps_packet.lat,					&gps_frame.payload[28],	4);
-	memcpy(&gps_packet.height_ellipsoid,	&gps_frame.payload[32],	4);
-	memcpy(&gps_packet.height_msl,			&gps_frame.payload[36],	4);
-	memcpy(&gps_packet.hor_acc,				&gps_frame.payload[40],	4);
-	memcpy(&gps_packet.ver_acc,				&gps_frame.payload[44],	4);
-	memcpy(&gps_packet.speed,				&gps_frame.payload[60],	4);
-	memcpy(&gps_packet.heading,				&gps_frame.payload[64],	4);
-	memcpy(&gps_packet.speed_acc,			&gps_frame.payload[68],	4);
-	memcpy(&gps_packet.head_acc,			&gps_frame.payload[72],	4);
+	memcpy(&gpsPacket.epoch,				&gpsFrame.payload[0],	4);
+	memcpy(&gpsPacket.fix,					&gpsFrame.payload[20],	1);
+	memcpy(&gpsPacket.num_sat,				&gpsFrame.payload[23],	1);
+	memcpy(&gpsPacket.lon,					&gpsFrame.payload[24],	4);
+	memcpy(&gpsPacket.lat,					&gpsFrame.payload[28],	4);
+	memcpy(&gpsPacket.height_ellipsoid,	&gpsFrame.payload[32],	4);
+	memcpy(&gpsPacket.height_msl,			&gpsFrame.payload[36],	4);
+	memcpy(&gpsPacket.hor_acc,				&gpsFrame.payload[40],	4);
+	memcpy(&gpsPacket.ver_acc,				&gpsFrame.payload[44],	4);
+	memcpy(&gpsPacket.speed,				&gpsFrame.payload[60],	4);
+	memcpy(&gpsPacket.heading,				&gpsFrame.payload[64],	4);
+	memcpy(&gpsPacket.speed_acc,			&gpsFrame.payload[68],	4);
+	memcpy(&gpsPacket.head_acc,			&gpsFrame.payload[72],	4);
 }
 
 u8 gps_rx_handler(void)
 {
 	if (gps_receive_ready)
 	{
-		uint16_t message_type = (uint16_t)(gps_frame.class << 8) | gps_frame.id;
+		uint16_t message_type = (uint16_t)(gpsFrame.class << 8) | gpsFrame.id;
 
 		if(message_type == 0x0107)
         {
@@ -205,14 +205,14 @@ void gnss_frame_reset(void)
 
 void gnss_update_checksum(u8 data)
 {
-	gps_frame.ck_a += (u8) data;
-	gps_frame.ck_b += (u8) gps_frame.ck_a;
+	gpsFrame.ck_a += (u8) data;
+	gpsFrame.ck_b += (u8) gpsFrame.ck_a;
 }
 
 void gnss_get_checksum(void)
 {
-	gps_frame.checksum_calc = gps_frame.ck_a;
-	gps_frame.checksum_calc |= gps_frame.ck_b << 8;
+	gpsFrame.checksum_calc = gpsFrame.ck_a;
+	gpsFrame.checksum_calc |= gpsFrame.ck_b << 8;
 }
 
 void gps_frame_reset()
@@ -228,5 +228,5 @@ void gps_frame_reset()
 		.ck_b = 0,
 		.payload = { 0 }
 	};
-	gps_frame = raw_data;
+	gpsFrame = raw_data;
 }

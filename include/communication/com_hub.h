@@ -60,23 +60,30 @@ typedef enum
 	FLAG_COMMAND,
 } FlagOptions_e;
 
+typedef enum
+{
+	COMMANDO_NONE = 0U,
+	COMMANDO_ONE = 0U,
+} CommandoTypes_e;
+
 typedef struct
 {
-	RequestMeasurementSensorID_e id;
+	u8 id;
 	u8 size;
 	u16 value;
 } MeasurementPayloadPacket_t;
 
+u8 comHubInit();
+void comHubRecv();
+u8 comHubSend(void);
+void comHubRecvHandle();
+void comHubClearBuffer();
+void comHubReset();
 
-
-u8 com_hub_init();
-void com_hub_recv();
-u8 com_hub_send(void);
-void com_hub_recv_handle();
-void com_hub_clear_buffer();
-void com_hub_reset();
-
-void com_hub_create_measure_packet();
+void comHubCreateRespondCommandoPacket();
+void comHubCreateMeasurePacket();
+void comHubCreateExistencePacket();
+void comHubCreateGPSPacket();
 
 
 #endif
