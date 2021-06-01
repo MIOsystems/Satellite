@@ -62,7 +62,23 @@ i8 udp_send_gps(GPSValues_t data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
+	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	u8 counter = 0;
+	while(status != ERR_OK && counter >= 10)
+	{
+		status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+		DIGITAL_IO_SetOutputHigh(&LED_YELLOW);
+		counter++;
+	}
+	if(counter >= 10)
+	{
+		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
+		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		delay_ms(50);
+		DIGITAL_IO_SetOutputLow(&LED_RED);
+	}
+	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 	// Freeing the packet
 	status = (i8) pbuf_free(buffer);
 	return status;
@@ -110,7 +126,23 @@ i8 udp_send_bmi(bmi085x data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
+	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	u8 counter = 0;
+	while(status != ERR_OK && counter >= 10)
+	{
+		status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+		DIGITAL_IO_SetOutputHigh(&LED_YELLOW);
+		counter++;
+	}
+	if(counter >= 10)
+	{
+		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
+		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		delay_ms(50);
+		DIGITAL_IO_SetOutputLow(&LED_RED);
+	}
+	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 	// Freeing the packet
 	status = (i8) pbuf_free(buffer);
 	return status;
@@ -135,7 +167,23 @@ i8 udp_send_debug_bmi(bmi085x data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
+	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	u8 counter = 0;
+	while(status != ERR_OK && counter >= 10)
+	{
+		status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+		DIGITAL_IO_SetOutputHigh(&LED_YELLOW);
+		counter++;
+	}
+	if(counter >= 10)
+	{
+		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
+		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		delay_ms(50);
+		DIGITAL_IO_SetOutputLow(&LED_RED);
+	}
+	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 	// Freeing the packet
 	status = (i8) pbuf_free(buffer);
 	return status;
@@ -153,7 +201,23 @@ i8 udp_send_proximity(proximity_switch_t data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
+	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	u8 counter = 0;
+	while(status != ERR_OK && counter >= 10)
+	{
+		status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+		DIGITAL_IO_SetOutputHigh(&LED_YELLOW);
+		counter++;
+	}
+	if(counter >= 10)
+	{
+		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
+		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		delay_ms(50);
+		DIGITAL_IO_SetOutputLow(&LED_RED);
+	}
+	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 	// Freeing the packet
 	status = (i8) pbuf_free(buffer);
 	return status;
@@ -169,7 +233,23 @@ i8 udp_send_packet(void* data, size_t size, char* prefix)
 	const u16 tx_buff = sizeof(packet);
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, tx_buff, PBUF_RAM);
 	buffer->payload = &packet;
+	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	u8 counter = 0;
+	while(status != ERR_OK && counter >= 10)
+	{
+		status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+		DIGITAL_IO_SetOutputHigh(&LED_YELLOW);
+		counter++;
+	}
+	if(counter >= 10)
+	{
+		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
+		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		delay_ms(50);
+		DIGITAL_IO_SetOutputLow(&LED_RED);
+	}
+	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 
 	status = (i8) pbuf_free(buffer);
 	return status;
@@ -188,7 +268,23 @@ i8 udp_send_altimeter(AltimeterData_t data)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
+	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	u8 counter = 0;
+	while(status != ERR_OK && counter >= 10)
+	{
+		status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+		DIGITAL_IO_SetOutputHigh(&LED_YELLOW);
+		counter++;
+	}
+	if(counter >= 10)
+	{
+		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
+		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		delay_ms(50);
+		DIGITAL_IO_SetOutputLow(&LED_RED);
+	}
+	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 	// Freeing the packet
 	status = (i8) pbuf_free(buffer);
 	return status;
@@ -207,9 +303,24 @@ i8 udp_send_spectrum(FFT_t fft)
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;
 	// Sending the packet
+	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 	status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+	u8 counter = 0;
+	while(status != ERR_OK && counter >= 10)
+	{
+		status = (i8) udp_sendto(com_ctrl, buffer, &addr, COM_UDP_PORT_OUT);
+		DIGITAL_IO_SetOutputHigh(&LED_YELLOW);
+		counter++;
+	}
+	if(counter >= 10)
+	{
+		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
+		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		delay_ms(50);
+		DIGITAL_IO_SetOutputLow(&LED_RED);
+	}
+	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 	// Freeing the packet
 	status = (i8) pbuf_free(buffer);
 	return status;
 }
-

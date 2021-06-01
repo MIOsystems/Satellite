@@ -22,9 +22,11 @@ void proximity_init(proximity_switch_t *proximity)
 
 void proximity_update(proximity_switch_t *proximity)
 {
+	DIGITAL_IO_SetOutputHigh(&LED_GREEN);
 #ifdef PROXIMITY_IO35
 	proximity_io35_update(proximity);
 #endif
+	DIGITAL_IO_SetOutputLow(&LED_GREEN);
 }
 
 

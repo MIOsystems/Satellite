@@ -226,8 +226,10 @@ void comHubRecvHandle()
 
 u8 comHubSend(void)
 {
+	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 	UART_STATUS_t status = UART_STATUS_SUCCESS;
 	status = UART_Transmit(&HUB_UART_3, tx_buff, sizeof(tx_buff));
+	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 	return status;
 }
 

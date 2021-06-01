@@ -90,6 +90,8 @@ int main(void)
 
 		while (1U)
 		{
+			DIGITAL_IO_ToggleOutput(&LED_RED);
+			delay_ms(500);
 		}
 	}
 
@@ -124,7 +126,6 @@ int main(void)
 #else
 		appUpdate();
 #endif
-
 		sys_check_timeouts();
 	}
 }

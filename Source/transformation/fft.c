@@ -12,57 +12,41 @@
 
 #include <stdlib.h>
 
+u8 buffOverFlowCheck = 0;
+
 void fftCreate(FFT_t* fft)
 {
-	for(u32 i = 0; i < N; i++)
-	{
-		fft->buffIn[i] = 0;
-		fft->buffOut[i] = 0;
-	}
-	fft->inputCounter = 0;
+	memset(fft->raw, 0, sizeof(f32) * N);
+	memset(fft->buffIn, 0, sizeof(f32) * N);
+	memset(fft->buffOut, 0, sizeof(f32) * N);
+	memset(fft->out, 0, sizeof(f32) * N);
 }
 
-u8 fftAddChannels(FFT_t* fft, f32 ax, f32 ay, f32 az)
+u8 fftUpdate(FFT_t* fft, f32 data)
 {
-	if(fft->inputCounter == N)
+	if(buffOverFlowCheck >= N)
 	{
-		return FFT_INPUT_FULL;
+		buffOverFlowCheck = 0;
+		return;
+
 	}
-	fft->buffIn[fft->inputCounter]= ax + ay + az;
-	fft->inputCounter++;
-	return FFT_SUCCESS;
+	fft->raw[buffOverFlowCheck] = data;
+	buffOverFlowCheck++;
 
-}
-
-u8 fftUpdate(FFT_t* fft, f32 ax, f32 ay, f32 az)
-{
-	FFTStatus_e status = FFT_SUCCESS;
-	status = fftAddChannels(fft, ax, ay, az);
-	// if its not full skip the rest
-	if(status == FFT_SUCCESS)
-	{
-		return FFT_NOT_READY;
-	}
-
-	// copying
-	for(size_t i = 0; i < N; i++)
-	{
-		fft->buffOut[i] = fft->buffIn[i];
-	}
-
-	fftCycle(fft->buffIn, fft->buffOut, N, 1);
-
-	for(size_t i = 0; i < N; i++)
-	{
-		if (!cimag(fft->buffIn[i]))
-		{
-			fft->out[i] = crealf(fft->buffOut[i]);
-		}
-		else
-		{
-
-		}
-	}
+//
+//	fftCycle(fft->buffIn, fft->buffOut, N, 1);
+//
+//	for(size_t i = 0; i < N; i++)
+//	{
+//		if (!cimag(fft->buffIn[i]))
+//		{
+//			fft->out[i] = crealf(fft->buffOut[i]);
+//		}
+//		else
+//		{
+//
+//		}
+//	}
 	return FFT_SUCCESS;
 
 }

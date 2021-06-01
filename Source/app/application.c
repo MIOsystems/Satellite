@@ -55,7 +55,7 @@ i8 appInit()
 #endif
 
 #ifdef ENABLE_SPECTRUM_ANALYSIS
-	fftCreate(&fftHandler);
+	fftCreate(&fft);
 #endif
 	return DAVE_STATUS_SUCCESS;
 
@@ -90,9 +90,7 @@ void appUpdate()
 	}
 
 #ifdef ENABLE_SPECTRUM_ANALYSIS
-//	//fftUpdate(&fftHandler, 	imu.data.accel_poll_val.x,
-//							imu.data.accel_poll_val.y,
-//							imu.data.accel_poll_val.z);
+	fftUpdate(&fft, imu.data.accel_poll_val.z);
 
 #endif
 
@@ -129,7 +127,7 @@ void appUpdate()
 		DIGITAL_IO_SetOutputLow(&LED_BLUE);
 		udp_send_debug_bmi(imu);
 
-		udp_send_spectrum(fftHandler);
+		udp_send_spectrum(fft);
 		sendDebug = false;
 	}
 #endif

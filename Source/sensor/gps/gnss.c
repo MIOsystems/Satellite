@@ -184,6 +184,7 @@ u8 gps_rx_handler(void)
 {
 	if (gps_receive_ready)
 	{
+		DIGITAL_IO_SetOutputLow(&LED_GREEN);
 		uint16_t message_type = (uint16_t)(gpsFrame.class << 8) | gpsFrame.id;
 
 		if(message_type == 0x0107)
@@ -193,6 +194,7 @@ u8 gps_rx_handler(void)
             gps_receive_ready = false;
             return 0;
         }
+		DIGITAL_IO_SetOutputHigh(&LED_GREEN);
 	}
 	return 1;
 }

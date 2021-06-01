@@ -45,7 +45,7 @@
 
 #ifdef ENABLE_SPECTRUM_ANALYSIS
 #include <include/transformation/fft.h>
-	FFT_t fftHandler;
+	FFT_t fft;
 #endif
 
 typedef struct

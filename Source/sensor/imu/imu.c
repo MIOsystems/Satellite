@@ -24,7 +24,9 @@ u8 imu_bmi085_init(bmi085x* imu)
 
 u8 imu_poll(bmi085x* imu)
 {
+	DIGITAL_IO_SetOutputHigh(&LED_GREEN);
 #ifdef BMI085
+
 	BMI085xStatus_e status = bmi085a_poll(imu);
 	status = bmi085g_poll(imu);
 
@@ -52,5 +54,6 @@ u8 imu_poll(bmi085x* imu)
 		imu.data.angle.z = y * RAD_TO_DEG_CONST;
 	#endif
 #endif
+	DIGITAL_IO_SetOutputLow(&LED_GREEN);
 	return status;
 }
