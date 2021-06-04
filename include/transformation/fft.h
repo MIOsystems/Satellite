@@ -10,9 +10,10 @@
 
 #include <include/util/types.h>
 #include <include/util/math_utility.h>
+#include <include/data/vector.h>
 
-#define N 100
-#define K N - 1
+#define N_DEF 250  // SAMPLE RATE PER 1 SECONDS
+#define K N_DEF - 1
 
 typedef enum
 {
@@ -21,17 +22,35 @@ typedef enum
 	FFT_NOT_READY,
 } FFTStatus_e;
 
+typedef enum
+{
+	FFT_CREATING_BUFFER,
+	FFT_BUFFER_READY,
+	FFT_SENDING,
+} FFTState_e;
+
+// Complex float
 typedef struct
 {
-	f32 raw[N];
-	cplxf buffIn[N];
-	cplxf buffOut[N];
-	f32 out[N];
+	cplxf x[N_DEF];
+	cplxf y[N_DEF];
+	cplxf z[N_DEF];
+} Vec3fi;
+
+typedef struct
+{
+	Vec3fi buffIn;
+	Vec3fi buffOut;
+	FFTState_e state;
 } FFT_t;
 
 void fftCreate(FFT_t* fft);
-u8 fftUpdate(FFT_t* fft, f32 data);
-void fftCycle(f32 *buff, f32 *out, i32 n, i32 step);
+u8 fftUpdate(FFT_t* fft);
+void fftAddData(FFT_t *fft, vec3f data);
+void fftStart(FFT_t* fft);
+void fftCycle(cplxf *buff, cplxf *out, i32 n, i32 step);
+void fftRadix2(f32* x, cplxf * X, u32 N, u32 s);
+void fftCreatePacket(FFT_t *fft, f32 *x, f32 *y, f32 *z);
 
 
 #endif /* FFT_H_ */

@@ -10,6 +10,11 @@
 bool sendData = false;
 bool pollImu = false;
 bool sendDebug = false;
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+bool sendSpectrum = false;
+#endif
+
+bool addDataSpectrum = false;
 
 i8 appInit()
 {
@@ -63,22 +68,50 @@ i8 appInit()
 
 void appTimerUpdate()
 {
-	// udp cycle for every second send data
-	pollImu = true;
+	addDataSpectrum = true;
+	if(applicationClock.pollCounter == POLL_INTERVAL)
+	{
+		pollImu = true;
+		applicationClock.pollCounter = 0;
+	}
+	else
+	{
+		applicationClock.pollCounter++;
+	}
+
+
 #ifdef UDP_BMI_DEBUG_MSG
 	if(applicationClock.udp_debug_counter == UDP_INTERVAL_DEBUG_PACKET)
 	{
 		sendDebug = true;
 		applicationClock.udp_debug_counter = 0;
 	}
+	else
+	{
+		applicationClock.udp_debug_counter++;
+	}
 #endif
 	if(applicationClock.udp_counter == UDP_INTERVAL_PACKET)
 	{
 		sendData = true;
+		pollImu = true;
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+		sendSpectrum = true;
+#endif
 		applicationClock.udp_counter = 0;
 	}
-	applicationClock.udp_debug_counter++;
-	applicationClock.udp_counter++;
+	else
+	{
+		applicationClock.udp_counter++;
+	}
+
+	if(applicationClock.udp_counter == 125)
+	{
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+		sendSpectrum = true;
+#endif
+	}
+
 }
 
 void appUpdate()
@@ -87,12 +120,9 @@ void appUpdate()
 	{
 		imu_poll(&imu);
 		pollImu = false;
+
+
 	}
-
-#ifdef ENABLE_SPECTRUM_ANALYSIS
-	fftUpdate(&fft, imu.data.accel_poll_val.z);
-
-#endif
 
 #ifdef ENABLE_PROXIMITY_SWITCH
 	proximity_update(&prox_switch);
@@ -109,7 +139,8 @@ void appUpdate()
 			DIGITAL_IO_SetOutputLow(&LED_BLUE);
 			udp_send_gps(gpsPacket);
 		}
-		udp_send_bmi(imu);
+		//udp_send_bmi(imu);
+
 #if ENABLE_ALTIMETER
 		udp_send_proximity(prox_switch);
 
@@ -121,13 +152,31 @@ void appUpdate()
 		sendData = false;
 	}
 
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+	if(sendSpectrum)
+	{
+
+		u8 status = fftUpdate(&fft);
+		if(status == FFT_SUCCESS)
+		{
+			udp_send_spectrum(fft.buffOut.x, "x,");
+			udp_send_spectrum(fft.buffOut.y, "y,");
+//			udp_send_spectrum(fft.out.z, "z,");
+		}
+
+		sendSpectrum = false;
+	}
+#endif
+
+
 #ifdef UDP_BMI_DEBUG_MSG
 	if(sendDebug)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_BLUE);
 		udp_send_debug_bmi(imu);
-
+#ifdef ENABLE_SPECTRUM_ANALYSIS
 		udp_send_spectrum(fft);
+#endif
 		sendDebug = false;
 	}
 #endif

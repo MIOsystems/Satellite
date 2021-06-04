@@ -230,7 +230,7 @@ i8 udp_send_packet(void* data, size_t size, char* prefix)
 	strcpy(packet.prefix, prefix);
 	memcpy(&packet.data , data, size);
 
-	const u16 tx_buff = sizeof(packet);
+	const u16 tx_buff = size + 8;
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, tx_buff, PBUF_RAM);
 	buffer->payload = &packet;
 	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
@@ -290,15 +290,17 @@ i8 udp_send_altimeter(AltimeterData_t data)
 	return status;
 }
 
-i8 udp_send_spectrum(FFT_t fft)
+i8 udp_send_spectrum(cplxf *data, char* specifier)
 {
 	i8 status = ERR_OK;
+	fft_packet_t packet = { .prefix = {}, .data = {}};
 
-	fft_packet_t packet;
-
-
-	strcpy(packet.prefix, "FFT,");
-	memcpy(packet.data, fft.out, sizeof(packet.data));
+	for(u16 i = 0; i < N_DEF; i++)
+	{
+		packet.data[i] = crealf(data[i]);
+	}
+	strcpy(packet.prefix, "FFT");
+	strcat(packet.prefix, specifier);
 	u16 size = sizeof(packet);
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
 	buffer->payload = &packet;

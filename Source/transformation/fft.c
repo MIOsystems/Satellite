@@ -7,62 +7,83 @@
 
 #include <include/transformation/fft.h>
 
+#include <stdio.h>
 #include <math.h>
-#include <complex.h>
+#include <string.h>
 
-#include <stdlib.h>
-
-u8 buffOverFlowCheck = 0;
+u16 buffOverFlowCheck = 0;
 
 void fftCreate(FFT_t* fft)
 {
-	memset(fft->raw, 0, sizeof(f32) * N);
-	memset(fft->buffIn, 0, sizeof(f32) * N);
-	memset(fft->buffOut, 0, sizeof(f32) * N);
-	memset(fft->out, 0, sizeof(f32) * N);
+	memset(fft->buffIn.x, 0, sizeof(cplxf) * N_DEF);
+	memset(fft->buffIn.y, 0, sizeof(cplxf) * N_DEF);
+	memset(fft->buffIn.z, 0, sizeof(cplxf) * N_DEF);
+	memset(fft->buffOut.x, 0, sizeof(cplxf) * N_DEF);
+	memset(fft->buffOut.y, 0, sizeof(cplxf) * N_DEF);
+	memset(fft->buffOut.z, 0, sizeof(cplxf) * N_DEF);
+	fft->state = FFT_CREATING_BUFFER;
 }
 
-u8 fftUpdate(FFT_t* fft, f32 data)
+u8 fftUpdate(FFT_t* fft)
 {
-	if(buffOverFlowCheck >= N)
+	if(fft->state != FFT_BUFFER_READY)
 	{
-		buffOverFlowCheck = 0;
-		return;
-
+		return FFT_NOT_READY;
 	}
-	fft->raw[buffOverFlowCheck] = data;
-	buffOverFlowCheck++;
 
-//
-//	fftCycle(fft->buffIn, fft->buffOut, N, 1);
-//
-//	for(size_t i = 0; i < N; i++)
-//	{
-//		if (!cimag(fft->buffIn[i]))
-//		{
-//			fft->out[i] = crealf(fft->buffOut[i]);
-//		}
-//		else
-//		{
-//
-//		}
-//	}
+	fftStart(fft);
 	return FFT_SUCCESS;
-
 }
 
-void fftCycle(f32 *buff, f32 *out, i32 n , i32 step)
+void fftStart(FFT_t* fft)
 {
-	if(step < n) {
-		fftCycle(out, buff, n, step * 2);
-		fftCycle(out + step, buff + step, n, step * 2);
-
-		for (int i = 0; i < n; i += 2 * step) {
-			cplxf t = cexp(-I * M_PI * i / n) * out[i + step];
-			buff[i / 2]     = out[i] + t;
-			buff[(i + n)/2] = out[i] - t;
-		}
+	// copying input to a complex array
+	for(int i = 0; i < N_DEF; i++)
+	{
+		fft->buffOut.x[i] = fft->buffIn.x[i];
+		fft->buffOut.y[i] = fft->buffIn.y[i];
+		fft->buffOut.z[i] = fft->buffIn.z[i];
 	}
 
+	fftRadix2(fft->buffIn.x, fft->buffOut.x, N_DEF, 1);
+	fftRadix2(fft->buffIn.y, fft->buffOut.y, N_DEF, 1);
+	fftRadix2(fft->buffIn.z, fft->buffOut.z, N_DEF, 1);
+}
+
+
+void fftRadix2(f32* x, cplxf * X, u32 N, u32 s)
+{
+    unsigned int k;
+    double complex t;
+
+    // At the lowest level pass through (delta T=0 means no phase).
+    if (N == 1) {
+        X[0] = x[0];
+        return;
+    }
+
+    // Cooley-Tukey: recursively split in two, then combine beneath.
+    fftRadix2(x, X, N/2, 2*s);
+    fftRadix2(x+s, X + N/2, N/2, 2*s);
+
+    for (k = 0; k < N/2; k++) {
+        t = X[k];
+        X[k] = t + cexpf(-2 * PI * I * k / N) * X[k + N/2];
+        X[k + N/2] = t - cexpf(-2 * PI * I * k / N) * X[k + N/2];
+    }
+}
+
+void fftAddData(FFT_t *fft, vec3f data)
+{
+	if(buffOverFlowCheck < N_DEF)
+	{
+		fft->buffIn.x[buffOverFlowCheck] = data.x / 9.81f;
+		fft->buffIn.y[buffOverFlowCheck] = data.y / 9.81f;
+		fft->buffIn.z[buffOverFlowCheck] = data.z / 9.81f;
+		buffOverFlowCheck++;
+		return;
+	}
+	buffOverFlowCheck = 0;
+	fft->state = FFT_BUFFER_READY;
 }
 

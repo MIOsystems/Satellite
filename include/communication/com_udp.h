@@ -17,6 +17,8 @@
 #include <include/sensor/proximity/proximity_switch.h>
 #include <include/sensor/altimeter/altimeter.h>
 #include <include/transformation/fft.h>
+#include <include/data/vector.h>
+#include <include/app/application.h>
 
 ip_addr_t addr;
 struct udp_pcb *com_ctrl;
@@ -91,7 +93,7 @@ typedef struct
 typedef struct
 {
 	char prefix[8];
-	f32 data[N];
+	f32 data[N_DEF];
 } fft_packet_t;
 
 typedef struct
@@ -107,5 +109,5 @@ i8 udp_send_debug_bmi(bmi085x data);
 i8 udp_send_proximity(proximity_switch_t data);
 i8 udp_send_packet(void* data, size_t size, char* prefix);
 i8 udp_send_altimeter(AltimeterData_t data);
-i8 udp_send_spectrum(FFT_t fft);
+i8 udp_send_spectrum(cplxf *data, char* specifier);
 #endif /* UDP_H_ */

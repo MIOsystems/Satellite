@@ -52,6 +52,7 @@ typedef struct
 {
 	volatile u32 udp_debug_counter;
 	volatile u32 udp_counter;
+	volatile u32 pollCounter;
 } appClock_t;
 
 appClock_t applicationClock;

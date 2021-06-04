@@ -2,7 +2,7 @@
 #define TYPES_H_
 
 #include <stdint.h>
-
+#include <complex.h>
 /* Use these typedef types, this makes it clear for byte sizes and requires less typing */
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -17,6 +17,7 @@ typedef int64_t i64;
 typedef float f32;
 typedef double f64;
 
-
+typedef float complex cplxf;
+typedef double complex cplxd;
 
 #endif

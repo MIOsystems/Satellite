@@ -47,20 +47,21 @@
 #define ENABLE_SPECTRUM_ANALYSIS
 
 // Communication
-#define COM_UDP_IP_1		(u8)	192
-#define COM_UDP_IP_2		(u8)	168
-#define COM_UDP_IP_3		(u8)	0
-#define COM_UDP_IP_4		(u8)	11
+#define COM_UDP_IP_1			(u8)	192
+#define COM_UDP_IP_2			(u8)	168
+#define COM_UDP_IP_3			(u8)	0
+#define COM_UDP_IP_4			(u8)	11
 #define COM_UDP_PORT_IN		(u16)	52256
-#define COM_UDP_PORT_OUT	(u16)	62510
+#define COM_UDP_PORT_OUT		(u16)	62510
 
 // HUB (CAN/SERIAL)
-#define CAN_ADDRESS_SATELLITE	0x20
-#define CAN_ADDRESS_MASTER		0x10
-#define CAN_ADDRESS_BROADCAST	0x00
+#define CAN_ADDRESS_SATELLITE			0x20
+#define CAN_ADDRESS_MASTER			0x10
+#define CAN_ADDRESS_BROADCAST			0x00
 
 // in ms
 #define UDP_INTERVAL_PACKET			(u32)	1000 // 1 sec
-#define UDP_INTERVAL_DEBUG_PACKET	(u32)	100 // 0.1 sec
+#define UDP_INTERVAL_DEBUG_PACKET	(u32)	1 // 1 ms
+#define POLL_INTERVAL					(u32)	1 // 0.5 ms
 //#define UDP_BMI_DEBUG_MSG
 #endif
