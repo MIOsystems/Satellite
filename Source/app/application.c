@@ -14,8 +14,6 @@ bool sendDebug = false;
 bool sendSpectrum = false;
 #endif
 
-bool addDataSpectrum = false;
-
 i8 appInit()
 {
 	applicationClock.udp_counter = 0;
@@ -68,7 +66,6 @@ i8 appInit()
 
 void appTimerUpdate()
 {
-	addDataSpectrum = true;
 	if(applicationClock.pollCounter == POLL_INTERVAL)
 	{
 		pollImu = true;
@@ -105,7 +102,7 @@ void appTimerUpdate()
 		applicationClock.udp_counter++;
 	}
 
-	if(applicationClock.udp_counter == 125)
+	if(applicationClock.udp_counter == 128)
 	{
 #ifdef ENABLE_SPECTRUM_ANALYSIS
 		sendSpectrum = true;
@@ -120,6 +117,7 @@ void appUpdate()
 	{
 		imu_poll(&imu);
 		pollImu = false;
+		fftAddData(&fft, imu.data.accel_poll_val);
 
 
 	}
@@ -161,7 +159,7 @@ void appUpdate()
 		{
 			udp_send_spectrum(fft.buffOut.x, "x,");
 			udp_send_spectrum(fft.buffOut.y, "y,");
-//			udp_send_spectrum(fft.out.z, "z,");
+			//udp_send_spectrum(fft.buffOut.z, "z,");
 		}
 
 		sendSpectrum = false;

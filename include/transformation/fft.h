@@ -12,8 +12,8 @@
 #include <include/util/math_utility.h>
 #include <include/data/vector.h>
 
-#define N_DEF 250  // SAMPLE RATE PER 1 SECONDS
-#define K N_DEF - 1
+#define N_DEF 128  // SAMPLE RATE PER 1 SECONDS
+//#define K N_DEF - 1
 
 typedef enum
 {
@@ -48,8 +48,7 @@ void fftCreate(FFT_t* fft);
 u8 fftUpdate(FFT_t* fft);
 void fftAddData(FFT_t *fft, vec3f data);
 void fftStart(FFT_t* fft);
-void fftCycle(cplxf *buff, cplxf *out, i32 n, i32 step);
-void fftRadix2(f32* x, cplxf * X, u32 N, u32 s);
+void fftTransform(cplxf *in, cplxf *out, u32 N, u32 step);
 void fftCreatePacket(FFT_t *fft, f32 *x, f32 *y, f32 *z);
 
 

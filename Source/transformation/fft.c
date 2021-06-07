@@ -26,56 +26,55 @@ void fftCreate(FFT_t* fft)
 
 u8 fftUpdate(FFT_t* fft)
 {
-	if(fft->state != FFT_BUFFER_READY)
+	if (fft->state != FFT_BUFFER_READY)
 	{
 		return FFT_NOT_READY;
 	}
 
 	fftStart(fft);
+
 	return FFT_SUCCESS;
 }
 
 void fftStart(FFT_t* fft)
 {
 	// copying input to a complex array
-	for(int i = 0; i < N_DEF; i++)
+	for (int i = 0; i < N_DEF; i++)
 	{
 		fft->buffOut.x[i] = fft->buffIn.x[i];
 		fft->buffOut.y[i] = fft->buffIn.y[i];
 		fft->buffOut.z[i] = fft->buffIn.z[i];
 	}
 
-	fftRadix2(fft->buffIn.x, fft->buffOut.x, N_DEF, 1);
-	fftRadix2(fft->buffIn.y, fft->buffOut.y, N_DEF, 1);
-	fftRadix2(fft->buffIn.z, fft->buffOut.z, N_DEF, 1);
+	fftTransform(fft->buffIn.x, fft->buffOut.x, N_DEF, 1);
+	fftTransform(fft->buffIn.y, fft->buffOut.y, N_DEF, 1);
+	fftTransform(fft->buffIn.z, fft->buffOut.z, N_DEF, 1);
 }
 
-
-void fftRadix2(f32* x, cplxf * X, u32 N, u32 s)
+void fftTransform(cplxf *in, cplxf *out, u32 N, u32 step)
 {
-    unsigned int k;
-    double complex t;
+	// At the lowest level pass through (delta T=0 means no phase).
+	if (N == 1)
+	{
+		out[0] = in[0];
+		return;
+	}
 
-    // At the lowest level pass through (delta T=0 means no phase).
-    if (N == 1) {
-        X[0] = x[0];
-        return;
-    }
-
-    // Cooley-Tukey: recursively split in two, then combine beneath.
-    fftRadix2(x, X, N/2, 2*s);
-    fftRadix2(x+s, X + N/2, N/2, 2*s);
-
-    for (k = 0; k < N/2; k++) {
-        t = X[k];
-        X[k] = t + cexpf(-2 * PI * I * k / N) * X[k + N/2];
-        X[k + N/2] = t - cexpf(-2 * PI * I * k / N) * X[k + N/2];
-    }
+	// Cooley-Tukey: recursively split in two, then combine beneath.
+	fftTransform(in, out, N / 2, 2 * step);
+	fftTransform(in + step, out + N / 2, N / 2, 2 * step);
+	cplxf t;
+	for (u32 k = 0; k < N / 2; k++)
+	{
+		t = out[k];
+		out[k] = t + cexpf(-2 * PI * I * k / N) * out[k + N / 2];
+		out[k + N / 2] = t - cexpf(-2 * PI * I * k / N) * out[k + N / 2];
+	}
 }
 
 void fftAddData(FFT_t *fft, vec3f data)
 {
-	if(buffOverFlowCheck < N_DEF)
+	if (buffOverFlowCheck < N_DEF)
 	{
 		fft->buffIn.x[buffOverFlowCheck] = data.x / 9.81f;
 		fft->buffIn.y[buffOverFlowCheck] = data.y / 9.81f;
