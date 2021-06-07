@@ -109,5 +109,7 @@ i8 udp_send_debug_bmi(bmi085x data);
 i8 udp_send_proximity(proximity_switch_t data);
 i8 udp_send_packet(void* data, size_t size, char* prefix);
 i8 udp_send_altimeter(AltimeterData_t data);
-i8 udp_send_spectrum(cplxf *data, char* specifier);
+
+//i8 udp_send_spectrum(cplxf *data, char* specifier);
+i8 udp_send_spectrum(kiss_fft_cpx *data, char* specifier);
 #endif /* UDP_H_ */

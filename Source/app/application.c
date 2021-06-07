@@ -12,6 +12,7 @@ bool pollImu = false;
 bool sendDebug = false;
 #ifdef ENABLE_SPECTRUM_ANALYSIS
 bool sendSpectrum = false;
+bool addSpectrumData = false;
 #endif
 
 i8 appInit()
@@ -66,6 +67,9 @@ i8 appInit()
 
 void appTimerUpdate()
 {
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+		addSpectrumData = true;
+#endif
 	if(applicationClock.pollCounter == POLL_INTERVAL)
 	{
 		pollImu = true;
@@ -113,13 +117,18 @@ void appTimerUpdate()
 
 void appUpdate()
 {
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+	if(addSpectrumData)
+	{
+		fftAddData(&fft, imu.data.accel_poll_val);
+		addSpectrumData = false;
+	}
+#endif
+
 	if(pollImu)
 	{
 		imu_poll(&imu);
 		pollImu = false;
-		fftAddData(&fft, imu.data.accel_poll_val);
-
-
 	}
 
 #ifdef ENABLE_PROXIMITY_SWITCH
@@ -137,7 +146,7 @@ void appUpdate()
 			DIGITAL_IO_SetOutputLow(&LED_BLUE);
 			udp_send_gps(gpsPacket);
 		}
-		//udp_send_bmi(imu);
+		udp_send_bmi(imu);
 
 #if ENABLE_ALTIMETER
 		udp_send_proximity(prox_switch);
@@ -157,9 +166,12 @@ void appUpdate()
 		u8 status = fftUpdate(&fft);
 		if(status == FFT_SUCCESS)
 		{
-			udp_send_spectrum(fft.buffOut.x, "x,");
-			udp_send_spectrum(fft.buffOut.y, "y,");
-			//udp_send_spectrum(fft.buffOut.z, "z,");
+//			udp_send_spectrum(fft.buffOut.x, "x,");
+//			udp_send_spectrum(fft.buffOut.y, "y,");
+//			udp_send_spectrum(fft.buffOut.z, "z,");
+			udp_send_spectrum(fft.outX, "x,");
+			udp_send_spectrum(fft.outY, "y,");
+			udp_send_spectrum(fft.outZ, "z,");
 		}
 
 		sendSpectrum = false;

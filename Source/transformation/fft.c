@@ -5,23 +5,26 @@
  *      Author: Patrick
  */
 
-#include <include/transformation/fft.h>
 
+#include <include/transformation/fft.h>
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
 
 u16 buffOverFlowCheck = 0;
 
+
 void fftCreate(FFT_t* fft)
 {
-	memset(fft->buffIn.x, 0, sizeof(cplxf) * N_DEF);
-	memset(fft->buffIn.y, 0, sizeof(cplxf) * N_DEF);
-	memset(fft->buffIn.z, 0, sizeof(cplxf) * N_DEF);
-	memset(fft->buffOut.x, 0, sizeof(cplxf) * N_DEF);
-	memset(fft->buffOut.y, 0, sizeof(cplxf) * N_DEF);
-	memset(fft->buffOut.z, 0, sizeof(cplxf) * N_DEF);
+//	memset(fft->buffIn.x, 0, sizeof(cplxf) * N_DEF);
+//	memset(fft->buffIn.y, 0, sizeof(cplxf) * N_DEF);
+//	memset(fft->buffIn.z, 0, sizeof(cplxf) * N_DEF);
+//	memset(fft->buffOut.x, 0, sizeof(cplxf) * N_DEF);
+//	memset(fft->buffOut.y, 0, sizeof(cplxf) * N_DEF);
+//	memset(fft->buffOut.z, 0, sizeof(cplxf) * N_DEF);
 	fft->state = FFT_CREATING_BUFFER;
+	fft->cfg = kiss_fft_alloc(N_DEF,0, NULL, NULL);
+
 }
 
 u8 fftUpdate(FFT_t* fft)
@@ -39,16 +42,25 @@ u8 fftUpdate(FFT_t* fft)
 void fftStart(FFT_t* fft)
 {
 	// copying input to a complex array
-	for (int i = 0; i < N_DEF; i++)
-	{
-		fft->buffOut.x[i] = fft->buffIn.x[i];
-		fft->buffOut.y[i] = fft->buffIn.y[i];
-		fft->buffOut.z[i] = fft->buffIn.z[i];
-	}
+//	for (int i = 0; i < N_DEF; i++)
+//	{
+////		fft->buffOut.x[i] = fft->buffIn.x[i];
+////		fft->buffOut.y[i] = fft->buffIn.y[i];
+////		fft->buffOut.z[i] = fft->buffIn.z[i];
+//		fft->outX[buffOverFlowCheck].r = fft->inX[buffOverFlowCheck].r
+//		fft->outX[buffOverFlowCheck].i = fft->inX[buffOverFlowCheck].i
+//		fft->outY[buffOverFlowCheck].r = fft->inY[buffOverFlowCheck].r
+//		fft->outY[buffOverFlowCheck].i = fft->inY[buffOverFlowCheck].i
+//		fft->outZ[buffOverFlowCheck].r = fft->inZ[buffOverFlowCheck].r
+//		fft->outZ[buffOverFlowCheck].i = fft->inZ[buffOverFlowCheck].i
+//	}
 
-	fftTransform(fft->buffIn.x, fft->buffOut.x, N_DEF, 1);
-	fftTransform(fft->buffIn.y, fft->buffOut.y, N_DEF, 1);
-	fftTransform(fft->buffIn.z, fft->buffOut.z, N_DEF, 1);
+	kiss_fft(fft->cfg, fft->inX, fft->outX);
+	kiss_fft(fft->cfg, fft->inY, fft->outY);
+	kiss_fft(fft->cfg, fft->inZ, fft->outZ);
+//	fftTransform(fft->buffIn.x, fft->buffOut.x, N_DEF, 1);
+//	fftTransform(fft->buffIn.y, fft->buffOut.y, N_DEF, 1);
+//	fftTransform(fft->buffIn.z, fft->buffOut.z, N_DEF, 1);
 }
 
 void fftTransform(cplxf *in, cplxf *out, u32 N, u32 step)
@@ -76,9 +88,15 @@ void fftAddData(FFT_t *fft, vec3f data)
 {
 	if (buffOverFlowCheck < N_DEF)
 	{
-		fft->buffIn.x[buffOverFlowCheck] = data.x / 9.81f;
-		fft->buffIn.y[buffOverFlowCheck] = data.y / 9.81f;
-		fft->buffIn.z[buffOverFlowCheck] = data.z / 9.81f;
+//		fft->buffIn.x[buffOverFlowCheck] = data.x / 9.81f;
+//		fft->buffIn.y[buffOverFlowCheck] = data.y / 9.81f;
+//		fft->buffIn.z[buffOverFlowCheck] = data.z / 9.81f;
+		fft->inX[buffOverFlowCheck].r = data.x / 9.81f;
+		fft->inX[buffOverFlowCheck].i = 0;
+		fft->inY[buffOverFlowCheck].r = data.y / 9.81f;
+		fft->inY[buffOverFlowCheck].i = 0;
+		fft->inZ[buffOverFlowCheck].r = data.z / 9.81f;
+		fft->inZ[buffOverFlowCheck].i = 0;
 		buffOverFlowCheck++;
 		return;
 	}

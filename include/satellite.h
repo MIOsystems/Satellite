@@ -60,8 +60,8 @@
 #define CAN_ADDRESS_BROADCAST			0x00
 
 // in ms
-#define UDP_INTERVAL_PACKET			(u32)	1000 // 1 sec
-#define UDP_INTERVAL_DEBUG_PACKET	(u32)	1 // 1 ms
+#define UDP_INTERVAL_PACKET			(u32)	2000 // 1 sec
+#define UDP_INTERVAL_DEBUG_PACKET	(u32)	2 // 1 ms
 #define POLL_INTERVAL					(u32)	1 // 0.5 ms
 //#define UDP_BMI_DEBUG_MSG
 #endif

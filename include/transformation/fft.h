@@ -11,6 +11,7 @@
 #include <include/util/types.h>
 #include <include/util/math_utility.h>
 #include <include/data/vector.h>
+#include <Libraries/fft/kiss_fft.h>
 
 #define N_DEF 128  // SAMPLE RATE PER 1 SECONDS
 //#define K N_DEF - 1
@@ -39,9 +40,16 @@ typedef struct
 
 typedef struct
 {
-	Vec3fi buffIn;
-	Vec3fi buffOut;
+//	Vec3fi buffIn;
+//	Vec3fi buffOut;
+	kiss_fft_cpx inX[N_DEF];
+	kiss_fft_cpx inY[N_DEF];
+	kiss_fft_cpx inZ[N_DEF];
+	kiss_fft_cpx outX[N_DEF];
+	kiss_fft_cpx outY[N_DEF];
+	kiss_fft_cpx outZ[N_DEF];
 	FFTState_e state;
+	kiss_fft_cfg cfg;
 } FFT_t;
 
 void fftCreate(FFT_t* fft);
