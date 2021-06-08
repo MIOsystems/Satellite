@@ -17,10 +17,12 @@ bool addSpectrumData = false;
 
 i8 appInit()
 {
-	applicationClock.udp_counter = 0;
-	applicationClock.udp_debug_counter = 0;
-	i8 status = DAVE_STATUS_SUCCESS;
+	applicationClock.udpCounter = 0;
+	applicationClock.udpDebugCounter = 0;
+	applicationClock.udpSpectrumCounter = 0;
+	applicationClock.pollCounter = 0;
 
+	i8 status = DAVE_STATUS_SUCCESS;
 
 	// Communication
 	status = udp_initialize();
@@ -82,54 +84,46 @@ void appTimerUpdate()
 
 
 #ifdef UDP_BMI_DEBUG_MSG
-	if(applicationClock.udp_debug_counter == UDP_INTERVAL_DEBUG_PACKET)
+	if(applicationClock.udpDebugCounter == UDP_INTERVAL_DEBUG_PACKET)
 	{
 		sendDebug = true;
-		applicationClock.udp_debug_counter = 0;
+		applicationClock.udpDebugCounter = 0;
 	}
 	else
 	{
-		applicationClock.udp_debug_counter++;
+		applicationClock.udpDebugCounter++;
 	}
 #endif
-	if(applicationClock.udp_counter == UDP_INTERVAL_PACKET)
+	if(applicationClock.udpCounter == UDP_INTERVAL_PACKET)
 	{
 		sendData = true;
 		pollImu = true;
 #ifdef ENABLE_SPECTRUM_ANALYSIS
 		sendSpectrum = true;
 #endif
-		applicationClock.udp_counter = 0;
+		applicationClock.udpCounter = 0;
 	}
 	else
 	{
-		applicationClock.udp_counter++;
+		applicationClock.udpCounter++;
 	}
 
-	if(applicationClock.udp_counter == FFT_N)
-	{
 #ifdef ENABLE_SPECTRUM_ANALYSIS
+	if(applicationClock.udpSpectrumCounter == FFT_N)
+	{
 		sendSpectrum = true;
-#endif
+		applicationClock.udpSpectrumCounter = 0;
 	}
+	else
+	{
+		applicationClock.udpSpectrumCounter++;
+	}
+#endif
 
 }
 
 void appUpdate()
 {
-#ifdef ENABLE_SPECTRUM_ANALYSIS
-	if(addSpectrumData)
-	{
-		fftAddData(&fft, imu.data.accel_poll_val);
-		addSpectrumData = false;
-	}
-#endif
-
-	if(pollImu)
-	{
-		imu_poll(&imu);
-		pollImu = false;
-	}
 
 #ifdef ENABLE_PROXIMITY_SWITCH
 	proximity_update(&prox_switch);
@@ -139,6 +133,21 @@ void appUpdate()
 #ifdef ENABLE_ALTIMETER
 	altimeter_update(&altimeter_data);
 #endif
+
+	appHandleCustomerPackets();
+	appHandleSpectrum();
+	appHandleDebugImu();
+	comHubRecvHandle();
+}
+
+void appHandleCustomerPackets(void)
+{
+	if(pollImu)
+	{
+		imu_poll(&imu);
+		pollImu = false;
+	}
+
 	if(sendData)
 	{
 		if(gps_rx_handler() == 0)
@@ -148,21 +157,25 @@ void appUpdate()
 		}
 		udp_send_bmi(imu);
 
-#if ENABLE_ALTIMETER
-		udp_send_proximity(prox_switch);
 
-#endif
+		appHandleAltimeter();
+		appHandleProxSwitch();
 
-#if ENABLE_PROXIMITY_SWITCH
-		udp_send_altimeter(altimeter_data);
-#endif
+
 		sendData = false;
 	}
+}
 
+void appHandleSpectrum(void)
+{
 #ifdef ENABLE_SPECTRUM_ANALYSIS
+	if(addSpectrumData)
+	{
+		fftAddData(&fft, imu.data.accel_poll_val);
+		addSpectrumData = false;
+	}
 	if(sendSpectrum)
 	{
-
 		u8 status = fftUpdate(&fft);
 		if(status == FFT_SUCCESS)
 		{
@@ -170,23 +183,34 @@ void appUpdate()
 			udp_send_spectrum(fft.bufferOut.y, "y,");
 			udp_send_spectrum(fft.bufferOut.z, "z,");
 		}
-
 		sendSpectrum = false;
 	}
 #endif
+}
 
-
+void appHandleDebugImu(void)
+{
 #ifdef UDP_BMI_DEBUG_MSG
 	if(sendDebug)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_BLUE);
 		udp_send_debug_bmi(imu);
-#ifdef ENABLE_SPECTRUM_ANALYSIS
-		udp_send_spectrum(fft);
-#endif
 		sendDebug = false;
 	}
 #endif
+}
 
-	comHubRecvHandle();
+void appHandleAltimeter(void)
+{
+#if ENABLE_ALTIMETER
+		udp_send_proximity(prox_switch);
+
+#endif
+}
+
+void appHandleProxSwitch(void)
+{
+#if ENABLE_PROXIMITY_SWITCH
+		udp_send_altimeter(altimeter_data);
+#endif
 }

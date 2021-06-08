@@ -22,10 +22,8 @@
 	#include <include/sensor/proximity/proximity_switch.h>
 	#ifdef IO35
 		#include <include/sensor/proximity/IO35/proximity_IO35.h>
-
 	#endif
 	proximity_switch_t prox_switch;
-
 #endif
 
 #ifdef BMI085
@@ -42,7 +40,6 @@
 	AltimeterData_t altimeter_data;
 #endif
 
-
 #ifdef ENABLE_SPECTRUM_ANALYSIS
 #include <include/transformation/fft.h>
 	FFT_t fft;
@@ -50,9 +47,10 @@
 
 typedef struct
 {
-	volatile u32 udp_debug_counter;
-	volatile u32 udp_counter;
+	volatile u32 udpDebugCounter;
+	volatile u32 udpCounter;
 	volatile u32 pollCounter;
+	volatile u32 udpSpectrumCounter;
 } appClock_t;
 
 appClock_t applicationClock;
@@ -63,5 +61,11 @@ i8 appInit();
 void appTimerUpdate();
 
 void appUpdate();
+
+void appHandleAltimeter(void);
+void appHandleProxSwitch(void);
+void appHandleCustomerPackets(void);
+void appHandleSpectrum(void);
+void appHandleDebugImu(void);
 
 #endif /* APPLICATION_H_ */

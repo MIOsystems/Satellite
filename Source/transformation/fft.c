@@ -13,9 +13,7 @@
 
 void fftCreate(FFT_t* fft)
 {
-	memset(fft->bufferIn.x, 0, sizeof(CmplxVec3fArray));
-	memset(fft->bufferIn.y, 0, sizeof(CmplxVec3fArray));
-	memset(fft->bufferIn.z, 0, sizeof(CmplxVec3fArray));
+	memset(&fft->bufferIn, 0, sizeof(CmplxVec3fArray));
 	fft->counter = 0;
 	fft->state = FFT_CREATING_BUFFER;
 	fft->cfg = kiss_fft_alloc(FFT_N, 0, NULL, NULL);

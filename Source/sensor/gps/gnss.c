@@ -205,8 +205,8 @@ void gnss_frame_reset(void)
 
 void gnss_update_checksum(u8 data)
 {
-	gpsFrame.ck_a += (u8) data;
-	gpsFrame.ck_b += (u8) gpsFrame.ck_a;
+	gpsFrame.ck_a = (u8) (gpsFrame.ck_a + data);
+	gpsFrame.ck_b += (u8) (gpsFrame.ck_b + gpsFrame.ck_a);
 }
 
 void gnss_get_checksum(void)
