@@ -295,7 +295,7 @@ i8 udp_send_altimeter(AltimeterData_t data)
 i8 udp_send_spectrum(kiss_fft_cpx *data, char* specifier)
 {
 	i8 status = ERR_OK;
-	FFTPacket_t packet = { .prefix = {}, .data = {}};
+	FFTPacket_t packet = { .prefix = { 0 }, .data = { 0 }};
 
 	for(u16 i = 0; i < FFT_N; i++)
 	{

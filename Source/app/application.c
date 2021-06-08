@@ -31,7 +31,7 @@ i8 appInit()
 		return status;
 	}
 
-	status = comHubInit();
+	status = (i8) comHubInit();
 	if(status != 0)
 	{
 		return status;
