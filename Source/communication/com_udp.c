@@ -43,7 +43,7 @@ i8 udp_initialize()
 i8 udp_send_gps(GPSValues_t data)
 {
 	i8 status = ERR_OK;
-	gnss_packet packet = {
+	GnssPacket_t packet = {
 		.prefix = "gnss,",
 		.lon = data.lon,
 		.lat = data.lat,
@@ -108,7 +108,7 @@ i8 udp_send_gps(GPSValues_t data)
 i8 udp_send_bmi(bmi085x data)
 {
 	i8 status = ERR_OK;
-	imu_packet packet = {
+	InertialMeasurementUnitPacket_t packet = {
 	        .prefix = "imu,",
 	        .avg_x = data.data.x_stat.avg,
 	        .max_x = data.data.x_stat.max,
@@ -153,7 +153,7 @@ i8 udp_send_bmi(bmi085x data)
 i8 udp_send_debug_bmi(bmi085x data)
 {
 	i8 status = ERR_OK;
-	imu_debug_packet packet = {
+	IMUDebugPacket_t packet = {
 			.Ax = data.data.accel_poll_val.x,
 			.Ay = data.data.accel_poll_val.y,
 			.Az = data.data.accel_poll_val.z,
@@ -194,7 +194,7 @@ i8 udp_send_debug_bmi(bmi085x data)
 i8 udp_send_proximity(proximity_switch_t data)
 {
 	i8 status = ERR_OK;
-	proximity_packet_t packet = {
+	ProximityPacket_t packet = {
 			.prefix = "prox,",
 			.data = data,
 	};
@@ -227,7 +227,7 @@ i8 udp_send_proximity(proximity_switch_t data)
 i8 udp_send_packet(void* data, size_t size, char* prefix)
 {
 	i8 status = ERR_OK;
-	udp_packet_t packet;
+	UDPPacket_t packet;
 	strcpy(packet.prefix, prefix);
 	memcpy(&packet.data , data, size);
 
@@ -259,7 +259,7 @@ i8 udp_send_packet(void* data, size_t size, char* prefix)
 i8 udp_send_altimeter(AltimeterData_t data)
 {
 	i8 status = ERR_OK;
-	altimeter_packet_t packet = {
+	AltimeterPacket_t packet = {
 			.prefix = "alti,",
 			.distance = data.altimeter_avg,
 			.sum = data.altimeter_sum,
@@ -295,7 +295,7 @@ i8 udp_send_altimeter(AltimeterData_t data)
 i8 udp_send_spectrum(kiss_fft_cpx *data, char* specifier)
 {
 	i8 status = ERR_OK;
-	fft_packet_t packet = { .prefix = {}, .data = {}};
+	FFTPacket_t packet = { .prefix = {}, .data = {}};
 
 	for(u16 i = 0; i < FFT_N; i++)
 	{

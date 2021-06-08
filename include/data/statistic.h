@@ -11,7 +11,7 @@ typedef struct
 	f32 avg;
 	f32 min;
 	f32 max;
-} stat_aggregate_f;
+} AggregateStateFloat_t;
 
 /**
  * This function will calculate the min, max and avg and store it in the data struct
@@ -25,8 +25,8 @@ typedef struct
  * statistic_calc_aggregate_val();
  * counter++;
  */
-void statistic_calc_aggregate_val(stat_aggregate_f *data, f32 *new_val, u32 counter);
+void statistic_calc_aggregate_val(AggregateStateFloat_t *data, f32 *new_val, u32 counter);
 
-void statistic_reset(stat_aggregate_f *data);
+void statistic_reset(AggregateStateFloat_t *data);
 
 #endif

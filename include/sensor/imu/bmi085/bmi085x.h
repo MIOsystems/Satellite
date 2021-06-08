@@ -32,9 +32,9 @@ typedef struct
 {
 	vec3f accel_poll_val;
 	vec3f gyro_poll_val;
-	stat_aggregate_f x_stat;
-	stat_aggregate_f y_stat;
-	stat_aggregate_f z_stat;
+	AggregateStateFloat_t x_stat;
+	AggregateStateFloat_t y_stat;
+	AggregateStateFloat_t z_stat;
 	vec3f angle;
 } bmi085x_data;
 

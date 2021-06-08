@@ -39,7 +39,7 @@ typedef struct
 	u32 epoch;
 	u8 fix;
 	u8 num_sat;
-} gnss_packet;
+} GnssPacket_t;
 
 
 typedef struct
@@ -57,7 +57,7 @@ typedef struct
     f32 angle_x;
     f32 angle_y;
     f32 angle_z;
-} imu_packet;
+} InertialMeasurementUnitPacket_t;
 
 
 typedef struct
@@ -74,7 +74,7 @@ typedef struct
     f32 complimentAngleX;
     f32 complimentAngleY;
     f32 complimentAngleZ;
-} imu_debug_packet;
+} IMUDebugPacket_t;
 
 typedef struct
 {
@@ -82,25 +82,25 @@ typedef struct
 	i32 distance;
 	u32 sum;
 	u32 counter;
-} altimeter_packet_t;
+} AltimeterPacket_t;
 
 typedef struct
 {
 	char prefix[8];
 	proximity_switch_t data;
-} proximity_packet_t;
+} ProximityPacket_t;
 
 typedef struct
 {
 	char prefix[8];
 	f32 data[FFT_N];
-} fft_packet_t;
+} FFTPacket_t;
 
 typedef struct
 {
 	char prefix[8];
 	void *data;
-} udp_packet_t;
+} UDPPacket_t;
 
 i8 udp_initialize();
 i8 udp_send_gps(GPSValues_t data);

@@ -90,6 +90,7 @@ int main(void)
 
 		while (1U)
 		{
+			/* Toggle error light */
 			DIGITAL_IO_ToggleOutput(&LED_RED);
 			delay_ms(500);
 		}

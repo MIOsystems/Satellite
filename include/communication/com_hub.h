@@ -21,7 +21,7 @@
 #define HUB_PAYLOAD_BUFFER_SIZE		128
 #define CAN_FRAME_START1_OPCODE		0x40
 #define CAN_FRAME_START2_OPCODE		0x02
-#define CAN_REGUEST_FLAG			0x01
+#define CAN_REGUEST_FLAG				0x01
 
 
 typedef enum
