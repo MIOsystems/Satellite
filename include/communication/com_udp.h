@@ -93,7 +93,7 @@ typedef struct
 typedef struct
 {
 	char prefix[8];
-	f32 data[N_DEF];
+	f32 data[FFT_N];
 } fft_packet_t;
 
 typedef struct

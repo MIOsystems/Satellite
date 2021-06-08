@@ -11,20 +11,14 @@
 #include <math.h>
 #include <string.h>
 
-u16 buffOverFlowCheck = 0;
-
-
 void fftCreate(FFT_t* fft)
 {
-//	memset(fft->buffIn.x, 0, sizeof(cplxf) * N_DEF);
-//	memset(fft->buffIn.y, 0, sizeof(cplxf) * N_DEF);
-//	memset(fft->buffIn.z, 0, sizeof(cplxf) * N_DEF);
-//	memset(fft->buffOut.x, 0, sizeof(cplxf) * N_DEF);
-//	memset(fft->buffOut.y, 0, sizeof(cplxf) * N_DEF);
-//	memset(fft->buffOut.z, 0, sizeof(cplxf) * N_DEF);
+	memset(fft->bufferIn.x, 0, sizeof(CmplxVec3fArray));
+	memset(fft->bufferIn.y, 0, sizeof(CmplxVec3fArray));
+	memset(fft->bufferIn.z, 0, sizeof(CmplxVec3fArray));
+	fft->counter = 0;
 	fft->state = FFT_CREATING_BUFFER;
-	fft->cfg = kiss_fft_alloc(N_DEF,0, NULL, NULL);
-
+	fft->cfg = kiss_fft_alloc(FFT_N, 0, NULL, NULL);
 }
 
 u8 fftUpdate(FFT_t* fft)
@@ -41,66 +35,25 @@ u8 fftUpdate(FFT_t* fft)
 
 void fftStart(FFT_t* fft)
 {
-	// copying input to a complex array
-//	for (int i = 0; i < N_DEF; i++)
-//	{
-////		fft->buffOut.x[i] = fft->buffIn.x[i];
-////		fft->buffOut.y[i] = fft->buffIn.y[i];
-////		fft->buffOut.z[i] = fft->buffIn.z[i];
-//		fft->outX[buffOverFlowCheck].r = fft->inX[buffOverFlowCheck].r
-//		fft->outX[buffOverFlowCheck].i = fft->inX[buffOverFlowCheck].i
-//		fft->outY[buffOverFlowCheck].r = fft->inY[buffOverFlowCheck].r
-//		fft->outY[buffOverFlowCheck].i = fft->inY[buffOverFlowCheck].i
-//		fft->outZ[buffOverFlowCheck].r = fft->inZ[buffOverFlowCheck].r
-//		fft->outZ[buffOverFlowCheck].i = fft->inZ[buffOverFlowCheck].i
-//	}
-
-	kiss_fft(fft->cfg, fft->inX, fft->outX);
-	kiss_fft(fft->cfg, fft->inY, fft->outY);
-	kiss_fft(fft->cfg, fft->inZ, fft->outZ);
-//	fftTransform(fft->buffIn.x, fft->buffOut.x, N_DEF, 1);
-//	fftTransform(fft->buffIn.y, fft->buffOut.y, N_DEF, 1);
-//	fftTransform(fft->buffIn.z, fft->buffOut.z, N_DEF, 1);
-}
-
-void fftTransform(cplxf *in, cplxf *out, u32 N, u32 step)
-{
-	// At the lowest level pass through (delta T=0 means no phase).
-	if (N == 1)
-	{
-		out[0] = in[0];
-		return;
-	}
-
-	// Cooley-Tukey: recursively split in two, then combine beneath.
-	fftTransform(in, out, N / 2, 2 * step);
-	fftTransform(in + step, out + N / 2, N / 2, 2 * step);
-	cplxf t;
-	for (u32 k = 0; k < N / 2; k++)
-	{
-		t = out[k];
-		out[k] = t + cexpf(-2 * PI * I * k / N) * out[k + N / 2];
-		out[k + N / 2] = t - cexpf(-2 * PI * I * k / N) * out[k + N / 2];
-	}
+	// library call to create fft of input buffer and store it in output buffer
+	kiss_fft(fft->cfg, fft->bufferIn.x, fft->bufferOut.x);
+	kiss_fft(fft->cfg, fft->bufferIn.y, fft->bufferOut.y);
+	kiss_fft(fft->cfg, fft->bufferIn.z, fft->bufferOut.z);
 }
 
 void fftAddData(FFT_t *fft, vec3f data)
 {
-	if (buffOverFlowCheck < N_DEF)
+	if (fft->counter < FFT_N)
 	{
-//		fft->buffIn.x[buffOverFlowCheck] = data.x / 9.81f;
-//		fft->buffIn.y[buffOverFlowCheck] = data.y / 9.81f;
-//		fft->buffIn.z[buffOverFlowCheck] = data.z / 9.81f;
-		fft->inX[buffOverFlowCheck].r = data.x / 9.81f;
-		fft->inX[buffOverFlowCheck].i = 0;
-		fft->inY[buffOverFlowCheck].r = data.y / 9.81f;
-		fft->inY[buffOverFlowCheck].i = 0;
-		fft->inZ[buffOverFlowCheck].r = data.z / 9.81f;
-		fft->inZ[buffOverFlowCheck].i = 0;
-		buffOverFlowCheck++;
+		fft->bufferIn.x[fft->counter].r = data.x / GRAVITY_CONST;
+		fft->bufferIn.x[fft->counter].i = 0;
+		fft->bufferIn.y[fft->counter].r = data.y / GRAVITY_CONST;
+		fft->bufferIn.y[fft->counter].i = 0;
+		fft->bufferIn.z[fft->counter].r = data.z / GRAVITY_CONST;
+		fft->bufferIn.z[fft->counter].i = 0;
+		fft->counter++;
 		return;
 	}
-	buffOverFlowCheck = 0;
+	fft->counter = 0;
 	fft->state = FFT_BUFFER_READY;
 }
-

@@ -19,12 +19,6 @@ typedef struct
 
 typedef struct
 {
-	XMC_GPIO_PORT_t* gpio;
-	u8 pin;
-} Port_t;
-
-typedef struct
-{
 	u8 msb;
 	u8 lsb;
 } BitNumbering_t;

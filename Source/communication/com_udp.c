@@ -1,4 +1,5 @@
 #include <include/communication/com_udp.h>
+#include <include/util/delay.h>
 #include <stdlib.h>
 
 i8 udp_initialize()
@@ -296,7 +297,7 @@ i8 udp_send_spectrum(kiss_fft_cpx *data, char* specifier)
 	i8 status = ERR_OK;
 	fft_packet_t packet = { .prefix = {}, .data = {}};
 
-	for(u16 i = 0; i < N_DEF; i++)
+	for(u16 i = 0; i < FFT_N; i++)
 	{
 		packet.data[i] = data[i].r;
 	}

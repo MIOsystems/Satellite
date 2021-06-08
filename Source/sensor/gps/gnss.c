@@ -149,8 +149,6 @@ void gnss_poll()
 		case UBX_FRAME_CK_B:
 			gpsFrame.checksum_rx |= gps_data << 8;
 			rxPayloadBuff[gps_frame_counter + (gps_payload_index -1)] = gps_data;
-			u16 rx = gpsFrame.checksum_rx;
-			u16 calc = gpsFrame.checksum_calc;
 			if (gpsFrame.checksum_rx != gpsFrame.checksum_calc)
 			{
 				gps_frame_counter = UBX_FRAME_SYNC1;
@@ -190,7 +188,7 @@ u8 gps_rx_handler(void)
 		if(message_type == 0x0107)
         {
             gnss_convert();
-            gps_frame_reset();
+            gnss_frame_reset();
             gps_receive_ready = false;
             return 0;
         }
@@ -215,20 +213,4 @@ void gnss_get_checksum(void)
 {
 	gpsFrame.checksum_calc = gpsFrame.ck_a;
 	gpsFrame.checksum_calc |= gpsFrame.ck_b << 8;
-}
-
-void gps_frame_reset()
-{
-	UbxFrame_t raw_data =
-	{
-		.class = 0,
-		.id = 0,
-		.length = 0,
-		.checksum_rx = 0,
-		.checksum_calc = 0,
-		.ck_a = 0,
-		.ck_b = 0,
-		.payload = { 0 }
-	};
-	gpsFrame = raw_data;
 }

@@ -106,7 +106,7 @@ void appTimerUpdate()
 		applicationClock.udp_counter++;
 	}
 
-	if(applicationClock.udp_counter == 128)
+	if(applicationClock.udp_counter == FFT_N)
 	{
 #ifdef ENABLE_SPECTRUM_ANALYSIS
 		sendSpectrum = true;
@@ -166,12 +166,9 @@ void appUpdate()
 		u8 status = fftUpdate(&fft);
 		if(status == FFT_SUCCESS)
 		{
-//			udp_send_spectrum(fft.buffOut.x, "x,");
-//			udp_send_spectrum(fft.buffOut.y, "y,");
-//			udp_send_spectrum(fft.buffOut.z, "z,");
-			udp_send_spectrum(fft.outX, "x,");
-			udp_send_spectrum(fft.outY, "y,");
-			udp_send_spectrum(fft.outZ, "z,");
+			udp_send_spectrum(fft.bufferOut.x, "x,");
+			udp_send_spectrum(fft.bufferOut.y, "y,");
+			udp_send_spectrum(fft.bufferOut.z, "z,");
 		}
 
 		sendSpectrum = false;

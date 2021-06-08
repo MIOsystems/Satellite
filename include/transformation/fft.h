@@ -13,8 +13,7 @@
 #include <include/data/vector.h>
 #include <Libraries/fft/kiss_fft.h>
 
-#define N_DEF 128  // SAMPLE RATE PER 1 SECONDS
-//#define K N_DEF - 1
+#define FFT_N	256
 
 typedef enum
 {
@@ -27,37 +26,28 @@ typedef enum
 {
 	FFT_CREATING_BUFFER,
 	FFT_BUFFER_READY,
-	FFT_SENDING,
 } FFTState_e;
 
-// Complex float
-typedef struct
-{
-	cplxf x[N_DEF];
-	cplxf y[N_DEF];
-	cplxf z[N_DEF];
-} Vec3fi;
 
 typedef struct
 {
-//	Vec3fi buffIn;
-//	Vec3fi buffOut;
-	kiss_fft_cpx inX[N_DEF];
-	kiss_fft_cpx inY[N_DEF];
-	kiss_fft_cpx inZ[N_DEF];
-	kiss_fft_cpx outX[N_DEF];
-	kiss_fft_cpx outY[N_DEF];
-	kiss_fft_cpx outZ[N_DEF];
-	FFTState_e state;
+	kiss_fft_cpx x[FFT_N];
+	kiss_fft_cpx y[FFT_N];
+	kiss_fft_cpx z[FFT_N];
+} CmplxVec3fArray;
+
+typedef struct
+{
+	CmplxVec3fArray bufferIn;
+	CmplxVec3fArray bufferOut;
 	kiss_fft_cfg cfg;
+	u16 counter;
+	FFTState_e state;
 } FFT_t;
 
 void fftCreate(FFT_t* fft);
 u8 fftUpdate(FFT_t* fft);
 void fftAddData(FFT_t *fft, vec3f data);
 void fftStart(FFT_t* fft);
-void fftTransform(cplxf *in, cplxf *out, u32 N, u32 step);
-void fftCreatePacket(FFT_t *fft, f32 *x, f32 *y, f32 *z);
-
 
 #endif /* FFT_H_ */

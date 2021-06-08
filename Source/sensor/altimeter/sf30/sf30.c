@@ -15,8 +15,8 @@ void sf30_init(AltimeterData_t* data)
 {
 	rx_data[0] = 0;
 	rx_data[1] = 0;
-	data->lsb = 0;
-	data->msb = 0;
+	data->bitNumber.lsb = 0;
+	data->bitNumber.msb = 0;
 	data->recv_counter = 0;
 	data->altimeter_avg = 0;
 	data->altimeter_cur_val = 0;
@@ -30,8 +30,8 @@ void sf30_update(AltimeterData_t* data)
 		// resetting it
 		if(data->recv_counter == 1000)
 		{
-			data->lsb = 0;
-			data->msb = 0;
+			data->bitNumber.msb = 0;
+			data->bitNumber.lsb = 0;
 			data->recv_counter = 0;
 			data->altimeter_avg = 0;
 			data->altimeter_cur_val = 0;
@@ -40,17 +40,17 @@ void sf30_update(AltimeterData_t* data)
 		if(data->recv_counter == 999)
 		{
 			data->recv_counter++;
-			data->msb = rx_data[0];
-			data->lsb = rx_data[1];
-			data->altimeter_cur_val = ((data->msb & 0x7F) * 128) + (data->lsb & 0x7F);
+			data->bitNumber.msb = rx_data[0];
+			data->bitNumber.lsb= rx_data[1];
+			data->altimeter_cur_val = ((data->bitNumber.msb & 0x7F) * 128) + (data->bitNumber.lsb & 0x7F);
 			data->altimeter_sum += data->altimeter_cur_val;
 			data->altimeter_avg = data->altimeter_sum / data->recv_counter;
 		} else {
 			data->recv_counter++;
 
-			data->msb = rx_data[0];
-			data->lsb = rx_data[1];
-			data->altimeter_cur_val = ((data->msb & 0x7F) * 128) + (data->lsb & 0x7F);
+			data->bitNumber.msb = rx_data[0];
+			data->bitNumber.lsb = rx_data[1];
+			data->altimeter_cur_val = ((data->bitNumber.msb & 0x7F) * 128) + (data->bitNumber.lsb & 0x7F);
 			data->altimeter_sum += data->altimeter_cur_val;
 			data->altimeter_avg = data->altimeter_sum / data->recv_counter;
 		}
