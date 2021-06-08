@@ -40,7 +40,7 @@ i8 appInit()
 	// IMU
 #ifdef BMI085
 	DIGITAL_IO_SetOutputHigh(&CS_A);
-	status = (i8) imu_bmi085_init(&imu);
+	status = (i8) imuInit(&imu);
 	if(status != BMI085X_SUCCESS)
 	{
 		return DAVE_STATUS_FAILURE;
@@ -144,13 +144,13 @@ void appHandleCustomerPackets(void)
 {
 	if(pollImu)
 	{
-		imu_poll(&imu);
+		imuPoll(&imu);
 		pollImu = false;
 	}
 
 	if(sendData)
 	{
-		if(gps_rx_handler() == 0)
+		if(gpsRecvHandler() == 0)
 		{
 			DIGITAL_IO_SetOutputLow(&LED_BLUE);
 			udp_send_gps(gpsPacket);

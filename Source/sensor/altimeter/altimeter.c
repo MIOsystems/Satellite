@@ -12,14 +12,14 @@
 #include <include/sensor/altimeter/SF30/sf30.h>
 #endif
 
-void altimeter_init(AltimeterData_t* data)
+void altimeterInit(AltimeterData_t* data)
 {
 #ifdef ALTIMETER_SF30
 	sf30_init(data);
 #endif
 }
 
-void altimeter_update(AltimeterData_t* data)
+void altimeterUpdate(AltimeterData_t* data)
 {
 	DIGITAL_IO_SetOutputLow(&LED_GREEN);
 #ifdef ALTIMETER_SF30

@@ -39,7 +39,7 @@ void fftStart(FFT_t* fft)
 	kiss_fft(fft->cfg, fft->bufferIn.z, fft->bufferOut.z);
 }
 
-void fftAddData(FFT_t *fft, vec3f data)
+void fftAddData(FFT_t *fft, Vec3f_t data)
 {
 	if (fft->counter < FFT_N)
 	{

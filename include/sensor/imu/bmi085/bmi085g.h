@@ -4,8 +4,8 @@
 #include <include/sensor/imu/bmi085/bmi085x.h>
 #include <include/sensor/imu/bmi085/bmi085x_opcode.h>
 
-u8 bmi085g_init(bmi085x *bmi085);
-u8 bmi085g_poll(bmi085x *bmi085);
-u8 bmi085g_read_reg(const u8 addr, u8 *data);
-u8 bmi085g_write_reg(const u8 addr, const u8 data);
+BMI085xStatus_e bmi085gInit(bmi085x *bmi085);
+BMI085xStatus_e bmi085gPoll(bmi085x *bmi085);
+BMI085xStatus_e bmi085gReadRegister(const u8 addr, u8 *data);
+BMI085xStatus_e bmi085gWriteRegister(const u8 addr, const u8 data);
 #endif

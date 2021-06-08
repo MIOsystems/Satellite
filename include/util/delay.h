@@ -8,13 +8,13 @@
  * Delays the system for the ms specified
  * @param ms the amount of milliseconds
  */
-void delay_ms(u32 ms);
+void delayMs(u32 ms);
 
 /**
  * Delays the system for the sec specified
  * @param ms the amount of milliseconds
  */
-void delay_sec(u32 sec);
+void delaySec(u32 sec);
 
 
 #endif

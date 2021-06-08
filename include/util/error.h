@@ -23,4 +23,10 @@ typedef enum
 	COM_HUB_STATUS_MOD_SWITCH_HIGH,
 } ComHubStatus_e;
 
+typedef enum
+{
+	FFT_CREATING_BUFFER,
+	FFT_BUFFER_READY,
+} FFTState_e;
+
 #endif

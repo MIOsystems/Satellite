@@ -17,6 +17,7 @@
 #define DEG_TO_RAD_CONST	(f32) 0.01745329251f
 #define PI 					(f32) 3.14159265358979323846
 #define GRAVITY_CONST		(f32) 9.81f;
+
 typedef struct {
   float         q1,q2,q3,q4;
 } quaternion_t;

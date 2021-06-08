@@ -11,14 +11,14 @@
 
 volatile u16 prox_poll_cur_val;
 
-void proximity_io35_init(proximity_switch_t* data)
+void proximityIo35Init(proximity_switch_t* data)
 {
 	prox_poll_cur_val = 0;
 	data->distance = 0.0;
 	ADC_MEASUREMENT_StartConversion(&AI);
 }
 
-void proximity_io35_update(proximity_switch_t* data)
+void proximityIo35Update(proximity_switch_t* data)
 {
 	data->distance = prox_poll_cur_val;
 }

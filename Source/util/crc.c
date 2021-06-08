@@ -8,7 +8,7 @@
 #include <include/util/crc.h>
 
 
-void crc16_init(CRC_t* crc, u16 initial, u16 poly)
+void crc16Init(CRC_t* crc, u16 initial, u16 poly)
 {
 
 	crc->initial_val = initial;
@@ -37,7 +37,7 @@ void crc16_init(CRC_t* crc, u16 initial, u16 poly)
 	}
 }
 
-void crc16_get(CRC_t* crc, u8 *bytes, u32 len)
+void crc16Get(CRC_t* crc, u8 *bytes, u32 len)
 {
 
 	for(u32 i = 0; i < len; i++)

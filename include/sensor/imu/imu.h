@@ -32,7 +32,7 @@
 	f32 y = 0.0f;
 #endif
 
-u8 imu_bmi085_init(bmi085x* imu);
-u8 imu_poll(bmi085x* imu);
+u8 imuInit(bmi085x* imu);
+u8 imuPoll(bmi085x* imu);
 
 #endif /* INCLUDE_SENSOR_IMU_IMU_H_ */

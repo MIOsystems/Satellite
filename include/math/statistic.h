@@ -1,8 +1,8 @@
 #ifndef STATISTIC_H_
 #define STATISTIC_H_
 
+#include <include/math/vector.h>
 #include <include/util/types.h>
-#include <include/data/vector.h>
 
 typedef struct 
 {
@@ -25,8 +25,8 @@ typedef struct
  * statistic_calc_aggregate_val();
  * counter++;
  */
-void statistic_calc_aggregate_val(AggregateStateFloat_t *data, f32 *new_val, u32 counter);
+void statisticCalcAggregateValues(AggregateStateFloat_t *data, f32 *new_val, u32 counter);
 
-void statistic_reset(AggregateStateFloat_t *data);
+void statisticReset(AggregateStateFloat_t *data);
 
 #endif

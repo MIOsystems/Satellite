@@ -20,7 +20,7 @@ typedef struct
 	u16 checksum;
 } CRC_t;
 
-void crc16_init(CRC_t* crc, u16 initial, u16 poly);
-void crc16_get(CRC_t* crc, u8 *bytes, u32 len);
+void crc16Init(CRC_t* crc, u16 initial, u16 poly);
+void crc16Get(CRC_t* crc, u8 *bytes, u32 len);
 
 #endif /* CRC_H_ */

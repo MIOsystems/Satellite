@@ -1,8 +1,8 @@
-#include <include/data/statistic.h>
+#include <include/math/statistic.h>
 #include <include/util/utility.h>
 
 
-void statistic_calc_aggregate_val(AggregateStateFloat_t *data, f32 *new_val, u32 counter)
+void statisticCalcAggregateValues(AggregateStateFloat_t *data, f32 *new_val, u32 counter)
 {
 	data->count = counter;
 	// this means that it is the first message so dont do anything fancy with it
@@ -28,7 +28,7 @@ void statistic_calc_aggregate_val(AggregateStateFloat_t *data, f32 *new_val, u32
 	} 
 }
 
-void statistic_reset(AggregateStateFloat_t *data)
+void statisticReset(AggregateStateFloat_t *data)
 {
 	data->count = 0;
 	data->total = 0;

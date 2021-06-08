@@ -28,7 +28,7 @@
 
 void rs232_interrupt(void) {
 #ifndef RUN_HW_VALIDATION
-	gnss_poll();
+	gnssPoll();
 
 #else
 	validate_rs232_update();
@@ -74,12 +74,12 @@ void tick_timer_ISR(void)
 
 int main(void)
 {
-	delay_ms(100);
+	delayMs(100);
 	// output 4.4 reset pin phy ethernet
 	XMC_GPIO_SetMode(XMC_GPIO_PORT4, 4, XMC_GPIO_MODE_OUTPUT_PUSH_PULL);
-	delay_ms(20);
+	delayMs(20);
 	XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT4, 4, XMC_GPIO_OUTPUT_LEVEL_HIGH);
-	delay_ms(2000);
+	delayMs(2000);
 
 	DAVE_STATUS_t status;
 	status = DAVE_Init(); /* Initialization of DAVE APPs  */
@@ -92,7 +92,7 @@ int main(void)
 		{
 			/* Toggle error light */
 			DIGITAL_IO_ToggleOutput(&LED_RED);
-			delay_ms(500);
+			delayMs(500);
 		}
 	}
 
@@ -104,7 +104,7 @@ int main(void)
 		while(1)
 		{
 			DIGITAL_IO_ToggleOutput(&LED_RED);
-			delay_ms(500);
+			delayMs(500);
 		}
 	}
 

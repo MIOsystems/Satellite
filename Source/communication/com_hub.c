@@ -39,7 +39,7 @@ u8 comHubInit()
 	recv_dlc = 0;
 	recv_len = 0;
 	recv_crc = 0;
-	crc16_init(&crc, 0x1d0f, 0x1021);
+	crc16Init(&crc, 0x1d0f, 0x1021);
 	return COM_HUB_STATUS_SUCCESS;
 }
 
@@ -153,7 +153,7 @@ void comHubRecv()
 			rx_buff[frame_counter + recv_len] = rx_data;
 			recv_crc |= rx_data;
 			u32 crc_len = (frame_counter + recv_len - 2);
-			crc16_get(&crc, rx_buff, crc_len);
+			crc16Get(&crc, rx_buff, crc_len);
 			u16 calc_crc = crc.checksum;
 			if(calc_crc  != recv_crc)
 			{
@@ -250,7 +250,7 @@ void comHubReset()
 	recv_len = 0;
 	recv_crc = 0;
 	recv_new_data = false;
-	crc16_init(&crc, 0x1d0f, 0x1021);
+	crc16Init(&crc, 0x1d0f, 0x1021);
 }
 
 void comHubCreateMeasurePacket()
@@ -288,7 +288,7 @@ void comHubCreateMeasurePacket()
 	const u16 index = CAN_FRAME_PAYLOAD + sizeof(measurementsPayloadPackets[RM_SENSOR_ALTIMETER]);
 	memcpy(&tx_buff[CAN_FRAME_PAYLOAD], &measurementsPayloadPackets[RM_SENSOR_INDUCTOR], sizeof(measurementsPayloadPackets[RM_SENSOR_INDUCTOR]));
 	memcpy(&tx_buff[index], &measurementsPayloadPackets[RM_SENSOR_ALTIMETER], sizeof(measurementsPayloadPackets[RM_SENSOR_INDUCTOR]));
-	crc16_get(&crc, tx_buff, 9 + size);
+	crc16Get(&crc, tx_buff, 9 + size);
 	u16 crc_result = crc.checksum;
 	tx_buff[index] = crc_result >> 8;
 	tx_buff[index + 1] = crc_result;
@@ -306,7 +306,7 @@ void comHubCreateExistencePacket()
 	const size_t size = sizeof(char);
 	tx_buff[CAN_FRAME_DLC_MSB] = size >> 8;
 	tx_buff[CAN_FRAME_DLC_LSB] = size;
-	crc16_get(&crc, tx_buff, 9 + size);
+	crc16Get(&crc, tx_buff, 9 + size);
 	u16 crc_result = crc.checksum;
 	tx_buff[CAN_FRAME_PAYLOAD + 1] = crc_result >> 8;
 	tx_buff[CAN_FRAME_PAYLOAD + 2] = crc_result;
@@ -324,7 +324,7 @@ void comHubCreateGPSPacket()
 	const size_t size = sizeof(gpsPacket);
 	tx_buff[CAN_FRAME_DLC_MSB] = size >> 8;
 	tx_buff[CAN_FRAME_DLC_LSB] = size;
-	crc16_get(&crc, tx_buff, 9 + size);
+	crc16Get(&crc, tx_buff, 9 + size);
 	u16 crc_result = crc.checksum;
 	tx_buff[CAN_FRAME_PAYLOAD + size + 1] = crc_result >> 8;
 	tx_buff[CAN_FRAME_PAYLOAD + size + 2] = crc_result;
@@ -342,7 +342,7 @@ void comHubCreateRespondCommandoPacket()
 	tx_buff[CAN_FRAME_DLC_MSB] = size >> 8;
 	tx_buff[CAN_FRAME_DLC_LSB] = size;
 	tx_buff[CAN_FRAME_PAYLOAD] = 0; // TODO CHANGE THIS
-	crc16_get(&crc, tx_buff, 9 + size);
+	crc16Get(&crc, tx_buff, 9 + size);
 	u16 crc_result = crc.checksum;
 	tx_buff[CAN_FRAME_PAYLOAD + size + 1] = crc_result >> 8;
 	tx_buff[CAN_FRAME_PAYLOAD + size + 2] = crc_result;

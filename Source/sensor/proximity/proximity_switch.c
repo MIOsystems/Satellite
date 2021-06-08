@@ -13,14 +13,14 @@
 #include <include/sensor/proximity/IO35/proximity_IO35.h>
 #endif
 
-void proximity_init(proximity_switch_t *proximity)
+void proximitInit(proximity_switch_t *proximity)
 {
 #ifdef PROXIMITY_IO35
 	proximity_io35_init(proximity);
 #endif
 }
 
-void proximity_update(proximity_switch_t *proximity)
+void proximityUpdate(proximity_switch_t *proximity)
 {
 	DIGITAL_IO_SetOutputHigh(&LED_GREEN);
 #ifdef PROXIMITY_IO35

@@ -18,35 +18,35 @@
 
 #include <include/satellite.h>
 
-u8 bmi085g_init(bmi085x *bmi085)
+BMI085xStatus_e bmi085gInit(bmi085x *bmi085)
 {
 	BMI085xStatus_e status = BMI085X_SUCCESS;
 
 	// Softresetting the gyroscope first
-	status = bmi085g_write_reg(BMI085G_SOFT_RST_ADDR, BMI085G_RESET_DATA);
-	delay_ms(50);
+	status = bmi085gWriteRegister(BMI085G_SOFT_RST_ADDR, BMI085G_RESET_DATA);
+	delayMs(50);
 	if(status != BMI085X_SUCCESS)
 	{
 		return status;
 	}
 
 	// writing configuration
-	status = bmi085g_write_reg(bmi085->gyro.config.bandwidth.reg_addr, bmi085->gyro.config.bandwidth.instr);
+	status = bmi085gWriteRegister(bmi085->gyro.config.bandwidth.reg_addr, bmi085->gyro.config.bandwidth.instr);
 	if(status != BMI085X_SUCCESS)
 	{
 		return status;
 	}
 
-	delay_ms(1);
+	delayMs(1);
 
-	status = bmi085g_write_reg(bmi085->gyro.config.meas_range.reg_addr, bmi085->gyro.config.meas_range.instr);
+	status = bmi085gWriteRegister(bmi085->gyro.config.meas_range.reg_addr, bmi085->gyro.config.meas_range.instr);
 	if(status != BMI085X_SUCCESS)
 	{
 		return status;
 	}
 
 	// Validating gyroscope to read the chip id which we know should be its reset value
-	bmi085g_read_reg(BMI085G_CHIP_ID_ADDR, &bmi085->gyro.chip_id);
+	bmi085gReadRegister(BMI085G_CHIP_ID_ADDR, &bmi085->gyro.chip_id);
 	if(bmi085->gyro.chip_id != BMI085G_DEFAULT_CHIP_ID)
 	{
 		return BMI085X_INVALID_CHIP_ID;
@@ -54,7 +54,7 @@ u8 bmi085g_init(bmi085x *bmi085)
 	return status;
 }
 
-u8 bmi085g_poll(bmi085x *bmi085)
+BMI085xStatus_e bmi085gPoll(bmi085x *bmi085)
 {
 	u8 rx_buff[7] = { 0 };
 	u8 tx_buff[7] = { BMI085G_DATA_ADDR | BMI085X_READMASK, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
@@ -101,7 +101,7 @@ u8 bmi085g_poll(bmi085x *bmi085)
 	return BMI085X_SUCCESS;
 }
 
-u8 bmi085g_read_reg(const u8 addr, u8 *data)
+BMI085xStatus_e bmi085gReadRegister(const u8 addr, u8 *data)
 {
 	u8 status = BMI085X_SUCCESS;
 	u8 tx_buff[2] = { addr | BMI085X_READMASK, 0x00};
@@ -119,7 +119,7 @@ u8 bmi085g_read_reg(const u8 addr, u8 *data)
 	return BMI085X_SUCCESS;
 }
 
-u8 bmi085g_write_reg(const u8 addr, const u8 data)
+BMI085xStatus_e bmi085gWriteRegister(const u8 addr, const u8 data)
 {
 	u8 status = BMI085X_SUCCESS;
 	u8 tx_buff[] = { addr, data };

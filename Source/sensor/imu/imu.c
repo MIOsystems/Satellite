@@ -6,29 +6,29 @@
  */
 #include <include/sensor/imu/imu.h>
 
-u8 imu_bmi085_init(bmi085x* imu)
+u8 imuInit(bmi085x* imu)
 {
 	u8 status = 0;
 #ifdef BMI085
-	bmi085x_init(imu);
-	status = bmi085a_init(imu);
+	bmi085xInitSensor(imu);
+	status = bmi085aInit(imu);
 	if(status != BMI085X_SUCCESS)
 	{
 		return status;
 	}
-	status = bmi085g_init(imu);
+	status = bmi085gInit(imu);
 	return status;
 #endif
 	return status;
 }
 
-u8 imu_poll(bmi085x* imu)
+u8 imuPoll(bmi085x* imu)
 {
 	DIGITAL_IO_SetOutputHigh(&LED_GREEN);
 #ifdef BMI085
 
-	BMI085xStatus_e status = bmi085a_poll(imu);
-	status = bmi085g_poll(imu);
+	BMI085xStatus_e status = bmi085aPoll(imu);
+	status = bmi085gPoll(imu);
 
 	#ifdef COMP_FILTER
 		complimentary_process(	imu->data.accel_poll_val.x, imu->data.accel_poll_val.y, imu->data.accel_poll_val.z,

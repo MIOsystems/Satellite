@@ -2,10 +2,10 @@
 #define BMI085X_H_
 
 #include <DAVE.h>
+#include <include/math/statistic.h>
+#include <include/math/vector.h>
 
 #include <include/util/types.h>
-#include <include/data/vector.h>
-#include <include/data/statistic.h>
 #include <include/util/error.h>
 #include <include/util/model.h>
 
@@ -19,42 +19,36 @@ typedef struct
 	RegOperation_t meas_range;
 	RegOperation_t bandwidth;
 	RegOperation_t odr;
-} bmi085x_cfg;
+} bmi085xConfig;
 
 typedef struct 
 {
 	u8 chip_id;
-	bmi085x_cfg config;
-} bmi085x_dev;
+	bmi085xConfig config;
+} bmi085xSensor;
 
 // the structure that will be send
 typedef struct 
 {
-	vec3f accel_poll_val;
-	vec3f gyro_poll_val;
+	Vec3f_t accel_poll_val;
+	Vec3f_t gyro_poll_val;
 	AggregateStateFloat_t x_stat;
 	AggregateStateFloat_t y_stat;
 	AggregateStateFloat_t z_stat;
-	vec3f angle;
-} bmi085x_data;
+	Vec3f_t angle;
+} bmi085xData;
 
 typedef struct 
 {
-	bmi085x_data data;
-	bmi085x_dev gyro;
-	bmi085x_dev acc;
+	bmi085xData data;
+	bmi085xSensor gyro;
+	bmi085xSensor acc;
 } bmi085x;
 
 
-void bmi085x_init_gyro(bmi085x *bmi085);
-void bmi085x_init_acc(bmi085x *bmi085);
+void bmi085xInitGyroscope(bmi085x *bmi085);
+void bmi085xInitAccelerometer(bmi085x *bmi085);
 
-/**
- * This will initialize the main struct to the standard values.
- * The configuration will also be set as defined in the header file
- * TODO: make main header file
- * @param main struct that will be used for every function of bmi085 imu.
- */
-void bmi085x_init(bmi085x *bmi085);
-void bmi085x_reset_data(bmi085x *bmi085);
+void bmi085xInitSensor(bmi085x *bmi085);
+void bmi085xResetSensorData(bmi085x *bmi085);
 #endif

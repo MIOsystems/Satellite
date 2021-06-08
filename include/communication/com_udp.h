@@ -17,8 +17,8 @@
 #include <include/sensor/proximity/proximity_switch.h>
 #include <include/sensor/altimeter/altimeter.h>
 #include <include/transformation/fft.h>
-#include <include/data/vector.h>
 #include <include/app/application.h>
+#include <include/math/vector.h>
 
 ip_addr_t addr;
 struct udp_pcb *com_ctrl;

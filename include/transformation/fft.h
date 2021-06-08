@@ -8,9 +8,10 @@
 #ifndef FFT_H_
 #define FFT_H_
 
+#include <include/math/vector.h>
 #include <include/util/types.h>
 #include <include/util/math_utility.h>
-#include <include/data/vector.h>
+#include <include/util/error.h>
 #include <Libraries/fft/kiss_fft.h>
 
 #define FFT_N	256
@@ -21,13 +22,6 @@ typedef enum
 	FFT_INPUT_FULL,
 	FFT_NOT_READY,
 } FFTStatus_e;
-
-typedef enum
-{
-	FFT_CREATING_BUFFER,
-	FFT_BUFFER_READY,
-} FFTState_e;
-
 
 typedef struct
 {
@@ -47,7 +41,7 @@ typedef struct
 
 void fftCreate(FFT_t* fft);
 u8 fftUpdate(FFT_t* fft);
-void fftAddData(FFT_t *fft, vec3f data);
+void fftAddData(FFT_t *fft, Vec3f_t data);
 void fftStart(FFT_t* fft);
 
 #endif /* FFT_H_ */

@@ -76,7 +76,7 @@ i8 udp_send_gps(GPSValues_t data)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
 		DIGITAL_IO_SetOutputHigh(&LED_RED);
-		delay_ms(50);
+		delayMs(50);
 		DIGITAL_IO_SetOutputLow(&LED_RED);
 	}
 	DIGITAL_IO_SetOutputLow(&LED_BLUE);
@@ -140,7 +140,7 @@ i8 udp_send_bmi(bmi085x data)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
 		DIGITAL_IO_SetOutputHigh(&LED_RED);
-		delay_ms(50);
+		delayMs(50);
 		DIGITAL_IO_SetOutputLow(&LED_RED);
 	}
 	DIGITAL_IO_SetOutputLow(&LED_BLUE);
@@ -181,7 +181,7 @@ i8 udp_send_debug_bmi(bmi085x data)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
 		DIGITAL_IO_SetOutputHigh(&LED_RED);
-		delay_ms(50);
+		delayMs(50);
 		DIGITAL_IO_SetOutputLow(&LED_RED);
 	}
 	DIGITAL_IO_SetOutputLow(&LED_BLUE);
@@ -215,7 +215,7 @@ i8 udp_send_proximity(proximity_switch_t data)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
 		DIGITAL_IO_SetOutputHigh(&LED_RED);
-		delay_ms(50);
+		delayMs(50);
 		DIGITAL_IO_SetOutputLow(&LED_RED);
 	}
 	DIGITAL_IO_SetOutputLow(&LED_BLUE);
@@ -247,7 +247,7 @@ i8 udp_send_packet(void* data, size_t size, char* prefix)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
 		DIGITAL_IO_SetOutputHigh(&LED_RED);
-		delay_ms(50);
+		delayMs(50);
 		DIGITAL_IO_SetOutputLow(&LED_RED);
 	}
 	DIGITAL_IO_SetOutputLow(&LED_BLUE);
@@ -261,9 +261,9 @@ i8 udp_send_altimeter(AltimeterData_t data)
 	i8 status = ERR_OK;
 	AltimeterPacket_t packet = {
 			.prefix = "alti,",
-			.distance = data.altimeter_avg,
-			.sum = data.altimeter_sum,
-			.counter = data.recv_counter,
+			.distance = data.altimeterAvg,
+			.sum = data.altimeterSum,
+			.counter = data.recvCounter,
 	};
 	u16 size = sizeof(packet);
 	struct pbuf* buffer = pbuf_alloc(PBUF_TRANSPORT, size, PBUF_RAM);
@@ -282,7 +282,7 @@ i8 udp_send_altimeter(AltimeterData_t data)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
 		DIGITAL_IO_SetOutputHigh(&LED_RED);
-		delay_ms(50);
+		delayMs(50);
 		DIGITAL_IO_SetOutputLow(&LED_RED);
 	}
 	DIGITAL_IO_SetOutputLow(&LED_BLUE);
@@ -320,7 +320,7 @@ i8 udp_send_spectrum(kiss_fft_cpx *data, char* specifier)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_YELLOW);
 		DIGITAL_IO_SetOutputHigh(&LED_RED);
-		delay_ms(50);
+		delayMs(50);
 		DIGITAL_IO_SetOutputLow(&LED_RED);
 	}
 	DIGITAL_IO_SetOutputLow(&LED_BLUE);

@@ -12,7 +12,7 @@
 
 #include <include/sensor/proximity/proximity_switch.h>
 
-void proximity_io35_init(proximity_switch_t* data);
-void proximity_io35_update(proximity_switch_t* data);
+void proximityIo35Init(proximity_switch_t* data);
+void proximityIo35Update(proximity_switch_t* data);
 
 #endif /* INCLUDE_SENSOR_PROXIMITY_PROXIMITY_IO35_H_ */

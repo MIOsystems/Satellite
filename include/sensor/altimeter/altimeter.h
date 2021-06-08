@@ -14,13 +14,14 @@
 
 typedef struct
 {
-	u32 recv_counter;
-	u32 altimeter_sum;
+	u32 recvCounter;
+	u32 altimeterSum;
+	u16 altimeterCurValue;
 	BitNumbering_t bitNumber;
-	u16 altimeter_cur_val;
-	u16 altimeter_avg;
+	u16 altimeterAvg;
 } AltimeterData_t;
-void altimeter_init(AltimeterData_t* data);
-void altimeter_update(AltimeterData_t* data);
+
+void altimeterInit(AltimeterData_t* data);
+void altimeterUpdate(AltimeterData_t* data);
 
 #endif /* INCLUDE_SENSOR_ALTIMETER_ALTIMETER_H_ */

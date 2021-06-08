@@ -17,10 +17,10 @@ void sf30_init(AltimeterData_t* data)
 	rx_data[1] = 0;
 	data->bitNumber.lsb = 0;
 	data->bitNumber.msb = 0;
-	data->recv_counter = 0;
-	data->altimeter_avg = 0;
-	data->altimeter_cur_val = 0;
-	data->altimeter_sum = 0;
+	data->recvCounter = 0;
+	data->altimeterAvg = 0;
+	data->altimeterCurValue = 0;
+	data->altimeterSum = 0;
 }
 
 void sf30_update(AltimeterData_t* data)
@@ -28,31 +28,31 @@ void sf30_update(AltimeterData_t* data)
 	if(rx_ready == true)
 	{
 		// resetting it
-		if(data->recv_counter == 1000)
+		if(data->recvCounter == 1000)
 		{
 			data->bitNumber.msb = 0;
 			data->bitNumber.lsb = 0;
-			data->recv_counter = 0;
-			data->altimeter_avg = 0;
-			data->altimeter_cur_val = 0;
-			data->altimeter_sum = 0;
+			data->recvCounter = 0;
+			data->altimeterAvg = 0;
+			data->altimeterCurValue = 0;
+			data->altimeterSum = 0;
 		}
-		if(data->recv_counter == 999)
+		if(data->recvCounter == 999)
 		{
-			data->recv_counter++;
+			data->recvCounter++;
 			data->bitNumber.msb = rx_data[0];
 			data->bitNumber.lsb= rx_data[1];
-			data->altimeter_cur_val = ((data->bitNumber.msb & 0x7F) * 128) + (data->bitNumber.lsb & 0x7F);
-			data->altimeter_sum += data->altimeter_cur_val;
-			data->altimeter_avg = data->altimeter_sum / data->recv_counter;
+			data->altimeterCurValue = ((data->bitNumber.msb & 0x7F) * 128) + (data->bitNumber.lsb & 0x7F);
+			data->altimeterSum += data->altimeterCurValue;
+			data->altimeterAvg = data->altimeterSum / data->recvCounter;
 		} else {
-			data->recv_counter++;
+			data->recvCounter++;
 
 			data->bitNumber.msb = rx_data[0];
 			data->bitNumber.lsb = rx_data[1];
-			data->altimeter_cur_val = ((data->bitNumber.msb & 0x7F) * 128) + (data->bitNumber.lsb & 0x7F);
-			data->altimeter_sum += data->altimeter_cur_val;
-			data->altimeter_avg = data->altimeter_sum / data->recv_counter;
+			data->altimeterCurValue = ((data->bitNumber.msb & 0x7F) * 128) + (data->bitNumber.lsb & 0x7F);
+			data->altimeterSum += data->altimeterCurValue;
+			data->altimeterAvg = data->altimeterSum / data->recvCounter;
 		}
 		rx_ready = false;
 	}

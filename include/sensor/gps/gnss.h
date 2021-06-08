@@ -9,9 +9,9 @@
 #define GPS_SYNC1 		(u8)	0xB5
 #define GPS_SYNC2 		(u8)	0x62
 
-static volatile bool gps_receive_ready = false;
-static volatile u8 gps_frame_counter = 0;
-static volatile u8 gps_payload_index = 0;
+static volatile bool gpsReceive_ready = false;
+static volatile u8 gpsFrameCounter = 0;
+static volatile u8 gpsPayloadIndex = 0;
 
 
 typedef enum
@@ -56,13 +56,12 @@ typedef struct
 	u8 num_sat;
 } GPSValues_t;
 
-void gnss_init();
-void gnss_poll(void);
-void gnss_poll_test(void);
-void gnss_frame_reset(void);
-void gnss_update_checksum(u8 data);
-void gnss_get_checksum(void);
-u8 gps_rx_handler(void);
-void gnss_convert(void);
+void gnssInit();
+void gnssPoll(void);
+void gnssFrameReset(void);
+void gnssUpdateChecksum(u8 data);
+void gnssGetChecksum(void);
+u8 gpsRecvHandler(void);
+void gnssConvert(void);
 
 #endif

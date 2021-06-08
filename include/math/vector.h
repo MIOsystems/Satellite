@@ -9,7 +9,7 @@ typedef struct
 	u32 x;
 	u32 y;
 	u32 z;
-} vec3u;
+} Vec3u_t;
 
 // integer signed
 typedef struct 
@@ -17,7 +17,7 @@ typedef struct
 	i32 x;
 	i32 y;
 	i32 z;
-} vec3i;
+} Vec3i_t;
 
 // Float
 typedef struct 
@@ -25,7 +25,7 @@ typedef struct
 	f32 x;
 	f32 y;
 	f32 z;
-} vec3f;
+} Vec3f_t;
 
 // Double
 typedef struct 
@@ -33,7 +33,7 @@ typedef struct
 	f64 x;
 	f64 y;
 	f64 z;
-} vec3d;
+} Vec3d_t;
 
 
 
