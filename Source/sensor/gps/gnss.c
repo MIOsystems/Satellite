@@ -149,11 +149,11 @@ void gnssPoll()
 		case UBX_FRAME_CK_B:
 			gpsFrame.checksum_rx |= gps_data << 8;
 			rxPayloadBuff[gpsFrameCounter + (gpsPayloadIndex -1)] = gps_data;
-			if (gpsFrame.checksum_rx != gpsFrame.checksum_calc)
-			{
-				gpsFrameCounter = UBX_FRAME_SYNC1;
-				break;
-			}
+//			if (gpsFrame.checksum_rx != gpsFrame.checksum_calc)
+//			{
+//				gpsFrameCounter = UBX_FRAME_SYNC1;
+//				break;
+//			}
 
 			gpsReceive_ready = true;
 			gpsFrameCounter = UBX_FRAME_SYNC1;

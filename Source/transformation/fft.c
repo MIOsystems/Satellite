@@ -34,9 +34,12 @@ u8 fftUpdate(FFT_t* fft)
 void fftStart(FFT_t* fft)
 {
 	// library call to create fft of input buffer and store it in output buffer
-	kiss_fft(fft->cfg, fft->bufferIn.x, fft->bufferOut.x);
-	kiss_fft(fft->cfg, fft->bufferIn.y, fft->bufferOut.y);
-	kiss_fft(fft->cfg, fft->bufferIn.z, fft->bufferOut.z);
+	kiss_fftr(fft->cfg, fft->bufferIn.x, fft->bufferOut.x);
+	kiss_fftr(fft->cfg, fft->bufferIn.y, fft->bufferOut.y);
+	kiss_fftr(fft->cfg, fft->bufferIn.z, fft->bufferOut.z);
+//	kiss_fft(fft->cfg, fft->bufferIn.x, fft->bufferOut.x);
+//	kiss_fft(fft->cfg, fft->bufferIn.y, fft->bufferOut.y);
+//	kiss_fft(fft->cfg, fft->bufferIn.z, fft->bufferOut.z);
 }
 
 void fftAddData(FFT_t *fft, Vec3f_t data)

@@ -53,7 +53,8 @@ i8 appInit()
 #endif
 
 #ifdef ENABLE_PROXIMITY_SWITCH
-	proximity_init(&prox_switch);
+
+	proximitInit(&prox_switch);
 #endif
 //
 #ifdef ENABLE_ALTIMETER
@@ -69,12 +70,13 @@ i8 appInit()
 
 void appTimerUpdate()
 {
-#ifdef ENABLE_SPECTRUM_ANALYSIS
-		addSpectrumData = true;
-#endif
+
 	if(applicationClock.pollCounter == POLL_INTERVAL)
 	{
 		pollImu = true;
+#ifdef ENABLE_SPECTRUM_ANALYSIS
+		addSpectrumData = true;
+#endif
 		applicationClock.pollCounter = 0;
 	}
 	else
@@ -126,7 +128,7 @@ void appUpdate()
 {
 
 #ifdef ENABLE_PROXIMITY_SWITCH
-	proximity_update(&prox_switch);
+	proximityUpdate(&prox_switch);
 #endif
 
 
@@ -202,15 +204,14 @@ void appHandleDebugImu(void)
 
 void appHandleAltimeter(void)
 {
-#if ENABLE_ALTIMETER
-		udp_send_proximity(prox_switch);
-
+#ifdef ENABLE_ALTIMETER
+	udp_send_altimeter(altimeter_data);
 #endif
 }
 
 void appHandleProxSwitch(void)
 {
-#if ENABLE_PROXIMITY_SWITCH
-		udp_send_altimeter(altimeter_data);
+#ifdef ENABLE_PROXIMITY_SWITCH
+	udp_send_proximity(prox_switch);
 #endif
 }

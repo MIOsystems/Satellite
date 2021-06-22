@@ -12,7 +12,8 @@
 #include <include/util/types.h>
 #include <include/util/math_utility.h>
 #include <include/util/error.h>
-#include <Libraries/fft/kiss_fft.h>
+//#include <Libraries/fft/kiss_fft.h>
+#include <Libraries/fft/kiss_fftr.h>
 
 #define FFT_N	256
 

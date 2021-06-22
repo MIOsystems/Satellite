@@ -81,6 +81,7 @@ int main(void)
 	XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT4, 4, XMC_GPIO_OUTPUT_LEVEL_HIGH);
 	delayMs(2000);
 
+
 	DAVE_STATUS_t status;
 	status = DAVE_Init(); /* Initialization of DAVE APPs  */
 	if(status != DAVE_STATUS_SUCCESS)

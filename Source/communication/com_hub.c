@@ -266,13 +266,16 @@ void comHubCreateMeasurePacket()
 #ifdef ENABLE_ALTIMETER
 	canMeasurementsMessage.altimeterVal = altimeter_data.altimeter_cur_val;
 #else
-	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].id = RM_SENSOR_INDUCTOR;
+	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].id = RM_SENSOR_ALTIMETER;
 	const u16 val = 4095;
-	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].size = sizeof(val);
-	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].value = val;
+	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].size = sizeof(val);
+	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].value = val;
 #endif
 #ifdef ENABLE_PROXIMITY_SWITCH
-	measurementPayload.proximityDistance = prox_switch.distance;
+	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].id = RM_SENSOR_INDUCTOR;
+
+	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].size = sizeof(prox_switch.distance);
+	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].value = prox_switch.distance;
 #else
 	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].id = RM_SENSOR_ALTIMETER;
 	const u16 altimeterVal = 975;
