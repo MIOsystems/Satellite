@@ -33,6 +33,7 @@ typedef struct
 
 typedef struct
 {
+	f32 hann[FFT_N];
 	CmplxVec3fArray bufferIn;
 	CmplxVec3fArray bufferOut;
 	kiss_fft_cfg cfg;
@@ -44,5 +45,7 @@ void fftCreate(FFT_t* fft);
 u8 fftUpdate(FFT_t* fft);
 void fftAddData(FFT_t *fft, Vec3f_t data);
 void fftStart(FFT_t* fft);
+
+void fftHannWindowFunction(FFT_t *fft);
 
 #endif /* FFT_H_ */

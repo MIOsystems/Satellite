@@ -52,6 +52,7 @@ typedef enum
 {
 	RM_SENSOR_INDUCTOR = 0U,
 	RM_SENSOR_ALTIMETER,
+	RM_SENSOR_IMU,
 } RequestMeasurementSensorID_e;
 
 typedef enum

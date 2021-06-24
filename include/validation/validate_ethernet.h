@@ -18,6 +18,6 @@ struct udp_pcb *com_ctrl;
 
 
 u8 validate_ethernet_init();
-u8 validate_ethernet_update(validate_packet_t packet);
+u8 validate_ethernet_update(validate_packet_t val_packet);
 
 #endif /* VALIDATE_ETHERNET_H_ */

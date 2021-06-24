@@ -360,7 +360,6 @@
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_1.app#//@connections.53"/>
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_1.app#//@connections.54"/>
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_1.app#//@connections.55"/>
-  <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.0"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.1"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.18"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.19"/>
@@ -609,4 +608,5 @@
   <hwConnections href="APPS/UART/v4_1_10/UART_3.app#//@connections.20"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_3.app#//@connections.21"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_3.app#//@connections.22"/>
+  <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.0"/>
 </ApplicationModel:ApplicationData>

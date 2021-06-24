@@ -2078,7 +2078,7 @@
       <properties key="uri" value="http://resources/4.1.10/app/UART/0/vs_uart_proto_specfic_int"/>
       <graphicsAlgorithm xsi:type="al:Text" foreground="//@colors.2" lineStyle="UNSPECIFIED" width="115" height="20" x="30" y="165" style="//@styles.0/@styles.2" horizontalAlignment="ALIGNMENT_RIGHT" value="event_protocol"/>
     </children>
-    <children visible="true" active="true">
+    <children active="true">
       <properties key="SignalName" value="rxd_pin"/>
       <properties key="uri" value="http://resources/4.1.10/app/UART/0/vs_uart_rxpad"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="20" height="10" x="-20" y="185"/>

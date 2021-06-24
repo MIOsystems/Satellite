@@ -34,7 +34,7 @@
   <hwResources name="Channel" URI="http://resources/4.1.10/app/UART/0/hwres_usic_ch" resourceGroupUri="peripheral/usic/*/channel/*" mResGrpUri="peripheral/usic/*/channel/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/usic0/usic0_0.dd#//@provided.43"/>
   </hwResources>
-  <hwResources name="Receive Pin" URI="http://resources/4.1.10/app/UART/0/hwres_port_pad_uart_rx" resourceGroupUri="port/p/*/pad/*" mResGrpUri="port/p/*/pad/*">
+  <hwResources name="Receive Pin" URI="http://resources/4.1.10/app/UART/0/hwres_port_pad_uart_rx" resourceGroupUri="resources/48.0.0/port/p/6/pad/3" mResGrpUri="port/p/*/pad/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port6/port6_6.dd#//@provided.0"/>
   </hwResources>
   <hwResources name="Transmit Pin" URI="http://resources/4.1.10/app/UART/0/hwres_port_pad_uart_tx" resourceGroupUri="port/p/*/pad/*" mResGrpUri="port/p/*/pad/*">

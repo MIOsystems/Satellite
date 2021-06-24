@@ -44,6 +44,8 @@ void rs422_interrupt(void)
 #else
 	validate_rs422_update();
 #endif
+	comHubRecv();
+
 }
 
 void can_uart_handler(void)
@@ -115,11 +117,11 @@ int main(void)
 
 	INTERRUPT_Enable(&POLL_TIMER_INTERRUPT);
 	TIMER_Start(&POLL_TIMER);
-	INTERRUPT_Enable(&RS232_INTERRUPT);
-//	INTERRUPT_Enable(&RS422_INTERRUPT);
+//	INTERRUPT_Enable(&RS232_INTERRUPT);
+	INTERRUPT_Enable(&RS422_INTERRUPT);
 //	INTERRUPT_Enable(&UART_INTERRUPT);
 
-	INTERRUPT_Enable(&HUB_UART_3_INTERRUPT);
+//	INTERRUPT_Enable(&HUB_UART_3_INTERRUPT);
 
 	while (1U)
 	{

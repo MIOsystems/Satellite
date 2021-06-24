@@ -24,6 +24,8 @@ void altimeterUpdate(AltimeterData_t* data)
 	DIGITAL_IO_SetOutputLow(&LED_GREEN);
 #ifdef ALTIMETER_SF30
 	sf30_update(data);
+
+
 #endif
 	DIGITAL_IO_SetOutputHigh(&LED_GREEN);
 }

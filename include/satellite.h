@@ -19,14 +19,14 @@
 /* IMU */
 #define BMI085
 
-/* GNSS */
+///* GNSS */
 #define UBLX
 
 /* Proximity switch */
-#define ENABLE_PROXIMITY_SWITCH
-#define PROXIMITY_IO35
-
-/* Altimeter */
+//#define ENABLE_PROXIMITY_SWITCH
+//#define PROXIMITY_IO35
+//
+///* Altimeter */
 //#define ENABLE_ALTIMETER
 //#define ALTIMETER_SF30
 /**
@@ -36,7 +36,7 @@
  * Uncomment out which sensor you want to use,
  * and comment which sensor you want to use
  */
-#define COMP_FILTER
+//#define COMP_FILTER
 //#define MADGWICK_FILTER
 
 /**
@@ -44,7 +44,7 @@
  * Transformations Defines
  * ==========================================
  */
-#define ENABLE_SPECTRUM_ANALYSIS
+//#define ENABLE_SPECTRUM_ANALYSIS
 
 // Communication
 #define COM_UDP_IP_1			(u8)	192
@@ -63,5 +63,5 @@
 #define UDP_INTERVAL_PACKET			(u32)	1000 // 1 sec
 #define UDP_INTERVAL_DEBUG_PACKET	(u32)	1 // 1 ms
 #define POLL_INTERVAL					(u32)	1
-#define UDP_BMI_DEBUG_MSG
+//#define UDP_BMI_DEBUG_MSG
 #endif

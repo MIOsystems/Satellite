@@ -8,8 +8,8 @@
 
 volatile u16 counter_relay;
 
-const u16 start_index = 2500;
-const u16 end_index = 5000;
+const u16 start_index = 30000;
+const u16 end_index = 60000;
 void validate_relay_init()
 {
 	counter_relay = 0;

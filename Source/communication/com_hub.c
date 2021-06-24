@@ -11,7 +11,7 @@
 #include <include/satellite.h>
 #include <include/hardware/digital_output.h>
 
-MeasurementPayloadPacket_t measurementsPayloadPackets[2];
+//MeasurementPayloadPacket_t measurementsPayloadPackets[2];
 
 
 // Stores whole message for crc
@@ -47,7 +47,7 @@ u8 comHubInit()
 void comHubRecv()
 {
 	u8 rx_data = 0;
-	UART_STATUS_t status = UART_Receive(&HUB_UART_3, &rx_data , 1);
+	UART_STATUS_t status = UART_Receive(&RS422_UART_0, &rx_data , 1);
 
 	if(status != UART_STATUS_SUCCESS)
 	{
@@ -56,6 +56,7 @@ void comHubRecv()
 	}
 
 	DIGITAL_IO_SetOutputLow(&LED_RED);
+
 
 	switch(frame_counter)
 	{
@@ -228,7 +229,12 @@ u8 comHubSend(void)
 {
 	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
 	UART_STATUS_t status = UART_STATUS_SUCCESS;
-	status = UART_Transmit(&HUB_UART_3, tx_buff, sizeof(tx_buff));
+
+	for(uint8_t i = 0; i < HUB_PAYLOAD_BUFFER_SIZE; i++)
+	{
+		status = UART_Transmit(&RS422_UART_0, &tx_buff[i], sizeof(i));
+	}
+
 	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 	return status;
 }
@@ -258,18 +264,22 @@ void comHubCreateMeasurePacket()
 
 	tx_buff[CAN_FRAME_START0] = CAN_FRAME_START1_OPCODE;
 	tx_buff[CAN_FRAME_START1] = CAN_FRAME_START2_OPCODE;
+
 	tx_buff[CAN_FRAME_DEST] = CAN_ADDRESS_MASTER;
 	tx_buff[CAN_FRAME_SRC] = CAN_ADDRESS_SATELLITE;
 	tx_buff[CAN_FRAME_FLAGS] = FLAG_REQUEST;
 
 
+
+
+	MeasurementPayloadPacket_t measurementsPayloadPackets[2];
 #ifdef ENABLE_ALTIMETER
 	canMeasurementsMessage.altimeterVal = altimeter_data.altimeter_cur_val;
 #else
-	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].id = RM_SENSOR_ALTIMETER;
+	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].id = RM_SENSOR_INDUCTOR;
 	const u16 val = 4095;
-	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].size = sizeof(val);
-	measurementsPayloadPackets[RM_SENSOR_ALTIMETER].value = val;
+	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].size = sizeof(val);
+	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].value = val;
 #endif
 #ifdef ENABLE_PROXIMITY_SWITCH
 	measurementsPayloadPackets[RM_SENSOR_INDUCTOR].id = RM_SENSOR_INDUCTOR;

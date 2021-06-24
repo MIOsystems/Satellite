@@ -6,7 +6,7 @@
  */
 
 #include <include/app/application.h>
-
+#include <include/sensor/altimeter/SF30/sf30.h>
 bool sendData = false;
 bool pollImu = false;
 bool sendDebug = false;
@@ -58,7 +58,7 @@ i8 appInit()
 #endif
 //
 #ifdef ENABLE_ALTIMETER
-	altimeter_init(&altimeter_data);
+	altimeterInit(&altimeter_data);
 #endif
 
 #ifdef ENABLE_SPECTRUM_ANALYSIS
@@ -70,7 +70,6 @@ i8 appInit()
 
 void appTimerUpdate()
 {
-
 	if(applicationClock.pollCounter == POLL_INTERVAL)
 	{
 		pollImu = true;
@@ -98,6 +97,7 @@ void appTimerUpdate()
 #endif
 	if(applicationClock.udpCounter == UDP_INTERVAL_PACKET)
 	{
+
 		sendData = true;
 		pollImu = true;
 #ifdef ENABLE_SPECTRUM_ANALYSIS
@@ -133,12 +133,12 @@ void appUpdate()
 
 
 #ifdef ENABLE_ALTIMETER
-	altimeter_update(&altimeter_data);
+	altimeterUpdate(&altimeter_data);
 #endif
 
-	appHandleCustomerPackets();
-	appHandleSpectrum();
-	appHandleDebugImu();
+//	appHandleCustomerPackets();
+//	appHandleSpectrum();
+//	appHandleDebugImu();
 	comHubRecvHandle();
 }
 
@@ -205,7 +205,9 @@ void appHandleDebugImu(void)
 void appHandleAltimeter(void)
 {
 #ifdef ENABLE_ALTIMETER
+
 	udp_send_altimeter(altimeter_data);
+	sf30_reset(&altimeter_data);
 #endif
 }
 
