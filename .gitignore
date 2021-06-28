@@ -1,4 +1,11 @@
 /Dave/Generated/*
 /Debug/*
 /Release/*
+.vscode/**
 
+CMakeLists.txt
+cmake-build-debug/**
+.idea/**
+
+DebugApplication/packages**
+DebugApplication/DebugHardwareTool/bin/**
