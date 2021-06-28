@@ -31,7 +31,10 @@ void validation_app_run()
 	validate_uart_send();
 	validate_relay_update(&packet.relay);
 	validate_sensor_out_update(&packet.sout);
+}
 
+void validation_app_send()
+{
 	if(counter >= 250)
 	{
 		packet.ain.a_in_1 = ai1;

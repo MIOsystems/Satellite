@@ -136,9 +136,9 @@ void appUpdate()
 	altimeterUpdate(&altimeter_data);
 #endif
 
-//	appHandleCustomerPackets();
-//	appHandleSpectrum();
-//	appHandleDebugImu();
+	appHandleCustomerPackets();
+	appHandleSpectrum();
+	appHandleDebugImu();
 	comHubRecvHandle();
 }
 

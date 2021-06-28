@@ -6,7 +6,7 @@
 #define ONEMSDELAY 11500
 
 // turn this on if you want to validate hqw
-//#define RUN_HW_VALIDATION
+#define RUN_HW_VALIDATION
 
 /**
  * ==========================================

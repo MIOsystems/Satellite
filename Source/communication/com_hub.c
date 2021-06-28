@@ -30,7 +30,6 @@ CRC_t crc;
 
 u8 comHubInit()
 {
-
 	// Setting this high to use the UART
 	DIGITAL_IO_SetOutputHigh(&CAN_MOD_SWITCH);
 	comHubClearBuffer();

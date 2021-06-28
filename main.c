@@ -44,8 +44,6 @@ void rs422_interrupt(void)
 #else
 	validate_rs422_update();
 #endif
-	comHubRecv();
-
 }
 
 void can_uart_handler(void)
@@ -69,6 +67,7 @@ void tick_timer_ISR(void)
 #ifndef RUN_HW_VALIDATION
 	appTimerUpdate();
 #else
+	validation_app_send();
 
 #endif
 }

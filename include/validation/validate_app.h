@@ -17,4 +17,5 @@ validate_packet_t packet;
 
 void validation_app_init();
 void validation_app_run();
+void validation_app_send();
 #endif 
