@@ -6,3 +6,6 @@
 CMakeLists.txt
 cmake-build-debug/**
 .idea/**
+
+DebugApplication/packages**
+DebugApplication/DebugHardwareTool/bin/**
