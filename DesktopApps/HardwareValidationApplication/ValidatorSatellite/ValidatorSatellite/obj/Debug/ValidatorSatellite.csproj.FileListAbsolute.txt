@@ -1,0 +1,10 @@
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\bin\Debug\ValidatorSatellite.exe.config
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\bin\Debug\ValidatorSatellite.exe
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\bin\Debug\ValidatorSatellite.pdb
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\obj\Debug\ValidatorSatellite.csprojAssemblyReference.cache
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\obj\Debug\ValidatorSatellite.Properties.Resources.resources
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\obj\Debug\ValidatorSatellite.csproj.GenerateResource.cache
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\obj\Debug\ValidatorSatellite.csproj.CoreCompileInputs.cache
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\obj\Debug\ValidatorSatellite.exe
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\obj\Debug\ValidatorSatellite.pdb
+P:\Projects\C#\ValidatorSatellite\ValidatorSatellite\obj\Debug\ValidatorSatellite.SatelliteValidator.resources

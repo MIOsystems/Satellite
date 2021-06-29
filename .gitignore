@@ -7,5 +7,7 @@ CMakeLists.txt
 cmake-build-debug/**
 .idea/**
 
-DebugApplication/packages**
-DebugApplication/DebugHardwareTool/bin/**
+DesktopApps/DebugApplication/packages**
+DesktopApps/DebugApplication/DebugHardwareTool/bin/**
+DesktopApps/HardwareValidationApplication/packages**
+DesktopApps/HardwareValidationApplication/DebugHardwareTool/bin/**
