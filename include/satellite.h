@@ -6,7 +6,7 @@
 #define ONEMSDELAY 11500
 
 // turn this on if you want to validate hqw
-#define RUN_HW_VALIDATION
+//#define RUN_HW_VALIDATION
 
 /**
  * ==========================================
@@ -51,17 +51,17 @@
 #define COM_UDP_IP_2			(u8)	168
 #define COM_UDP_IP_3			(u8)	0
 #define COM_UDP_IP_4			(u8)	11
-#define COM_UDP_PORT_IN		(u16)	52256
+#define COM_UDP_PORT_IN			(u16)	52256
 #define COM_UDP_PORT_OUT		(u16)	62510
 
 // HUB (CAN/SERIAL)
 #define CAN_ADDRESS_SATELLITE			0x20
-#define CAN_ADDRESS_MASTER			0x10
+#define CAN_ADDRESS_MASTER				0x10
 #define CAN_ADDRESS_BROADCAST			0x00
 
 // in ms
 #define UDP_INTERVAL_PACKET			(u32)	1000 // 1 sec
 #define UDP_INTERVAL_DEBUG_PACKET	(u32)	1 // 1 ms
-#define POLL_INTERVAL					(u32)	1
+#define POLL_INTERVAL				(u32)	1
 //#define UDP_BMI_DEBUG_MSG
 #endif

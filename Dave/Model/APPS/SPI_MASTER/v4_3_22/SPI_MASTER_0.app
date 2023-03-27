@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="SPI_MASTER" URI="http://resources/4.3.22/app/SPI_MASTER/0" description="Configures a USIC channel to perform transfer &amp; receive&#xA;operations through SPI protocol in Master mode." mode="NOTSHARABLE" version="4.3.22" minDaveVersion="4.0.0" instanceLabel="SPI_MASTER_0" appLabel="">
+<ResourceModel:App xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ResourceModel="http://www.infineon.com/Davex/Resource.ecore" name="SPI_MASTER" URI="http://resources/4.3.22/app/SPI_MASTER/0" description="Configures a USIC channel to perform transfer &amp; receive&#xA;operations through SPI protocol in Master mode." mode="NOTSHARABLE" version="4.3.22" minDaveVersion="4.0.0" instanceLabel="FRAM_SPI_MASTER_0" appLabel="">
   <properties provideInit="true"/>
   <virtualSignals name="miso_0_input_stage" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_dx0ins" hwSignal="dx0ins" hwResource="//@hwResources.0"/>
   <virtualSignals name="miso_1_input_stage" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_dx3ins" hwSignal="dx3ins" hwResource="//@hwResources.0" required="false"/>
@@ -15,7 +15,7 @@
   <virtualSignals name="mosi/miso[3]_pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_mosi_3" hwSignal="pad" hwResource="//@hwResources.4" required="false"/>
   <virtualSignals name="sclk_out_pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_sclkoutpad" hwSignal="pad" hwResource="//@hwResources.5" visible="true"/>
   <virtualSignals name="sclk" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_sclkout" hwSignal="sclkout" hwResource="//@hwResources.0"/>
-  <virtualSignals name="slave_select_0" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_0" hwResource="//@hwResources.0" solverVariableName="sv2" solverVariableValue="selo3"/>
+  <virtualSignals name="slave_select_0" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_0" hwResource="//@hwResources.0" solverVariableName="sv2" solverVariableValue="selo1"/>
   <virtualSignals name="slave_select_1" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_1" hwResource="//@hwResources.0" required="false" solverVariableName="sv3" solverVariableValue=""/>
   <virtualSignals name="slave_select_2" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_2" hwResource="//@hwResources.0" required="false" solverVariableName="sv4" solverVariableValue=""/>
   <virtualSignals name="slave_select_3" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_3" hwResource="//@hwResources.0" required="false" solverVariableName="sv5" solverVariableValue=""/>
@@ -31,14 +31,14 @@
   <virtualSignals name="slave_select_5_pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_5_pad" hwSignal="pad" hwResource="//@hwResources.11" required="false"/>
   <virtualSignals name="slave_select_6_pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_6_pad" hwSignal="pad" hwResource="//@hwResources.12" required="false"/>
   <virtualSignals name="slave_select_7_pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_7_pad" hwSignal="pad" hwResource="//@hwResources.13" required="false"/>
-  <virtualSignals name="event_transmit_buffer" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_std_tx_int" hwSignal="transmit_buffer_int" hwResource="//@hwResources.0" required="false"/>
-  <virtualSignals name="event_std_receive" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_std_rx_int" hwSignal="standard_receive_int" hwResource="//@hwResources.0" required="false"/>
-  <virtualSignals name="event_receive_start" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_rx_start_int" hwSignal="receive_start_int" hwResource="//@hwResources.0" required="false"/>
-  <virtualSignals name="event_alt_receive" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_alt_rx_int" hwSignal="alternate_receive_int" hwResource="//@hwResources.0" required="false"/>
+  <virtualSignals name="event_transmit_buffer" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_std_tx_int" hwSignal="transmit_buffer_int" hwResource="//@hwResources.0" visible="true"/>
+  <virtualSignals name="event_std_receive" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_std_rx_int" hwSignal="standard_receive_int" hwResource="//@hwResources.0" visible="true"/>
+  <virtualSignals name="event_receive_start" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_rx_start_int" hwSignal="receive_start_int" hwResource="//@hwResources.0" required="false" visible="true"/>
+  <virtualSignals name="event_alt_receive" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_alt_rx_int" hwSignal="alternate_receive_int" hwResource="//@hwResources.0" visible="true"/>
   <virtualSignals name="event_protocol" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_protocol_specfic_int" hwSignal="protocol_specific_int" hwResource="//@hwResources.0" visible="true"/>
-  <virtualSignals name="event_fifo_transmit" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_tx_int" hwSignal="standard_transmit_buffer_int" hwResource="//@hwResources.0"/>
-  <virtualSignals name="event_fifo_std_receive" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_rx_int" hwSignal="standard_receive_buffer_int" hwResource="//@hwResources.0"/>
-  <virtualSignals name="event_fifo_alt_receive" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_alt_rx_int" hwSignal="alternate_receive_buffer_int" hwResource="//@hwResources.0"/>
+  <virtualSignals name="event_fifo_transmit" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_tx_int" hwSignal="standard_transmit_buffer_int" hwResource="//@hwResources.0" required="false" visible="true"/>
+  <virtualSignals name="event_fifo_std_receive" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_rx_int" hwSignal="standard_receive_buffer_int" hwResource="//@hwResources.0" required="false" visible="true"/>
+  <virtualSignals name="event_fifo_alt_receive" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_alt_rx_int" hwSignal="alternate_receive_buffer_int" hwResource="//@hwResources.0" required="false" visible="true"/>
   <virtualSignals name="sr_transmit" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_tx" hwSignal="signal_in" hwResource="//@hwResources.14"/>
   <virtualSignals name="sr_receive" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_rx" hwSignal="signal_in" hwResource="//@hwResources.15"/>
   <virtualSignals name="sr_error" URI="http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_error" hwSignal="signal_in" hwResource="//@hwResources.16" required="false"/>
@@ -70,9 +70,7 @@
   <requiredApps URI="http://resources/4.3.22/app/SPI_MASTER/0/appres_clock" requiredAppName="CLOCK_XMC4" requiringMode="SHARABLE">
     <downwardMapList xsi:type="ResourceModel:App" href="../../CLOCK_XMC4/v4_0_22/CLOCK_XMC4_0.app#/"/>
   </requiredApps>
-  <requiredApps URI="http://resources/4.3.22/app/SPI_MASTER/0/appres_cpu_ctrl" requiredAppName="CPU_CTRL_XMC4" requiringMode="SHARABLE">
-    <downwardMapList xsi:type="ResourceModel:App" href="../../CPU_CTRL_XMC4/v4_0_14/CPU_CTRL_XMC4_0.app#/"/>
-  </requiredApps>
+  <requiredApps URI="http://resources/4.3.22/app/SPI_MASTER/0/appres_cpu_ctrl" requiredAppName="CPU_CTRL_XMC4" required="false" requiringMode="SHARABLE"/>
   <requiredApps URI="http://resources/4.3.22/app/SPI_MASTER/0/appres_global_dma" requiredAppName="GLOBAL_DMA" required="false" requiringMode="SHARABLE"/>
   <hwResources name="Channel" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_usic_channel" resourceGroupUri="peripheral/usic/*/channel/*" mResGrpUri="peripheral/usic/*/channel/*">
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/usic1/usic1_1.dd#//@provided.43"/>
@@ -95,7 +93,7 @@
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port1/port1_1.dd#//@provided.32"/>
   </hwResources>
   <hwResources name="Slave Select 0 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_port_pad_spi_ss_0" resourceGroupUri="port/p/*/pad/*" mResGrpUri="port/p/*/pad/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port3/port3_3.dd#//@provided.6"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/port0/port0_0.dd#//@provided.16"/>
   </hwResources>
   <hwResources name="Slave Select 1 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_port_pad_spi_ss_1" resourceGroupUri="" required="false" mResGrpUri="port/p/*/pad/*"/>
   <hwResources name="Slave Select 2 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_port_pad_spi_ss_2" resourceGroupUri="" required="false" mResGrpUri="port/p/*/pad/*"/>
@@ -104,12 +102,8 @@
   <hwResources name="Slave Select 5 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_port_pad_spi_ss_5" resourceGroupUri="" required="false" mResGrpUri="port/p/*/pad/*"/>
   <hwResources name="Slave Select 6 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_port_pad_spi_ss_6" resourceGroupUri="" required="false" mResGrpUri="port/p/*/pad/*"/>
   <hwResources name="Slave Select 7 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_port_pad_spi_ss_7" resourceGroupUri="" required="false" mResGrpUri="port/p/*/pad/*"/>
-  <hwResources name="NVIC Node Tx" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_cpu_nvic_interrupt_tx" resourceGroupUri="peripheral/cpu/0/nvic/interrupt/*" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.13"/>
-  </hwResources>
-  <hwResources name="NVIC Node Rx" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_cpu_nvic_interrupt_rx" resourceGroupUri="peripheral/cpu/0/nvic/interrupt/*" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/cpu/cpu_0.dd#//@provided.10"/>
-  </hwResources>
+  <hwResources name="NVIC Node Tx" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_cpu_nvic_interrupt_tx" resourceGroupUri="" required="false" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*"/>
+  <hwResources name="NVIC Node Rx" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_cpu_nvic_interrupt_rx" resourceGroupUri="" required="false" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*"/>
   <hwResources name="NVIC Node Error" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_cpu_nvic_interrupt_error" resourceGroupUri="" required="false" mResGrpUri="peripheral/cpu/0/nvic/interrupt/*"/>
   <hwResources name="Receive DMA Channel" URI="http://resources/4.3.22/app/SPI_MASTER/0/hwres_dma_channel_rx" resourceGroupUri="" required="false" solverVariable="true" mResGrpUri="peripheral/sv1/0/*/*">
     <solverVarMap index="1">
@@ -141,7 +135,7 @@
     <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.18"/>
   </hwResources>
   <hwResources name="Slave Select 0 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/__pin_hwres_port_pad_spi_ss_0" resourceGroupUri="devicepackage/0/*" mResGrpUri="devicepackage/0/*">
-    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.16"/>
+    <downwardMapList xsi:type="ResourceModel:ResourceGroup" href="../../../HW_RESOURCES/DEVICEPACKAGE/DEVICEPACKAGE_0.dd#//@provided.79"/>
   </hwResources>
   <hwResources name="Slave Select 1 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/__pin_hwres_port_pad_spi_ss_1" resourceGroupUri="" required="false" mResGrpUri="devicepackage/0/*"/>
   <hwResources name="Slave Select 2 pin" URI="http://resources/4.3.22/app/SPI_MASTER/0/__pin_hwres_port_pad_spi_ss_2" resourceGroupUri="" required="false" mResGrpUri="devicepackage/0/*"/>
@@ -174,11 +168,11 @@
   <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_6/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_6_pad" systemDefined="true" sourceSignal="slave_select_6" targetSignal="slave_select_6_pin" required="false" srcVirtualSignal="//@virtualSignals.20" targetVirtualSignal="//@virtualSignals.28"/>
   <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_7/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_slave_select_7_pad" systemDefined="true" sourceSignal="slave_select_7" targetSignal="slave_select_7_pin" required="false" srcVirtualSignal="//@virtualSignals.21" targetVirtualSignal="//@virtualSignals.29"/>
   <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_std_tx_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_tx" systemDefined="true" sourceSignal="event_transmit_buffer" targetSignal="sr_transmit" required="false" srcVirtualSignal="//@virtualSignals.30" targetVirtualSignal="//@virtualSignals.38"/>
-  <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_tx_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_tx" systemDefined="true" sourceSignal="event_fifo_transmit" targetSignal="sr_transmit" srcVirtualSignal="//@virtualSignals.35" targetVirtualSignal="//@virtualSignals.38"/>
+  <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_tx_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_tx" systemDefined="true" sourceSignal="event_fifo_transmit" targetSignal="sr_transmit" required="false" srcVirtualSignal="//@virtualSignals.35" targetVirtualSignal="//@virtualSignals.38"/>
   <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_std_rx_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_rx" systemDefined="true" sourceSignal="event_std_receive" targetSignal="sr_receive" required="false" srcVirtualSignal="//@virtualSignals.31" targetVirtualSignal="//@virtualSignals.39"/>
   <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_alt_rx_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_rx" systemDefined="true" sourceSignal="event_alt_receive" targetSignal="sr_receive" required="false" srcVirtualSignal="//@virtualSignals.33" targetVirtualSignal="//@virtualSignals.39"/>
-  <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_rx_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_rx" systemDefined="true" sourceSignal="event_fifo_std_receive" targetSignal="sr_receive" srcVirtualSignal="//@virtualSignals.36" targetVirtualSignal="//@virtualSignals.39"/>
-  <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_alt_rx_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_rx" systemDefined="true" sourceSignal="event_fifo_alt_receive" targetSignal="sr_receive" srcVirtualSignal="//@virtualSignals.37" targetVirtualSignal="//@virtualSignals.39"/>
+  <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_rx_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_rx" systemDefined="true" sourceSignal="event_fifo_std_receive" targetSignal="sr_receive" required="false" srcVirtualSignal="//@virtualSignals.36" targetVirtualSignal="//@virtualSignals.39"/>
+  <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_fifo_alt_rx_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_rx" systemDefined="true" sourceSignal="event_fifo_alt_receive" targetSignal="sr_receive" required="false" srcVirtualSignal="//@virtualSignals.37" targetVirtualSignal="//@virtualSignals.39"/>
   <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_protocol_specfic_int/http://resources/4.3.22/app/SPI_MASTER/0/vs_interrupt_spi_master_error" systemDefined="true" sourceSignal="event_protocol" targetSignal="sr_error" required="false" srcVirtualSignal="//@virtualSignals.34" targetVirtualSignal="//@virtualSignals.40"/>
   <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_mosi_0/http://resources/4.3.22/app/SPI_MASTER/0/__pin_vs_spi_master_mosi_0" systemDefined="true" sourceSignal="mosi_pin" targetSignal="MOSI pin_signal" srcVirtualSignal="//@virtualSignals.8" targetVirtualSignal="//@virtualSignals.53"/>
   <connections URI="http://resources/4.3.22/app/SPI_MASTER/0/http://resources/4.3.22/app/SPI_MASTER/0/__pin_vs_spi_master_mosi_0/http://resources/4.3.22/app/SPI_MASTER/0/vs_spi_master_mosi_0" systemDefined="true" sourceSignal="MOSI pin_signal" targetSignal="mosi_pin" srcVirtualSignal="//@virtualSignals.53" targetVirtualSignal="//@virtualSignals.8"/>

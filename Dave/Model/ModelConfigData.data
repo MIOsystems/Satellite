@@ -201,6 +201,9 @@
   <nodes xsi:type="ApplicationModel:AppNode">
     <resource xsi:type="ResourceModel:App" href="APPS/INTERRUPT/v4_0_8/INTERRUPT_4.app#/"/>
   </nodes>
+  <nodes xsi:type="ApplicationModel:AppNode">
+    <resource xsi:type="ResourceModel:App" href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_22.app#/"/>
+  </nodes>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.1" target="//@nodes.2"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.1" target="//@nodes.0"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.3" target="//@nodes.0"/>
@@ -208,7 +211,6 @@
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.12" target="//@nodes.2"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.13" target="//@nodes.12"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.15" target="//@nodes.2"/>
-  <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.15" target="//@nodes.0"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.19" target="//@nodes.2"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.21" target="//@nodes.2"/>
   <connections xsi:type="ApplicationModel:NodeConnection" source="//@nodes.24" target="//@nodes.2"/>
@@ -302,9 +304,6 @@
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@connections.9"/>
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@connections.14"/>
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@connections.15"/>
-  <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@connections.24"/>
-  <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@connections.27"/>
-  <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@connections.28"/>
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@connections.30"/>
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@connections.31"/>
   <hwConnections href="APPS/SPI_MASTER/v4_3_22/SPI_MASTER_0.app#//@connections.32"/>
@@ -609,4 +608,6 @@
   <hwConnections href="APPS/UART/v4_1_10/UART_3.app#//@connections.21"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_3.app#//@connections.22"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.0"/>
+  <hwConnections href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_22.app#//@connections.0"/>
+  <hwConnections href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_22.app#//@connections.1"/>
 </ApplicationModel:ApplicationData>

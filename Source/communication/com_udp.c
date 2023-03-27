@@ -4,8 +4,15 @@
 
 i8 udp_initialize()
 {
-	netif_set_link_up(netif_default);
-	netif_set_up(ETH_LWIP_0.xnetif);
+	delayMs(100);
+	// output 4.4 reset pin phy ethernet
+	XMC_GPIO_SetMode(XMC_GPIO_PORT4, 4, XMC_GPIO_MODE_OUTPUT_PUSH_PULL);
+	delayMs(20);
+	XMC_GPIO_SetOutputLevel(XMC_GPIO_PORT4, 4, XMC_GPIO_OUTPUT_LEVEL_HIGH);
+	delayMs(2000);
+
+	//netif_set_link_up(netif_default);
+	//netif_set_up(ETH_LWIP_0.xnetif);
 	IP_ADDR4(&addr, COM_UDP_IP_1, COM_UDP_IP_2, COM_UDP_IP_3, COM_UDP_IP_4);
 	com_ctrl = udp_new();
 
