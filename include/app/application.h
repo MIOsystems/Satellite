@@ -17,7 +17,10 @@
 #include <include/sensor/gps/gnss.h>
 #include <include/communication/com_udp.h>
 #include <include/communication/com_hub.h>
-		#include <include/sensor/proximity/IO35/proximity_IO35.h>
+#ifdef IMU_COM
+#include "include/communication/com_serial_imu.h"
+#endif
+//#include <include/sensor/proximity/IO35/proximity_IO35.h>
 #ifdef ENABLE_PROXIMITY_SWITCH
 	#include <include/sensor/proximity/proximity_switch.h>
 	#ifdef PROXIMITY_IO35

@@ -1955,7 +1955,7 @@
       <properties key="uri" value="http://resources/4.1.10/app/UART/0/vs_uart_std_tx_int"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="130" y="50"/>
     </anchors>
-    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.7" referencedGraphicsAlgorithm="//@children.6/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
+    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.10" referencedGraphicsAlgorithm="//@children.6/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
       <properties key="SignalName" value="event_std_receive"/>
       <properties key="uri" value="http://resources/4.1.10/app/UART/0/vs_uart_std_rx_int"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="130" y="90"/>
@@ -2261,7 +2261,7 @@
       <properties key="uri" value="http://resources/4.1.10/app/UART/2/vs_uart_std_tx_int"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="130" y="50"/>
     </anchors>
-    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.8" referencedGraphicsAlgorithm="//@children.8/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
+    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.7" referencedGraphicsAlgorithm="//@children.8/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
       <properties key="SignalName" value="event_std_receive"/>
       <properties key="uri" value="http://resources/4.1.10/app/UART/2/vs_uart_std_rx_int"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="130" y="90"/>
@@ -2409,7 +2409,7 @@
     <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="261" height="301" x="20" y="2034">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="221" height="301" x="20" style="//@styles.0/@styles.3" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.0 //@connections.9" referencedGraphicsAlgorithm="//@children.9/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
+    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.0 //@connections.8" referencedGraphicsAlgorithm="//@children.9/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
       <properties key="SignalName" value="global_signal"/>
       <properties key="uri" value="http://resources/4.0.18/app/GLOBAL_ADC/0/vs_global_adc_global"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="220" y="55"/>
@@ -4701,7 +4701,7 @@
     <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="171" height="71" x="360" y="4939">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="131" height="71" x="20" style="//@styles.0/@styles.3" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" incomingConnections="//@connections.7" referencedGraphicsAlgorithm="//@children.27/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
+    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" incomingConnections="//@connections.10" referencedGraphicsAlgorithm="//@children.27/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
       <properties key="SignalName" value="sr_irq"/>
       <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/2/vs_nvic_signal_in"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="-20" y="50"/>
@@ -4742,7 +4742,7 @@
     <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="171" height="71" x="360" y="2362">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="131" height="71" x="20" style="//@styles.0/@styles.3" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" incomingConnections="//@connections.8" referencedGraphicsAlgorithm="//@children.28/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
+    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" incomingConnections="//@connections.7" referencedGraphicsAlgorithm="//@children.28/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
       <properties key="SignalName" value="sr_irq"/>
       <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/3/vs_nvic_signal_in"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="-20" y="50"/>
@@ -4893,7 +4893,7 @@
     <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="271" height="641" x="360" y="2473">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="231" height="641" x="20" style="//@styles.0/@styles.3" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" incomingConnections="//@connections.9" referencedGraphicsAlgorithm="//@children.31/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
+    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" incomingConnections="//@connections.8" referencedGraphicsAlgorithm="//@children.31/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
       <properties key="SignalName" value="background_connection_to_global_signal"/>
       <properties key="uri" value="http://resources/4.1.22/app/ADC_MEASUREMENT/0/vs_adc_measurement_global"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="-20" y="50"/>
@@ -6149,7 +6149,7 @@
       <properties key="uri" value="http://resources/4.1.10/app/UART/3/vs_uart_std_tx_int"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="130" y="50"/>
     </anchors>
-    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.10" referencedGraphicsAlgorithm="//@children.40/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
+    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.9" referencedGraphicsAlgorithm="//@children.40/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
       <properties key="SignalName" value="event_std_receive"/>
       <properties key="uri" value="http://resources/4.1.10/app/UART/3/vs_uart_std_rx_int"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="130" y="90"/>
@@ -6297,7 +6297,7 @@
     <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="171" height="71" x="360" y="4717">
       <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="131" height="71" x="20" style="//@styles.0/@styles.3" cornerHeight="5" cornerWidth="5"/>
     </graphicsAlgorithm>
-    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" incomingConnections="//@connections.10" referencedGraphicsAlgorithm="//@children.41/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
+    <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" incomingConnections="//@connections.9" referencedGraphicsAlgorithm="//@children.41/@graphicsAlgorithm/@graphicsAlgorithmChildren.0">
       <properties key="SignalName" value="sr_irq"/>
       <properties key="uri" value="http://resources/4.0.8/app/INTERRUPT/4/vs_nvic_signal_in"/>
       <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.2" lineStyle="UNSPECIFIED" width="20" height="10" x="-20" y="50"/>
@@ -6683,19 +6683,6 @@
     <bendpoints x="740" y="4641"/>
     <bendpoints x="740" y="3761"/>
   </connections>
-  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.6/@anchors.1" end="//@children.27/@anchors.0">
-    <properties key="uri" value="http://resources/4.1.10/app/UART/0/http://resources/4.1.10/app/UART/0/vs_uart_std_rx_int/http://resources/4.0.8/app/INTERRUPT/2/vs_nvic_signal_in"/>
-    <graphicsAlgorithm xsi:type="al:Polyline" background="//@colors.6" foreground="//@colors.6" lineStyle="UNSPECIFIED" style="//@styles.0/@styles.3"/>
-    <connectionDecorators visible="true" locationRelative="true" location="1.0">
-      <graphicsAlgorithm xsi:type="al:Polyline" background="//@colors.6" foreground="//@colors.6" lineStyle="UNSPECIFIED" style="//@styles.0/@styles.3">
-        <points x="-10" y="5"/>
-        <points/>
-        <points x="-10" y="-5"/>
-      </graphicsAlgorithm>
-    </connectionDecorators>
-    <bendpoints x="340" y="7226"/>
-    <bendpoints x="340" y="4994"/>
-  </connections>
   <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.8/@anchors.1" end="//@children.28/@anchors.0">
     <properties key="uri" value="http://resources/4.1.10/app/UART/2/http://resources/4.1.10/app/UART/2/vs_uart_std_rx_int/http://resources/4.0.8/app/INTERRUPT/3/vs_nvic_signal_in"/>
     <graphicsAlgorithm xsi:type="al:Polyline" background="//@colors.6" foreground="//@colors.6" lineStyle="UNSPECIFIED" style="//@styles.0/@styles.3"/>
@@ -6734,6 +6721,19 @@
     </connectionDecorators>
     <bendpoints x="300" y="5656"/>
     <bendpoints x="300" y="4772"/>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.6/@anchors.1" end="//@children.27/@anchors.0">
+    <properties key="uri" value="http://resources/4.1.10/app/UART/0/http://resources/4.1.10/app/UART/0/vs_uart_std_rx_int/http://resources/4.0.8/app/INTERRUPT/2/vs_nvic_signal_in"/>
+    <graphicsAlgorithm xsi:type="al:Polyline" background="//@colors.6" foreground="//@colors.6" lineStyle="UNSPECIFIED" style="//@styles.0/@styles.3"/>
+    <connectionDecorators visible="true" locationRelative="true" location="1.0">
+      <graphicsAlgorithm xsi:type="al:Polyline" background="//@colors.6" foreground="//@colors.6" lineStyle="UNSPECIFIED" style="//@styles.0/@styles.3">
+        <points x="-10" y="5"/>
+        <points/>
+        <points x="-10" y="-5"/>
+      </graphicsAlgorithm>
+    </connectionDecorators>
+    <bendpoints x="340" y="7226"/>
+    <bendpoints x="340" y="4994"/>
   </connections>
   <colors red="227" green="238" blue="249"/>
   <colors red="255" green="255" blue="255"/>

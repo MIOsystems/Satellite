@@ -6,11 +6,32 @@
  */
 #include <include/sensor/imu/imu.h>
 
+#ifdef BMI085
+
 u8 imuInit(bmi085x* imu)
 {
 	u8 status = 0;
 #ifdef BMI085
 	bmi085xInitSensor(imu);
+	status = bmi085aInit(imu);
+	if(status != BMI085X_SUCCESS)
+	{
+		return status;
+	}
+	status = bmi085gInit(imu);
+	return status;
+#endif
+	return status;
+}
+
+u8 imuInitParam(bmi085x* imu, bmi085xSensor accel, bmi085xSensor gyro)
+{
+	u8 status = 0;
+#ifdef BMI085
+	imu->acc = accel;
+	imu->gyro = gyro;
+	bmi085xInitData(imu);
+
 	status = bmi085aInit(imu);
 	if(status != BMI085X_SUCCESS)
 	{
@@ -57,3 +78,5 @@ u8 imuPoll(bmi085x* imu)
 	DIGITAL_IO_SetOutputLow(&LED_GREEN);
 	return status;
 }
+
+#endif

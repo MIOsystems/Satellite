@@ -11,7 +11,12 @@
 
 #define CONCAT_RAW_VAL(msb, lsb) (i16) ((msb << 8) | lsb)
 
-
+typedef struct
+{
+	int16_t x;
+	int16_t y;
+	int16_t z;
+} bmi_vec3_int16;
 
 typedef struct 
 {
@@ -30,6 +35,8 @@ typedef struct
 // the structure that will be send
 typedef struct 
 {
+	bmi_vec3_int16 raw_accel_poll_val;
+	bmi_vec3_int16 raw_gyro_poll_val;
 	Vec3f_t accel_poll_val;
 	Vec3f_t gyro_poll_val;
 	AggregateStateFloat_t x_stat;
@@ -48,6 +55,7 @@ typedef struct
 
 void bmi085xInitGyroscope(bmi085x *bmi085);
 void bmi085xInitAccelerometer(bmi085x *bmi085);
+void bmi085xInitData(bmi085x *bmi085);
 
 void bmi085xInitSensor(bmi085x *bmi085);
 void bmi085xResetSensorData(bmi085x *bmi085);

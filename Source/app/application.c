@@ -25,22 +25,28 @@ i8 appInit()
 	i8 status = DAVE_STATUS_SUCCESS;
 
 	// Communication
-	status = udp_initialize();
-	if(status != 0)
-	{
-		return status;
-	}
+//	status = udp_initialize();
+//	if(status != 0)
+//	{
+//		return status;
+//	}
 
+#ifdef HUB_CONNECTED
 	status = (i8) comHubInit();
 	if(status != 0)
 	{
 		return status;
 	}
+#endif
 	// Sensors
 	// IMU
 #ifdef BMI085
 	DIGITAL_IO_SetOutputHigh(&CS_A);
-	status = (i8) imuInit(&imu);
+#ifdef IMU_COM
+	status = imu_serial_com_init(&imu, false);
+#else
+	status = (i8)imuInit(&imu);
+#endif
 	if(status != BMI085X_SUCCESS)
 	{
 		return DAVE_STATUS_FAILURE;
@@ -139,33 +145,53 @@ void appUpdate()
 	appHandleCustomerPackets();
 	appHandleSpectrum();
 	appHandleDebugImu();
+#ifdef HUB_CONNECTED
 	comHubRecvHandle();
+#endif
 }
 
 void appHandleCustomerPackets(void)
 {
+#ifdef BMI085
 	if(pollImu)
 	{
 		imuPoll(&imu);
+
+		#ifdef IMU_COM
+			imu_serial_com_send_measurements(&imu);
+		#endif
 		pollImu = false;
 	}
 
-	if(sendData)
-	{
-		if(gpsRecvHandler() == 0)
-		{
-			DIGITAL_IO_SetOutputLow(&LED_BLUE);
-			udp_send_gps(gpsPacket);
-		}
-		udp_send_bmi(imu);
+#endif
 
-
-		appHandleAltimeter();
-		appHandleProxSwitch();
-
-
-		sendData = false;
-	}
+//#ifdef BMI085
+//	if(pollImu)
+//	{
+//		imuPoll(&imu);
+//		pollImu = false;
+//	}
+//#endif
+//
+//	if(sendData)
+//	{
+//#ifdef UBLX
+//		if(gpsRecvHandler() == 0)
+//		{
+//			DIGITAL_IO_SetOutputLow(&LED_BLUE);
+//			udp_send_gps(gpsPacket);
+//		}
+//#endif
+//#ifdef BMI085
+//		udp_send_bmi(imu);
+//#endif
+//
+//		appHandleAltimeter();
+//		appHandleProxSwitch();
+//
+//
+//		sendData = false;
+//	}
 }
 
 void appHandleSpectrum(void)
@@ -192,7 +218,7 @@ void appHandleSpectrum(void)
 
 void appHandleDebugImu(void)
 {
-#ifdef UDP_BMI_DEBUG_MSG
+#ifdef defined(UDP_BMI_DEBUG_MSG) && defined(BMI085)
 	if(sendDebug)
 	{
 		DIGITAL_IO_SetOutputLow(&LED_BLUE);

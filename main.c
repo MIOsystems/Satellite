@@ -15,6 +15,10 @@
 #include <include/util/delay.h>
 #include <include/util/math_utility.h>
 
+#ifdef IMU_COM
+#include "include/communication/com_serial_imu.h"
+#endif
+
 #ifdef RUN_HW_VALIDATION
 	#include <include/validation/validate_app.h>
 #else
@@ -28,8 +32,9 @@
 
 void rs232_interrupt(void) {
 #ifndef RUN_HW_VALIDATION
-	gnssPoll();
-
+	#ifdef UBLX
+		gnssPoll();
+	#endif
 #else
 	validate_rs232_update();
 #endif
@@ -41,6 +46,9 @@ void rs422_interrupt(void)
 	#ifdef ALTIMETER_SF30
 		sf30_rx_handle();
 	#endif
+	#ifdef IMU_COM
+		imu_serial_com_recv();
+	#endif
 #else
 	validate_rs422_update();
 #endif
@@ -49,7 +57,9 @@ void rs422_interrupt(void)
 void can_uart_handler(void)
 {
 #ifndef RUN_HW_VALIDATION
-	comHubRecv();
+	#ifdef HUB_CONNECTED
+		comHubRecv();
+	#endif
 #else
 #endif
 }

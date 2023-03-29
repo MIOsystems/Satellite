@@ -1,6 +1,10 @@
 #ifndef GNSS_H_
 #define GNSS_H_
 
+#include <include/satellite.h>
+
+#ifdef UBLX
+
 #include <stdbool.h>
 
 #include <include/util/types.h>
@@ -63,5 +67,7 @@ void gnssUpdateChecksum(u8 data);
 void gnssGetChecksum(void);
 u8 gpsRecvHandler(void);
 void gnssConvert(void);
+
+#endif
 
 #endif

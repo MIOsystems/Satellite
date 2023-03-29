@@ -20,7 +20,13 @@
 #define BMI085
 
 ///* GNSS */
-#define UBLX
+//#define UBLX
+
+/* HUB */
+//#define HUB_CONNECTED
+
+/* Transmit/receive IMU data and settings commands */
+#define IMU_COM
 
 /* Proximity switch */
 //#define ENABLE_PROXIMITY_SWITCH

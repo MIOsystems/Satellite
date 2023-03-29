@@ -95,6 +95,9 @@ BMI085xStatus_e bmi085aPoll(bmi085x *bmi085)
 	
 
 	// converts raw values to m/s^2
+	bmi085->data.raw_accel_poll_val.x = raw_x;
+	bmi085->data.raw_accel_poll_val.y = raw_y;
+	bmi085->data.raw_accel_poll_val.z = raw_z;
 	bmi085->data.accel_poll_val.x = (f32) RAW_TO_MS2(raw_x, bmi085->acc.config.meas_range.instr + 1);
 	bmi085->data.accel_poll_val.y = (f32) RAW_TO_MS2(raw_y, bmi085->acc.config.meas_range.instr + 1);
 	bmi085->data.accel_poll_val.z = (f32) RAW_TO_MS2(raw_z, bmi085->acc.config.meas_range.instr + 1);

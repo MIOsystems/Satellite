@@ -8,6 +8,10 @@
 #ifndef COM_HUB_H_
 #define COM_HUB_H_
 
+#include <include/satellite.h>
+
+#ifdef HUB_CONNECTED
+
 #include <stdbool.h>
 
 #include <DAVE.h>
@@ -16,7 +20,6 @@
 #include <include/util/model.h>
 #include <include/util/error.h>
 #include <include/util/crc.h>
-#include <include/satellite.h>
 
 #define HUB_PAYLOAD_BUFFER_SIZE		128
 #define CAN_FRAME_START1_OPCODE		0x40
@@ -86,5 +89,6 @@ void comHubCreateMeasurePacket();
 void comHubCreateExistencePacket();
 void comHubCreateGPSPacket();
 
+#endif
 
 #endif

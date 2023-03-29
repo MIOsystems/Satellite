@@ -1,6 +1,9 @@
 #include <DAVE.h>
 #include <include/app/application.h>
 #include <include/sensor/gps/gnss.h>
+
+#ifdef UBLX
+
 #include <include/util/types.h>
 #include <string.h>
 
@@ -214,3 +217,5 @@ void gnssGetChecksum(void)
 	gpsFrame.checksum_calc = gpsFrame.ck_a;
 	gpsFrame.checksum_calc |= gpsFrame.ck_b << 8;
 }
+
+#endif

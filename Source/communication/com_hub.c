@@ -8,7 +8,10 @@
 #include <stdbool.h>
 
 #include <include/communication/com_hub.h>
-#include <include/satellite.h>
+
+#ifdef HUB_CONNECTED
+
+//#include <include/satellite.h>
 #include <include/hardware/digital_output.h>
 
 //MeasurementPayloadPacket_t measurementsPayloadPackets[2];
@@ -359,3 +362,5 @@ void comHubCreateRespondCommandoPacket()
 	tx_buff[CAN_FRAME_PAYLOAD + size + 1] = crc_result >> 8;
 	tx_buff[CAN_FRAME_PAYLOAD + size + 2] = crc_result;
 }
+
+#endif

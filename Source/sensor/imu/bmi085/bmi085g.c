@@ -95,6 +95,9 @@ BMI085xStatus_e bmi085gPoll(bmi085x *bmi085)
 	i16 raw_z = CONCAT_RAW_VAL(rx_buff[6], rx_buff[5]);
 
 	// values in degrees per seconds
+	bmi085->data.raw_gyro_poll_val.x = raw_x;
+	bmi085->data.raw_gyro_poll_val.y = raw_y;
+	bmi085->data.raw_gyro_poll_val.z = raw_z;
 	bmi085->data.gyro_poll_val.x = (f32) (raw_x * conv_raw_rad_s);
 	bmi085->data.gyro_poll_val.y = (f32) (raw_y * conv_raw_rad_s);
 	bmi085->data.gyro_poll_val.z = (f32) (raw_z * conv_raw_rad_s);

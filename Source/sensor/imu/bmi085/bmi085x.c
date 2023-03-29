@@ -55,10 +55,20 @@ void bmi085xInitGyroscope(bmi085x *bmi085)
 	bmi085->gyro = gyro;
 }
 
-void bmi085xInitSensor(bmi085x *bmi085)
+void bmi085xInitData(bmi085x *bmi085)
 {
 	// Setting all of the data values to zero
 	bmi085xData data = {
+		.raw_accel_poll_val = {
+			.x = 0,
+			.y = 0,
+			.z = 0
+		},
+		.raw_gyro_poll_val = {
+			.x = 0,
+			.y = 0,
+			.z = 0
+		},
 		.accel_poll_val = { 
 			.x = 0,
 			.y = 0,
@@ -91,14 +101,21 @@ void bmi085xInitSensor(bmi085x *bmi085)
 		}
 	};
 
+	bmi085->data = data;
+}
+
+void bmi085xInitSensor(bmi085x *bmi085)
+{
 	bmi085xInitAccelerometer(bmi085);
 	bmi085xInitGyroscope(bmi085);
-	bmi085->data = data;
+	bmi085xInitData(bmi085);
 }
 
 void bmi085xResetSensorData(bmi085x *bmi085)
 {
 	bmi085xData data = {
+				.raw_accel_poll_val = { .x = 0, .y = 0, .z = 0 },
+				.raw_gyro_poll_val = { .x = 0, .y = 0, .z = 0 },
 				.accel_poll_val = { .x = 0, .y = 0, .z = 0 },
 				.gyro_poll_val = { .x = 0, .y = 0, .z = 0 },
 				.x_stat = { .avg = 0, .max = 0, .min = 0 },

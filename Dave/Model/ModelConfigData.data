@@ -518,7 +518,6 @@
   <hwConnections href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_10.app#//@connections.1"/>
   <hwConnections href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_11.app#//@connections.0"/>
   <hwConnections href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_11.app#//@connections.1"/>
-  <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.22"/>
   <hwConnections href="APPS/UART/v4_1_10/UART_2.app#//@connections.22"/>
   <hwConnections href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_12.app#//@connections.0"/>
   <hwConnections href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_12.app#//@connections.1"/>
@@ -610,4 +609,5 @@
   <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.0"/>
   <hwConnections href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_22.app#//@connections.0"/>
   <hwConnections href="APPS/DIGITAL_IO/v4_0_16/DIGITAL_IO_22.app#//@connections.1"/>
+  <hwConnections href="APPS/UART/v4_1_10/UART_0.app#//@connections.22"/>
 </ApplicationModel:ApplicationData>

@@ -103,10 +103,14 @@ typedef struct
 } UDPPacket_t;
 
 i8 udp_initialize();
+#ifdef UBLX
 i8 udp_send_gps(GPSValues_t data);
+#endif
+#ifdef BMI085
 i8 udp_send_bmi(bmi085x data);
 i8 udp_send_debug_bmi(bmi085x data);
 i8 udp_send_proximity(proximity_switch_t data);
+#endif
 i8 udp_send_packet(void* data, size_t size, char* prefix);
 i8 udp_send_altimeter(AltimeterData_t data);
 

@@ -8,16 +8,17 @@
 #ifndef IMU_H_
 #define IMU_H_
 
-#include <include/util/types.h>
 #include <include/satellite.h>
+
+#ifdef BMI085
+
+#include <include/util/types.h>
 #include <include/util/math_utility.h>
 
 // IMU driver includes
-#ifdef BMI085
 #include <include/sensor/imu/bmi085/bmi085x.h>
 #include <include/sensor/imu/bmi085/bmi085a.h>
 #include <include/sensor/imu/bmi085/bmi085g.h>
-#endif
 
 // Filters
 #ifdef COMP_FILTER
@@ -33,6 +34,9 @@
 #endif
 
 u8 imuInit(bmi085x* imu);
+u8 imuInitParam(bmi085x* imu, bmi085xSensor accel, bmi085xSensor gyro);
 u8 imuPoll(bmi085x* imu);
+
+#endif
 
 #endif /* INCLUDE_SENSOR_IMU_IMU_H_ */
