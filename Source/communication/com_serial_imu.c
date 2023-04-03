@@ -7,6 +7,9 @@ int imuComBufferPos = 0;
 
 bmi085x* imuRef = NULL;
 
+com_serial_imu_command_ack commandAck = { 0xF0, 0x0F, 0, 0, 0, 0, 0 };
+bool sendCommandAck = false;
+
 int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts)
 {
 	if(haltInterrupts)
@@ -37,7 +40,7 @@ int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts)
 	}
 
 	bmi085xSensor accel = {
-		.chip_id = 0, // this will be replaced later in the init function of the accelerometer
+		.chip_id = 0,
 		.config = {
 			.pwr_mode = {
 				.reg_addr = BMI085A_PWR_MODE_ADDR,
@@ -142,7 +145,7 @@ void imu_serial_com_packet_received_handle()
 {
 	bool isValidPacket = imu_serial_com_handle_packet();
 
-	com_serial_imu_command_ack commandAck = {
+	com_serial_imu_command_ack commandAckTemp = {
 		0xF0,
 		0x0F,
 		(uint8_t)ACKNOWLEGDEMENT,
@@ -151,11 +154,11 @@ void imu_serial_com_packet_received_handle()
 		imuComBuffer.registerValue,
 		(isValidPacket) ? 1 : 0
 	};
+	commandAck = commandAckTemp;
+	sendCommandAck = true;
 
 	if(isValidPacket)
 		imu_serial_com_init(imuRef, true);
-
-	imu_serial_com_write((uint8_t*)(&commandAck), sizeof(com_serial_imu_command_ack));
 }
 
 bool imu_serial_com_handle_packet()
@@ -163,7 +166,7 @@ bool imu_serial_com_handle_packet()
 	if(imuComBuffer.chip == ACCELEROMETER && imuComBuffer.registerAddress == BMI085A_RANGE_ADDR && imuComBuffer.registerValue < 4) // Valid below max value
 	{
 		fram_enable_write();
-		fram_write_data(0, &imuComBuffer.registerValue, 1); // Write value to FRAM
+		fram_write_data(0, &imuComBuffer.registerValue, 1);
 		fram_disable_write();
 		return true;
 	}
@@ -172,14 +175,14 @@ bool imu_serial_com_handle_packet()
 		if(imuComBuffer.registerAddress == BMI085G_CFG_RANG_ADDR && imuComBuffer.registerValue < 5) // Valid below max value
 		{
 			fram_enable_write();
-			fram_write_data(1, &imuComBuffer.registerValue, 1); // Write value to FRAM
+			fram_write_data(1, &imuComBuffer.registerValue, 1);
 			fram_disable_write();
 			return true;
 		}
 		else if(imuComBuffer.registerAddress == BMI085G_CFG_BANDWIDTH_ADDR && imuComBuffer.registerValue < 8) // Valid below max value
 		{
 			fram_enable_write();
-			fram_write_data(2, &imuComBuffer.registerValue, 1); // Write value to FRAM
+			fram_write_data(2, &imuComBuffer.registerValue, 1);
 			fram_disable_write();
 			return true;
 		}
@@ -190,6 +193,12 @@ bool imu_serial_com_handle_packet()
 
 void imu_serial_com_send_measurements(bmi085x* imu)
 {
+	if(sendCommandAck)
+	{
+		imu_serial_com_write((uint8_t*)(&commandAck), sizeof(com_serial_imu_command_ack));
+		sendCommandAck = false;
+	}
+
 	com_serial_imu_data_packet dataPacket = {
 		0xF0,
 		0x0F,
@@ -198,7 +207,6 @@ void imu_serial_com_send_measurements(bmi085x* imu)
 		imu->data.raw_gyro_poll_val.x, imu->data.raw_gyro_poll_val.y, imu->data.raw_gyro_poll_val.z
 	};
 
-	//imu_serial_com_write((uint8_t*)(&dataPacket), sizeof(com_serial_imu_data_packet));
 	imu_serial_com_write((uint8_t*)(&dataPacket), 15);
 }
 

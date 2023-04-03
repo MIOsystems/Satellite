@@ -19,7 +19,6 @@ u8 imuInit(bmi085x* imu)
 		return status;
 	}
 	status = bmi085gInit(imu);
-	return status;
 #endif
 	return status;
 }
@@ -38,7 +37,6 @@ u8 imuInitParam(bmi085x* imu, bmi085xSensor accel, bmi085xSensor gyro)
 		return status;
 	}
 	status = bmi085gInit(imu);
-	return status;
 #endif
 	return status;
 }
