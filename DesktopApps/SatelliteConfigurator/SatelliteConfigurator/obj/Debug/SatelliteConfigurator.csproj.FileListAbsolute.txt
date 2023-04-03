@@ -1,0 +1,54 @@
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\SatelliteConfigurator.exe.config
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\SatelliteConfigurator.exe
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\SatelliteConfigurator.pdb
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\ScottPlot.dll
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\ScottPlot.WPF.dll
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.Drawing.Common.dll
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.ValueTuple.dll
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\ScottPlot.xml
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.ValueTuple.xml
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.AssemblyReference.cache
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.SuggestedBindingRedirects.cache
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\IMUDataVisualizer.g.cs
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\MainWindow.g.cs
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\App.g.cs
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator_MarkupCompile.cache
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator_MarkupCompile.lref
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\IMUDataVisualizer.baml
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\MainWindow.baml
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.g.resources
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.Properties.Resources.resources
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.GenerateResource.cache
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.CoreCompileInputs.cache
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.CopyComplete
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.exe
+C:\Users\Kenley Strik\Documents\Visual Studio 2022\Projects\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.pdb
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\SatelliteConfigurator.exe.config
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\SatelliteConfigurator.exe
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\SatelliteConfigurator.pdb
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\ScottPlot.dll
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\ScottPlot.WPF.dll
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.Drawing.Common.dll
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.ValueTuple.dll
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\ScottPlot.xml
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\bin\Debug\System.ValueTuple.xml
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.AssemblyReference.cache
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.SuggestedBindingRedirects.cache
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\IMUDataVisualizer.g.cs
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\MainWindow.g.cs
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\App.g.cs
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator_MarkupCompile.cache
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator_MarkupCompile.lref
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\IMUDataVisualizer.baml
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\MainWindow.baml
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.g.resources
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.Properties.Resources.resources
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.GenerateResource.cache
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.CoreCompileInputs.cache
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.csproj.CopyComplete
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.exe
+C:\Users\Kenley Strik\Documents\GitHub\Satellite\DesktopApps\SatelliteConfigurator\SatelliteConfigurator\obj\Debug\SatelliteConfigurator.pdb

@@ -1,0 +1,82 @@
+﻿<Window x:Class="SatelliteConfigurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SatelliteConfigurator"
+        mc:Ignorable="d"
+        Title="SatelliteConfigurator" Width="1280" Height="720">
+    <Grid x:Name="grd_Grid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Content="Receive Log:" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="1"></Label>
+        <Label Content="Transmit Log:" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="1"></Label>
+        <TextBox x:Name="txb_ReceiveLog" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="2" Margin="5,5,5,5"></TextBox>
+        <TextBox x:Name="txb_TransmitLog" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="2" Margin="5,5,5,5"></TextBox>
+
+        <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,5">
+                <Label Content="Port:"></Label>
+                <ComboBox x:Name="cmb_ComPorts" Width="200"></ComboBox>
+                <Button x:Name="btn_OpenPort" Content="Open port" Width="100" Height="25" Click="btn_OpenPort_Click"></Button>
+                <Button x:Name="btn_ClosePort" Content="Close port" Width="100" Height="25" IsEnabled="False" Click="btn_ClosePort_Click"></Button>
+            </WrapPanel>
+            <Button x:Name="btn_RefreshPorts" Content="Refresh ports" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,5" Click="btn_RefreshPorts_Click"></Button>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btn_Transmit" Content="Transmit Configuration" Width="200" Height="25" Margin="5,5,5,5" IsEnabled="False" Click="btn_Transmit_Click" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+            </StackPanel>
+            
+            <Grid Width="300" Height="100">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Content="Acceleration" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="1"></Label>
+                <Label Content="x:" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label x:Name="lbl_accelX" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label Content="y:" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label x:Name="lbl_accelY" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label Content="z:" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label x:Name="lbl_accelZ" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+
+                <Label Content="Gyro" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="1"></Label>
+                <Label Content="x:" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label x:Name="lbl_gyroX" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label Content="y:" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label x:Name="lbl_gyroY" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label Content="z:" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+                <Label x:Name="lbl_gyroZ" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
+            </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Label Content="Chip:"></Label>
+            <ComboBox x:Name="cmb_Chip" Width="150" SelectedIndex="0" SelectionChanged="cmb_Command_Chip_SelectionChanged"></ComboBox>
+            <Label Content="Register:"></Label>
+            <ComboBox x:Name="cmb_Register" Width="150" SelectionChanged="cmb_Command_Register_SelectionChanged"></ComboBox>
+            <Label Content="Value:"></Label>
+            <ComboBox x:Name="cmb_Value" Width="150" SelectionChanged="cmb_Command_Value_SelectionChanged"></ComboBox>
+        </StackPanel>
+    </Grid>
+</Window>
