@@ -92,7 +92,6 @@ BMI085xStatus_e bmi085aPoll(bmi085x *bmi085)
 	const i16 raw_x = CONCAT_RAW_VAL(rx_buff_poll[3], rx_buff_poll[2]);
 	const i16 raw_y = CONCAT_RAW_VAL(rx_buff_poll[5], rx_buff_poll[4]);
 	const i16 raw_z = CONCAT_RAW_VAL(rx_buff_poll[7], rx_buff_poll[6]);
-	
 
 	// converts raw values to m/s^2
 	bmi085->data.raw_accel_poll_val.x = raw_x;

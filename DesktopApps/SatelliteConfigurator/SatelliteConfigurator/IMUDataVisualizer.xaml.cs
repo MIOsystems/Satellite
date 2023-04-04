@@ -75,7 +75,7 @@ namespace SatelliteConfigurator
             plt_GraphGyroY.Plot.XAxis2.Label(label: "Gyro Y", size: 14, color: System.Drawing.Color.Black, bold: true);
             plt_GraphGyroZ.Plot.XAxis2.Label(label: "Gyro Z", size: 14, color: System.Drawing.Color.Black, bold: true);
 
-            this.renderTimer = new System.Timers.Timer(25);
+            this.renderTimer = new System.Timers.Timer(50);
             this.renderTimer.Elapsed += RenderTimer_Elapsed;
             this.imuDataBuffer = new Queue<IMUData>();
             this.imuDataBufferMutex = new Mutex();

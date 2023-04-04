@@ -207,7 +207,13 @@ void imu_serial_com_send_measurements(bmi085x* imu)
 		imu->data.raw_gyro_poll_val.x, imu->data.raw_gyro_poll_val.y, imu->data.raw_gyro_poll_val.z
 	};
 
-	imu_serial_com_write((uint8_t*)(&dataPacket), 15);
+	uint8_t* data = (uint8_t*)malloc(15);
+	memcpy(data, &((uint8_t*)(&dataPacket))[0], 3);
+	memcpy(&data[3], &((uint8_t*)(&dataPacket))[4], 12);
+
+	imu_serial_com_write(data, 15);
+
+	free(data);
 }
 
 bool imu_serial_com_validate_fram_data(com_serial_imu_fram_data* framData)

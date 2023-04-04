@@ -139,7 +139,6 @@ namespace SatelliteConfigurator
             registerValue = (byte)AccelRange.RANGE_4G
         };
 
-        private System.Timers.Timer timer = new System.Timers.Timer(1);
         IMUDataVisualizer imuDataVisualizer;
 
         public MainWindow()
@@ -165,17 +164,6 @@ namespace SatelliteConfigurator
             //double[] dataY = new double[] { 1, 2, 3, 4 };
             //plt_Graph.Plot.AddScatter(dataX, dataY);
             //plt_Graph.Refresh();
-
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
-        }
-
-        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
-            {
-
-            }));
         }
 
         void FillComboBox(List<string> items, ComboBox combobox)
@@ -406,6 +394,11 @@ namespace SatelliteConfigurator
         private void cmb_Command_Value_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             command.registerValue = (byte)cmb_Value.SelectedIndex;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

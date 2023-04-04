@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SatelliteConfigurator"
         mc:Ignorable="d"
-        Title="SatelliteConfigurator" Width="1280" Height="720">
+        Title="SatelliteConfigurator" Width="1280" Height="720" Closed="Window_Closed">
     <Grid x:Name="grd_Grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
