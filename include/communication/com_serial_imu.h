@@ -19,6 +19,16 @@
 
 #define COM_SERIAL_IMU_BUFFER_SIZE 3
 
+#define START_BYTE_1 0xFO
+#define START_BYTE_2 0x0F
+
+typedef enum
+{
+    RECEIVING_STARTBYTE_1 = 0,
+    RECEIVING_STARTBYTE_2 = 1,
+    RECEIVING_PAYLOAD = 2
+} com_serial_imu_receive_state;
+
 typedef enum
 {
 	COM_SERIAL_IMU_ERR_OK = 0,
@@ -85,6 +95,8 @@ bool imu_serial_com_handle_packet();
 
 void imu_serial_com_send_measurements(bmi085x* imu);
 bool imu_serial_com_validate_fram_data(com_serial_imu_fram_data* framData);
+
+void imu_serial_com_reset_recv_buffer_pos();
 
 #endif
 #endif

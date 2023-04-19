@@ -33,13 +33,17 @@
                 <Button x:Name="btn_ClosePort" Content="Close port" Width="100" Height="25" IsEnabled="False" Click="btn_ClosePort_Click"></Button>
             </WrapPanel>
             <Button x:Name="btn_RefreshPorts" Content="Refresh ports" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,5" Click="btn_RefreshPorts_Click"></Button>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Packets per second:"></Label>
+                <Label x:Name="lbl_PacketsPerSecond" Margin="10,0,0,0"></Label>
+            </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="btn_Transmit" Content="Transmit Configuration" Width="200" Height="25" Margin="5,5,5,5" IsEnabled="False" Click="btn_Transmit_Click" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
             </StackPanel>
             
-            <Grid Width="300" Height="100">
+            <!--<Grid Width="300" Height="100">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -68,7 +72,7 @@
                 <Label x:Name="lbl_gyroY" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
                 <Label Content="z:" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
                 <Label x:Name="lbl_gyroZ" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"></Label>
-            </Grid>
+            </Grid>-->
         </StackPanel>
         <StackPanel Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Label Content="Chip:"></Label>

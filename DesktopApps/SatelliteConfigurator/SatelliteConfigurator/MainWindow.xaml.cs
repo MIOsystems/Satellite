@@ -31,6 +31,9 @@ namespace SatelliteConfigurator
         private Thread serialPortThread = null;
         private bool threadRunning = false;
 
+        private int imuDataPacketsRecieved = 0;
+        private System.Timers.Timer imuDataCounterTimer;
+
         private enum ReceiveState
         {
             RECEIVING_STARTBYTE_1,
@@ -164,6 +167,19 @@ namespace SatelliteConfigurator
             //double[] dataY = new double[] { 1, 2, 3, 4 };
             //plt_Graph.Plot.AddScatter(dataX, dataY);
             //plt_Graph.Refresh();
+
+            this.imuDataCounterTimer = new System.Timers.Timer(1000.0);
+            this.imuDataCounterTimer.Elapsed += ScanlineCounterTimer_Elapsed;
+            this.imuDataCounterTimer.Start();
+        }
+
+        private void ScanlineCounterTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+            {
+                lbl_PacketsPerSecond.Content = this.imuDataPacketsRecieved;
+            }));
+            this.imuDataPacketsRecieved = 0;
         }
 
         void FillComboBox(List<string> items, ComboBox combobox)
@@ -186,7 +202,7 @@ namespace SatelliteConfigurator
             }
 
             string selectedPortName = cmb_ComPorts.SelectedItem.ToString();
-            this.serialPort = new SerialPort(selectedPortName, 115200, Parity.None, 8, StopBits.One);
+            this.serialPort = new SerialPort(selectedPortName, 460800, Parity.None, 8, StopBits.One);//115200 460800
             this.serialPort.Open();
 
             this.serialPortThread = new Thread(SerialPortThreadRun);
@@ -280,18 +296,19 @@ namespace SatelliteConfigurator
 
                                 this.imuDataVisualizer.AddImuData(imuData);
 
-                                Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
-                                {
-                                    lbl_accelX.Content = imuData.accelX;
-                                    lbl_accelY.Content = imuData.accelY;
-                                    lbl_accelZ.Content = imuData.accelZ;
-                                    lbl_gyroX.Content = imuData.gyroX;
-                                    lbl_gyroY.Content = imuData.gyroY;
-                                    lbl_gyroZ.Content = imuData.gyroZ;
-                                }));
+                                //Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                                //{
+                                //    lbl_accelX.Content = imuData.accelX;
+                                //    lbl_accelY.Content = imuData.accelY;
+                                //    lbl_accelZ.Content = imuData.accelZ;
+                                //    lbl_gyroX.Content = imuData.gyroX;
+                                //    lbl_gyroY.Content = imuData.gyroY;
+                                //    lbl_gyroZ.Content = imuData.gyroZ;
+                                //}));
 
                                 currentIndex = 0;
                                 receiveState = ReceiveState.RECEIVING_STARTBYTE_1;
+                                this.imuDataPacketsRecieved++;
                             }
                             else if (currentMessageType == MessageType.ACKNOWLEGDEMENT && currentIndex == 4)
                             {

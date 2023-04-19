@@ -76,6 +76,12 @@ i8 appInit()
 
 void appTimerUpdate()
 {
+	imuPoll(&imu);
+
+	#ifdef IMU_COM
+		imu_serial_com_send_measurements(&imu);
+	#endif
+
 	if(applicationClock.pollCounter == POLL_INTERVAL)
 	{
 		pollImu = true;
@@ -153,15 +159,15 @@ void appUpdate()
 void appHandleCustomerPackets(void)
 {
 #ifdef BMI085
-	if(pollImu)
-	{
-		imuPoll(&imu);
-
-		#ifdef IMU_COM
-			imu_serial_com_send_measurements(&imu);
-		#endif
-		pollImu = false;
-	}
+//	if(pollImu)
+//	{
+//		imuPoll(&imu);
+//
+//		#ifdef IMU_COM
+//			imu_serial_com_send_measurements(&imu);
+//		#endif
+////		pollImu = false;
+//	}
 
 #endif
 

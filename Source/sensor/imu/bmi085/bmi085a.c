@@ -97,22 +97,22 @@ BMI085xStatus_e bmi085aPoll(bmi085x *bmi085)
 	bmi085->data.raw_accel_poll_val.x = raw_x;
 	bmi085->data.raw_accel_poll_val.y = raw_y;
 	bmi085->data.raw_accel_poll_val.z = raw_z;
-	bmi085->data.accel_poll_val.x = (f32) RAW_TO_MS2(raw_x, bmi085->acc.config.meas_range.instr + 1);
-	bmi085->data.accel_poll_val.y = (f32) RAW_TO_MS2(raw_y, bmi085->acc.config.meas_range.instr + 1);
-	bmi085->data.accel_poll_val.z = (f32) RAW_TO_MS2(raw_z, bmi085->acc.config.meas_range.instr + 1);
-	if(bmi085a_poll_counter == 1001)
-	{
-		bmi085a_poll_counter = 0;
-		statisticReset(&bmi085->data.x_stat);
-		statisticReset(&bmi085->data.y_stat);
-		statisticReset(&bmi085->data.z_stat);
-	}
-	// calculates the min/max/avg of each axis
-	statisticCalcAggregateValues(&bmi085->data.x_stat, &bmi085->data.accel_poll_val.x, bmi085a_poll_counter);
-	statisticCalcAggregateValues(&bmi085->data.y_stat, &bmi085->data.accel_poll_val.y, bmi085a_poll_counter);
-	statisticCalcAggregateValues(&bmi085->data.z_stat, &bmi085->data.accel_poll_val.z, bmi085a_poll_counter);
-
-	bmi085a_poll_counter++;
+//	bmi085->data.accel_poll_val.x = (f32) RAW_TO_MS2(raw_x, bmi085->acc.config.meas_range.instr + 1);
+//	bmi085->data.accel_poll_val.y = (f32) RAW_TO_MS2(raw_y, bmi085->acc.config.meas_range.instr + 1);
+//	bmi085->data.accel_poll_val.z = (f32) RAW_TO_MS2(raw_z, bmi085->acc.config.meas_range.instr + 1);
+//	if(bmi085a_poll_counter == 1001)
+//	{
+//		bmi085a_poll_counter = 0;
+//		statisticReset(&bmi085->data.x_stat);
+//		statisticReset(&bmi085->data.y_stat);
+//		statisticReset(&bmi085->data.z_stat);
+//	}
+//	// calculates the min/max/avg of each axis
+//	statisticCalcAggregateValues(&bmi085->data.x_stat, &bmi085->data.accel_poll_val.x, bmi085a_poll_counter);
+//	statisticCalcAggregateValues(&bmi085->data.y_stat, &bmi085->data.accel_poll_val.y, bmi085a_poll_counter);
+//	statisticCalcAggregateValues(&bmi085->data.z_stat, &bmi085->data.accel_poll_val.z, bmi085a_poll_counter);
+//
+//	bmi085a_poll_counter++;
 
 	return status;
 }

@@ -2,7 +2,10 @@
 
 #ifdef IMU_COM
 
-com_serial_imu_command imuComBuffer;
+//com_serial_imu_command imuComBuffer;
+uint8_t imuComBuffer[3];
+//com_serial_imu_receive_state receiveState;
+//uint8_t imuComBuffer[3] = { 0, 0, 0 };
 int imuComBufferPos = 0;
 
 bmi085x* imuRef = NULL;
@@ -14,9 +17,9 @@ int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts)
 {
 	if(haltInterrupts)
 	{
-		TIMER_Stop(&POLL_TIMER);
-		INTERRUPT_Disable(&POLL_TIMER_INTERRUPT);
-		INTERRUPT_Disable(&RS422_INTERRUPT);
+		//TIMER_Stop(&POLL_TIMER);
+		//INTERRUPT_Disable(&POLL_TIMER_INTERRUPT);
+		//INTERRUPT_Disable(&RS422_INTERRUPT);
 	}
 	int8_t status = 0;
 	imuRef = imu;
@@ -87,9 +90,9 @@ int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts)
 
 	if(haltInterrupts)
 	{
-		INTERRUPT_Enable(&POLL_TIMER_INTERRUPT);
-		TIMER_Start(&POLL_TIMER);
-		INTERRUPT_Enable(&RS422_INTERRUPT);
+		//INTERRUPT_Enable(&POLL_TIMER_INTERRUPT);
+		//TIMER_Start(&POLL_TIMER);
+		//INTERRUPT_Enable(&RS422_INTERRUPT);
 	}
 
 	return status;
@@ -98,19 +101,20 @@ int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts)
 com_serial_imu_err_t imu_serial_com_recv()
 {
 	uint8_t rx_data = 0;
-	DIGITAL_IO_SetOutputHigh(&RE_422);
+	//DIGITAL_IO_SetOutputHigh(&RE_422);
 	UART_STATUS_t status = UART_Receive(&RS422_UART_0, &rx_data , 1);
-	DIGITAL_IO_SetOutputLow(&RE_422);
+	//DIGITAL_IO_SetOutputLow(&RE_422);
 
 	if(status != UART_STATUS_SUCCESS)
 	{
-		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		//DIGITAL_IO_SetOutputHigh(&LED_RED);
 		return COM_SERIAL_IMU_ERR_READ_ERROR;
 	}
 
-	DIGITAL_IO_SetOutputLow(&LED_RED);
+	//DIGITAL_IO_SetOutputLow(&LED_RED);
 
-	((uint8_t*)(&imuComBuffer))[imuComBufferPos] = rx_data;
+	//((uint8_t*)(&imuComBuffer))[imuComBufferPos] = rx_data;
+	imuComBuffer[imuComBufferPos] = rx_data;
 	imuComBufferPos++;
 
 	if(imuComBufferPos == COM_SERIAL_IMU_BUFFER_SIZE)
@@ -125,16 +129,16 @@ com_serial_imu_err_t imu_serial_com_recv()
 com_serial_imu_err_t imu_serial_com_write(uint8_t* data, uint32_t size)
 {
 	DIGITAL_IO_SetOutputHigh(&LED_BLUE);
-	DIGITAL_IO_SetOutputHigh(&DE_422);
-	delayMs(10);
+	//DIGITAL_IO_SetOutputHigh(&DE_422);
+	//delayMs(10);
 	UART_STATUS_t status = UART_Transmit(&RS422_UART_0, data, size);
-	delayMs(10);
-	DIGITAL_IO_SetOutputLow(&DE_422);
+	//delayMs(10);
+	//DIGITAL_IO_SetOutputLow(&DE_422);
 	DIGITAL_IO_SetOutputLow(&LED_BLUE);
 
 	if(status != UART_STATUS_SUCCESS)
 	{
-		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		//DIGITAL_IO_SetOutputHigh(&LED_RED);
 		return COM_SERIAL_IMU_ERR_WRITE_ERROR;
 	}
 
@@ -143,19 +147,32 @@ com_serial_imu_err_t imu_serial_com_write(uint8_t* data, uint32_t size)
 
 void imu_serial_com_packet_received_handle()
 {
+	DIGITAL_IO_SetOutputHigh(&LED_YELLOW);
 	bool isValidPacket = imu_serial_com_handle_packet();
 
+//	com_serial_imu_command_ack commandAckTemp = {
+//		0xF0,
+//		0x0F,
+//		(uint8_t)ACKNOWLEGDEMENT,
+//		imuComBuffer.chip,
+//		imuComBuffer.registerAddress,
+//		imuComBuffer.registerValue,
+//		(isValidPacket) ? 1 : 0
+//	};
 	com_serial_imu_command_ack commandAckTemp = {
 		0xF0,
 		0x0F,
 		(uint8_t)ACKNOWLEGDEMENT,
-		imuComBuffer.chip,
-		imuComBuffer.registerAddress,
-		imuComBuffer.registerValue,
+		imuComBuffer[0],
+		imuComBuffer[1],
+		imuComBuffer[2],
 		(isValidPacket) ? 1 : 0
 	};
 	commandAck = commandAckTemp;
 	sendCommandAck = true;
+	imu_serial_com_write((uint8_t*)(&commandAck), sizeof(com_serial_imu_command_ack));
+
+	DIGITAL_IO_SetOutputLow(&LED_YELLOW);
 
 	if(isValidPacket)
 		imu_serial_com_init(imuRef, true);
@@ -163,41 +180,66 @@ void imu_serial_com_packet_received_handle()
 
 bool imu_serial_com_handle_packet()
 {
-	if(imuComBuffer.chip == ACCELEROMETER && imuComBuffer.registerAddress == BMI085A_RANGE_ADDR && imuComBuffer.registerValue < 4) // Valid below max value
+	if(imuComBuffer[0] == ACCELEROMETER && imuComBuffer[1] == BMI085A_RANGE_ADDR && imuComBuffer[2] < 4) // Valid below max value
 	{
 		fram_enable_write();
-		fram_write_data(0, &imuComBuffer.registerValue, 1);
+		fram_write_data(0, &imuComBuffer[2], 1);
 		fram_disable_write();
 		return true;
 	}
-	else if(imuComBuffer.chip == GYRO)
+	else if(imuComBuffer[0] == GYRO)
 	{
-		if(imuComBuffer.registerAddress == BMI085G_CFG_RANG_ADDR && imuComBuffer.registerValue < 5) // Valid below max value
+		if(imuComBuffer[1] == BMI085G_CFG_RANG_ADDR && imuComBuffer[2] < 5) // Valid below max value
 		{
 			fram_enable_write();
-			fram_write_data(1, &imuComBuffer.registerValue, 1);
+			fram_write_data(1, &imuComBuffer[2], 1);
 			fram_disable_write();
 			return true;
 		}
-		else if(imuComBuffer.registerAddress == BMI085G_CFG_BANDWIDTH_ADDR && imuComBuffer.registerValue < 8) // Valid below max value
+		else if(imuComBuffer[1] == BMI085G_CFG_BANDWIDTH_ADDR && imuComBuffer[2] < 8) // Valid below max value
 		{
 			fram_enable_write();
-			fram_write_data(2, &imuComBuffer.registerValue, 1);
+			fram_write_data(2, &imuComBuffer[2], 1);
 			fram_disable_write();
 			return true;
 		}
 	}
+
+//	if(imuComBuffer.chip == ACCELEROMETER && imuComBuffer.registerAddress == BMI085A_RANGE_ADDR && imuComBuffer.registerValue < 4) // Valid below max value
+//	{
+//		fram_enable_write();
+//		fram_write_data(0, &imuComBuffer.registerValue, 1);
+//		fram_disable_write();
+//		return true;
+//	}
+//	else if(imuComBuffer.chip == GYRO)
+//	{
+//		if(imuComBuffer.registerAddress == BMI085G_CFG_RANG_ADDR && imuComBuffer.registerValue < 5) // Valid below max value
+//		{
+//			fram_enable_write();
+//			fram_write_data(1, &imuComBuffer.registerValue, 1);
+//			fram_disable_write();
+//			return true;
+//		}
+//		else if(imuComBuffer.registerAddress == BMI085G_CFG_BANDWIDTH_ADDR && imuComBuffer.registerValue < 8) // Valid below max value
+//		{
+//			fram_enable_write();
+//			fram_write_data(2, &imuComBuffer.registerValue, 1);
+//			fram_disable_write();
+//			return true;
+//		}
+//	}
 
 	return false;
 }
 
 void imu_serial_com_send_measurements(bmi085x* imu)
 {
-	if(sendCommandAck)
-	{
-		imu_serial_com_write((uint8_t*)(&commandAck), sizeof(com_serial_imu_command_ack));
-		sendCommandAck = false;
-	}
+//	if(sendCommandAck)
+//	{
+//		imu_serial_com_write((uint8_t*)(&commandAck), sizeof(com_serial_imu_command_ack));
+//		sendCommandAck = false;
+//	}
 
 	com_serial_imu_data_packet dataPacket = {
 		0xF0,
@@ -226,6 +268,11 @@ bool imu_serial_com_validate_fram_data(com_serial_imu_fram_data* framData)
 		return false;
 
 	return true;
+}
+
+void imu_serial_com_reset_recv_buffer_pos()
+{
+	imuComBufferPos = 0;
 }
 
 #endif

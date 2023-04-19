@@ -47,7 +47,9 @@ void rs422_interrupt(void)
 		sf30_rx_handle();
 	#endif
 	#ifdef IMU_COM
+		//TIMER_Stop(&POLL_TIMER);
 		imu_serial_com_recv();
+		//TIMER_Start(&POLL_TIMER);
 	#endif
 #else
 	validate_rs422_update();
@@ -80,6 +82,30 @@ void tick_timer_ISR(void)
 	validation_app_send();
 
 #endif
+}
+
+int toggleDipSwitchState = 0;
+int toggleDipSwitchValue = 0;
+
+void toggle_dip_switch_handle()
+{
+	toggleDipSwitchValue = DIGITAL_IO_GetInput(&DIP_ADD3);
+	if(toggleDipSwitchState == 0 && toggleDipSwitchValue == 1)
+	{
+		DIGITAL_IO_SetOutputLow(&LED_RED);
+		DIGITAL_IO_SetOutputHigh(&RE_422);
+		INTERRUPT_Disable(&RS422_INTERRUPT);
+		TIMER_Start(&POLL_TIMER);
+		toggleDipSwitchState = 1;
+	}
+	else if(toggleDipSwitchState == 1 && toggleDipSwitchValue == 0)
+	{
+		DIGITAL_IO_SetOutputHigh(&LED_RED);
+		TIMER_Stop(&POLL_TIMER);
+		INTERRUPT_Enable(&RS422_INTERRUPT);
+		DIGITAL_IO_SetOutputLow(&RE_422);
+		toggleDipSwitchState = 0;
+	}
 }
 
 
@@ -125,15 +151,26 @@ int main(void)
 #endif
 
 	INTERRUPT_Enable(&POLL_TIMER_INTERRUPT);
-	TIMER_Start(&POLL_TIMER);
+	//TIMER_Start(&POLL_TIMER);
 //	INTERRUPT_Enable(&RS232_INTERRUPT);
 	INTERRUPT_Enable(&RS422_INTERRUPT);
 //	INTERRUPT_Enable(&UART_INTERRUPT);
 
 //	INTERRUPT_Enable(&HUB_UART_3_INTERRUPT);
 
+	DIGITAL_IO_SetOutputHigh(&DE_422);
+	DIGITAL_IO_SetOutputLow(&RE_422);
+	DIGITAL_IO_SetOutputHigh(&LED_RED);
+
+//	int test1 = DIGITAL_IO_GetInput(&DIP_ADD0);
+//	int test2 = DIGITAL_IO_GetInput(&DIP_ADD1);
+//	int test3 = DIGITAL_IO_GetInput(&DIP_ADD2);
+//	int test4 = DIGITAL_IO_GetInput(&DIP_ADD3);
+
 	while (1U)
 	{
+		toggle_dip_switch_handle();
+
 #ifdef RUN_HW_VALIDATION
 		validation_app_run();
 #else
