@@ -245,99 +245,109 @@ namespace SatelliteConfigurator
 
             while (this.threadRunning)
             {
-                if (this.serialPort.BytesToRead == 0)
-                    continue;
-
-                int bytesToRead = this.serialPort.BytesToRead;
-                this.serialPort.Read(buffer, 0, 1);
-
-                switch (receiveState)
+                try
                 {
-                    case ReceiveState.RECEIVING_STARTBYTE_1:
-                        {
-                            if (buffer[0] == 0xF0)
-                                receiveState = ReceiveState.RECEIVING_STARTBYTE_2;
-                            break;
-                        }
-                    case ReceiveState.RECEIVING_STARTBYTE_2:
-                        {
-                            if (buffer[0] == 0x0F)
-                                receiveState = ReceiveState.RECEIVING_MESSAGE_TYPE;
-                            else if(buffer[0] != 0xF0)
-                                receiveState = ReceiveState.RECEIVING_STARTBYTE_1;
-                            break;
-                        }
-                    case ReceiveState.RECEIVING_MESSAGE_TYPE:
-                        {
-                            currentMessageType = (MessageType)buffer[0];
-                            receiveState = ReceiveState.RECEIVING_PAYLOAD;
-                            break;
-                        }
-                    case ReceiveState.RECEIVING_PAYLOAD:
-                        {
-                            if (currentMessageType == MessageType.IMU_DATA)
-                                imuBuffer[currentIndex] = buffer[0];
-                            else if (currentMessageType == MessageType.ACKNOWLEGDEMENT)
-                                acknowledgementBuffer[currentIndex] = buffer[0];
+                    if (this.serialPort.BytesToRead == 0)
+                        continue;
 
-                            currentIndex++;
+                    int bytesToRead = this.serialPort.BytesToRead;
+                    this.serialPort.Read(buffer, 0, 1);
 
-                            if (currentMessageType == MessageType.IMU_DATA && currentIndex == 12)
+                    switch (receiveState)
+                    {
+                        case ReceiveState.RECEIVING_STARTBYTE_1:
                             {
-                                IMUDataVisualizer.IMUData imuData = new IMUDataVisualizer.IMUData()
-                                {
-                                    accelX = BitConverter.ToInt16(imuBuffer, 0),
-                                    accelY = BitConverter.ToInt16(imuBuffer, 2),
-                                    accelZ = BitConverter.ToInt16(imuBuffer, 4),
-                                    gyroX = BitConverter.ToInt16(imuBuffer, 6),
-                                    gyroY = BitConverter.ToInt16(imuBuffer, 8),
-                                    gyroZ = BitConverter.ToInt16(imuBuffer, 10)
-                                };
-
-                                this.imuDataVisualizer.AddImuData(imuData);
-
-                                //Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
-                                //{
-                                //    lbl_accelX.Content = imuData.accelX;
-                                //    lbl_accelY.Content = imuData.accelY;
-                                //    lbl_accelZ.Content = imuData.accelZ;
-                                //    lbl_gyroX.Content = imuData.gyroX;
-                                //    lbl_gyroY.Content = imuData.gyroY;
-                                //    lbl_gyroZ.Content = imuData.gyroZ;
-                                //}));
-
-                                currentIndex = 0;
-                                receiveState = ReceiveState.RECEIVING_STARTBYTE_1;
-                                this.imuDataPacketsRecieved++;
+                                if (buffer[0] == 0xF0)
+                                    receiveState = ReceiveState.RECEIVING_STARTBYTE_2;
+                                break;
                             }
-                            else if (currentMessageType == MessageType.ACKNOWLEGDEMENT && currentIndex == 4)
+                        case ReceiveState.RECEIVING_STARTBYTE_2:
                             {
-                                AcknowlegdementMessage acknowlegdementMessage = new AcknowlegdementMessage()
-                                {
-                                    chip = acknowledgementBuffer[0],
-                                    registerAddress = acknowledgementBuffer[1],
-                                    registerValue = acknowledgementBuffer[2],
-                                    ack = acknowledgementBuffer[3]
-                                };
-
-                                Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
-                                {
-                                    txb_ReceiveLog.Text += "Ack: " + acknowlegdementMessage.chip + " " + acknowlegdementMessage.registerAddress + " " + acknowlegdementMessage.registerValue + " " + acknowlegdementMessage.ack + "\n";
-                                    txb_ReceiveLog.ScrollToEnd();
-                                }));
-
-                                currentIndex = 0;
-                                receiveState = ReceiveState.RECEIVING_STARTBYTE_1;
+                                if (buffer[0] == 0x0F)
+                                    receiveState = ReceiveState.RECEIVING_MESSAGE_TYPE;
+                                else if (buffer[0] != 0xF0)
+                                    receiveState = ReceiveState.RECEIVING_STARTBYTE_1;
+                                break;
                             }
-
-                            if(currentIndex > 12)
+                        case ReceiveState.RECEIVING_MESSAGE_TYPE:
                             {
-                                currentIndex = 0;
-                                receiveState = ReceiveState.RECEIVING_STARTBYTE_1;
-                            }    
+                                currentMessageType = (MessageType)buffer[0];
+                                receiveState = ReceiveState.RECEIVING_PAYLOAD;
+                                break;
+                            }
+                        case ReceiveState.RECEIVING_PAYLOAD:
+                            {
+                                if (currentMessageType == MessageType.IMU_DATA)
+                                    imuBuffer[currentIndex] = buffer[0];
+                                else if (currentMessageType == MessageType.ACKNOWLEGDEMENT)
+                                    acknowledgementBuffer[currentIndex] = buffer[0];
 
-                            break;
-                        }
+                                currentIndex++;
+
+                                if (currentMessageType == MessageType.IMU_DATA && currentIndex == 12)
+                                {
+                                    IMUDataVisualizer.IMUData imuData = new IMUDataVisualizer.IMUData()
+                                    {
+                                        accelX = BitConverter.ToInt16(imuBuffer, 0),
+                                        accelY = BitConverter.ToInt16(imuBuffer, 2),
+                                        accelZ = BitConverter.ToInt16(imuBuffer, 4),
+                                        gyroX = BitConverter.ToInt16(imuBuffer, 6),
+                                        gyroY = BitConverter.ToInt16(imuBuffer, 8),
+                                        gyroZ = BitConverter.ToInt16(imuBuffer, 10)
+                                    };
+
+                                    this.imuDataVisualizer.AddImuData(imuData);
+
+                                    //Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                                    //{
+                                    //    lbl_accelX.Content = imuData.accelX;
+                                    //    lbl_accelY.Content = imuData.accelY;
+                                    //    lbl_accelZ.Content = imuData.accelZ;
+                                    //    lbl_gyroX.Content = imuData.gyroX;
+                                    //    lbl_gyroY.Content = imuData.gyroY;
+                                    //    lbl_gyroZ.Content = imuData.gyroZ;
+                                    //}));
+
+                                    currentIndex = 0;
+                                    receiveState = ReceiveState.RECEIVING_STARTBYTE_1;
+                                    this.imuDataPacketsRecieved++;
+                                }
+                                else if (currentMessageType == MessageType.ACKNOWLEGDEMENT && currentIndex == 4)
+                                {
+                                    AcknowlegdementMessage acknowlegdementMessage = new AcknowlegdementMessage()
+                                    {
+                                        chip = acknowledgementBuffer[0],
+                                        registerAddress = acknowledgementBuffer[1],
+                                        registerValue = acknowledgementBuffer[2],
+                                        ack = acknowledgementBuffer[3]
+                                    };
+
+                                    Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                                    {
+                                        txb_ReceiveLog.Text += "Ack: " + acknowlegdementMessage.chip + " " + acknowlegdementMessage.registerAddress + " " + acknowlegdementMessage.registerValue + " " + acknowlegdementMessage.ack + "\n";
+                                        txb_ReceiveLog.ScrollToEnd();
+                                    }));
+
+                                    currentIndex = 0;
+                                    receiveState = ReceiveState.RECEIVING_STARTBYTE_1;
+                                }
+
+                                if (currentIndex > 12)
+                                {
+                                    currentIndex = 0;
+                                    receiveState = ReceiveState.RECEIVING_STARTBYTE_1;
+                                }
+
+                                break;
+                            }
+                    }
+                }
+                catch(Exception e)
+                {
+                    Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        btn_ClosePort_Click(null, null);
+                    }));
                 }
             }
         }
