@@ -107,7 +107,7 @@ fram_err_t fram_read_data(uint16_t offset, void* data, uint16_t size)
 	//======== Build command buffer ========
 	unsigned char* commandBytes = (unsigned char*)malloc(3 + size);
 	commandBytes[0] = OPCODE_READ;
-	commandBytes[1] = (uint8_t)(offset >> 1);
+	commandBytes[1] = (uint8_t)(offset >> 8);
 	commandBytes[2] = (uint8_t)offset;
 	memcpy(commandBytes + 3, data, size);
 
@@ -141,7 +141,7 @@ fram_err_t fram_write_data(uint16_t offset, void* data, uint16_t size)
 	//======== Build command buffer ========
 	unsigned char* commandBytes = (unsigned char*)malloc(3 + size);
 	commandBytes[0] = OPCODE_WRITE;
-	commandBytes[1] = (uint8_t)(offset >> 1);
+	commandBytes[1] = (uint8_t)(offset >> 8);
 	commandBytes[2] = (uint8_t)offset;
 	memcpy(commandBytes + 3, data, size);
 

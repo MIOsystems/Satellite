@@ -202,7 +202,7 @@ namespace SatelliteConfigurator
             }
 
             string selectedPortName = cmb_ComPorts.SelectedItem.ToString();
-            this.serialPort = new SerialPort(selectedPortName, 460800, Parity.None, 8, StopBits.One);//115200 460800
+            this.serialPort = new SerialPort(selectedPortName, 460800, Parity.None, 8, StopBits.One);//115200 460800 
             this.serialPort.Open();
 
             this.serialPortThread = new Thread(SerialPortThreadRun);
