@@ -105,6 +105,7 @@ void toggle_dip_switch_handle()
 		INTERRUPT_Enable(&RS422_INTERRUPT);
 		DIGITAL_IO_SetOutputLow(&RE_422);
 		toggleDipSwitchState = 0;
+		imu_serial_com_reset_recv();
 	}
 }
 

@@ -54,7 +54,8 @@ namespace SatelliteConfigurator
 
         private enum AccelRegisters
         {
-            ACCELEROMETER_RANGE = 0x41
+            ACCELEROMETER_RANGE = 0x41,
+            ACCELEROMETER_BANDWIDTH = 0x40
         };
 
         private enum GyroRegisters
@@ -71,6 +72,25 @@ namespace SatelliteConfigurator
             RANGE_4G = 0x01,
             RANGE_8G = 0x02,
             RANGE_16G = 0x03
+        };
+
+        private enum AccelBandwidthODR
+        {
+            BANDWIDTH_ODR_12_5 = 0x05,
+            BANDWIDTH_ODR_25 = 0x06,
+            BANDWIDTH_ODR_50 = 0x07,
+            BANDWIDTH_ODR_100 = 0x08,
+            BANDWIDTH_ODR_200 = 0x09,
+            BANDWIDTH_ODR_400 = 0x0A,
+            BANDWIDTH_ODR_800 = 0x0B,
+            BANDWIDTH_ODR_1600 = 0x0C
+        };
+
+        private enum AccelBandwidthFilter
+        {
+            BANDWIDTH_FILTER_OSR4 = 0x00,
+            BANDWIDTH_FILTER_OSR2 = 0x01,
+            BANDWIDTH_FILTER_NORMAL = 0x02
         };
 
         private enum GyroRange
@@ -129,10 +149,12 @@ namespace SatelliteConfigurator
 
         List<string> chips = new List<string>() { "Accelerometer", "Gyro" };
 
-        List<string> accelerometerRegisters = new List<string>() { "Range" };
+        List<string> accelerometerRegisters = new List<string>() { "Range", "Bandwidth" };
         List<string> gyroRegisters = new List<string>() { "Range", "Bandwidth" };
 
         List<string> accelerometerRangeValues = new List<string>() { "2G", "4G", "8G", "16G" };
+        List<string> accelerometerBandwidthOdrValues = new List<string>() { "12.5", "25", "50", "100", "200", "400", "800", "1600" };
+        List<string> accelerometerBandwidthFilterValues = new List<string>() { "OSR4", "OSR2", "Normal" };
         List<string> gyroRangeValues = new List<string>() { "2000", "1000", "500", "250", "125" };
         List<string> gyroBandwidthValues = new List<string>() { "2000_532", "2000_230", "1000_116", "400_47", "200_23", "100_12", "200_64", "100_32" };
 
@@ -395,12 +417,20 @@ namespace SatelliteConfigurator
 
         private void cmb_Command_Register_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            stk_FilterBandwidth.Visibility = Visibility.Hidden;
             if (cmb_Chip.SelectedIndex == (int)IMUChip.ACCELEROMETER)
             {
                 if (cmb_Register.SelectedIndex == 0)
                 {
                     command.registerAddress = (byte)AccelRegisters.ACCELEROMETER_RANGE;
                     FillComboBox(accelerometerRangeValues, cmb_Value);
+                }
+                else if (cmb_Register.SelectedIndex == 1)
+                {
+                    command.registerAddress = (byte)AccelRegisters.ACCELEROMETER_BANDWIDTH;
+                    FillComboBox(accelerometerBandwidthOdrValues, cmb_Value);
+                    FillComboBox(accelerometerBandwidthFilterValues, cmb_AccelFilterBandwidth);
+                    stk_FilterBandwidth.Visibility = Visibility.Visible;
                 }
             }
             else if (cmb_Chip.SelectedIndex == (int)IMUChip.GYROSCOPE)
@@ -420,7 +450,10 @@ namespace SatelliteConfigurator
 
         private void cmb_Command_Value_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            command.registerValue = (byte)cmb_Value.SelectedIndex;
+            if(command.chip == (byte)IMUChip.ACCELEROMETER && command.registerAddress == (byte)AccelRegisters.ACCELEROMETER_BANDWIDTH)
+                command.registerValue = (byte)((cmb_AccelFilterBandwidth.SelectedIndex << 4) | (cmb_Value.SelectedIndex + 5));
+            else
+                command.registerValue = (byte)cmb_Value.SelectedIndex;
         }
 
         private void Window_Closed(object sender, EventArgs e)

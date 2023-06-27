@@ -24,7 +24,7 @@ int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts)
 	int8_t status = 0;
 	imuRef = imu;
 
-	com_serial_imu_fram_data framData = { 0, 0, 0 };
+	com_serial_imu_fram_data framData = { 0, 0, 0, 0 };
 	fram_read_data(0, &framData, sizeof(com_serial_imu_fram_data));
 
 	bool framDataValid = imu_serial_com_validate_fram_data(&framData);
@@ -32,6 +32,7 @@ int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts)
 	{
 		status = (int8_t)imuInit(imu);
 		framData.accelRangeRegisterValue = imu->acc.config.meas_range.instr;
+		framData.accelBandwidthRegisterValue = imu->acc.config.bandwidth.instr;
 		framData.gyroRangeRegisterValue = imu->gyro.config.meas_range.instr;
 		framData.gyroBandwidthRegisterValue = imu->gyro.config.bandwidth.instr;
 
@@ -59,7 +60,7 @@ int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts)
 			},
 			.odr = {
 				.reg_addr = BMI085A_CFG_ADDR,
-				.instr = 0x8c,
+				.instr = framData.accelBandwidthRegisterValue,//0x8c
 			}
 		}
 	};
@@ -96,6 +97,11 @@ int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts)
 	}
 
 	return status;
+}
+
+void imu_serial_com_reset_recv()
+{
+	imuComBufferPos = 0;
 }
 
 com_serial_imu_err_t imu_serial_com_recv()
@@ -180,55 +186,44 @@ void imu_serial_com_packet_received_handle()
 
 bool imu_serial_com_handle_packet()
 {
-	if(imuComBuffer[0] == ACCELEROMETER && imuComBuffer[1] == BMI085A_RANGE_ADDR && imuComBuffer[2] < 4) // Valid below max value
+	if(imuComBuffer[0] == ACCELEROMETER) // Valid below max value
 	{
-		fram_enable_write();
-		fram_write_data(0, &imuComBuffer[2], 1);
-		fram_disable_write();
-		return true;
+		if(imuComBuffer[1] == BMI085A_RANGE_ADDR && imuComBuffer[2] < 4) // Valid below max value
+		{
+			fram_enable_write();
+			fram_write_data(0, &imuComBuffer[2], 1);
+			fram_disable_write();
+			return true;
+		}
+		else if(imuComBuffer[1] == BMI085A_CFG_ADDR) // Valid below max value
+		{
+			uint8_t value = imuComBuffer[2] | 0x80; //Add bit set to 1 at the last bit
+			if(!imu_serial_com_validate_accelerometer_bandwidth(imuComBuffer[2]))
+				return false;
+
+			fram_enable_write();
+			fram_write_data(1, &value, 1);
+			fram_disable_write();
+			return true;
+		}
 	}
 	else if(imuComBuffer[0] == GYRO)
 	{
 		if(imuComBuffer[1] == BMI085G_CFG_RANG_ADDR && imuComBuffer[2] < 5) // Valid below max value
 		{
 			fram_enable_write();
-			fram_write_data(1, &imuComBuffer[2], 1);
+			fram_write_data(2, &imuComBuffer[2], 1);
 			fram_disable_write();
 			return true;
 		}
 		else if(imuComBuffer[1] == BMI085G_CFG_BANDWIDTH_ADDR && imuComBuffer[2] < 8) // Valid below max value
 		{
 			fram_enable_write();
-			fram_write_data(2, &imuComBuffer[2], 1);
+			fram_write_data(3, &imuComBuffer[2], 1);
 			fram_disable_write();
 			return true;
 		}
 	}
-
-//	if(imuComBuffer.chip == ACCELEROMETER && imuComBuffer.registerAddress == BMI085A_RANGE_ADDR && imuComBuffer.registerValue < 4) // Valid below max value
-//	{
-//		fram_enable_write();
-//		fram_write_data(0, &imuComBuffer.registerValue, 1);
-//		fram_disable_write();
-//		return true;
-//	}
-//	else if(imuComBuffer.chip == GYRO)
-//	{
-//		if(imuComBuffer.registerAddress == BMI085G_CFG_RANG_ADDR && imuComBuffer.registerValue < 5) // Valid below max value
-//		{
-//			fram_enable_write();
-//			fram_write_data(1, &imuComBuffer.registerValue, 1);
-//			fram_disable_write();
-//			return true;
-//		}
-//		else if(imuComBuffer.registerAddress == BMI085G_CFG_BANDWIDTH_ADDR && imuComBuffer.registerValue < 8) // Valid below max value
-//		{
-//			fram_enable_write();
-//			fram_write_data(2, &imuComBuffer.registerValue, 1);
-//			fram_disable_write();
-//			return true;
-//		}
-//	}
 
 	return false;
 }
@@ -262,12 +257,22 @@ bool imu_serial_com_validate_fram_data(com_serial_imu_fram_data* framData)
 {
 	if(framData->accelRangeRegisterValue > 3)
 		return false;
+	if(!imu_serial_com_validate_accelerometer_bandwidth(framData->accelBandwidthRegisterValue))
+		return false;
 	if(framData->gyroRangeRegisterValue > 4)
 		return false;
 	if(framData->gyroBandwidthRegisterValue > 7)
 		return false;
 
 	return true;
+}
+
+bool imu_serial_com_validate_accelerometer_bandwidth(uint8_t byte)
+{
+	uint8_t finalByte = byte & 0x7F;//Remove bit set to 1 at the last bit
+	uint8_t filterBandwidth = ((finalByte & 0xF0) >> 4);
+	uint8_t outputDataRate = (finalByte & 0x0F);
+	return (filterBandwidth < 0x03 && outputDataRate > 0x04 && outputDataRate < 0x0D);
 }
 
 void imu_serial_com_reset_recv_buffer_pos()

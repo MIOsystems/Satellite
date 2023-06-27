@@ -75,12 +75,24 @@
             </Grid>-->
         </StackPanel>
         <StackPanel Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Label Content="Chip:"></Label>
-            <ComboBox x:Name="cmb_Chip" Width="150" SelectedIndex="0" SelectionChanged="cmb_Command_Chip_SelectionChanged"></ComboBox>
-            <Label Content="Register:"></Label>
-            <ComboBox x:Name="cmb_Register" Width="150" SelectionChanged="cmb_Command_Register_SelectionChanged"></ComboBox>
-            <Label Content="Value:"></Label>
-            <ComboBox x:Name="cmb_Value" Width="150" SelectionChanged="cmb_Command_Value_SelectionChanged"></ComboBox>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Label Content="Chip:"></Label>
+                <ComboBox x:Name="cmb_Chip" Width="150" SelectedIndex="0" SelectionChanged="cmb_Command_Chip_SelectionChanged"></ComboBox>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Label Content="Register:"></Label>
+                <ComboBox x:Name="cmb_Register" Width="150" SelectionChanged="cmb_Command_Register_SelectionChanged"></ComboBox>
+            </StackPanel>
+            <WrapPanel>
+                <StackPanel>
+                    <Label Content="Value:"></Label>
+                    <ComboBox x:Name="cmb_Value" Width="150" SelectionChanged="cmb_Command_Value_SelectionChanged"></ComboBox>
+                </StackPanel>
+                <StackPanel x:Name="stk_FilterBandwidth">
+                    <Label Content="FilterBandwidth:"></Label>
+                    <ComboBox x:Name="cmb_AccelFilterBandwidth" Width="150" SelectionChanged="cmb_Command_Value_SelectionChanged"></ComboBox>
+                </StackPanel>
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </Window>

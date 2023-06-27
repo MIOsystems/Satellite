@@ -82,11 +82,13 @@ typedef struct
 typedef struct
 {
 	uint8_t accelRangeRegisterValue;
+	uint8_t accelBandwidthRegisterValue;
 	uint8_t gyroRangeRegisterValue;
 	uint8_t gyroBandwidthRegisterValue;
 } com_serial_imu_fram_data;
 
 int8_t imu_serial_com_init(bmi085x* imu, bool haltInterrupts);
+void imu_serial_com_reset_recv();
 
 com_serial_imu_err_t imu_serial_com_recv();
 com_serial_imu_err_t imu_serial_com_write(uint8_t* data, uint32_t size);
@@ -95,6 +97,7 @@ bool imu_serial_com_handle_packet();
 
 void imu_serial_com_send_measurements(bmi085x* imu);
 bool imu_serial_com_validate_fram_data(com_serial_imu_fram_data* framData);
+bool imu_serial_com_validate_accelerometer_bandwidth(uint8_t byte);
 
 void imu_serial_com_reset_recv_buffer_pos();
 
