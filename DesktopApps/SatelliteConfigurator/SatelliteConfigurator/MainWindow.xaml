@@ -39,8 +39,22 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
                 <Button x:Name="btn_Transmit" Content="Transmit Configuration" Width="200" Height="25" Margin="5,5,5,5" IsEnabled="False" Click="btn_Transmit_Click" HorizontalAlignment="Left" VerticalAlignment="Top"></Button>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Min accelerometer"></Label>
+                        <Label Content="Max accelerometer"></Label>
+                        <Label Content="Min gyro"></Label>
+                        <Label Content="Max gyro"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                        <Label x:Name="lbl_MinAccelerometer"></Label>
+                        <Label x:Name="lbl_MaxAccelerometer"></Label>
+                        <Label x:Name="lbl_MinGyro"></Label>
+                        <Label x:Name="lbl_MaxGyro"></Label>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
             
             <!--<Grid Width="300" Height="100">

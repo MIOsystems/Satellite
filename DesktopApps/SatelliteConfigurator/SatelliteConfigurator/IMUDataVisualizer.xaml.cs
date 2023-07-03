@@ -48,6 +48,10 @@ namespace SatelliteConfigurator
         private System.Timers.Timer renderTimer;
         private bool updateNeeded;
 
+        IMUData minImu;
+        IMUData maxImu;
+        bool firstImu = true;
+
         public IMUDataVisualizer(int measurementsToDisplay)
         {
             InitializeComponent();
@@ -68,6 +72,8 @@ namespace SatelliteConfigurator
 
             RefreshAndRender();
 
+            ResetImuMinMax();
+
             plt_GraphAccelX.Plot.XAxis2.Label(label: "Accel X", size: 14, color: System.Drawing.Color.Black, bold: true);
             plt_GraphAccelY.Plot.XAxis2.Label(label: "Accel Y", size: 14, color: System.Drawing.Color.Black, bold: true);
             plt_GraphAccelZ.Plot.XAxis2.Label(label: "Accel Z", size: 14, color: System.Drawing.Color.Black, bold: true);
@@ -81,6 +87,28 @@ namespace SatelliteConfigurator
             this.imuDataBufferMutex = new Mutex();
             this.updateThread = new Thread(UpdateThreadRun);
             this.updateThread.Start();
+        }
+
+        public void ResetImuMinMax()
+        {
+            this.minImu = new IMUData()
+            {
+                accelX = 0,
+                accelY = 0,
+                accelZ = 0,
+                gyroX = 0,
+                gyroY = 0,
+                gyroZ = 0
+            };
+            this.maxImu = new IMUData()
+            {
+                accelX = 0,
+                accelY = 0,
+                accelZ = 0,
+                gyroX = 0,
+                gyroY = 0,
+                gyroZ = 0
+            };
         }
 
         public void StartRenderThread()
@@ -108,6 +136,61 @@ namespace SatelliteConfigurator
                     IMUData imuData = this.imuDataBuffer.Dequeue();
                     this.imuDataBufferMutex.ReleaseMutex();
 
+                    //// Calculate min/max imu data
+                    //if (!this.firstImu)
+                    //{
+                    //    // Calculate min
+                    //    if (imuData.accelX < this.minImu.accelX)
+                    //        this.minImu.accelX = imuData.accelX;
+                    //    if (imuData.accelY < this.minImu.accelY)
+                    //        this.minImu.accelY = imuData.accelY;
+                    //    if (imuData.accelZ < this.minImu.accelZ)
+                    //        this.minImu.accelZ = imuData.accelZ;
+
+                    //    if (imuData.gyroX < this.minImu.gyroX)
+                    //        this.minImu.gyroX = imuData.gyroX;
+                    //    if (imuData.gyroY < this.minImu.gyroY)
+                    //        this.minImu.gyroY = imuData.gyroY;
+                    //    if (imuData.gyroZ < this.minImu.gyroZ)
+                    //        this.minImu.gyroZ = imuData.gyroZ;
+
+                    //    // Calculate max
+                    //    if (imuData.accelX > this.maxImu.accelX)
+                    //        this.maxImu.accelX = imuData.accelX;
+                    //    if (imuData.accelY > this.maxImu.accelY)
+                    //        this.maxImu.accelY = imuData.accelY;
+                    //    if (imuData.accelZ > this.maxImu.accelZ)
+                    //        this.maxImu.accelZ = imuData.accelZ;
+
+                    //    if (imuData.gyroX > this.maxImu.gyroX)
+                    //        this.maxImu.gyroX = imuData.gyroX;
+                    //    if (imuData.gyroY > this.maxImu.gyroY)
+                    //        this.maxImu.gyroY = imuData.gyroY;
+                    //    if (imuData.gyroZ > this.maxImu.gyroZ)
+                    //        this.maxImu.gyroZ = imuData.gyroZ;
+                    //}
+                    //else
+                    //{
+                    //    this.minImu = imuData;
+                    //    this.maxImu = imuData;
+
+                    //    this.firstImu = false;
+                    //}
+
+                    //Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new Action(() =>
+                    //{
+                    //    lbl_MinAccel.Content = "Min x: " + this.minImu.accelX + " y: " + this.minImu.accelY + " z: " + this.minImu.accelZ;
+                    //    lbl_MaxAccel.Content = "Max x: " + this.maxImu.accelX + " y: " + this.maxImu.accelY + " z: " + this.maxImu.accelZ;
+                    //    lbl_MinGyro.Content = "Min x: " + this.minImu.gyroX + " y: " + this.minImu.gyroY + " z: " + this.minImu.gyroZ;
+                    //    lbl_MaxGyro.Content = "Max x: " + this.maxImu.gyroX + " y: " + this.maxImu.gyroY + " z: " + this.maxImu.gyroZ;
+                    //}));
+
+                    //Console.WriteLine("Min accel (" + "x: " + this.minImu.accelX + " y: " + this.minImu.accelY + " z: " + this.minImu.accelZ + ")");
+                    //Console.WriteLine("Max accel (" + "x: " + this.maxImu.accelX + " y: " + this.maxImu.accelY + " z: " + this.maxImu.accelZ + ")");
+                    //Console.WriteLine("Min gyro (" + "x: " + this.minImu.gyroX + " y: " + this.minImu.gyroY + " z: " + this.minImu.gyroZ + ")");
+                    //Console.WriteLine("Max gyro (" + "x: " + this.maxImu.gyroX + " y: " + this.maxImu.gyroY + " z: " + this.maxImu.gyroZ + ")");
+
+                    // Plot grid points
                     double degToRad = 0.01745329251;
                     double multiplier = degToRad * 1000.0 / 32768.0;
 
@@ -134,6 +217,7 @@ namespace SatelliteConfigurator
         {
             wpfPlot.Plot.AxisAuto();
             wpfPlot.Plot.SetInnerViewLimits(0, 50, -30000, 30000);
+            //wpfPlot.Plot.SetInnerViewLimits(0, 50, 14000, 18000);
             ScottPlot.Plottable.SignalPlot signalPlot = wpfPlot.Plot.AddSignal(livePlotBuffer.GetBuffer());
             signalPlot.MarkerSize = 0;
             signalPlot.Color = System.Drawing.Color.Black;

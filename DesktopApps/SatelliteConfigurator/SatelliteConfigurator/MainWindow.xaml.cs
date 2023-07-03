@@ -376,6 +376,8 @@ namespace SatelliteConfigurator
 
         private void btn_Transmit_Click(object sender, RoutedEventArgs e)
         {
+            imuDataVisualizer.ResetImuMinMax();
+
             byte[] bytes = { command.chip, command.registerAddress, command.registerValue };
             this.serialPort.Write(bytes, 0, bytes.Length);
 
